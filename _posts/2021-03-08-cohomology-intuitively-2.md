@@ -60,3 +60,4 @@ def _(Simplices = input_box([['a','w','x','y'], ['b', 'c', 'd'], ['b','c','e'], 
 [1]: simplicial complex
 [2]: ddg lectures
 [3]: https://www.cs.cmu.edu/~kmcrane/
+[4]: https://math.stackexchange.com/questions/4224231/homology-of-torus-with-two-discs-glued-on-the-inside
