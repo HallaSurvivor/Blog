@@ -28,6 +28,7 @@ B.S. in Discrete Math and Logic (May 2019)
 
 - Algebraic Datatypes and Their Derivatives (CMU, 2017)
 - Category Theory for Programmers (CMU, 2018)
+- Logical Compactness: Infinite Proofs for Free! (CMU, 2019)
 - Synthetic Differential Geometry: A How-To Guide (CMU, 2019)
 - Model Theory and You (UCR, 2020)
 - Programming for Category Theorists (UCR, 2020)
