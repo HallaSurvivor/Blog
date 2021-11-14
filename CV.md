@@ -79,6 +79,7 @@ B.S. in Discrete Math and Logic (May 2019)
 - Homotopy Type Theory 
 - Algebra 
 - Theorist's Toolkit (audited during my year off) TODO: Can I say this?
+- Algebraic Geometry (also took during my year off)
 
 ## Relevant Undergraduate Coursework
 
