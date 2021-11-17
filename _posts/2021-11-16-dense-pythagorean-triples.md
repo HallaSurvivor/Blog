@@ -26,7 +26,7 @@ Rewrite $a^2 + b^2 = c^2$ as
 $\left ( \frac{a}{c} \right )^2 + \left ( \frac{b}{c} \right )^2 = 1$. From
 this, it's clear that pythagorean triples are in bijection
 with rational points on the unit circle. Of course, there are some "obvious"
-rational point on the circle, and here I believe it's traditional to choose
+rational points on the circle, and here I believe it's traditional to choose
 $(-1,0)$, but any rational point will do. Now it's time for the geometric
 insight: Pick a rational point on the circle. Then the line from $(-1,0)$ to
 that point will have rational slope. Conversely, any line through $(-1,0)$ 
@@ -35,7 +35,7 @@ with rational slope will intersect the unit circle in some rational point[^1].
 <img src="/assets/images/dense-pythagorean-triples/rational-circle.png" width="75%">
 
 This means we can _compeltely characterize_ pythagorean triples by rational
-slopes. In the language of algebraic geometry, we say that the (rational) 
+slopes. In the language of algebraic geometry, we say that the 
 affine line is [birationally equivalent][4] to the circle.
 
 <div class=boxed markdown=1>
@@ -129,7 +129,7 @@ Then, if all is right with the world, we'll have successfully found a
 pythagorean triple $a^2 + b^2 = c^2$ with $\alpha \lt \frac{a}{b} \lt \beta$.
 How far we've come!
 
-Now, how do we choose such a $t$? Well, if we plot $x(t)$, we see it's 
+Now, how do we choose such a $t$? Well, if we plot $x(t)$, we see
 as $t$ goes from $-1$ to $1$, $x$ increases monotonically from 
 $-\infty$ to $\infty$, so all we need to do is invert this function and we'll win!
 
