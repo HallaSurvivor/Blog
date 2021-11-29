@@ -4,8 +4,6 @@ title: CV
 
 ## Chris Grossack
 
-TODO: contact information
-
 ---
 
 ## Education
@@ -23,6 +21,7 @@ B.S. in Discrete Math and Logic (May 2019)
 ## Publications
 
 - Extensions of Abelian Automata Groups (preprint)
+- A Cohomological Criterion for Automaticity (preprint)
 
 ## Talks
 
@@ -78,15 +77,20 @@ B.S. in Discrete Math and Logic (May 2019)
 - Descriptive Set Theory 
 - Homotopy Type Theory 
 - Algebra 
-- Theorist's Toolkit (audited during my year off) TODO: Can I say this?
-- Algebraic Geometry (also took during my year off)
+- Theorist's Toolkit (audited) 
+- Algebraic Geometry (audited)
 
 ## Relevant Undergraduate Coursework
 
 - Programming Language Theory
 - Modal Logic
 - Computational Discrete Math
-- TODO: Huh. I have no idea what classes I took as an undergraduate.
+- Intermediate Logic
+- Combinatorics
+- Great Theoretical Ideas in Computer Science
+- Linear Algebra
+- Probability
+- Matrix Theory
 
 ## Research/Reading Experience
 
