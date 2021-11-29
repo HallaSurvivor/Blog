@@ -21,7 +21,7 @@ B.S. in Discrete Math and Logic (May 2019)
 ## Publications
 
 - Extensions of Abelian Automata Groups (preprint)
-- A Cohomological Criterion for Automaticity (preprint)
+- A Cohomological Criterion for Automaticity (in preparation)
 
 ## Talks
 
