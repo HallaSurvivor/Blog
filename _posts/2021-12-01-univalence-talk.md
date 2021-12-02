@@ -132,8 +132,8 @@ time in. Anyways -- I'll get off my soapbox now :P.
 ---
 
 I actually never sent Jake a talk title or an abstract... So I don't have
-one to put here, haha. But I do have slides [here][15]. The talk was 
-recorded, and I asked for a copy. As soon as I have it I'll post a link here ^_^.
+one to put here, haha. But I do have slides [here][15]. The talk was also
+recorded, and I asked for a copy, so as soon as I have it I'll post a link here ^_^.
 
 ---
 
