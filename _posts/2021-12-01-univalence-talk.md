@@ -55,9 +55,19 @@ groups. For instance, two isomorphic groups acting on different objects.
 The way we resolve this is by noticing that, to talk about these "bonus properties",
 we need to fix some bonus data about $G$. Maybe it's the data of a group 
 homomorphism into a symmetric group, or into a general linear group, etc. but
-whatever it is, we _need_ this extra data in order to express the question,
-and so we'll find that $G$ and $H$ are _not_ equivalent when we keep track of
-this extra data in the types.
+whatever it is, we _need_ this extra data in order to express the question.
+So if we look at, say $(G,X,\alpha)$ and $(G,Y,\beta)$ as objects in the type of
+"groups equipped with an action[^4]" 
+
+$$
+\sum_{G : \text{Group}} 
+\sum_{X : \text{Set}} 
+\sum_{\alpha : G \times X \to X}
+\text{isGroupAction($\alpha$)}
+$$
+
+we'll find that even if $G$ and $H$ are equivalent, 
+$(G,X,\alpha)$ and $(H,Y,\beta)$ might _not_ be!
 
 Next we _wanted_ to talk about geometric applications of univalence, but to
 do that we needed to spend more time building up geometric types. So we had
@@ -84,7 +94,7 @@ wanted a specific theorem to do with these equations, so I'll assume they
 wanted a proof that these equations are always solvable. 
 
 The question, then, is what does a proof of solvability do when we run it as 
-code? And the ansewr, perhaps unsurprisingly, is that it solves the equations!
+code? And the answer, perhaps unsurprisingly, is that it solves the equations!
 
 So if you have a proof (in LEAN, say) that 
 
@@ -153,6 +163,10 @@ recorded, and I asked for a copy, so as soon as I have it I'll post a link here 
 [^3]: 
     Again, to future proof, this is "HoTT is a Polyvalent Foundation of Mathematics",
     given at the IAS in 2013.
+
+[^4]:
+    As a cute little exercise, can you explicitly write down the rest of this
+    type? What should $\text{isGroupAction}(\alpha)$ be?
 
 
 [1]: https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations
