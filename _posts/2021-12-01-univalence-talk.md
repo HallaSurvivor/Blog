@@ -21,8 +21,8 @@ constant interplay between the logical and the geometric interpretations
 of the operations[^1].
 
 We started with a "quick" review of dependent types, and their dual life
-as propositions with a free variable and covering spaces. Then $\pi$ and 
-$\sigma$ types are (proof relevant) universal and existential quantifiers
+as propositions with a free variable and covering spaces. Then $\Pi$ and 
+$\Sigma$ types are (proof relevant) universal and existential quantifiers
 (respectively) or global sections and the total space (respectively). 
 
 Next up was identity types (or path types), which logically correspond to
