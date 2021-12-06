@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using Ultraproducts to Solve Problems
+title: Using Ultrapowers to Solve Problems
 tags:
   - 
 ---
@@ -134,21 +134,71 @@ constant sequence $(a,a,a,a,a,\ldots)$.
 Moreover, since $A$ models its own [diagram][8], we see that $A^\mathcal{U}$
 models the diagram of $A$ as well, in a way that's compatible with the above
 embedding. This means the "constant sequence" function is actually an 
-[elementary embedding][9]. 
+[elementary embedding][9]. So $A$ and $A^\mathcal{U}$ agree on _every_ first
+order question you can ask about $A$.
 
+<img src="/assets/images/ultraproducts-howto/dumb-meme.jpg" width="50%">
 
+Of course, we, from the outside looking in, can tell that $A$ and 
+$A^\mathcal{U}$ look _very_ different! Maybe we can leverage these 
+differences in order to prove things in the $A^\mathcal{U}$ setting!
 
+The canonical example of this phenomenon is [nonstandard analysis][11],
+where we study the "hyperreal numbers"
 
-<img src="/assets/images/ultraproducts-howto/dumb-meme.jpg">
+$${}^* \mathbb{R} \triangleq \mathbb{R}^\mathcal{U}$$
 
-How have ultraproducts been used to solve problems?
+which have lots of nice properties[^7]. For instance, the hyperreal number
 
-- Ramsey Theory
-- Nonstandard analysis
+$$\epsilon \triangleq (1, 1/2, 1/3, 1/4, 1/5, \ldots)$$
 
-Speculative example:
+is an <span class=defn>infinitesimal</span> in the sense that
 
-- Twin primes
+1. $\epsilon \gt 0 = (0,0,0,0,0,\ldots)$
+2. $\epsilon \lt a = (a,a,a,a,a,\ldots)$ for any real number $a \gt 0$.
+
+Then nonstandard analysis uses the extra elements given to us by the 
+ultrapower in order to give us neat and intuitive definitions like the 
+following:
+
+<div class=boxed markdown=1>
+  If $x, y \in {}^* \mathbb{R}$, we say that $x \approx y$ when their
+  difference is infinitesimal.
+</div>
+
+<div class=boxed markdown=1>
+  $f$ is continuous[^8] at $x \in \mathbb{R}$ if and only if
+  $f(x) \approx f(y)$ whenever $x \approx y$
+</div>
+
+Not only do these new definitions give us a new way of thinking[^9] about 
+classical analysis, they're even useful for letting us prove _new_ things! 
+Nowhere is this clearer than on [Terry Tao's blog][12], where he uses 
+nonstandard analysis to great effect!
+
+---
+
+As a last aside, I'll leave you with an old example from [the class][13]
+where I met my undergraduate advisor. I'll leave it as an exercise that 
+might be somewhat tricky depending on how much nonstandard analysis you've
+seen:
+
+<div class=boxed markdown=1>
+  We work inside $\mathbb{N}^\mathcal{U}$.
+
+  Say you were able to prove that there is a nonstandard twin prime.
+  That is, a pair of numbers $p$ and $p+2$ which are both prime, and 
+  neither of which is equivalent to the constant $(q,q,q,q,q,\ldots)$ 
+  for any $q \in \mathbb{N}$.
+
+  Then the twin prime conjecture is true[^10].
+</div>
+
+We've "simplified" the search for infinitely many twin primes into the search
+for _one_ nonstandard twin prime! 
+
+Of course, I have no idea how one would go about _finding_ a nonstandard 
+twin prime! But this is a cute problem nonetheless ^_^.
 
 ---
 
@@ -256,7 +306,47 @@ Speculative example:
     think that $$\underbrace{1 + 1 + \ldots + 1}_{q \text{ times}} \neq 0$$. So
     the ultraproduct is a field, but cannot be characteristic $q$ for any $q \gt 0$.
 
+[^7]:
+    Properties that you can (and should!) read more about in the fantastic 
+    _Lectures on the Hyperreals_ by Goldblatt.
 
+    I have particularly fond memories of this book, because it was one of the
+    first math textbooks that I read by myself, rather than having to read it 
+    for a class.
+
+[^8]:
+    It's important here that $x \in \mathbb{R}$. If we allow 
+    $x \in {}^* \mathbb{R}$, we actually get uniform continuity!
+
+    This may appear counterintuitive at first, but does make some intuitive 
+    sense after a while. Again, I'll point you to Goldblatt's book for more.
+
+[^9]:
+    An old way of thinking? This is much closer to how analysis was thought
+    about before it was placed on a truly rigorous footing through limits.
+
+[^10]:
+    As a hint, first show that a nonstandard natural number must be bigger
+    than every standard natural number. For instance, the standard number $3$
+    satisfies the formula
+
+    $$\forall x . x \lt 3 \iff x = 0 \lor x = 1 \lor x = 2$$
+
+    so the only numbers less than $3$ are standard. Obviously we can do this
+    for any standard number, and the claim follows.
+
+    Next, show that, since $p$ is nonstandard, we must have
+
+    $$\exists p . \text{isTwinPrime}(p) \land p \gt 3$$
+
+    $$\exists p . \text{isTwinPrime}(p) \land p \gt 10,000$$
+
+    $$\exists p . \text{isTwinPrime}(p) \land p \gt 10^{100}$$
+
+    etc. in $\mathbb{N}^\mathcal{U}$. 
+
+    Do you see why (after transferring these theorems back to $\mathbb{N}$)
+    this means there must be infinitely many twin primes?
 
 [1]: https://en.wikipedia.org/wiki/Model_theory
 [2]: https://en.wikipedia.org/wiki/Ultrafilter_(set_theory)
@@ -268,3 +358,6 @@ Speculative example:
 [8]: https://en.wikipedia.org/wiki/Elementary_diagram
 [9]: https://modeltheory.fandom.com/wiki/Elementary_extension
 [10]: /2020/10/01/elementary-vs-submodel.html
+[11]: https://en.wikipedia.org/wiki/Nonstandard_analysis
+[12]: https://terrytao.wordpress.com/tag/nonstandard-analysis/
+[13]: https://www.cs.cmu.edu/~sutner/CDM/index.html
