@@ -19,13 +19,13 @@ their _product_ and get a new group $\prod G_n$ with coordinate-wise operations.
 We would like to modify this construction in order to get a group 
 $\prod_\mathcal{U} G_n$ (called the <span class="defn">Ultraproduct</span> of the $G_n$s)
 which has better [model theoretic][1] properties. We'll go deeper into the
-specifics of the construction later (TODO: that) but for now, it's enough to know
-that the ultraproduct has the following properties[^1]:
+specifics of the construction later but for now, it's enough to know
+that the ultraproduct has the following properties:
 
  - Elements of $\prod_\mathcal{U} G_n$ are (equivalence classes of) tuples $(g_1, g_2, g_3, \ldots)$,
     where $g_n \in G_n$.
- - $\prod_\mathcal{U}$ thinks that some first-order property is true if and only if all
-    but finitely many of the $G_n$s do. For example, if all but finitely many of the $G_n$
+ - $\prod_\mathcal{U} G_n$ thinks that some first-order property is true if and only if all
+    but finitely many of the $G_n$s do[^1]. For example, if all but finitely many of the $G_n$
     are abelian, then the ultraproduct will be abelian too, since abelianness is 
     defined by the first order sentence $\forall x . \forall y. x^{-1}y^{-1}xy = 1$.
 
@@ -35,7 +35,7 @@ We call this the <span class=defn>Ultrapower</span> of $G$, written $G^\mathcal{
 It might seem strange that this construction is useful. After all, by the 
 bullet point above, we know that $G^\mathcal{U}$ thinks that something is true
 if and only if $G$ does. So isn't it just $G$? What do we gain by moving to the
-ultrpower?
+ultrapower?
 
 The answer is caught up in the "first-order" qualifier! It turns out that there
 can be _lots_ of differences between $G$ and $G^\mathcal{U}$. For instance,
@@ -48,9 +48,98 @@ abbreviated definitions for completeness[^2]. See the footnote here[^3]
 
 ---
 
-- define ultraproducts, and give some motivation
-- Los's theorem
-- example (ultraproduct of algebraically closed fields of char p)
+Ok, so let's quickly write down what an ultraproduct is. Even though I'm
+assuming some familiarity with logic, it's nice to have a refresher[^4].
+For concreteness, we'll work with countable ultraproducts,
+since they're a bit simpler to think about and they're the only ones I've
+ever personally needed. 
+
+Fix a first order language $\mathcal{L}$, fix $\mathcal{L}$-structures
+$A_n$ for $n \in \mathbb{N}$. Fix moreover a nonprincipal [ultrafilter][2] 
+$\mathcal{U}$ on $\mathbb{N}$. Intuitively $\mathcal{U}$ is a family of
+"large" subsets of $\mathbb{N}$. What do I mean by large? Well:
+
+<div class=boxed markdown=1>
+1. No finite set is large
+2. If $A \subseteq \mathbb{N}$ is large, then every $B \supseteq A$ is also large
+3. If $A_1$ and $A_2$ are both large, then so is $A_1 \cap A_2$
+4. For every set $A$, either $A$ or $A^c$ is large
+</div>
+
+
+Then we can look at the <span class=defn>Ultraproduct</span>[^5]
+
+$$\prod_\mathcal{U} A_n \triangleq \prod A_n  \big / \sim$$
+
+where we say that $\overline{a} \sim \overline{b}$ whenever they agree 
+"almost everywhere", in the sense that 
+
+$$\{ n \mid a_n = b_n \} \in \mathcal{U}.$$
+
+The critical result in this area is [Łoś's Theorem][3]
+(pronounced roughly like "Wash's Theorem") which says that:
+
+<div class=boxed markdown=1>
+  $$\prod_\mathcal{U} \models \varphi \iff \{ n \mid A_n \models \varphi \} \in \mathcal{U}$$
+
+  That is, truth in the ultraproduct is exactly truth in "almost all" of the $A_n$!
+
+  As a fairly quick exercise, you should prove this if you have some experience
+  with model theory.
+</div>
+
+The main character of today's post is the ultrapower, but I can't help but say
+a few words about why ultraproducts are useful. I'll contain myself, though,
+and just give the following idea:
+
+If you have a sequence of objects you want to study, say the groups 
+$$\mathsf{GL}_n(\mathbb{C})$$, then it might be worth considering their 
+ultraproduct. Łoś's Theorem says that the ultraproduct will behave 
+similarly to the $$\mathsf{GL}_n(\mathbb{C})$$s, so many of your well
+trodden techniques will probably work. Conversely, anything (first order)
+you can prove about the ultraproduct _immediately_ tells you the same is
+true for all but finitely many $n$!
+
+As a concrete example, consider the family $\overline{\mathbb{F}_p}$ of
+algebraic closures of finite fields.
+
+Then the ultraproduct $\prod_\mathcal{U} \overline{\mathbb{F}_p}$ is[^6]
+
+1. cardinality continuum
+2. algebraically closed 
+3. characteristic $0$
+
+Thus it's (noncanonically!) isomorphic to $\mathbb{C}$.
+
+Since any question about polynomials and their roots is expressible in the
+first order language of fields, this gives one formalization of the 
+informal "Lefschetz Principle", which says that doing algebraic geometry
+over $\mathbb{C}$ is "roughly the same" as doing algebraic geometry over
+any algebraically closed field of sufficiently large characteristic.
+
+---
+
+So then, let's move on to ultrapowers!
+
+If $A$ is one fixed $\mathcal{L}$-structure, then we can look at the 
+ultraproduct of the constant sequence $A_n = A$. In this case, we call
+the resulting structure the <span class=defn>Ultrapower</span>, which we
+write as $A^\mathcal{U}$. Most notably, we get an inclusion
+
+$$A \hookrightarrow A^\mathcal{U}$$
+
+sending $a \in A$ to the (equivalence class of the) 
+constant sequence $(a,a,a,a,a,\ldots)$. 
+
+Moreover, since $A$ models its own [diagram][8], we see that $A^\mathcal{U}$
+models the diagram of $A$ as well, in a way that's compatible with the above
+embedding. This means the "constant sequence" function is actually an 
+[elementary embedding][9]. 
+
+
+
+
+<img src="/assets/images/ultraproducts-howto/dumb-meme.jpg">
 
 How have ultraproducts been used to solve problems?
 
@@ -65,7 +154,6 @@ Speculative example:
 
 [^1]:
     Technically this is only true of _nonprincipal_ ultraproducts. 
-    TODO: say more about this?
 
 [^2]:
     Pun intended
@@ -139,9 +227,44 @@ Speculative example:
         What about $G \cong H$? (Think about the (finite!) multiplication table for $H$).
     </div>
 
+[^4]:
+    Also, not all model theory courses include ultraproducts! For instance,
+    I know the graduate model theory classes at CMU, 
+    (for some inexplicable reason), don't talk about them. 
 
+[^5]:
+    This seems to depend only very mildly on the choice of ultraproduct, 
+    and it's reasonable to ask how the choice of ultraproduct effects the 
+    resulting structure. This tends to be quite subtle, see [here][4], say,
+    and for most use cases we don't worry too much about which ultrafilter
+    to take (even though it _does_ matter. See [here][7])
+
+    That said, there are certain applications where we really do want to choose
+    an ultrafilter with special properties, say 
+    <span class=defn>regularity</span>. You can read about what kind of bonus
+    information we get when we take ultrapowers over regular ultrafilters
+    [here][5], say.
+
+[^6]:
+    In order, 
+
+    1. is a fairly easy computation, see [here][6]
+    2. is because we can write down sentences 
+      $\varphi_n = \forall a_0, a_1 \ldots a_n . \exists x . a_0 + a_1 x + \ldots + a_n x^n = 0$
+      which say that every polynomial of degree $n$ has a root. 
+    3. is because for every $q \gt 0$, cofinitely many $\overline{\mathbb{F}_p}$
+    think that $$\underbrace{1 + 1 + \ldots + 1}_{q \text{ times}} \neq 0$$. So
+    the ultraproduct is a field, but cannot be characteristic $q$ for any $q \gt 0$.
 
 
 
 [1]: https://en.wikipedia.org/wiki/Model_theory
-
+[2]: https://en.wikipedia.org/wiki/Ultrafilter_(set_theory)
+[3]: https://en.wikipedia.org/wiki/Ultraproduct#%C5%81o%C5%9B's_theorem
+[4]: https://math.stackexchange.com/questions/3425868/does-the-isomorphism-type-of-this-specific-ultraproduct-depend-on-the-ultrafilte
+[5]: https://www.kurims.kyoto-u.ac.jp/~kyodo/kokyuroku/contents/pdf/2081-04.pdf
+[6]: https://math.stackexchange.com/questions/1417688/cardinality-of-ultraproduct
+[7]: https://math.stackexchange.com/questions/3257887/the-ultraproduct-of-all-prime-fields
+[8]: https://en.wikipedia.org/wiki/Elementary_diagram
+[9]: https://modeltheory.fandom.com/wiki/Elementary_extension
+[10]: /2020/10/01/elementary-vs-submodel.html
