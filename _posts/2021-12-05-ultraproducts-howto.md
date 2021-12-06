@@ -178,6 +178,43 @@ nonstandard analysis to great effect!
 
 ---
 
+The trick behind ultrapowers, then, is to use our new 
+~bonus elements~ in $A^\mathcal{U}$ in order to study some limiting propeties
+of elements of $A$. For instance, the infinitesimal $\epsilon$ from before
+is a _single_ element of $A^\mathcal{U}$ which expresses the features held 
+simultaenously by the sequence $1/n$. 
+
+Following the example of prime fields, we can also use ultrapowers to kill
+certain "bad properties" of elements. If we have a sequence of elements of $A$ 
+that are related (in that they share certain first order properties) but all 
+have different "defects" (maybe they have torsion, etc.), then the sequence of
+these elements, viewed as a member of the ultrapower, will share all the 
+properties that relate the original elements, but will share none of the
+defects! In this way, we can view elements of $A^\mathcal{U}$ as 
+"idealized elements" of $A$. 
+
+We can also use ultrapowers to kill "bad properties" of $A$ as a whole, 
+as long as those bad properties are non-first order. For instance, in the
+passage from $\mathbb{R}$ to ${}^* \mathbb{R}$, we kill the archimedian-ness
+by introducing infinitesimals. Similarly, there are proofs that are much easier
+for infinite sets than for finite sets. Having infinitely many elements gives 
+you more flexibility with certain arguments. Well if your desired outcome is
+first-order expressible, then just prove it for $A^\mathcal{U}$ 
+(which is always infinite. Indeed, of size continuum when $A$ is finite),
+and transfer back to $A$!
+
+More speculatively, maybe there's 
+a proof in $\mathbb{N}$ that you want to perform, but for some reason 
+you need to know that you can always keep subtracting. Well, that's a problem
+because $\mathbb{N}$ is well ordered. So you can only subtract for so long
+before you have to stop. In the ultrapower $\mathbb{N}^\mathcal{U}$, though
+we don't have this issue! You can keep subtracting from any nonstandard element 
+as many times as you like. So do your argument here, and show a nonstandard
+element does what you want. Then write your claim as 
+"there exists a number doing what I want", and transfer back to $\mathbb{N}$!
+
+---
+
 As a last aside, I'll leave you with an old example from [the class][13]
 where I met my undergraduate advisor. I'll leave it as an exercise that 
 might be somewhat tricky depending on how much nonstandard analysis you've
