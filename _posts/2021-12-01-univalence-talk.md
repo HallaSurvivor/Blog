@@ -90,7 +90,8 @@ including
 
 After the talk someone asked a question about differential equations, in 
 particular about the [Lotka-Volterra Equations][1]. It sounded like they 
-wanted a specific theorem to do with these equations, so I'll assume they
+wanted a specific theorem to do with these equations, but I never quite 
+understood what they were looking for. I'll assume they
 wanted a proof that these equations are always solvable. 
 
 The question, then, is what does a proof of solvability do when we run it as 
