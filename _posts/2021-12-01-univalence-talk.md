@@ -146,6 +146,8 @@ I actually never sent Jake a talk title or an abstract... So I don't have
 one to put here, haha. But I do have slides [here][15]. The talk was also
 recorded, and I asked for a copy, so as soon as I have it I'll post a link here ^_^.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Rwy1TIkFZ8w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ---
 
 [^1]: 
