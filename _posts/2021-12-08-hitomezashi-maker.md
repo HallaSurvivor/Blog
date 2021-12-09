@@ -23,8 +23,8 @@ probability of choosing a $0$ or a $1$ in any given position in the string.
 
 It turns out the regions you build in this way are always $2$-colorable,
 which is a cute exercise that they bring up in the video. The proof follows
-once you make the right observation, and I encourage you to give it a go! 
-In addition to the choice of bitsring, I've added a slightly more nuanced
+pretty quickly once you make the right observation, and I encourage you to give 
+it a go! In addition to the choice of bitsring, I've added a slightly more nuanced
 way you can show your artistry by adding an option to choose the $2$ colors
 that get used!
 
