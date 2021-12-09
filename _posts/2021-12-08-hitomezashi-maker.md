@@ -5,7 +5,7 @@ tags:
   - pretty-pictures
 ---
 
-It's been a long time since I've done something artistic, and a recent
+It's been a hot second since I've done something artistic, and a recent
 [numberphile video][1] gave me something small and simple to do! 
 Plus, a really close friend of mine is a talented fibre artist, 
 and since this type of artwork ([hitomezashi][2]) is originally a kind
