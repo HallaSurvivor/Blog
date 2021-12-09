@@ -91,21 +91,14 @@ def mkPattern(rowString, colString, color1, color2, stitchColor, showBits):
 
   # shade in the regions
   cur = color1
+  curRow = color1
   for r in range(len(rowString)):
     for c in range(len(colString)):
 
       if (r,c) == (0,0):
         p += mkSquare(r,c,cur)
 
-      elif c == 0:
-        if c%2 == rowString[r]:
-          if cur == color1:
-            cur = color2
-          else:
-            cur = color1
-        p += mkSquare(r,c,cur)
-
-      else:
+      elif c != 0:
         if r%2 == colString[c]:
           if cur == color1:
             cur = color2
@@ -113,6 +106,14 @@ def mkPattern(rowString, colString, color1, color2, stitchColor, showBits):
             cur = color1
         p += mkSquare(r,c,cur)
 
+      elif c == 0:
+        if c%2 == rowString[r]:
+          if curRow == color1:
+            curRow = color2
+          else:
+            curRow = color1
+        cur = curRow
+        p += mkSquare(r,c,cur)
 
   return p
 
