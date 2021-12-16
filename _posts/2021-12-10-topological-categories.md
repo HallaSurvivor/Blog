@@ -242,7 +242,28 @@ theorem using only the abstract properties of these categories, we'll immediatel
 know that it's true for $\mathsf{Top}$, $\mathsf{Meas}$, and any other categories
 we find along the way!
 
-Thankfully, this abstraction has been done for us!
+Thankfully, this abstraction has been done for us[^8]!
+
+<div class=boxed markdown=1>
+A (faithful) functor $U : \mathcal{T} \to \mathcal{C}$ is called a 
+<span class=defn>Topological Forgetful Functor</span> if 
+
+1. $U$ admits adjoints $\Delta \dashv U \dashv \nabla$ so that 
+      $U \Delta = U \nabla = \text{id}$
+2. Each fibre $$U^{-1}(C)$$ is a (possibly large) complete lattice
+3. If $U C_1 = U C_2 = C$, then the identity arrow on $C$ lifts to an 
+    arrow $C_1 \to C_2$ if and only if $C_1 \leq C_2$ in the lattice 
+    over $C$.
+
+If such a functor $U$ exists, we say that $\mathcal{T}$ is 
+<span class=defn>Topological</span> over $\mathcal{C}$.
+</div>
+
+⚠ Take some care! Here we're ordering the fibre over $C$ so that the 
+discrete topology is at the _bottom_ and the indiscrete topology is at 
+the _top_! This lines up better with our idea that left adjoints are initial
+and right adjoints are terminal, but is a bit backwards since usually we think
+of the discrete topology as having "the most open sets".
 
 ---
 
@@ -317,6 +338,71 @@ Thankfully, this abstraction has been done for us!
 
     Oh well, it seems the terminology has stuck.
 
+[^8]:
+    ⚠ This is _not_ the standard presentation of the definition of 
+    topologically concrete category!
+
+    If you read _Joy of Cats_ or [the nlab][14], the definition you'll see
+    is
+
+    <div class=boxed markdown=1>
+    $$U : \mathcal{T} \to \mathcal{C}$$ is called topological forgetful if
+    "every $U$-structured source has a $U$-initial lift", or, to expand out 
+    the jargon:
+
+    If $C$ is in $\mathcal{C}$ and we have a (possibly large) family of objects
+    $S_\alpha$ in $\mathcal{T}$, plus arrows $f_\alpha : C \to US_\alpha$ in
+     $\mathcal{C}$, then 
+     "there is a best topology on $C$ making the $f_\alpha$ continuous".
+     Formally:
+
+     1. There is an object $\tilde{C}$ in $\mathcal{T}$ and arrows 
+        $\tilde{f_\alpha} : \tilde{C} \to S_\alpha$ so that $U\tilde{C} = C$
+        and $U\tilde{f_\alpha} = f_\alpha$
+     2. If $T$ is any other object of $\mathcal{T}$ and $g : UT \to C$ is an
+     arrow in $\mathcal{C}$ so that each of the $f_\alpha \circ g : UT \to US_\alpha$
+     is $U h_\alpha$ for some $h_\alpha$ in $\mathcal{T}$, then actually
+     $g = U \tilde{g}$ where $\tilde{g} : T \to \tilde{C}$.
+    </div>
+
+    This is a fine definition (even if it took me a while to really internalize it),
+    but it places the focus on the ability to lift maps in $\mathcal{C}$, whereas I
+    think the focus should be on the lattice of possible topologies. 
+
+    It's not too hard to see that these definitions are equivalent. 
+
+    It's proved in _The Joy of Cats_ that we always get a complete lattice in
+    the fibres, as well as the adjoint condition and the "compatibility" between
+    identity arrows and the lattice order. See VI.21 for more.
+
+    Conversely, let's say that $U : \mathcal{T} \to \mathcal{C}$ satisfies
+    the fibrewise complete lattice conditions outlined in the main body 
+    of this post. We'll show that it also satisfies the _Joy of Cats_ definition.
+
+    Let $S_\alpha$ be a (possibly large) family of objects in $\mathcal{T}$,
+    and fix arrows $f_\alpha : C \to U S_\alpha$. 
+
+    Then we can consider the (possibly large) join
+
+    $$
+    \bigvee 
+    \big \{ 
+      \tilde{C} 
+    \mid 
+      \forall \alpha . 
+      \exists \tilde{f_\alpha} : \tilde{C} \to S_\alpha . 
+      U \tilde{f_\alpha} = f_\alpha
+    \big \}
+    $$
+
+    and let $\tilde{C}$ be this element of the fibre over $C$.
+
+    First, notice every $f_\alpha$ comes from an arrow 
+    $\tilde{f_\alpha} : \tilde{C} \to S_\alpha$, basically by construction.
+
+    Second, say $g : UT \to C$ is an arrow so that each 
+    $f_\alpha \circ g : UT \to U S_\alpha$ comes from an arrow in $\mathcal{T}$.
+
 
 [1]: https://en.wikipedia.org/wiki/Heyting_algebra
 [2]: https://en.wikipedia.org/wiki/Pointless_topology
@@ -331,3 +417,4 @@ Thankfully, this abstraction has been done for us!
 [11]: https://en.wikipedia.org/wiki/Borel_hierarchy
 [12]: https://en.wikipedia.org/wiki/Product_measure
 [13]: https://mathoverflow.net/questions/71407/quotients-of-measurable-spaces
+[14]: https://ncatlab.org/nlab/show/topological+concrete+category
