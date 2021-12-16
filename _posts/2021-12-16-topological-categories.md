@@ -279,7 +279,7 @@ we see that most topologically concrete categories are nice too!
 4. If every arrow in $\mathcal{C}$ factors as a [regepi][16] followed by a [mono][17],
     then every arrow in $\mathcal{T}$ factors in the same way
 
-Notice that the first three conditions conspire to tell us that whenever we can 
+Notice that the first three of these corollaries conspire to tell us that whenever we can 
 apply the [Special Adjoint Functor Theorem][15] to $\mathcal{C}$, we can
 _also_ do so to $\mathcal{T}$! This tells us that 
 limit preserving functors out of a topological category almost always 
@@ -322,7 +322,7 @@ the category whose
   - objects are $(V,E)$ for $V$ a set and $E \subseteq V \times V$
   - arrows $f : (V,E) \to (W,F)$ are exactly the functions $f : V \to W$ so that
 
-$$xEy \implies f(x) E f(y)$$
+$$x\ E\ y \implies f(x) \ F \ f(y)$$
 
   - obviously $U(V,E) = V$
 
