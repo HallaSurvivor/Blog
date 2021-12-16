@@ -176,8 +176,8 @@ and measure spaces, as well as their associated notions of map.
 Not only that, the similarities in definition beget similarities in structure!
 
 Again, we find two "obvious" measure algebras on $X$: the 
-<span class=defn>Discrete</span> algebra $\mathcal{A}_\Delta = \mathcal{P}(X)$
-and the <span class=defn>Indiscrete</span> algebra $\mathcal{A}_\nabla = \{\emptyset, X\}$.
+<span class=defn>Discrete</span> algebra $$\mathcal{A}_\Delta = \mathcal{P}(X)$$
+and the <span class=defn>Indiscrete</span> algebra $$\mathcal{A}_\nabla = \{\emptyset, X\}$$.
 
 And again, we find 
 
@@ -230,6 +230,10 @@ quotient algebra[^6].
 
 ---
 
+TODO: redo this based on Borceux's definition, cite it, and replace the
+"evil" footnote with one saying the Joy of Cats defn is evil, but morally
+equivalent.
+
 Ok, so we're obviously onto something here. We have some clear parallels 
 between these two categories, and some features which are obviously 
 characteristic of both settings. 
@@ -242,39 +246,227 @@ theorem using only the abstract properties of these categories, we'll immediatel
 know that it's true for $\mathsf{Top}$, $\mathsf{Meas}$, and any other categories
 we find along the way!
 
-Thankfully, this abstraction has been done for us[^8]!
+Thankfully, this abstraction has been done for us! You can see the
+[nlab][14] or Adámek, Herrlich, and Strecker's _The Joy of Cats_ 
+(mainly VI.21) for more details[^8]. 
 
 <div class=boxed markdown=1>
-A (faithful) functor $U : \mathcal{T} \to \mathcal{C}$ is called a 
-<span class=defn>Topological Forgetful Functor</span> if 
+Let $U : \mathcal{T} \to \mathcal{C}$ be a surjective faithful functor that 
+lifts limits uniquely[^9] and has a right adjoint $\nabla$ so that 
+$U \nabla = \text{id}$.
 
-1. $U$ admits adjoints $\Delta \dashv U \dashv \nabla$ so that 
-      $U \Delta = U \nabla = \text{id}$
-2. Each fibre $$U^{-1}(C)$$ is a (possibly large) complete lattice
-3. If $U C_1 = U C_2 = C$, then the identity arrow on $C$ lifts to an 
-    arrow $C_1 \to C_2$ if and only if $C_1 \leq C_2$ in the lattice 
-    over $C$.
-
-If such a functor $U$ exists, we say that $\mathcal{T}$ is 
-<span class=defn>Topological</span> over $\mathcal{C}$.
+Then $U$ is called a <span class=defn>Topological Functor</span>, and we say
+$\mathcal{T}$ is <span class=defn>Topological</span> over $\mathcal{C}$.
 </div>
 
-⚠ Take some care! Here we're ordering the fibre over $C$ so that the 
-discrete topology is at the _bottom_ and the indiscrete topology is at 
-the _top_! This lines up better with our idea that left adjoints are initial
-and right adjoints are terminal, but is a bit backwards since usually we think
-of the discrete topology as having "the most open sets".
+This definition is nice and minimal in the sense that we have very little to
+check. Can we compute limits in $\mathcal{T}$ by computing limits in 
+$\mathcal{C}$ and then lifting? Do indiscrete objects exist? Then we're golden!
+
+In fact, from this simple definition, _lots_ of results follow. Many of these
+will look familiar from our motivating examples of 
+$\mathsf{Top}$ and $\mathsf{Meas}$. You can find proofs of these in 
+_Joy of Cats_.
+
+1. The $U$-fibre over any object in $\mathcal{C}$ is a (possibly large) complete lattice
+2. $U$ has a left adjoint $\Delta$ so that $U \Delta = \text{id}$
+3. $U$ lifts colimits uniquely[^10]
+
+In fact, we can use these properties to show that as long as $\mathcal{C}$ 
+is nice, $\mathcal{T}$ must be nice too! Since in practice we often work with
+categories topological over $\mathsf{Set}$ (which is _extremely_ nice),
+we see that most topologically concrete categories are nice too!
+
+1. If $\mathcal{C}$ is (co)complete, so is $\mathcal{T}$
+2. If $\mathcal{C}$ is (co)well-powered and $U$ has small fibres[^11], so is $\mathcal{T}$
+3. If $\mathcal{C}$ has a (co)generator, so does $\mathcal{T}$
+4. If every arrow in $\mathcal{C}$ factors as a [regepi][16] followed by a [mono][17],
+    then every arrow in $\mathcal{T}$ factors in the same way
+
+Notice that the first three conditions conspire to tell us that whenever we can 
+apply the [Special Adjoint Functor Theorem][15] to $\mathcal{C}$, we can
+_also_ do so to $\mathcal{T}$! This tells us that 
+limit preserving functors out of a topological category almost always 
+have left adjoints, and dually that colimit preserving functors almost always
+have right adjoints!
+
+There's also the nice "preservation" properties for topological categories:
+
+1. A full concrete[^12] subcategory $\mathcal{T}'$ of $\mathcal{T}$ 
+    is itself topological over $\mathcal{C}$ if and only if 
+    it is concretely (co)reflective in $\mathcal{T}$
 
 ---
 
+So then, what do topological categories _look_ like? 
 
-- egs
-  - topological/measure spaces, obviously
-  - graphs
-  - topological groups?
-  - "nice" topological categories
-      - historic motivation
-  - sites over Cat
+Here's the picture which I have in my head. Moreover, when a category I'm
+interested in looks intuitively like this picture, I always take a second to 
+check if it's topologically concrete. So far it _always_ has been!
+
+TODO: the picture. You know the one
+
+---
+
+Now that we have the machinery of topological categories, we can see that
+there's a _slew_ of examples! Off the top of my head, there's 
+
+### Graphs
+
+The category $\mathsf{DiGph}$ of directed graphs, possibly with self loops. That is, 
+the category whose 
+
+  - objects are $(V,E)$ for $V$ a set and $E \subseteq V \times V$
+  - arrows $f : (V,E) \to (W,F)$ are exactly the functions $f : V \to W$ so that
+
+$$xEy \implies f(x) E f(y)$$
+
+  - obviously $U(V,E) = V$
+
+Notice how there's a complete lattice of graphs (indeed, $\mathcal{P}(V \times V)$)
+over every vertex set $V$. Moreover, there are discrete and indescrte objects
+(though the indiscrete graph is traditionally called "complete" instead).
+
+Moreover, this gives us lots of _other_ graph categories for free!
+The following (full) subcategories are all reflective in $\mathsf{DiGph}$,
+so are topological over $\mathsf{Set}$ because $\mathsf{DiGph}$ is!
+
+- Undirected Graphs (allowing self loops)
+- Reflexive Graphs (every vertex has a self loop)
+- Undirected, Reflexive Graphs (obviously)
+
+Notice we _cannot_ get the idea of a graph as most graph theorists understand
+it. That is, the category of loop free undirected graphs is _not_ topological
+over $\mathsf{Set}$! If it were, it would need to be complete, but the 
+category of irreflexive graphs has no terminal object.
+
+### Orders
+
+The category $\mathsf{PreOrd}$ of preorders (reflexive, transitive relations)
+with monotone maps is topological over $\mathsf{Set}$.
+
+Next, we notice that the category of sets $V$ equipped with an equivalence
+relation $\sim$ is topological over $\mathsf{Set}$! This is because it is
+a (concretely) reflective subcategory of $\mathsf{PreOrd}$.
+
+Since the category of sets with an equivalence relation is 
+equivalent (indeed, isomorphic) to the category of sets with a partition,
+we see that partitions are topological too!
+
+<div class=boxed markdown=1>
+⚠ Importantly, $\mathsf{Poset}$ is _not_ topological over $\mathsf{Set}$
+(do you see why?). This is despite the fact that it is a reflective 
+subcategory of $\mathsf{PreOrd}$! Why is there no contradiction here?
+</div>
+
+Additionally, given any (possibly large) complete lattice, we can view it 
+as a category in the standard way. A category is topological over the 
+terminal category $\mathbf{1}$ if and only if it's of this form.
+
+### Functor Structured Objects
+
+The earlier examples all had objects that looked like $(V,\alpha)$ 
+where $V$ was a set and $\alpha$ was some "relational structure" on $V$.
+The arrows in each of these categories are just set theoretic maps that
+"respect this structure". 
+
+We can now take a vast generalization of all of these, and work with 
+categories of 
+"functor structured objects" each of which will
+automatically be topological!
+
+<div class=boxed markdown=1>
+Let $T : \mathcal{C} \to \mathsf{Set}$ be a functor. Following _Joy of Cats_,
+we write $\mathsf{Spa}(T)$ for the category where
+
+- objects are pairs $(C,\alpha)$ where $\alpha \subseteq T(C)$
+- arrows $(C,\alpha) \to (D,\beta)$ are $\mathcal{C}$-arrows $C \to D$ 
+    so that $(Tf)[\alpha] \subseteq \beta$.
+
+A category of this form is always concrete over $\mathcal{C}$, and is called
+<span class=defn>Functor Structured</span>
+</div>
+
+For example, consider the functor 
+$S : \mathsf{Set} \to \mathsf{Set}$ with $SX = X^2$.
+Then $\mathsf{DiGph}$ is exactly $\mathsf{Spa}(S)$!
+
+Of course, any (co)reflective subcategories of these will also automatically
+be topological, and it turns out that basically _every_ topological category is
+of this form! Theorem VI.22.3 in _Joy of Cats_ says[^13]
+
+<div class=boxed markdown=1>
+  $(\mathcal{T}, U)$ is fibre-small and topological over $\mathcal{C}$ 
+  if and only if it is a concretely reflective subcategory of $\mathsf{Spa}(T)$
+  for some $T : \mathcal{C} \to \mathsf{Set}$.
+</div>
+
+### Topological Algebras
+
+If you give me some algebriac gadget, like groups, then the category of
+topological models is probably topological over it.
+
+For instance, $\mathsf{TopGrp}$, the category of topological groups with
+continuous homomorphisms, is topological over $\mathsf{Grp}$.
+
+This is emblematic of a much more general phenomenon! 
+
+Let $(\mathcal{T}, U)$ be topological over $\mathcal{C}$. Then actually the
+functor category $[\mathcal{D}, \mathcal{T}]$ is topological over 
+$[\mathcal{D}, \mathcal{C}]$!
+
+How?
+
+Well, $U \circ - : [\mathcal{D}, \mathcal{T}] \to [\mathcal{D}, \mathcal{C}]$
+is surjective and faithful. It admits a right adjoint $\nabla \circ -$,
+and since limits are computed pointwise in functor categories, we can 
+lift any limits in $[\mathcal{D}, \mathcal{C}]$ to limits in 
+$[\mathcal{D}, \mathcal{T}]$ by lifting them pointwise.
+
+Now the same argument works if we focus our attention on those functors
+which preserve finite products. This is excellent because, following Lawvere,
+an algebraic structure in $\mathcal{C}$ is exactly a finite product preserving
+functor from a certain "syntactic category" to $\mathcal{C}$!
+
+So then if $\mathcal{T}$ is topological over $\mathcal{C}$, we see that 
+(for example) groups in $\mathcal{T}$ are topological over groups in $\mathcal{C}$!
+
+### A Quick Nonexample
+
+Interestingly, the category of [locales][18] is _not_ topological over
+$\mathsf{Set}$! This is related to the fact that locales many not have enough
+points, so what should the forgetful functor be?
+
+Even _more_ interestingly, according to the [nlab][19], the category of 
+_spatial_ locales (that is, those with enough points) is still not topological!
+Even though it's equivalent to a reflective subcategory of $\mathsf{Top}$
+(the full subcategory of sober spaces). This is because the reflector sending 
+a space to its sober-fication is _not_ concrete.
+
+### Grothendieck Sites?
+
+This last section is a bit more speculative, because I haven't checked the 
+details (and probably won't). But I wanted to include it anyways because 
+it's what reminded me to make this post at all[^14]!
+
+Let's look at the category whose objects are small categories equipped
+with a grothendieck topology, and whose arrows are functors 
+"respecting the topologies". See [here][21] for more, because 
+(at time of writing) I don't feel qualified to explain the definition.
+
+We know there is a complete lattice of topologies on a given category 
+$\mathcal{C}$, and moreover that discrete and indiscrete topologies exist.
+All we need to do, then, is verify the condition about lifting limits,
+but this seems intuitively clear to me: Take the limit of the underlying
+categories, and then pick the largest topology on $\mathcal{C}$ rendering
+all the cone maps continuous.
+
+This should mean that the category of sites is topological over $\mathcal{Cat}$,
+which we might view as a categorification of the fact that 
+$\mathsf{Top}$ is topological over $\mathsf{Set}$. 
+
+It might be interesting to know if there is some "$2$-topological" structure here, 
+but I think I'm not the person to look into that (at least not yet). 
 
 ---
 
@@ -339,69 +531,87 @@ of the discrete topology as having "the most open sets".
     Oh well, it seems the terminology has stuck.
 
 [^8]:
-    ⚠ This is _not_ the standard presentation of the definition of 
-    topologically concrete category!
+    ⚠ The definition I give here is actually a _theorem_ in Joy of Cats
+    (VI.21.18). That said, I think it's a bit simpler to understand than the
+    "classical" definition:
 
-    If you read _Joy of Cats_ or [the nlab][14], the definition you'll see
-    is
+    $U$ is topological if and only if every $U$-structured source has a 
+    unique $U$-initial lift. 
 
-    <div class=boxed markdown=1>
-    $$U : \mathcal{T} \to \mathcal{C}$$ is called topological forgetful if
-    "every $U$-structured source has a $U$-initial lift", or, to expand out 
-    the jargon:
+    Yeah... the language in Joy of Cats takes some getting used to. 
+    This is actually a perfectly natural thing to consider, it's just 
+    full of jargon. This [nlab article][14] does a pretty good job explaining
+    what this definition "really means".
 
-    If $C$ is in $\mathcal{C}$ and we have a (possibly large) family of objects
-    $S_\alpha$ in $\mathcal{T}$, plus arrows $f_\alpha : C \to US_\alpha$ in
-     $\mathcal{C}$, then 
-     "there is a best topology on $C$ making the $f_\alpha$ continuous".
-     Formally:
+[^9]:
+    This is a kind of "evil" version of creating limits. In fact,
+    this whole definition is evil... We ask for surjectivity rather than
+    essential surjectivity, as well as $U \nabla = \text{id}$ rather than just
+    a natural isomorphism.
 
-     1. There is an object $\tilde{C}$ in $\mathcal{T}$ and arrows 
-        $\tilde{f_\alpha} : \tilde{C} \to S_\alpha$ so that $U\tilde{C} = C$
-        and $U\tilde{f_\alpha} = f_\alpha$
-     2. If $T$ is any other object of $\mathcal{T}$ and $g : UT \to C$ is an
-     arrow in $\mathcal{C}$ so that each of the $f_\alpha \circ g : UT \to US_\alpha$
-     is $U h_\alpha$ for some $h_\alpha$ in $\mathcal{T}$, then actually
-     $g = U \tilde{g}$ where $\tilde{g} : T \to \tilde{C}$.
-    </div>
+    I'm not sure if anyone has tried to redo _Joy of Cats_ in a way that
+    works up to isomorphism instead of asking for equality on-the-nose in
+    so many places. Thankfully it's not that big an issue in practice.
 
-    This is a fine definition (even if it took me a while to really internalize it),
-    but it places the focus on the ability to lift maps in $\mathcal{C}$, whereas I
-    think the focus should be on the lattice of possible topologies. 
+[^10]:
+    The fact that our definition only has to do with limits and indiscrete 
+    objects, but as a consequence we get the same properties for colimits
+    and discrete objects, is a kind of categorification of the fact that a 
+    complete meet-semilattice with a top element is automatically join complete
+    with a bottom element.
 
-    It's not too hard to see that these definitions are equivalent. 
+    In fact, I really feel like topological categories are best understood in
+    terms of the complete lattice living in each fibre. In an earlier draft
+    of this post I tried to make that precise, but ran into some issues. 
+    Morally it's right, but figuring out precisely what conditions you want 
+    to put on the lattice was getting tiring and I wanted to get this post out.
 
-    It's proved in _The Joy of Cats_ that we always get a complete lattice in
-    the fibres, as well as the adjoint condition and the "compatibility" between
-    identity arrows and the lattice order. See VI.21 for more.
+    The (extremely dedicated) reader can find my attempt in the git history.
 
-    Conversely, let's say that $U : \mathcal{T} \to \mathcal{C}$ satisfies
-    the fibrewise complete lattice conditions outlined in the main body 
-    of this post. We'll show that it also satisfies the _Joy of Cats_ definition.
+[^11]:
+    This is one of those silly size conditions that we logicians care about.
+    It's almost always satisfied in practice. For instance, there are only
+    a set worth of topologies, measure spaces, graphs, partitions, etc. on 
+    a fixed set $X$. 
 
-    Let $S_\alpha$ be a (possibly large) family of objects in $\mathcal{T}$,
-    and fix arrows $f_\alpha : C \to U S_\alpha$. 
+[^12]:
+    Here a <span class=defn>Concrete</span> category over $\mathcal{C}$
+    is a category $\mathcal{T}$ equipped with a faithful functor 
+    $U : \mathcal{T} \to \mathcal{C}$.
 
-    Then we can consider the (possibly large) join
+    A functor $F$ between concrete categories $(\mathcal{T},U)$ 
+    and $(\mathcal{S},V)$ is called concrete when the 
+    obvious triangle commutes:
 
-    $$
-    \bigvee 
-    \big \{ 
-      \tilde{C} 
-    \mid 
-      \forall \alpha . 
-      \exists \tilde{f_\alpha} : \tilde{C} \to S_\alpha . 
-      U \tilde{f_\alpha} = f_\alpha
-    \big \}
-    $$
+    <img src="/assets/images/topological-categories/concrete-functor.png" width="50%">
 
-    and let $\tilde{C}$ be this element of the fibre over $C$.
+    So a concretely (co)reflective subcategory is a subcategory where the 
+    inclusion functor is concrete (this means the forgetful functor on the
+    subcategory is the restriction of the forgetful functor on the whole 
+    category) whose (co)reflector is also concrete.
 
-    First, notice every $f_\alpha$ comes from an arrow 
-    $\tilde{f_\alpha} : \tilde{C} \to S_\alpha$, basically by construction.
+    It turns out that (co)reflective subcategories often inherit nice 
+    properties from their parent category, and they are surprisingly 
+    common. One day I'd like to write up a blog post giving some examples
+    and summarizing the nice properties that get preserved, but we'll see 
+    if/when that happens.
 
-    Second, say $g : UT \to C$ is an arrow so that each 
-    $f_\alpha \circ g : UT \to U S_\alpha$ comes from an arrow in $\mathcal{T}$.
+[^13]:
+    It actually says more than this, and the authors consider "topological axioms"
+    and give lots of examples of how topological categories arise in this way.
+    It's super interesting, but this post is already getting quite long.
+    
+[^14]:
+    I've been planning a post on topological categories for some time,
+    because I really _do_ think they're an important unifying framework.
+    In fact, it's the analogy to topological categories that finally got 
+    me to understand how grothendieck topologies work. You don't _actually_
+    build any. You pick a collection of things that you _want_ to be covering,
+    then say "give me the topology generated by these". And why can we do that?
+    Because there's a complete lattice (indeed, a frame!) of topologies on 
+    any fixed site. See Borceux's excellent second lecture from 
+    "Toposes at Como" [here][20] for more details about this. The whole 
+    series is fantastic!
 
 
 [1]: https://en.wikipedia.org/wiki/Heyting_algebra
@@ -418,3 +628,10 @@ of the discrete topology as having "the most open sets".
 [12]: https://en.wikipedia.org/wiki/Product_measure
 [13]: https://mathoverflow.net/questions/71407/quotients-of-measurable-spaces
 [14]: https://ncatlab.org/nlab/show/topological+concrete+category
+[15]: https://ncatlab.org/nlab/show/adjoint+functor+theorem#statement
+[16]: https://ncatlab.org/nlab/show/regular+epimorphism
+[17]: https://ncatlab.org/nlab/show/monomorphism
+[18]: https://ncatlab.org/nlab/show/locale
+[19]: https://ncatlab.org/nlab/show/topological+concrete+category#examples
+[20]: https://www.youtube.com/watch?v=kqOSk4ZWFpE
+[21]: https://ncatlab.org/nlab/show/morphism+of+sites
