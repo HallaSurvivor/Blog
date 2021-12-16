@@ -470,6 +470,32 @@ but I think I'm not the person to look into that (at least not yet).
 
 ---
 
+<img src="/assets/images/topological-categories/glad-thats-over.gif" width="50%">
+
+That was a long one! But only because there's _so_ many examples, and I wanted
+to make sure I motivated the concept too. I'm on vacation now, and might use
+this time to finish up some posts that I've been sitting on for a while
+(notably the last post in the analysis qual series, on fourier analysis). 
+
+I've also been thinking some about the mathematics of the 
+[Hitomezashi Maker][22] from the last post. There are some interesting 
+questions about what kinds of pictures you get, and unfortunately I'm 
+not enough of a probabilistic combinatorialist to answer most of them! 
+I've made some pretty graphs which justify some conjectures, and I'll
+probably post about those (and ask on MSE) once I get everything squared away.
+
+Lastly, it's been almost a year and a half since I've written a real piece
+of music, and I told myself I would write one by the new year. So we might
+see blog posts slow down a bit (definitely big blog posts like this) while
+I take some time to be an artist again. I have to write some small pieces 
+to get all the bad music out of me before I write something decent, and I 
+also want to experiment with some electronic music[^15]. Depending on how 
+proud of the pieces I am, I might post some here.
+
+See you all in the next one ^_^
+
+---
+
 [^1]:
     I've been thinking a _lot_ about toposes lately, and these axioms are 
     beginning to take on a new flavor. If we view $\tau$ as a poset with 
@@ -613,6 +639,15 @@ but I think I'm not the person to look into that (at least not yet).
     "Toposes at Como" [here][20] for more details about this. The whole 
     series is fantastic!
 
+[^15]:
+    Basically all of my experience is with classical music, but 
+    the past two people who commissioned me _both_ wanted something
+    electronic. So even as a career move it's worth learning, but of 
+    course I love electronic music and it would be great to know more 
+    about how it works! Also, I'd be lying if I said there isn't an allure
+    to having a computer make all the sounds for you. It's much easier than
+    trying to find real live musicians (and pay them) to get your music
+    performed!
 
 [1]: https://en.wikipedia.org/wiki/Heyting_algebra
 [2]: https://en.wikipedia.org/wiki/Pointless_topology
@@ -635,3 +670,4 @@ but I think I'm not the person to look into that (at least not yet).
 [19]: https://ncatlab.org/nlab/show/topological+concrete+category#examples
 [20]: https://www.youtube.com/watch?v=kqOSk4ZWFpE
 [21]: https://ncatlab.org/nlab/show/morphism+of+sites
+[22]: /2021/12/08/hitomezashi-maker.html
