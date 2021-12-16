@@ -230,10 +230,6 @@ quotient algebra[^6].
 
 ---
 
-TODO: redo this based on Borceux's definition, cite it, and replace the
-"evil" footnote with one saying the Joy of Cats defn is evil, but morally
-equivalent.
-
 Ok, so we're obviously onto something here. We have some clear parallels 
 between these two categories, and some features which are obviously 
 characteristic of both settings. 
@@ -300,11 +296,18 @@ There's also the nice "preservation" properties for topological categories:
 
 So then, what do topological categories _look_ like? 
 
-Here's the picture which I have in my head. Moreover, when a category I'm
+Here's the picture which I have in my head[^18]. Moreover, when a category I'm
 interested in looks intuitively like this picture, I always take a second to 
 check if it's topologically concrete. So far it _always_ has been!
 
-TODO: the picture. You know the one
+<img src="/assets/images/topological-categories/top-picture.png" width="50%">
+
+So you see, I'm thinking of topoglogical categories as being fibred over
+the base category $\mathcal{C}$, with a complete lattice in each fibre.
+Then the bottom and top elements of the lattice are the discrete and 
+indiscrete structures on a given object of $\mathcal{C}$[^17], and 
+"lifting" a limit corresponds to choosing the correct element of the fibre
+of the limit as computed downstairs.
 
 ---
 
@@ -323,7 +326,7 @@ $$xEy \implies f(x) E f(y)$$
 
   - obviously $U(V,E) = V$
 
-Notice how there's a complete lattice of graphs (indeed, $\mathcal{P}(V \times V)$)
+Notice how there's a complete lattice of graphs[^16] (indeed, $\mathcal{P}(V \times V)$)
 over every vertex set $V$. Moreover, there are discrete and indescrte objects
 (though the indiscrete graph is traditionally called "complete" instead).
 
@@ -579,6 +582,12 @@ See you all in the next one ^_^
     works up to isomorphism instead of asking for equality on-the-nose in
     so many places. Thankfully it's not that big an issue in practice.
 
+    I know that Borceux has a definition in his _Handbook of Categorical Algebra_
+    (Volume 2, definition 7.3.2), but I think it's _still_ evil... In particular
+    it asks for $UA = B$ on the nose, rather than just $UA \cong B$. If anyone
+    knows of efforts to un-evil-ify these definitions, I would love to hear 
+    about it! 
+
 [^10]:
     The fact that our definition only has to do with limits and indiscrete 
     objects, but as a consequence we get the same properties for colimits
@@ -649,6 +658,31 @@ See you all in the next one ^_^
     trying to find real live musicians (and pay them) to get your music
     performed!
 
+[^16]:
+    Drawing the lattice of directed graphs over a 2 element set is already
+    too big for my taste (it's a lattice with $16$ elements). But I draw
+    the lattice of undirected graphs over a 2 element set, because I do
+    think it's worthwhile to think about the picture:
+
+    <img src="/assets/images/topological-categories/graph-fibre.png" width="50%">
+
+[^17]:
+    ⚠ Keep in mind that this is _backwards_ from the usual set-theoretic order!
+    There the discrete topology is the top element, since every set is open.
+
+[^18]:
+    Drawn on an ipad for once, instead of on my usual school-sponsored 
+    wacom tablet. I'm visiting [Remy][23] in New York, and of course he
+    has an ipad because he's a graphic designer. I left my wacom at home,
+    and it they weren't so expensive I would consider making the switch.
+    It's _really_ nice to draw on, haha. 
+
+    It's also _really_ hard to justify a purchase like that for something I
+    would use so infrequently, especially now that we're planning to have
+    fully in person classes again in the winter quarter.
+
+
+
 [1]: https://en.wikipedia.org/wiki/Heyting_algebra
 [2]: https://en.wikipedia.org/wiki/Pointless_topology
 [3]: https://www.youtube.com/watch?v=vmcbm5FxRJE
@@ -671,3 +705,4 @@ See you all in the next one ^_^
 [20]: https://www.youtube.com/watch?v=kqOSk4ZWFpE
 [21]: https://ncatlab.org/nlab/show/morphism+of+sites
 [22]: /2021/12/08/hitomezashi-maker.html
+[23]: https://remydavison.com/
