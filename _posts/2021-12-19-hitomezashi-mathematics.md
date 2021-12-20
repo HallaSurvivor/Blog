@@ -2,7 +2,7 @@
 layout: post
 title: Some Questions about the Mathematics of Hitomezashi
 tags:
-  - 
+  - sage
 ---
 
 A little while ago I made [a post][1] with some [sage](https://sagemath.org) code
