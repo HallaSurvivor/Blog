@@ -242,13 +242,27 @@ Now, though, I'm off to bed. See you soon!
     another quick exercise if you prefer.
 
 [^6]:
-    I don't fully understand why we have to do this... Like, _formally_ I 
-    understand why, because I know how the proof works. But in my heart I
+    Why do we need to take expectations? Remember random variables are secretly
+    _functions_ from some probability space $\Omega$. So when we say 
 
+    $$
+    \frac{1}{n} \sum X_k \to x
+    $$
 
-    If anyone has some intuition for this fact
-    (besides the obivious $\mathbb{E}[f(X_k)] \neq f( \mathbb{E}[X_k] )$ )
-    , I would love to hear it!
+    we're really saying these functions converge (in one of any number of senses)
+    to the _constant function_ $x$. 
+
+    Then we compose these functions with $f$ to see that the functions
+
+    $$
+    f \left ( \frac{1}{n} \sum X_k \right ) = 
+    f \circ \left ( \frac{1}{n} \sum X_k(\omega) \right )
+    $$
+
+    converge to the constant function $\omega \mapsto f(x)$. 
+
+    In order to get an actual _number_ out of this constant function, we need
+    to take expectations of both sides.
 
 [^7]:
     I'm not going to show the jiggery-pokery here. It's entirely routine
