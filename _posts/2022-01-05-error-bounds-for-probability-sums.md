@@ -315,8 +315,7 @@ def test(f, N=100, x=None, showPlot=False):
 
 @interact
 def _(f=sin(x), x=3/4, auto_update=False):
-  (_,g,_) = test(f, x=x, showPlot=True)
-  show(g)
+  _ = test(f, x=x, showPlot=True)
 </script>
 </div>
 
