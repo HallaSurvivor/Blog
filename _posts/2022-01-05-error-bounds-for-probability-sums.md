@@ -235,7 +235,7 @@ derivation, or that tighter error bounds are possible
 (especially because $\sin$ is _much_ better behaved than your average 
 bounded locally lipschitz function).
 
-So let's try it on a more difficult function. What if we try to 
+So let's try it on a more difficult function[^4]. What if we try to 
 approximate $\sin(1/(0.001 + x))$ at $x = 0.1$. 
 (We have to perturb things a little bit so the code doesn't divide by $0$ anywhere).
 
@@ -249,6 +249,13 @@ At least the guess in this case is closer to what we computed, as the
 blue graph is roughly $1.23 \frac{\log n}{n^{0.56}}$. This obviously isn't an
 upper bound for our data, but it's only off by a translation upwards, and
 they do seem to be decaying at roughly the same rate.
+
+The fact that this example gives something fairly close to the bounds we
+ended up getting makes me feel better about things. In fact, after a bit
+of playing around, I can't find anything where sage guesses
+the decay is _slower_ than $\frac{\log(n)}{\sqrt{n}}$, which also bodes well.
+
+If you want to play around for yourself, I've left the sage code below!
 
 ---
 
@@ -362,5 +369,20 @@ In any case, this has been fun to work through! I'll see you all soon!
     $$
 
     is _horrendous_. 
+
+[^4]:
+    Interestingly, while trying to break things, I realized that I don't
+    _really_ have a good understanding of "pathological" bounded lipschitz 
+    functions. Really the only tool in my belt is to make things highly
+    oscillatory...
+
+    Obviously we won't have anything _too_ pathological. After all, every
+    (globally) lipschitz function is differentiable almost everywhere, and 
+    boundedness means we can't just throw singularities around to cause 
+    havoc. But is oscillation _really_ the only pathology left? It feels like
+    there should be grosser things around, but it might be that they're just
+    hard to write down.
+
+    Again, if you have any ideas about _this_, I would also love to hear about it!
 
 [1]: https://math.stackexchange.com/questions/2434883/chernoff-style-bounds-for-poisson-distribution
