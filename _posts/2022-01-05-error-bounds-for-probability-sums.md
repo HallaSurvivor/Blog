@@ -204,7 +204,7 @@ So, overall, we have
 
 $$
 e^{-nx} \sum_{k=0}^\infty \frac{(nx)^k}{k!} f \left ( \frac{k}{n} \right ) 
-= f(x) + \widetilde{O}_x \left ( \frac{1}{\sqrt{n}} \right )
+= f(x) \pm \widetilde{O}_x \left ( \frac{1}{\sqrt{n}} \right )
 $$
 
 as promised.
