@@ -3,6 +3,7 @@ layout: post
 title: A Follow Up -- Explicit Error Bounds
 tags:
   - quick-analysis-tricks
+  - sage
 date: 2022-01-05 13:14
 ---
 
@@ -209,6 +210,118 @@ $$
 as promised.
 
 <span style="float:right">$\lrcorner$</span>
+
+---
+
+After I got through with this proof, I wanted to see if it agreed with some
+simple experiments. The last step of this, where we played around with the
+$\delta_n$s, was really difficult for me, and if your math is making a 
+prediction, it's a nice sanity check to go ahead and test it. 
+
+So then, let's try to approximate some functions! I've 
+precomputed these examples, but you can play around with the code at the
+bottom if you want to.
+
+First, let's try to approximate $\sin(3/4)$ using this method. 
+We get nice decay, but it's _much_ faster than $\frac{\log(n)}{\sqrt{n}}$.
+Indeed, sage guesses it's closer to $\frac{\log(n)}{n^{1.6}}$.
+
+<p style="text-align:center;">
+<img src="/assets/images/error-bounds-for-probability-sums/sin-3-4.png">
+</p>
+
+That's fine, though. It's more than possible that I was sloppy in this 
+derivation, or that tighter error bounds are possible 
+(especially because $\sin$ is _much_ better behaved than your average 
+bounded locally lipschitz function).
+
+So let's try it on a more difficult function. What if we try to 
+approximate $\sin(1/(0.001 + x))$ at $x = 0.1$. 
+(We have to perturb things a little bit so the code doesn't divide by $0$ anywhere).
+
+Now we get some oscillatory behavior, which seems to be stabilizing.
+
+<p style="text-align:center;">
+<img src="/assets/images/error-bounds-for-probability-sums/sin-worse.png">
+</p>
+
+At least the guess in this case is closer to what we computed, as the
+blue graph is roughly $1.23 \frac{\log n}{n^{0.56}}$. This obviously isn't an
+upper bound for our data, but it's only off by a translation upwards, and
+they do seem to be decaying at roughly the same rate.
+
+---
+
+<div class="linked_auto">
+<script type="text/x-sage">
+def approx(f,x,n, verbose=False):
+  """
+  Compute the nth approximation of f at x according to our formula
+  """
+  total = 0
+
+  # We're only summing the first 500 terms of the series,
+  # and that causes some distortion for large values of n
+  for k in range(500): 
+    total += (exp(-n*x) * ((n*x)^k / factorial(k)) * f(x=k/n)).n()
+
+  return total.n()
+
+
+def test(f, N=100, x=None, showPlot=False):
+  """
+  Get the error between f(x) and approx(f,x,n) as n goes from 1 to @N.
+
+  If no x is given, pick one randomly in (-1,1).
+
+  Return the error data, and plot it if @showPlot is true
+  """
+
+  if x == None:
+    x = RR(uniform(-1,1))
+
+  target = f(x=x).n()
+
+  data = []
+
+  n = 1
+  while n < N:
+    a = approx(f,x,n)
+    data += [ (n, abs(a - target)) ]
+
+    n += 1
+
+  a,b,n = var('a,b,n')
+  model(n) = a * n^b * log(n)
+  sol = find_fit(data,model)
+  guess(n) = model(a=sol[0].rhs(), b=sol[1].rhs())
+
+  show(guess)
+
+  if showPlot:
+    scatterPlot = scatter_plot(data)
+    guessPlot = plot(guess, n, 1, N)
+
+    show(scatterPlot + guessPlot)
+
+  return (x, guess, data)
+
+@interact
+def _(f=sin(x), x=3/4, auto_update=False):
+  (_,g,_) = test(f, x=x, showPlot=True)
+  show(g)
+</script>
+</div>
+
+---
+
+I'm _pretty_ confident in what we've done today, but I can't help but 
+feel like there's a better way, or that there's slightly tighter bounds
+to be had. 
+If there's anyone particularly skilled in "hard" analysis reading this,
+I would love to hear your thoughts ^_^. 
+
+In any case, this has been fun to work through! I'll see you all soon!
 
 ---
 
