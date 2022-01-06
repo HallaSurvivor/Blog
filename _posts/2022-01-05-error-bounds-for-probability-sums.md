@@ -149,7 +149,7 @@ $$
 \leq M_x \delta_n + 2 \lVert f \rVert_\infty 2 \exp \left ( \frac{-n \delta_n^2}{2(x + \delta_n)} \right )
 $$
 
-We want to show that this goes to $0$, and all we have in control over
+We want to show that this goes to $0$, and all we have is control over
 the sequence $\delta_n$. 
 $M_x$ is a constant, so we have to have $\delta_n \to 0$. 
 Likewise $4 \lVert f \rVert_\infty$ is a constant, so we need 
