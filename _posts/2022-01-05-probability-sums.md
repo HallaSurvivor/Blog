@@ -3,6 +3,7 @@ layout: post
 title: Using Probability to Make Difficult Limits Obvious
 tags:
   - quick-analysis-tricks
+date: 2022-01-05 02:00
 ---
 
 Hands down one of my worst subjects is probability, which is a shame because 
