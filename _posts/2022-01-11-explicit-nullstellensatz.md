@@ -5,9 +5,10 @@ tags:
   - sage
 ---
 
-I'm in an algebraic geometry class right now, and a friend didn't understand
-the proof of the strong nullstellensatz. I thought it might be helpful to see
-a concrete example of the idea, since the proof is actually quite constructive!
+I'm in an algebraic geometry class right now, and a friend was struggling 
+conceptually with the proof of the strong nullstellensatz. I thought it might be 
+helpful to see a concrete example of the idea, since the proof is actually quite 
+constructive! Which brings us to this post:
 
 Formally, we're going to assume the weak nullstellensatz, and use it to show
 the strong nullstellensatz. That is, we'll assume 
