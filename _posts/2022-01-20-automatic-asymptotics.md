@@ -34,7 +34,7 @@ only works for functions with polynomial denominators[^1].
 
 The latter has nicer documentation, works for more general functions, and 
 gives more detailed asymptotic expansions. The downside is that it only works
-for functions of a single variable, and it's _super_ annoying to use because
+for functions of a single variable, and it's kind of annoying to use because
 it doesn't accept symbolic inputs natively. You also have to manually provide 
 a list of singularities[^2].
 
