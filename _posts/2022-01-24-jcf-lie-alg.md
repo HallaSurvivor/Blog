@@ -14,24 +14,11 @@ been enjoying. In particular, last week we talked about the
 seen before. I'm sure this will be familiar to plenty of people, but I want
 to write up a thing about it anyways just in case!
 
-When I was a freshman, I took my first linear algebra class 
-(and my first proof-based class) with [Pisztora][4]. This class played a huge
-part in my decision to switch from physics to math, and I've consciously kept
-some of Pisztora's notational quirks throughout my career as a kind of silent
-homage. 
-
-One of the last things we did in that class was a completely constructive 
-proof that every matrix (over $\mathbb{C}$) has a Jordan Canonical Form. 
-We were all completely lost, and (speaking for almost all of us, I'm sure)
-we loved every second of it. I wasn't planning to get misty eyed or nostalgic
-while writing this post, but I really do have great memories associated with
-that class.
-
 Now then, what _is_ JCF? 
 
-First, a very computational angle. Not every matrix can be diagonalized, so
+Not every matrix can be diagonalized, so
 it's natural to ask if there's a "next best thing". The answer is "yes",
-and it's the JCF. When a matrix is diagonal it means that it acts just by
+and it's the JCF[^6]. When a matrix is diagonal it means that it acts just by
 rescaling along some axes, given by the basis we use to diagonalize it.
 The JCF lets us write _any_ matrix[^1] as a diagonal matrix, plus a few $1$s
 right above the diagonal. Stealing wikipedia's example, we see that
@@ -72,59 +59,34 @@ we send $$\vec{v}_{k+1}$$ to $$\lambda \vec{v}_{k+1} + \vec{v}_k$$. The
 top basis vector, $$\vec{v}_0$$, just gets rescaled: $$M \vec{v}_0 = \lambda \vec{v}_0$$.
 
 Then a matrix is diagonalizable if and only if each of these subspaces is 
-one dimensional.
+one dimensional (do you see why?).
 
 One reason to care about this is classification. If we pick some reasonable
 convention for ordering the eigenvalues, then every matrix has a unique JCF,
 and two matrices are similar if and only if they have the same JCF. This lets 
 us solve the similarity problem in polynomial time[^3], which is quite nice.
-We'll see another, more theoretical application (to lie algebras), later 
-in the post.
 
-Geometrically, I never found the scale-and-shift action of the JCF particularly 
-easy to visualize, but I can at least appreciate that it's symbolically simple. 
-When it comes to standard forms for matrices, I always preferred the 
-[Rational Canonical Form][5], which played an important role in my 
-undergraduate research in finite state automata, and whose action is extremely
-easy to understand (provided you view your vectors as polynomials).
+Another reason is for computation. When working with matrices 
+(by hand or by computer) it's nice to have a lot of $0$s hanging around, 
+because it makes computation easier. Moreover, we can make special use of
+the form of a matrix in JCF in order to do computations we wouldn't be able
+to do _at all_ in general. For instance, can you see what $M^2$ and $M^3$ must
+look like for a matrix in JCF? Obviously this is hopeless for an arbitrary matrix.
 
-This is a nice segue into the fact that the RCF and JCF are related by a 
-higher-level theorem, which is another perspective I had on the JCF going into
-last week.
-
-I don't want to go into much detail here, since I want to keep this post fairly
-quick for me to write and we haven't even gotten to the main point yet. But
-the idea is that the 
-[fundamental theorem of fintely generated modules over PIDs][7]
-(which _really_ needs a snappier name) gives us two canonical ways to 
-decompose a fg PID-module: the primary decomposition, and the invariant factor
-decomposition. 
-
-Now if we view $\mathbb{C}^n$ as a $\mathbb{C}[x]$ module where
-$x$ acts by some linear transformation $T$, this theorem tells us we can decompose 
-$\mathbb{C}^n$ into subspaces where $T$ acts in a particularly simple way.
-
-The primary decomposition of $\mathbb{C}^n$ provides a basis on which $T$ 
-attains its Jordan Canonical Form, and the invariant factor decomposition 
-provides a basis on which $T$ is in Rational Canonical Form. For more details
-about the specific link between this theorem and the JCF, you might try
-[this][6] nice set of notes by Kiyoshi Igusa.
+These computational benefits help us solve real problems, for instance it's
+comparatively easy to compute [matrix exponentials][10] when $M$ is in JCF,
+and this lets us solve coupled differential equations. See [here][8], say.
 
 ---
 
 Now for the new perspective:
 
-Everything we've done so far has been very basis-oriented. After all, the
-entire point of JCF is to find a basis which renders our favorite 
-linear transformation particularly easy to study. But it's natural to look
-for a basis-agnostic way of getting our hands on the information JCF 
-provides. 
-
-I had never thought to look into this, because in my mind JCF was really a 
-statement about bases. After all, the main theoretical use case I had in mind 
-was for similarity checking of matrices! Obviously it's useful for carrying
-out concrete computations as well (for instance, in solving ODEs. See [here][8]),
-but I never thought to ask if we _could_ rephrase it in a basis-agnostic way.
+The entire point of JCF is to find a basis which renders our favorite 
+linear transformation particularly easy to study. 
+So it never crossed my mind to look into basis-agnostic formulation of the
+theorem. Of course, it's almost _always_ natural to ask if there's a 
+version of a theorem that doesn't rely on a choice of basis, and 
+(surprisingly, imo) there _is_ actually such a formulation for the JCF!
 
 So what's the idea?
 
@@ -162,7 +124,7 @@ $$
 $$
 
 Another way to say this is that every linear map on $\mathbb{C}^n$ 
-decomposes as the sum of two commuting maps, one of which is [semisimple][9]
+decomposes as the sum of two commuting maps[^7], one of which is [semisimple][9]
 one of which is nilpotent:
 
 $$T = T_s + T_n$$
@@ -224,13 +186,48 @@ See the [Jordan-Chevalley Decomposition][2].
       with basis $\{ v_k \mid k \in \mathbb{N} \}$.
     -->
 
+[^6]:
+    When I was taking my first ever linear algebra class 
+    (which, incidentally, was also my first proof based class) as
+    a freshman, our professor ([Pisztora][4]) spent the last few
+    weeks giving a completely algorithmic way to get our hands on the JCF
+    of a matrix. 
+
+    Later in life, I learned about the 
+    [fundamental theorem of fintely generated modules over PIDs][7]
+    (which _really_ needs a snappier name). It gives us two canonical ways
+    to decompose a fg PID-module: the <span class=defn>Primary Decomposition</span>
+    and the <span class=defn>Invariant Factor Decomposition</span>.
+
+    Now if we view $\mathbb{C}^n$ as a $\mathbb{C}[x]$ module where
+    $x$ acts by some linear transformation $T$, this theorem tells us we can decompose 
+    $\mathbb{C}^n$ into subspaces where $T$ acts in a particularly simple way.
+
+    The primary decomposition of $\mathbb{C}^n$ provides a basis on which $T$ 
+    attains its Jordan Canonical Form, and the invariant factor decomposition 
+    provides a basis on which $T$ is in [Rational Canonical Form][5]
+    (which, incidentally, I like more. But that might be because it was a big
+    part of my undergraduate research). 
+
+    I won't say more about the existence proofs here, because that's not really
+    the point of the post. 
+
+[^7]:
+    It wasn't immediately clear to me that these maps commute, but 
+    (as is often the case) it's pretty obvious in hindsight. If it's
+    not clear to you, you should take some time and work through it! 
+
+    As a hint, it suffices to check commutativity in each Jordan block. 
+    But of course, within each block, the diagonal matrix is _particularly_
+    simple...
+
 
 [1]: https://en.wikipedia.org/wiki/Vyjayanthi_Chari
 [2]: https://en.wikipedia.org/wiki/Jordan%E2%80%93Chevalley_decomposition
 [3]: https://en.wikipedia.org/wiki/Jordan_normal_form
 [4]: https://www.cmu.edu/math/people/faculty/pisztora.html
 [5]: https://en.wikipedia.org/wiki/Frobenius_normal_form
-[6]: https://people.brandeis.edu/~igusa/Math101aF07/Math101a_notesB10.pdf
 [7]: https://en.wikipedia.org/wiki/Structure_theorem_for_finitely_generated_modules_over_a_principal_ideal_domain
 [8]: https://math.stackexchange.com/questions/2309707/whats-the-relationship-between-the-jordan-theory-and-odes
 [9]: https://en.wikipedia.org/wiki/Semisimple_operator
+[10]: https://en.wikipedia.org/wiki/Matrix_exponential
