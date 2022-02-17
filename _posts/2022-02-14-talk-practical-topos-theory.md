@@ -6,14 +6,16 @@ tags:
 ---
 
 Last Friday I gave a talk in GSS where I tried to give a super concrete
-application of topos theory to the rest of mathematics. The idea was to solve
+application of topos theory to "mainstream" mathematics. The idea was to solve
 a simple analysis problem, streamlining the argument by using the internal
 logic of a sheaf topos. The _good_ news is that I think I was quite successful
 in making my point that "ordinary mathematicians" should care about topos 
 theory and constructive logic. The _bad_ news is that the last 10 minutes of
 my talk were false... It didn't end up mattering, but I was still pretty torn 
-up about it. Anyways, in this post I'll give an overview of the talk, as well
-as my mistake. I'm planning to start a new series soon where I go over this
+up about it. Anyways, in this post I'll give an overview of the talk, which
+should double as a nice description of how to actuallly _use_ topos theory
+to solve problems.
+I'm planning to start a new series soon where I go over this
 proof in more detail, explaining the relevant aspects of topos theory along
 the way!
 
@@ -64,7 +66,7 @@ the $f_\omega$ uniformly (at least locally) in $\omega$.
 This brings us to the, probably quite surprising, idea motivating the talk:
 
 <div class=boxed markdown=1>
-Let's solve this with high powered category theory and constructive logic!
+Let's solve this analysis problem with high powered category theory and constructive logic!
 </div>
 
 ---
@@ -80,8 +82,8 @@ post I'll spare you my art, and just rip off the photo directly:
 <img src="/assets/images/talk-practical-topos-theory/external-internal.jpeg" width="50%">
 </p>
 
-Except when I drew this on the board, I used "weierstrass approximating polynomial"
-instead of "finitely generated module".
+(Except when I drew this on the board, I used "weierstrass approximating polynomial"
+instead of "finitely generated module")
 
 Later in the talk I went into more detail about what exactly the 
 "complicated external statement" is. But before we could go into that,
@@ -92,14 +94,14 @@ If we want to do mathematics inside of a topos, it has to be
 <span class=defn>Constructive</span>
 </div>
 
-What do I mean by "constructive"? Well, it shouldn't use the axiom of choice.
+What do I mean by "constructive"? Well to start, it shouldn't use the axiom of choice.
 Indeed, even _very_ weak principles like [countable choice][6] can fail[^3]. 
 It really doesn't take too long (imo) to get used to working without choice[^4].
 But more importantly, we have to work without the [Law of Excluded Middle][7]
 (LEM), and this can take quite a bit of getting used to.
 
 At this point in the talk I introduced the notion of a 
-[sheaf][8] on a topological space, the idea of a sheaf map, and thus
+[sheaf][8] on a topological space, as well as sheaf maps, and thus
 the category $\mathsf{Sh}(X)$ of sheaves on $X$[^7]. Of course, the canonical
 example of a sheaf on $X$ is the sheaf of continuous real valued functions 
 on $X$, and I went over this example in some detail.
@@ -107,8 +109,7 @@ on $X$, and I went over this example in some detail.
 Then I said
 that the truth values $\mathsf{Sh}(X)$ are exactly the opens of $X$. I used
 this to explain how LEM fails[^5] in this topos.
-
-This is relevant because it means that we'll need to know our proof of the
+As you might expect, this is relevant because it means that we'll need to know our proof of the
 weierstrass approximation theorem is constructive if we want to interpret it
 inside $\mathsf{Sh}(X)$. 
 
@@ -159,7 +160,7 @@ wanted to show how easy it is to miss a usage of LEM, so I gave the proof
 via [bernstein polynomials][10], which you can find in the "elementary proof"
 section of the wikipedia page.
 
-Now, in this proof we separate a sum into "good" and "bad" parts, which we
+In this proof we separate a sum into "good" and "bad" parts, which we
 approximate separately. But knowing that each summand is either "good" or "bad"
 requires LEM[^10].
 
