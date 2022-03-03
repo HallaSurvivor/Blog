@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Talk -- Why Care about Lie Algebras?
+title: Talk (?) -- Why Care about Lie Algebras?
 tags:
   - my-talks
 ---
