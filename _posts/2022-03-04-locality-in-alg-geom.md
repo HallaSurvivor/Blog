@@ -8,7 +8,7 @@ tags:
 An oft-repeated piece of intuition I've seen while trying to learn algebraic
 geometry is that localizing a ring at a prime is like "zooming in" on that 
 point. But if you want to zoom in "really close" then you have to take the
-[completion][1] of this ring... But why?
+[completion][1] of this ring... Why is that?
 
 This is definitely an observation well known to experts 
 (and even many nonexperts, probably), but I know I would have liked to
