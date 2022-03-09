@@ -126,6 +126,7 @@ Invariant
   - At time of writing I don't feel like I fully understand this viewpoint
   - https://mathoverflow.net/a/9432/145247
   - https://www.youtube.com/watch?v=reTw27FYhlQ ?
+  - category of covering spaces is equivalent to category of subgroups
 
 
 
