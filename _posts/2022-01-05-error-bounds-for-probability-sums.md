@@ -226,6 +226,12 @@ First, let's try to approximate $\sin(3/4)$ using this method.
 We get nice decay, but it's _much_ faster than $\frac{\log(n)}{\sqrt{n}}$.
 Indeed, sage guesses it's closer to $\frac{\log(n)}{n^{1.6}}$.
 
+(**Edit:** I realized I never said what these pictures represent. The $x$ 
+axis is the number of terms used, and the $y$ axis is the absolute error
+in the approximation. You can figure this out based on the code below, but
+you should _need_ to understand the code to understand the graphs so I'm
+adding this little update ^_^.)
+
 <p style="text-align:center;">
 <img src="/assets/images/error-bounds-for-probability-sums/sin-3-4.png">
 </p>
