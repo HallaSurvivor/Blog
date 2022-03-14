@@ -229,7 +229,7 @@ Indeed, sage guesses it's closer to $\frac{\log(n)}{n^{1.6}}$.
 (**Edit:** I realized I never said what these pictures represent. The $x$ 
 axis is the number of terms used, and the $y$ axis is the absolute error
 in the approximation. You can figure this out based on the code below, but
-you should _need_ to understand the code to understand the graphs so I'm
+you shouldn't _need_ to understand the code to understand the graphs so I'm
 adding this little update ^_^.)
 
 <p style="text-align:center;">
