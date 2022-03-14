@@ -95,12 +95,11 @@ _every_ pair of arrows is composable, so $\circ$ becomes a total operation.
 ---
 
 Algebraic
-  - axioms (composition is an operation, subject to certain rules)
   - can be defined by generators and relations
-  - groups/monoids
   - factorization systems
   - (open) petri nets?
-  - braid categories? tensor products, etc
+  - braid categories? (Universal web category)
+  - representation, cohomology, etc
   - https://mathoverflow.net/a/43615/145247 ?
 
 Geometric
