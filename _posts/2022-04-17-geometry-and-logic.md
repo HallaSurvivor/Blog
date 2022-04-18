@@ -159,10 +159,11 @@ Stay warm, and I'll see you all soon ^_^
     the number of times that would be required of me.
 
 [^2]:
-    I read [a great blog post][4] a while ago which gave an analogy that now
-    lives in my head rent free. If there are any readers confused by the 
-    (admittedly subtle!) distinction between giving a derivation and checking
-    semantically that a sequent must be valid, hopefully this analogy helps!
+    I read a great (if slightly agressive) [blog post][4] a while ago which 
+    gave an analogy that now lives in my head rent free. If there are any readers 
+    confused by the (admittedly subtle!) distinction between giving a derivation 
+    and checking semantically that a sequent must be valid, 
+    hopefully this analogy helps!
 
     <div class=boxed markdown=1>
     When asked to derive a sequent $\Gamma \vdash \varphi$, it's not enough
