@@ -101,6 +101,8 @@ Algebraic
   - braid categories? (Universal web category)
   - representation, cohomology, etc
   - https://mathoverflow.net/a/43615/145247 ?
+  - localization
+      
 
 Geometric
   - objects are "points", arrows are "paths"
