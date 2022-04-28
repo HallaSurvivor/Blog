@@ -91,6 +91,27 @@ as a category with one object $\star$. Then all the algebraic data is
 contained in the composition on $A$. Moreover, since there's only one object,
 _every_ pair of arrows is composable, so $\circ$ becomes a total operation.
 
+This analogy can be pushed quite far, for instance, a ring can be viewed as
+a one object category [enriched][1] in abelian groups.
+
+More generally, it's common to _define_ a category by giving some generators
+and some relations. This is entirely analogous to giving a presentation of a 
+group. TODO: examples
+
+Then there are lots of operations which we do to algebraic gadgets which we
+can rephrase categorically. Oftentimes these operations end up being interesting
+and useful in the broader setting!
+
+Take, for instance, the monoid $\mathbb{N}^\times$, which has
+one object $\star$, and an arrow $\star \to \star$ for each $n > 0$ so that
+$m \circ n = mn$. Then there's a distinguished class of arrows (the primes)
+so that every arrow _factors_ as a composite of primes.
+
+More typically, we'll have two types of arrow, say $\mathcal{M}$ and $\mathcal{E}$,
+and we want to know that every $f : A \to B$ factors as $f = m \circ e$ 
+for $m \in \mathcal{M}$ and $e \in \mathcal{E}$. If every $f$ factors in this
+way, we say our category has an $(\mathcal{M}, \mathcal{E})$-factorization system.
+
 
 ---
 
@@ -141,3 +162,6 @@ Invariant
 [^2]:
     I'll be following the usual tradition of ignoring foundational issues here,
     much to the disappointment of my set theorist friends, I'm sure.
+
+
+[1]: https://en.wikipedia.org/wiki/Enriched_category
