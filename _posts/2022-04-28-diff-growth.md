@@ -12,6 +12,9 @@ as I saw it, but I didn't have the time for a little while
 I want to share my solution with all of you! First, here's the comic 
 that started it all:
 
+TODO: say something about this being a slightly roundabout journey,
+told to show how people really "do" math.
+
 <p style="text-align:center;">
 <a href="https://www.smbc-comics.com/comic/derivative">
 <img src="/assets/images/diff-growth/smbc-derivative.png" width="50%">
@@ -21,10 +24,11 @@ that started it all:
 Now, my old advisor (Klaus Sutner) used to say that whenever you're faced with a 
 problem, you can hack or you can think, but you can't do both. Today I was in more
 of a hacking mood, so I wrote up some haskell code to just _try_ all the
-"reasonable" functions I could think of. 
+"reasonable" functions I could think of. By this, of course, I mean the 
+[elementary functions][9].
 
-That is, there's an obvious recursive way to build up functions which might
-show up in a calculus class:
+There's an obvious recursive way to build up the elementary functions
+(which you should think of as those functions which might show up in a calculus class):
 
  - $f(x) = x$ should probably be a function, as should the constants
  - If $f(x)$ has previously been defined, $\sin(f(x))$, etc. should be functions
@@ -35,7 +39,7 @@ We can formalize this with a datatype[^1]
 <div class="no_eval">
 <script type="text/x-sage">
 
-data Expr = Const Int
+data Expr = Const Rational
           | X
           | Square Expr
           | Sqrt Expr
@@ -45,6 +49,12 @@ data Expr = Const Int
           | ASin Expr
           | ACos Expr
           | ATan Expr
+          | Sinh Expr
+          | Cosh Expr
+          | Tanh Expr
+          | ASinh Expr
+          | ACosh Expr
+          | ATanh Expr
           | Exp Expr
           | Log Expr
           | Add Expr Expr
@@ -57,14 +67,25 @@ data Expr = Const Int
 </script>
 </div>
 
-Now, these are far from the _only_ functions you might run into in a 
-calculus class, but they certainly feel like a representative list. 
-I would love to hear if there's any functions you find conspicuously missing,
-and if you think it changes the final answer!
+Obviously this list, while exhausting the elementary functions, is 
+still somewhat arbitrary. 
+For instance, $\sec$ is nowhere on this list, but we can build it using
+the functions that _are_ on this list[^8]. Conversely, we added a builtin 
+function for $\tan$, even though we can express it using $\sin$ and $\cos$. 
+The decision to add squaring and square roots as primitive, while relegating
+cubes and cube roots, etc. to a definition using `Const` and `Pow` was 
+similarly arbitrary. 
+
+I went for this list basically because it's what the [wikipedia article][9]
+names explicitly. Later on we'll show that our general solution doesn't 
+depend on the exact list chosen, but there's a sharper result to be had that
+_does_ use some specific list of "primitive" functions.
 
 Next up, we need to tell haskell how to compute the derivative of a function.
 Thankfully, derivatives can be computed recursively, so this is quite easy
 to code up:
+
+TODO: finish implementing the hyperbolic ones
 
 <div class="no_eval">
 <script type="text/x-sage">
@@ -115,6 +136,12 @@ size (Tan e)      = 1 + size e
 size (ASin e)     = 1 + size e
 size (ACos e)     = 1 + size e
 size (ATan e)     = 1 + size e
+size (Sinh e)     = 1 + size e
+size (Cosh e)     = 1 + size e
+size (Tanh e)     = 1 + size e
+size (ASinh e)    = 1 + size e
+size (ACosh e)    = 1 + size e
+size (ATanh e)    = 1 + size e
 size (Exp e)      = 1 + size e
 size (Log e)      = 1 + size e
 size (Add e1 e2)  = 1 + size e1 + size e2
@@ -137,7 +164,9 @@ build n =
     [comb e1 e2 | comb <- binary, e1 <- (build (n-1)), e2 <- build((n-1))] ++
     (build (n-1))
   where
-    unary = [ACos, Square, Sqrt, Sin, Cos, Tan, ASin, ATan, Exp, Log]
+    unary = [Square, Sqrt, 
+      Sin, Cos, Tan, ASin, ACos, ATan, 
+      Sinh, Cosh, Tanh, ASinh, ACosh, ATanh, Exp, Log]
     binary = [Add, Sub, Mult, Div, Pow]
 
 -- compute the largest size of diff e as e ranges over exprs of size n
@@ -148,12 +177,11 @@ b n = maximumBy cmp . fmap (\e -> (size (diff e), e)) . filter (\e -> size e == 
 </script>
 </div>
 
-We put $\arccos$ at the front of the list because early experiments showed that
-the best bang for your buck is to compose $\arccos$ with itself $n$ times.
-In hindsight this isn't too surprising, since a single $\arccos$ symbol gets 
-turned into $9$ symbols after differentiating[^3]! 
-
 ---
+
+TODO: redo this analysis with the hyperbolic functions
+TODO: mention that we only _wanted_ asymptotics, but it 
+looks like we might get lucky and we could get a closed form!
 
 Now, my laptop can fully exhaust every function with $\leq 4$ symbols,
 and we see that our best bets are
@@ -183,7 +211,7 @@ symbols of all the unary options. So the only decision to make is whether
 it's worth the cost to use $\times$, $\div$, or powers. It's intuitively 
 believable that it's never worth it[^4], but we do have to prove it eventually.
 
-At this point, it's time to stop hacking, and start thinking[^5]! Let's 
+At this point, it's time to stop hacking, and start thinking[^5]! Let's try to
 _prove_ that this is the best option, and while we're at it, let's compute
 just how big it really gets!
 
@@ -428,6 +456,8 @@ Sign off
 
     As a cute exercise, I would love for soemone else to sort this out ^_^.
 
+[^8]:
+    Namely as `Div (Const 1) (Cos X)`
 
 [1]: https://www.smbc-comics.com/
 [2]: https://xkcd.com/356/
@@ -437,3 +467,4 @@ Sign off
 [6]: https://www.uwo.ca/math/faculty/kapulkin/seminars/hottest_summer_school_2022.html
 [7]: https://rahulrajkumar.github.io/
 [8]: https://iagoleal.com/posts/calculus-symbolic/
+[9]: https://en.wikipedia.org/wiki/Elementary_function
