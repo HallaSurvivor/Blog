@@ -195,6 +195,8 @@ $\frac{n^2}{2} + \frac{13n}{2} - 6$ symbols, and moreover this maximum is
 attained for $f = \arccos(\arccos(\ldots(x)\ldots))$.
 </div>
 
+$\ulcorner$
+
 We'll induct on the number of symbols in $f$, denoted $\lvert f \rvert$.
 
 If $\lvert f \rvert = 1,2$ then we can check by hand that the number of 
@@ -234,6 +236,8 @@ Aaaaaand.... ruh roh!
 
 It turns out that $\lvert (g^h)' \rvert$ can't be bounded by this function!
 
+<span style="float:right">$\lrcorner$</span>
+
 ---
 
 This is a perfect example of Klaus's "Magic Spiral", which he shows in the 
@@ -250,9 +254,9 @@ seemed to suggest that iterating $\arccos$ was the right approach, but when
 we tried to prove it we failed. 
 
 But our failiure is instructive! If you try to bound $\lvert (g^h)' \rvert$,
-it suggests that for $n=8$ we should start seeing failures. Of course, 
+it suggests that for $n=9$ we should start seeing failures. Of course, 
 this is much to large to check exhaustively, but if we take the first 
-100,000 or so functions of size $8$ (and if we restrict attention to those
+1,000,000 or so functions of size $9$ (and if we restrict attention to those
 functions built out of `Pow` and `Acos`), we can check if we start seeing
 counterexamples. So we're computing again, and back around the spiral we go.
 
@@ -274,19 +278,96 @@ b n = maximumBy cmp . fmap (\e -> (size (diff e), e)) . filter (\e -> size e == 
     cmp (s1,_) (s2,_) = compare s1 s2
 
 main :: IO ()
-main = b 8 $ take 100000 $ build 8
+main = print $ b 9 $ take 1000000 $ build 9
 </script>
 </div>
 
+and indeed, haskell quickly tells us that the biggest function it
+can find in the first 100,000 has size $74$, and is given by 
 
-TODO: the question in the comic has no answer! (recall $A$ and $B$) 
-  Since $B$ grows quadratically and $A$ grows linearly, we can find 
-  arbitrarily high ratios. But that's ok, and was probably expected!
+$$
+\arccos \left ( 
+  \arccos \left (
+    \arccos \left (
+      \arccos(x)^{\arccos(x)}
+    \right )
+  \right )
+\right )
+$$
 
-Exercise: try some variations on this. What if you add more functions?
-  Or get pruning to work properly? Does multiplication count as a symbol,
-  since we usually use concatenation to indicate it? Let me know what 
-  you think!
+which, notably, involves `Pow`.
+
+---
+
+Now with `Pow` _and_ `ACos` to worry about, it's much less clear what the 
+optimal function will be. After all, we'll need to balance the two, and I don't
+have the processing power to do an exhaustive search of $n=8,9,10$ (say)
+so I can try and guess at a pattern[^7].
+
+I'm feeling quite busy right now[^6], so I want to get this blog post out as
+soon as possible. That way I can keep working on a couple more serious posts.
+So let's do what good combinatorialists always do when the going gets rough:
+find and _asymptotic_ solution!
+
+Indeed, even though the above proof attempt didn't go through as written, 
+it's good enough to pin down the asymptotics of our function. This has the 
+added benefit of smoothing out the wrinkles introduced by my naive 
+implemention of `diff`, which makes me feel better, haha.
+
+Formally, we can show
+
+<div class=boxed markdown=1>
+  If $f$ has $n$ symbols in its definition, then $f'$ has $O(n^2)$ 
+  symbols in its definition. Moreover, for a worst-case choice of $f$,
+  this is optimal.
+</div>
+
+$\ulcorner$
+
+Again, we induct on $\lvert f \rvert$, the number of symbols in $f$,
+and again, for the inductive step we'll case on the outermost constructor of $f$.
+
+If it's unary, $\lvert f' \rvert$ is at its biggest when the outermost constructor
+is $\arccos(g)$. Then we calculate for $\lvert g \rvert = n$
+
+TODO: double check this
+
+$$\lvert \arccos(g)' \rvert = \lvert g' \rvert + n + 10 = O(n^2) + n + 10 = O(n^2)$$
+
+If it's binary, then $\lvert f' \rvert$ is at its biggest when the outermost constructor
+is $g^h$. So we calculate for $\lvert g \rvert = r$ and $\lvert h \rvert = n-r$
+
+$$
+\begin{align}
+\lvert (g^h)' \rvert 
+&= 3\lvert g \rvert + 2 \lvert h \rvert + \lvert g' \rvert + \lvert h' \rvert + 7 \\
+&\leq 3r + 2(n-r) + O(r^2) + O((n-r)^2) + 7 \\
+&= 2n + r + O(n^2) + 7 \\
+&= O(n^2)
+\end{align}
+$$
+
+As for the tightness of this bound, we know that the $n$-fold composition of
+$\arccos$ grows quadratically (indeed, it might be a cute exercise to check that
+it satisfies the formula given at the end of the last "theorem" statement).
+
+<span style="float:right">$\lrcorner$</span>
+
+So we see that the question as posed in the comic has no answer! We can make the
+ratio $\lvert f' \rvert / \lvert f \rvert$ as large as we like. But we can get
+good asymptotics on $\lvert f' \rvert$, at least if we restrict attention to 
+the functions from our `Expr` datatype.
+
+As a cute project idea, while I was writing this one of my friends
+([Rahul][7]) sent me [a blog post][8] where Iago Leal de Freitas built
+a calculus evaluator in haskell that actually does simplification properly!
+
+It shouldn't be hard to do a similar analysis to what I did in this post,
+but get a closed form solution for the maximum value of 
+$\lvert f' \rvert$ in terms of $n = \lvert f \rvert$. This should be a pretty
+approachable problem for an enthusiastic combinatorics student -- I just don't
+personally have the time to work on it.
+
 
 Sign off
 
@@ -335,6 +416,17 @@ Sign off
     things out by hand (or by computer), and testing our conjectures to 
     see what _should_ be right. 
 
+[^6]:
+    I'm _really_ trying to get comfortable with model categories, and I'm 
+    spending a lot of time with topoi still. Plus I'm brushing up on
+    some of the subtleties of HoTT in preparation for the 
+    [HoTTEST Summer 2022][6], where I'll be a TA!
+
+[^7]:
+    Looking at the formulas, we can tell that eventually `Pow` will win out
+    over `ACos`, and it probably wouldn't take _too_ much work to sort this out...
+
+    As a cute exercise, I would love for soemone else to sort this out ^_^.
 
 
 [1]: https://www.smbc-comics.com/
@@ -342,3 +434,6 @@ Sign off
 [3]: https://en.wikipedia.org/wiki/Model_category
 [4]: https://sites.google.com/view/syeakel/
 [5]: https://sites.google.com/site/patriciogallardomath/
+[6]: https://www.uwo.ca/math/faculty/kapulkin/seminars/hottest_summer_school_2022.html
+[7]: https://rahulrajkumar.github.io/
+[8]: https://iagoleal.com/posts/calculus-symbolic/
