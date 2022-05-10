@@ -291,7 +291,7 @@ Aaaaaand.... ruh roh!
 You can see by [this][11] desmos graph that this fails in general.
 Indeed, the earliest failure happens when $n=8$ and $k=6$. Of course, 
 this is _outside_ of the $n \leq 4$ range that I was able to exhaustively test,
-and even the $n \leq 6$ range that I had tested a lot of.
+and even the $n \leq 6$ range that I had tested a lot of[^15].
 
 <span style="float:right">$\lrcorner$</span>
 
@@ -561,6 +561,18 @@ For now, though, I'm off to bed. Goodnight all, and I'll see you in the next one
     $\infty$-categories before we start. This lined up quite nicely with my
     conversations with Sarah about model categories. Sometimes you just get
     lucky!
+
+[^15]:
+    Of course, we could simply _remove_ `Pow` as a constructor, since we 
+    can simulate it using `Exp` and `Log`. It's not hard to show that the other
+    binary operations _will_ let this proof go through, so we could have 
+    "covered our tracks" by acting like we never even considered `Pow`!
+
+    I thought it would make for a better narrative (and it might be more 
+    instructive) to go the asymptotic approach instead. Plus, it really is
+    more hygenic to prove a result that doesn't depend on a particular 
+    choice of "basic" constructors.
+
 
 [1]: https://www.smbc-comics.com/
 [2]: https://xkcd.com/356/
