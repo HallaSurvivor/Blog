@@ -12,9 +12,6 @@ as I saw it, but I didn't have the time for a little while
 I want to share my solution with all of you! First, here's the comic 
 that started it all:
 
-TODO: say something about this being a slightly roundabout journey,
-told to show how people really "do" math.
-
 <p style="text-align:center;">
 <a href="https://www.smbc-comics.com/comic/derivative">
 <img src="/assets/images/diff-growth/smbc-derivative.png" width="50%">
@@ -22,7 +19,8 @@ told to show how people really "do" math.
 </p>
 
 Now, my old advisor (Klaus Sutner) used to say that whenever you're faced with a 
-problem, you can hack or you can think, but you can't do both. Today I was in more
+problem, you can hack or you can think, but you can't do both. ~~Today~~
+Multiple weeks ago I was in more
 of a hacking mood, so I wrote up some haskell code to just _try_ all the
 "reasonable" functions I could think of. By this, of course, I mean the 
 [elementary functions][9].
@@ -77,22 +75,19 @@ cubes and cube roots, etc. to a definition using `Const` and `Pow` was
 similarly arbitrary. 
 
 I went for this list basically because it's what the [wikipedia article][9]
-names explicitly. Later on we'll show that our general solution doesn't 
-depend on the exact list chosen, but there's a sharper result to be had that
-_does_ use some specific list of "primitive" functions.
+names explicitly. Later on we'll show that our solution doesn't 
+depend on the exact list chosen, so we don't need to worry about this.
 
 Next up, we need to tell haskell how to compute the derivative of a function.
 Thankfully, derivatives can be computed recursively, so this is quite easy
 to code up:
-
-TODO: finish implementing the hyperbolic ones
 
 <div class="no_eval">
 <script type="text/x-sage">
 diff :: Expr -> Expr
 diff (Const n)    = Const 0
 diff X            = Const 1
-diff (Square e)   = Mult (Const 2) (diff e)
+diff (Square e)   = Mult (Mult (Const 2) e) (diff e)
 diff (Sqrt e)     = Div (diff e) (Mult (Const 2) (Sqrt e))
 diff (Sin e)      = Mult (Cos e) (diff e)
 diff (Cos e)      = Mult (Const (-1)) (Mult (Sin e) (diff e))
@@ -100,6 +95,12 @@ diff (Tan e)      = Mult (Add (Const 1) (Square (Tan e))) (diff e)
 diff (ASin e)     = Div (diff e) (Sqrt (Sub (Const 1) (Square e)))
 diff (ACos e)     = Div (Mult (Const (-1)) (diff e)) (Sqrt (Sub (Const 1) (Square e)))
 diff (ATan e)     = Div (diff e) (Add (Const 1) (Square e))
+diff (Sinh e)     = Mult (Cosh e) (diff e)
+diff (Cosh e)     = Mult (Sinh e) (diff e)
+diff (Tanh e)     = Mult (Sub (Const 1) (Square (Tanh e))) (diff e)
+diff (ASinh e)    = Div (diff e) (Sqrt (Add (Const 1) (Square e)))
+diff (ACosh e)    = Div (diff e) (Sqrt (Sub (Square e) (Const 1)))
+diff (ATanh e)    = Mult (Square (Cosh e)) (diff e)
 diff (Exp e)      = Mult (Exp e) (diff e)
 diff (Log e)      = Div (diff e) e
 diff (Add e1 e2)  = Add (diff e1) (diff e2)
@@ -112,7 +113,7 @@ diff (Pow e1 e2)  = Mult (Pow e1 e2) (Add (Mult (Log e1) (diff e2)) (Div (Mult e
 
 This isn't perfect. For instance, it doesn't simplify multiplication by $1$, etc.
 But I wanted a quick and dirty approximation, and importantly, I didn't want to
-spend too long on this project[^2].
+spend too long on this project[^4].
 
 <div class=boxed markdown=1>
 As a (fun?) exercise, write a `prune` function which makes some easy 
@@ -179,10 +180,6 @@ b n = maximumBy cmp . fmap (\e -> (size (diff e), e)) . filter (\e -> size e == 
 
 ---
 
-TODO: redo this analysis with the hyperbolic functions
-TODO: mention that we only _wanted_ asymptotics, but it 
-looks like we might get lucky and we could get a closed form!
-
 Now, my laptop can fully exhaust every function with $\leq 4$ symbols,
 and we see that our best bets are
 
@@ -193,27 +190,31 @@ and we see that our best bets are
 
 (note that the innermost $x$ counts as a symbol).
 
-Moreover, if we remove $\arccos$ from the options, we get strictly smaller 
-symbol lengths:
+Moreover, it's pretty easy to see that we'll never use a unary function
+other than $\arccos$. Indeed, if we write $\lvert f \rvert$ for `size f`,
+it's easy to see that
 
- - $x$, whose derivative has $1$ symbols
- - $\arcsin(x)$, whose derivative has $7$ symbols
- - $x^x$, whose derivative has $14$ symbols
- - $\arcsin(x)^x$, whose derivative has $23$ symbols
+$$\lvert \arccos(f)' \rvert = \lvert f \rvert + \lvert f' \rvert + 7.$$
 
-this is fairly good evidence that repeatedly composing $\arccos(x)$ with 
+More generally, $\lvert \text{blah}(f)' \rvert = \lvert f \rvert + \lvert f' \rvert + k$
+where $k$ is the number of symbols in the derivative of $\text{blah}(x)$[^9]. 
+Since this is biggest for $\arccos$, and we're trying to maximize the size of
+$f'$, there's no reason to use a unary constructor other than $\arccos$.
+
+This is fairly good evidence that repeatedly composing $\arccos(x)$ with 
 itself is the winner, and even though we can't test _every_ function with
 $\geq 5$ symbols, we can test a lot of them, and after letting the code run
 for just over $24$ hours, iterating $\arccos$ was still the winner. 
 
-This makes some intuitive sense too. After all, $\arccos$ gets the most
-symbols of all the unary options. So the only decision to make is whether
-it's worth the cost to use $\times$, $\div$, or powers. It's intuitively 
-believable that it's never worth it[^4], but we do have to prove it eventually.
+So, in light of our computational evidence, we might _conjecture_ that 
+$\lvert f' \rvert$ is maximized (among functions with $\lvert f \rvert = n$)
+for $f = \arccos(\arccos(\ldots(x)\ldots))$. 
 
-At this point, it's time to stop hacking, and start thinking[^5]! Let's try to
-_prove_ that this is the best option, and while we're at it, let's compute
-just how big it really gets!
+At this point, it's time to stop hacking, and start thinking! Let's try to
+_prove_ that this is the best option. Notice we can easily compute 
+$\lvert \arccos(\arccos(\ldots(x)\ldots))' \rvert = \frac{n^2}{2} + \frac{13n}{2} - 6$
+(either by solving some recurrence, or by checking [oeis][10]), so we should 
+have some simple proof by induction ahead of us.
 
 ---
 
@@ -225,22 +226,28 @@ attained for $f = \arccos(\arccos(\ldots(x)\ldots))$.
 
 $\ulcorner$
 
-We'll induct on the number of symbols in $f$, denoted $\lvert f \rvert$.
+We'll induct on $\lvert f \rvert$.
 
-If $\lvert f \rvert = 1,2$ then we can check by hand that the number of 
-symbols satisfies the desired bounds.
+If $\lvert f \rvert = 1,2$ then we've already seen that $\lvert f' \rvert$ 
+satisfied the desired inequality.
 
 If $\lvert f \rvert \geq 3$, then we case on the outermost constructor.
 
-If it's unary, say $f = g(h)$, where $\lvert h \rvert = n-1$, then we see
+If it's unary, say $f = g(h)$, where $\lvert h \rvert = n-1$, then we compute
 
 $$
-\lvert f' \rvert = \lvert g'(h) \cdot h' \rvert = 
-\lvert g' \rvert + \lvert h \rvert + \lvert h' \rvert + 1
+\lvert f' \rvert = \lvert g'(h) \cdot h' \rvert = \lvert h' \rvert + (n-1) + k
 $$
 
-this is clearly maximized whenever $\lvert g' \rvert$ is maximized, which we
-know from the $n=2$ case happens when $g = \arccos$.
+where $k$ is a constant depending on $g$, which is maximized as $k = 7$ when
+$g = \arccos(-)$. Then
+
+$$
+\lvert f' \rvert 
+\leq \lvert h' \rvert + n + 6 
+\overset{IH}{\leq} \frac{(n-1)^2}{2} + \frac{13(n-1)}{2} - 6 + n + 6
+= \frac{n^2}{2} + \frac{13n}{2} - 6.
+$$
 
 If instead the outermost constructor of $f$ is binary, then we have
 
@@ -260,17 +267,38 @@ In each of these cases we compute $\lvert f' \rvert$, and find
  - $\lvert (g \div h)' \rvert = \lvert g \rvert + 2 \lvert h \rvert + \lvert g' \rvert + \lvert h' \rvert + 5$
  - $\lvert (g^h)' \rvert = 3 \lvert g \rvert + 2 \lvert h \rvert + \lvert g' \rvert + \lvert h' \rvert + 7$
 
+Clearly these are maximized for $g^h$, so let's put $\lvert g \rvert = k$ 
+and $\lvert h \rvert = n-1-k$. Then we see
+
+$$
+\begin{align}
+\lvert (g^h)' \rvert 
+&= 
+3 \lvert g \rvert + 2 \lvert h \rvert + \lvert g' \rvert + \lvert h' \rvert + 7 \\
+&\overset{IH}{\leq}
+3k + 2(n-1-k) + \frac{k^2}{2} + \frac{13k}{2} - 6 + 
+\frac{(n-1-k)^2}{2} + \frac{13(n-1-k)}{2} - 6 + 7 \\
+&=
+\frac{n^2}{2} + \frac{(15-2k)n}{2} + k^2 + 2k - 13
+\end{align}
+$$
+
+So we want this to be $\leq \frac{n^2}{2} + \frac{13n}{2} - 6$ for 
+every choice of $1 \leq k \leq n-2$. 
+
 Aaaaaand.... ruh roh!
 
-It turns out that $\lvert (g^h)' \rvert$ can't be bounded by this function!
+You can see by [this][11] desmos graph that this fails in general.
+Indeed, the earliest failure happens when $n=8$ and $k=6$. Of course, 
+this is _outside_ of the $n \leq 4$ range that I was able to exhaustively test,
+and even the $n \leq 6$ range that I had tested a lot of.
 
 <span style="float:right">$\lrcorner$</span>
 
 ---
 
 This is a perfect example of Klaus's "Magic Spiral", which he shows in the 
-first CDM lecture every year. It's certainly how I do a lot of math, as we
-can see in this toy problem! 
+first CDM lecture every year. 
 
 <p style="text-align:center;">
 <img src="/assets/images/diff-growth/magic-spiral.png" width="50%">
@@ -281,123 +309,167 @@ straight from "compute/experiment" to "conjecture". Indeed, our computations
 seemed to suggest that iterating $\arccos$ was the right approach, but when
 we tried to prove it we failed. 
 
-But our failiure is instructive! If you try to bound $\lvert (g^h)' \rvert$,
-it suggests that for $n=9$ we should start seeing failures. Of course, 
-this is much to large to check exhaustively, but if we take the first 
-1,000,000 or so functions of size $9$ (and if we restrict attention to those
-functions built out of `Pow` and `Acos`), we can check if we start seeing
-counterexamples. So we're computing again, and back around the spiral we go.
+This is ok, though! Good, even, because our failure is instructive! 
+We know where our proof failed, and this tells us where we should focus our 
+computational effort on our next trip around the spiral.
 
-<div class="no_eval">
-<script type="text/x-sage">
-build :: Int -> [Expr]
-build = (fmap go [0..] !!)
-  where
-    go :: Int -> [Expr]
-    go 1 = [X]
-    go 2 = [ACos X]
-    go n = prev ++ (liftM2 Pow prev prev) ++ (fmap ACos prev) 
-      where
-        prev = build (n-1)
-
-b :: Int -> [Expr] -> (Int, Expr)
-b n = maximumBy cmp . fmap (\e -> (size (diff e), e)) . filter (\e -> size e == n)
-  where
-    cmp (s1,_) (s2,_) = compare s1 s2
-
-main :: IO ()
-main = print $ b 9 $ take 1000000 $ build 9
-</script>
-</div>
-
-and indeed, haskell quickly tells us that the biggest function it
-can find in the first 100,000 has size $74$, and is given by 
+Indeed, knowing that
+we want $k = \lvert g \rvert = 6$ and $n = 8$ says we should try something like
 
 $$
-\arccos \left ( 
-  \arccos \left (
-    \arccos \left (
-      \arccos(x)^{\arccos(x)}
-    \right )
-  \right )
-\right )
+f = g^h = \arccos(\arccos(\arccos(\arccos(\arccos(x)))))^x
 $$
 
-which, notably, involves `Pow`.
+and indeed, haskell tells us that $\lvert f' \rvert = 79$, which is 
+bigger than the $78$ we would get by iterating $\arccos$. 
 
 ---
 
 Now with `Pow` _and_ `ACos` to worry about, it's much less clear what the 
 optimal function will be. After all, we'll need to balance the two, and I don't
 have the processing power to do an exhaustive search of $n=8,9,10$ (say)
-so I can try and guess at a pattern[^7].
+to try and guess at a pattern[^7].
 
-I'm feeling quite busy right now[^6], so I want to get this blog post out as
-soon as possible. That way I can keep working on a couple more serious posts.
-So let's do what good combinatorialists always do when the going gets rough:
-find and _asymptotic_ solution!
+Thankfully, this problem still admits an _asymptotic_ solution, and our 
+earlier proof attempt is easily adapted to this setting. 
 
-Indeed, even though the above proof attempt didn't go through as written, 
-it's good enough to pin down the asymptotics of our function. This has the 
-added benefit of smoothing out the wrinkles introduced by my naive 
-implemention of `diff`, which makes me feel better, haha.
+Now, the most important skill a mathematician should learn is how to cover
+their tracks[^10]. So when presenting a result like this to journals, we should
+never say that we're presenting an asymptotic solution because we didn't 
+have the time to get a closed form. 
 
-Formally, we can show
+Instead, we should argue that the choice of constructors for the elementary
+functions was arbitrary, and any closed form for the maximal size of 
+$\lvert f' \rvert$ _necessarily_ depends on the choice of constructors! 
+Indeed, there are other conventions one could make, such as deciding to 
+not count multiplication towards the symbol count, since we often denote
+multiplication by juxtaposition, which doesn't require a "symbol" at all.
+
+Of course, one can show that the _asymptotics_ of $\lvert f' \rvert$ are
+independent of these choices, which makes the asymptotics a better 
+object of study.
+
+... sounds good, doesn't it[^11]?
+
+Now let's prove it!
 
 <div class=boxed markdown=1>
   If $f$ has $n$ symbols in its definition, then $f'$ has $O(n^2)$ 
-  symbols in its definition. Moreover, for a worst-case choice of $f$,
-  this is optimal.
+  symbols in its definition, and this is optimal.
+
+  Moreover, our proof shows that this is independent of the choice of 
+  presentation of the elementary functions.
 </div>
 
 $\ulcorner$
 
-Again, we induct on $\lvert f \rvert$, the number of symbols in $f$,
-and again, for the inductive step we'll case on the outermost constructor of $f$.
+Again, we induct on $\lvert f \rvert$, the number of symbols in $f$.
 
-If it's unary, $\lvert f' \rvert$ is at its biggest when the outermost constructor
-is $\arccos(g)$. Then we calculate for $\lvert g \rvert = n$
+Since we're only interested in asymptotics, there's nothing interesting to 
+prove about the base case.
 
-TODO: double check this
+For the inductive case, we case on the outermost constructor of $f$.
 
-$$\lvert \arccos(g)' \rvert = \lvert g' \rvert + n + 10 = O(n^2) + n + 10 = O(n^2)$$
+If it's unary, say $f = c(g)$, then we see that 
 
-If it's binary, then $\lvert f' \rvert$ is at its biggest when the outermost constructor
-is $g^h$. So we calculate for $\lvert g \rvert = r$ and $\lvert h \rvert = n-r$
+$$
+\lvert f' \rvert = 
+\lvert c'(g) \cdot g'(x) \rvert =
+\lvert c'(x) \rvert + O \left ( \lvert g \rvert \right ) + 
+O \left ( \lvert g' \rvert \right ) \pm O(1)
+$$
+
+where the $O(1)$ term is independent of $c$ and keeps track of the symbols
+involved in representing the multiplication, etc. The big-ohs
+around $\lvert g \rvert$ and $\lvert g' \rvert$ account for the fact that
+we might use each of these a constant number of times[^13].
+
+Next we see that $\lvert c'(x) \rvert = O(1)$, 
+since we can uniformly bound these by the size of the largest one,
+as we did with $\arccos$ earlier in this post[^12]. So we see
 
 $$
 \begin{align}
-\lvert (g^h)' \rvert 
-&= 3\lvert g \rvert + 2 \lvert h \rvert + \lvert g' \rvert + \lvert h' \rvert + 7 \\
-&\leq 3r + 2(n-r) + O(r^2) + O((n-r)^2) + 7 \\
-&= 2n + r + O(n^2) + 7 \\
-&= O(n^2)
+\lvert f' \rvert 
+&= \lvert c(g)' \rvert \\
+&\leq O \left ( \lvert g \rvert \right ) + O \left ( \lvert g' \rvert \right ) + O(1) \\
+&\overset{IH}{\leq} O \left ( n-1 \right ) + O \left ((n-1)^2 \right ) + O(1) \\
+&\leq O(n^2)
 \end{align}
 $$
 
-As for the tightness of this bound, we know that the $n$-fold composition of
-$\arccos$ grows quadratically (indeed, it might be a cute exercise to check that
-it satisfies the formula given at the end of the last "theorem" statement).
+If instead the outermost constructor is binary, say $f = c(g,h)$,
+where $c(g,h)$ might be $g+h$, $gh$, $g^h$, etc. then we similarly compute
+
+$$
+\lvert f' \rvert = 
+\lvert c(g,h)' \rvert =
+O \left ( \lvert g \rvert \right ) + O \left ( \lvert h \rvert \right ) + 
+O \left ( \lvert g' \rvert \right ) + O \left ( \lvert h' \rvert \right ) + O(1)
+$$
+
+and since $\lvert g \rvert + \lvert h \rvert = n-1$, we see that this is 
+bounded by 
+
+$$
+O(n-1) + O \left ( (n-1)^2 \right ) + O(1) = O(n^2)
+$$
+
+and the claim follows.
+
+As for the tightness of this bound, any presentation of the elementary 
+functions must have at least one trig function (since we cannot build 
+the trig functions from the others), say $\sin$. Then the $n$-fold 
+composition $\sin(\sin(\cdots(\sin(x) \cdots)))$ is easily seen to have
+a derivative with quadratically many symbols.
 
 <span style="float:right">$\lrcorner$</span>
 
-So we see that the question as posed in the comic has no answer! We can make the
-ratio $\lvert f' \rvert / \lvert f \rvert$ as large as we like. But we can get
-good asymptotics on $\lvert f' \rvert$, at least if we restrict attention to 
-the functions from our `Expr` datatype.
+---
 
-As a cute project idea, while I was writing this one of my friends
-([Rahul][7]) sent me [a blog post][8] where Iago Leal de Freitas built
-a calculus evaluator in haskell that actually does simplification properly!
+So we see that the precise question posed in the comic has no answer! 
+It asks for the maximal ratio of $\frac{\lvert f' \rvert}{\lvert f \rvert}$,
+but we've just shown that this ratio is unbounded. Of course, it's still a
+fun problem, and a natural variant _does_ admit a nice solution 
+(which we found).
 
-It shouldn't be hard to do a similar analysis to what I did in this post,
-but get a closed form solution for the maximum value of 
-$\lvert f' \rvert$ in terms of $n = \lvert f \rvert$. This should be a pretty
-approachable problem for an enthusiastic combinatorics student -- I just don't
-personally have the time to work on it.
+Moreover, this was a good way to showcase the back and forth between
+computational experimentation and proof. Sometimes you get things wrong,
+and that's ok! We learn, and we form new conjectures that are more likely
+to be correct with every trip around the spiral.
 
+<div class=boxed markdown=1>
+  As a cute project idea, while I was writing this one of my friends
+  ([Rahul][7]) sent me [a blog post][8] where Iago Leal de Freitas built
+  a calculus evaluator in haskell that does simplification properly!
 
-Sign off
+  A better hacker than me can probably modify this code to push things a bit 
+  further (especially with some parallel computation) to try and find
+  a family of functions $(f_n)$ attaining the maximum ratios
+  $\frac{\lvert f_n' \rvert}{\lvert f_n \rvert}$.
+
+  This should be a pretty approachable problem for an enthusiastic 
+  combinatorics student, and I would love to see somebody do it ^_^
+</div>
+
+---
+
+This was a lot of fun! It's been in the works for a while now 
+(since April 28, apparently), but I really only worked on it 
+for a few days. I'm busy working on a lot of other stuff[^2], and I'll
+hopefully share some of it soon. 
+
+One of the biggest things I've been spending time on 
+(which probably also qualifies as an announcement)
+has been the [HoTTEST Summer 2022][6],
+where I'll be TAing this summer. I'm already pretty active answering questions
+in the discord, and I've been brushing up on my HoTT to get 
+ready[^14]. I can _not_ express how excited I am to be working on this, and 
+if anybody wants to show up, you're more than welcome! We're quickly coming
+up on 1000 participants (of all experience levels), 
+and it's sure to be a great time!
+
+For now, though, I'm off to bed. Goodnight all, and I'll see you in the next one ^_^
 
 ---
 
@@ -414,8 +486,11 @@ Sign off
     [Sarah Yeakel][4] (who recently got a permanent position at UCR!),
     as well as continuing my own readings on topos theory (which have filtered 
     into a reading course on locale theory that I'm teaching some undergrads). 
+    I'm also in a class on riemann surfaces which has been really enlightening
+    for me. I have a few ideas for blog posts of the "I wish someone had shown
+    me this example sooner" variety, and hopefully I can get to them soon!
 
-    Plus I've been talking with [Patricio Gallardo][5] about becoming an 
+    On top of all this, I've been talking with [Patricio Gallardo][5] about becoming an 
     algebraic geometer, and he wants me to start spending a serious amount of 
     time working through Hartshorne and Vakil's notes. This makes sense, 
     of course, and I'm having a ton of fun doing it, but it means I have less 
@@ -428,36 +503,64 @@ Sign off
     I think it's good enough, though.
 
 [^4]:
-    And this is borne out by another experiment where we use $\arccos$ as our
-    only unary constructor, and we keep $\times$, $\div$, and exponentiation
-    as binary constructors. Again, we maximize the complexity by playing the
-    same $\arccos$ tune over and over agin.
-
-[^5]:
-    Of course, as is often the case, after spending enough time hacking 
-    (to see what the right answer should be), the thinking becomes retroactively
-    obvious, and it's easy to feel like you could have saved a lot of time by starting
-    with the thinking.
-
-    Try not to be overwhelmed by this. The only reason the answer seems obvious
-    is _because_ we spent time computing lots of examples, working
-    things out by hand (or by computer), and testing our conjectures to 
-    see what _should_ be right. 
-
-[^6]:
-    I'm _really_ trying to get comfortable with model categories, and I'm 
-    spending a lot of time with topoi still. Plus I'm brushing up on
-    some of the subtleties of HoTT in preparation for the 
-    [HoTTEST Summer 2022][6], where I'll be a TA!
+    ... and regrettably I failed in that regard.
 
 [^7]:
     Looking at the formulas, we can tell that eventually `Pow` will win out
     over `ACos`, and it probably wouldn't take _too_ much work to sort this out...
 
-    As a cute exercise, I would love for soemone else to sort this out ^_^.
+    Maybe some reader with some free time wants to take this on as a project?
 
 [^8]:
     Namely as `Div (Const 1) (Cos X)`
+
+[^9]:
+    Up to an additive constant, at least. If you want to be super precise, 
+    then `size $ diff $ C e = size e + size (diff e) + size (C X) - 2` is 
+    true for every unary constructor `C`.
+
+[^10]:
+    I'm only half joking
+
+[^11]:
+    It helps that this is actually a perfectly reasonable thing to do, and 
+    jokes aside my original plan was to get asymptotics for exactly this reason
+    (also because I anticipated that an exact solution might be hard to get).
+
+    I thought we had gotten lucky with the iterated $\arccos$ construction,
+    and if you _can_ get a closed form, you might as well. But with those 
+    dreams dashed, it's back to the asymptotics at the end of the day.
+
+[^12]:
+    You might worry that there _is_ no largest unary constructor. But the 
+    only infinite families of constructors 
+    (at least that are listed on [wikipedia][9])
+    are the rational powers and the bases for $\exp$ and $\log$. 
+
+    It's clear, though, that the contributions of each of these derivatives 
+    can be uniformly bounded as long as we're counting a constant as a single
+    symbol.
+
+[^13]:
+    For example, we might choose to represent the derivative of $g^2$ by 
+    $(g + g) g'$, in which case $\lvert (g^2)'$ would refer to $\lvert g \rvert$
+    twice. 
+
+    I haven't actually thought much about how badly things break if you do 
+    something silly like this, but take it to an extreme (can we find a way to 
+    make it so that there's _no_ uniform bound on this constant?), but I'm also
+    ok to leave that particular avenue unexplored. 
+
+    Officially I should probably add some hypotheses explicitly forbidding this --
+    for instance, it should be enough to ask that we allow at most finitely many
+    constructors. That said, I think it's ok to leave this a bit imprecise for
+    the purposes of a blog post.
+
+[^14]:
+    Plus trying to gain some serious familiarity with model categories and
+    $\infty$-categories before we start. This lined up quite nicely with my
+    conversations with Sarah about model categories. Sometimes you just get
+    lucky!
 
 [1]: https://www.smbc-comics.com/
 [2]: https://xkcd.com/356/
@@ -468,3 +571,5 @@ Sign off
 [7]: https://rahulrajkumar.github.io/
 [8]: https://iagoleal.com/posts/calculus-symbolic/
 [9]: https://en.wikipedia.org/wiki/Elementary_function
+[10]: https://oeis.org/search?q=1%2C9%2C18%2C28%2C39%2C51%2C64&language=english&go=Search
+[11]: https://www.desmos.com/calculator/0eyfyqovj2
