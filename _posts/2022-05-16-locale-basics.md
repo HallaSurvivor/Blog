@@ -253,11 +253,68 @@ as axioms in our proofs[^9]!
 
 This was all very abstract, so let's see some concrete examples:
 
-TODO: some slightly simpler example than surjections N to R
+Let $X$ be a set, and consider a theory $\mathbb{T}$ with one primitive proposition 
+$\sigma_{x,y}$ for each $x,y \in X$, and axioms
 
-TODO: examples ($\mathbb{R}$, space of surjections N to R, one more)
+$$
+\begin{align}
+\top                       &\vdash \bigvee_{y \in X} \sigma_{x,y} 
+&&\text{(for each $x \in X$)} \\
 
-TODO: every locale classifies a geoemtric theory
+\sigma_{x,y}, \sigma_{x,z} &\vdash \bot 
+&& \text{(for $y \neq z \in X$)} \\
+
+\sigma_{x,y}               &\vdash \sigma_{y,x}
+\end{align}
+$$
+
+What's the use of this theory? Well recall a (classical) model of a 
+(propositional) theory $\mathbb{T}$ is exactly a frame homomorphism
+$$\mathcal{L}[\mathbb{T}] \to \{ 0, 1 \}$$.
+
+Now, a model of this theory assigns each $\sigma_{x,y}$ to $0$ or $1$,
+thus a model is really picking out a subset of $X \times X$ -- 
+namely those pairs $(x,y)$ so that $\sigma_{x,y} = 1$.
+
+Through this lens, the first two axioms express that for every $x$,
+there is _exactly one_ $y$ with $\sigma_{x,y} = 1$, so that our model
+is naming a _function_ (which I'll call $f_\sigma : X \to X$). The last
+axiom is asserting that $f_\sigma(x) = y$ implies $f_\sigma(y) = x$. That is,
+$f_\sigma$ should be an involution!
+
+So (classical) models of $\mathbb{T}$ are exactly $\mathbb{Z}/2$ actions on $X$.
+
+We can push this further, though! 
+
+Consider a theory $\mathbb{T}$ with primitive propositions $\theta_{n,x}$
+for $n \in \mathbb{N}$ and $x \in \mathbb{R}$, and the axioms
+
+$$
+\begin{align}
+\top &\vdash \bigvee_{x \in \mathbb{R}} \theta_{n,x}
+&& \text{(for each $n \in \mathbb{N}$)} \\
+
+\theta_{n,x}, \theta_{n,y} &\vdash \bot
+&& \text{(for $x \neq y \in \mathbb{R}$)} \\
+
+\top &\vdash \bigvee_{n \in \mathbb{N}} \theta_{n,x}
+&& \text{(for each $x \in \mathbb{R}$)}
+\end{align}
+$$
+
+As before, the first two axiom schemas assert that for any (classical)
+model of $\mathbb{T}$, the subset $$\{ (n,x) \mid \theta_{n,x} = 1 \}$$ 
+defines a function $f_\theta : \mathbb{N} \to \mathbb{R}$. But the last axiom
+asserts that $f_\theta$ should be surjective!
+
+Thus, this theory has no (classical) models. But it is still an interesting
+object of study, in part for reasons to be discussed in the next section. 
+
+Lastly, though, we should show that _every_ locale arises in this way! We 
+say that a locale $\mathcal{L}[\mathbb{T}]$ is the 
+<span class=defn>classifying locale</span> for the theory $\mathbb{T}$, 
+and now we'll show that every locale classifies a certain canonical theory[^10]
+
 
 ---
 
@@ -350,6 +407,9 @@ Sign off
     "up to $\mathbb{T}$-provable equivalence". 
 
     This is what we're talking about!
+
+[^10]:
+    Though this sounds much more exciting than it is... Prepare to be underwhelmed :P
 
 [1]: https://en.wikipedia.org/wiki/Pointless_topology
 [2]: https://en.wikipedia.org/wiki/Galois_connection
