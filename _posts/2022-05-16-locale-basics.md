@@ -10,37 +10,21 @@ This quarter I've been running a reading group for some undergraduates on
 of the basics of locales (which are the object of study of pointless topology),
 both so that my students can have a reference for what we've covered, and also
 because I think there's still a space for a really elementary presentation of 
-some of these topics, with a a focus on concrete examples.
+some of these topics, with a focus on concrete examples. 
 
-So then, let's get to it ^_^
+In particular, it took me a _long_ time to find examples of how 
+people actually _build_ a locale (that doesn't obviously come from a 
+geometric theory). Hopefully this post will help fill that gap! In the 
+near future, I'd like to write a follow-up post about how we can build
+new locales from old ones too, but that's a problem for another day.
 
-TODO: mention that this post is going to be about various ways of 
-building locales from scratch. We'll write a follow up later where
-we talk about how to build new locales from old.
+Well! Let's get to it ^_^
 
 ---
 
 Our first few weeks were a crash course on the kind of category theory
-that I usually assume my readers know already. We focused on partial orders
-and lattices -- this is particularly economical for a few reasons:
-
-First, posets and lattices are simple combinatorial objects that you can 
-understand without much background in abstract algebra or topology. We also
-get two "levels" of categories out of this, since every poset is a category
-in its own right, but we can also consider the category of posets, or any 
-one of the zoo of categories of lattices.
-
-In fact, the zoo of lattice categories is nice, because it forces you to 
-acknowledge that it's the _arrows_ that matter. After all, frames 
-(which we'll define soon) and complete heyting algebras are the same thing! 
-We can only distinguish between the categories because the homomorphisms are different.
-
-This means that we can see categorical constructions in multiple lights 
-very quickly: Products in a poset are meets, while products in the _category_
-of posets are given by a poset of tuples. Adjoint functors between posets
-are [galois connections][2], while adjoint functors between the categories
-of posets and meet semilattices might be a free/forgetful pair, etc.
-
+that I usually assume my readers know already, with a focus on 
+partial orders and lattices[^13]. 
 After spending time getting to adjoint functors, we defined a topological 
 space, and then observed that the lattice of open sets has a certain 
 algebraic structure: 
@@ -48,7 +32,7 @@ algebraic structure:
  - Opens are closed under finite intersection
  - Opens are closed under arbitrary union
 
-which we abstract into a definition[^1]:
+We quickly abstracted this into a definition[^1]:
 
 <div class=boxed markdown=1>
   A <span class=defn>Frame</span> is a lattice $(F, 0, 1, \land, \lor)$ 
@@ -64,15 +48,15 @@ which we abstract into a definition[^1]:
   which preserves finite meets and arbitrary joins.
 </div>
 
-Now, since we know that a continuous maps of topological spaces 
+Now, inspired by the fact that continuous maps of topological spaces
 $(X,\tau) \to (Y,\sigma)$ 
 are in bijection with frame homomorphisms from $\sigma \to \tau$, we 
 _define_ the category of <span class=defn>Locales</span> to be opposite
-the category of Frames.
+the category of frames.
+
+Of course, there's no sense in having a definition without examples!
 
 ---
-
-With these definitions in hand, it's high time for some examples! 
 
 The first important class of examples are the "geometric" ones. 
 Every topological space[^2] is specified in terms of either a [base][4]
@@ -146,9 +130,9 @@ For another example of building locales from a geometric space, let's
 build $S^1$ together! We have a few options for how to do this.
 
 In practice, we use the fact that $S^1$ as a topological space is hausdorff,
-thus [sober][10]. Then we appeal to an important theorem 
-(which we'll discuss later) that the full subcategory of sober topological
-spaces is equivalent to the full subcategory of spatial locales. 
+thus [sober][10]. Then we appeal to an important theorem[^14] 
+that the full subcategory of sober topological
+spaces is equivalent to the full subcategory of "spatial locales". 
 
 In particular, the usual topology on $S^1$, viewed as a frame, gives a locale
 for $S^1$ with no changes necessary.
@@ -158,7 +142,7 @@ describe the open arcs and their intersections as basic opens, then take
 downsets just as we did for $\mathbb{R}$.
 
 However, it would be nice if we could somehow define $S^1$ to be 
-$\mathbb{R} / \mathbb{Z}$. In all my reading, I've never actually seen
+$\mathbb{R} / \mathbb{Z}$. I've never actually seen
 anybody talk about how to do this, so this blog post seems like a perfect place!
 
 If $\mathbb{Z}$ is acting on $\mathbb{R}$ by translation, 
@@ -249,7 +233,8 @@ for each $\big ( \varphi_1 \ldots, \varphi_n \vdash \psi \big ) \in \mathbb{T}$.
 
 This is again a frame, which we should think of as the formulas in $$L(\{P_\alpha\})$$
 up to provable equivalence, where now we may use the sequents in $\mathbb{T}$ 
-as axioms in our proofs[^9]! 
+as axioms in our proofs[^9]! In the case we view this frame as a locale, we 
+call it the <span class=defn>Classifying Locale</span> of $\mathbb{T}$.
 
 This was all very abstract, so let's see some concrete examples:
 
@@ -270,7 +255,7 @@ $$
 
 What's the use of this theory? Well recall a (classical) model of a 
 (propositional) theory $\mathbb{T}$ is exactly a frame homomorphism
-$$\mathcal{L}[\mathbb{T}] \to \{ 0, 1 \}$$.
+$$\mathcal{L}[\mathbb{T}] \to \{ \bot, \top \}$$.
 
 Now, a model of this theory assigns each $\sigma_{x,y}$ to $0$ or $1$,
 thus a model is really picking out a subset of $X \times X$ -- 
@@ -310,17 +295,98 @@ asserts that $f_\theta$ should be surjective!
 Thus, this theory has no (classical) models. But it is still an interesting
 object of study, in part for reasons to be discussed in the next section. 
 
-Lastly, though, we should show that _every_ locale arises in this way! We 
-say that a locale $\mathcal{L}[\mathbb{T}]$ is the 
-<span class=defn>classifying locale</span> for the theory $\mathbb{T}$, 
-and now we'll show that every locale classifies a certain canonical theory[^10]
+Lastly, though, we should show that _every_ locale arises in this way! 
+That is, for each locale $L$, there is a geometric theory which it classifies[^10].
 
+As our primitive propositions, we'll take the elements $U_\alpha \in L$
+(viewed as a frame). Then our theory will be exactly the "cayley table" of $L$.
+As axioms, we'll take $$U_1 \wedge U_2 \vdash U_3$$ whenever $U_3$ is the 
+meet of $U_1$ and $U_2$ in $L$. Similarly, we'll add axioms saying that 
+$$\bigvee U_\alpha \vdash U^*$$ whenever $U^*$ really is the join of the
+$U_\alpha$ as computed in $L$.
+
+Now, tautologically, it's clear that the lindenbaum algebra for this theory 
+is $L$, as desired.
 
 ---
 
-TODO: Points, geometrically, then as models
+Now, you've probably heard locale theory referred to as "pointless topology"
+(especially since I called it that at the start of the post!). But what does that
+mean?
 
-TODO: N --> R is pointless!
+Well, in topological spaces, we can identify points of $X$ with maps 
+$$\{ \star \} \to X$$, since these maps are completely determined by the 
+point $f(\star) \in X$ (and conversely, every point determines a map).
+
+Then we perform a tried and true maneuver, used by mathematicians everywhere:
+we take a theorem in the old setting, and turn it into a _definition_ in our
+new setting! So for us, a <span class=defn>Point</span> of a locale $L$ is 
+a continuous map $1 \to L$, where $1$, the terminal locale, is the one point
+space (that is, the locale whose frame of opens is $$\{ \bot, \top \}$$)
+
+<div class=boxed markdown=1>
+If it's not obvious, you should take a moment to think about why the one point 
+space $$\{ \star \}$$ in topology corresponds to the locale whose frame of 
+opens is $$\{\bot, \top \}$$.
+</div>
+
+Now we get to one of the most important punchlines in locale theory! 
+
+If you recall, the lattice $$\{\bot, \top\}$$ showed up before too... 
+In fact, _frame_ homomorphisms $$\mathcal{L}[\mathbb{T}] \to \{\bot, \top\}$$
+were exactly classical models of the theory $\mathbb{T}$!
+
+But turning the arrows around, we see that (classical) models of 
+$\mathbb{T}$ are nothing but _points_ of $\mathcal{L}[\mathbb{T}]$!
+
+In this way, we can view $\mathcal{L}[\mathbb{T}]$ as the "space of models"
+of $\mathbb{T}$. Of course, some theories don't _have_ any classical models:
+for instance, the theory of surjections $$\mathbb{N} \to \mathbb{R}$$ that we 
+built earlier.
+
+In this case, our locale has no points! But nonetheless it has 
+nontrivial topological structure.
+
+One way to see that this nontrivial structure is interesting is by 
+considering _more general_ kinds of point. For instance, instead of assigning
+each primitive proposition the value $\bot$ or $\top$, you might assign them
+values in some other frame $F$. These "$F$-valued models" are interesting 
+already, but they _really_ shine when we see the analogue in topos theory[^11].
+
+Again, though, we dualize, and for a locale $X$ we say that the 
+"$X$-valued points of $L$" (equivalently the $X$-valued models of $\mathbb{T}$)
+are exactly the continuous maps $X \to L$ (equivalently $X \to \mathcal{L}[\mathbb{T}]$).
+
+---
+
+So now we have two different ways of thinking about a continuous map 
+$f : X \to Y$. The first way is just what it is: a continuous map.
+
+But logically, we know that we can think of these as $\mathbb{T}$ models in a 
+world with more than two truth values. Is there some geometric interpretation
+of this idea?
+
+The answer is "yes"! 
+
+For each point $p : 1 \to X$, we get a map $fp : 1 \to Y$. 
+So then we might think of $f$ as giving us points in $Y$ which 
+_vary continuously in $X$_. That is, "points" $p_x$ of $Y$ which continuously
+depend on a parameter from $x$. 
+This seems like a kind of silly thing to do, but it turns out to be a very
+flexible way of thinking.
+
+It turns out there's _another_, third way of viewing a map $f : X \to Y$ --
+namely as a [bundle][15]. For each point $y$ of $Y$ we get a pullback
+
+<p style="text-align:center;">
+<img src="/assets/images/locale-basics/fibres.png" width="30%">
+</p>
+
+here $X_y = f^{-1}(y)$ is a locale (since the category of locales is complete),
+and we think of $X$ as "really being" a _family_ of locales $X_y$ which varies
+continuously in $Y$. This is another very fruitful idea[^12]
+
+
 
 ---
 
@@ -363,7 +429,7 @@ Sign off
     the free way of adding joins (colimits) to $P$, by analogy to the presheaves on a 
     category $\mathcal{C}$ being the "free cocompletion" of $\mathcal{C}$.
 
-    There's a _lot_ to say here, since frames/locales are analogous in _many_
+    Again, there's a _lot_ to say here, since frames/locales are analogous in _many_
     was to grothendieck topoi, and this method of getting a locale by looking
     at "presheaf posets" is one instance of that analogy!
 
@@ -411,6 +477,51 @@ Sign off
 [^10]:
     Though this sounds much more exciting than it is... Prepare to be underwhelmed :P
 
+[^11]:
+    In the same way that propositional geometric theories all have a classifying
+    locale, more general _predicate_ geometric theories admit a classifying 
+    _topos_! 
+
+    Since every algebraic theory is geometric, this tells us that there's a 
+    topos $\mathcal{G}$ so that for any topos $\mathcal{E}$, the 
+    "$\mathcal{E}-points of $\mathcal{G}$" are exactly group objects in $\mathcal{E}$!
+
+[^12]:
+    And is one of the big reasons to favor locales over topological spaces! 
+    Locales behave _much_ better under this interpretation, basically because
+    their theorems are provable constructively. Since the slice category of
+    locales over $Y$ is equivalent to the category of locales internal to 
+    $\mathsf{Sh}(Y)$, this means that anything we prove (constructively) 
+    about locales is _immediately_ true for bundles of locales as well!
+
+[^13]:
+    I feel like this is particularly economical for a few reasons:
+
+    First, posets and lattices are simple combinatorial objects that you can 
+    understand without much background in abstract algebra or topology. We also
+    get two "levels" of categories out of this, since every poset is a category
+    in its own right, but we can also consider the category of posets, or any 
+    one of the zoo of categories of lattices.
+
+    In fact, the zoo of lattice categories is nice, because it forces you to 
+    acknowledge that it's the _arrows_ that matter. After all, frames 
+    (which we'll define soon) and complete heyting algebras are the same thing! 
+    We can only distinguish between the categories because the homomorphisms are different.
+
+    This means that we can see categorical constructions in multiple lights 
+    very quickly: Products in a poset are meets, while products in the _category_
+    of posets are given by a poset of tuples. Adjoint functors between posets
+    are [galois connections][2], while adjoint functors between the categories
+    of posets and meet semilattices might be a free/forgetful pair, etc.
+
+[^14]:
+    Which I'd like to prove in its own blog post... hopefully a shorter one,
+    since the proof really isn't that bad.
+
+    For the impatient reader (or if I never get to it) you can find a proof in
+    Johnstone's _Stone Spaces_, section II.1.7
+
+
 [1]: https://en.wikipedia.org/wiki/Pointless_topology
 [2]: https://en.wikipedia.org/wiki/Galois_connection
 [3]: https://ncatlab.org/nlab/show/frame
@@ -425,3 +536,4 @@ Sign off
 [12]: https://ncatlab.org/nlab/show/geometric+theory
 [13]: https://en.wikipedia.org/wiki/Sequent_calculus
 [14]: https://en.wikipedia.org/wiki/Structural_rule
+[15]: https://en.wikipedia.org/wiki/Bundle_(mathematics)
