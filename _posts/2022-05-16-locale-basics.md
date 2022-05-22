@@ -45,7 +45,7 @@ We quickly abstracted this into a definition[^1]:
   (since lattices are not automatically distributive).
 
   A <span class=defn>Homomorphism of Frames</span> is a map $\varphi : F \to G$
-  which preserves finite meets and arbitrary joins.
+  which preserves finite meets and arbitrary joins[^19].
 </div>
 
 Now, inspired by the fact that continuous maps of topological spaces
@@ -57,6 +57,10 @@ the category of frames.
 Of course, there's no sense in having a definition without examples!
 
 ---
+
+## Geometric Examples
+
+<br>
 
 The first important class of examples are the "geometric" ones. 
 Every topological space[^2] is specified in terms of either a [base][4]
@@ -126,6 +130,8 @@ the principal downset $\downarrow m \in \mathcal{D}M$).
   and we'll show that $\mathbb{R} \times \mathbb{R} \cong \mathbb{R}^2$.
 </div>
 
+---
+
 For another example of building locales from a geometric space, let's
 build $S^1$ together! We have a few options for how to do this.
 
@@ -165,9 +171,55 @@ opens of $\mathbb{R}$.
 TODO: put a picture here? 
 Take an open arc of the circle, and show its preimage in $\mathbb{R}$
 
-TODO: talk about flat sites
+---
+
+But what, I hear you asking, if our basic opens are just basic in the 
+usual sense? For instance, how can we describe a locale associated to a 
+general metric space?
+
+The answer, dear reader, is <span class=defn>Sites</span>[^15].
+
+Johnstone (in section II.2.11 of _Stone Spaces_) requires his sites to be 
+meet semilattices, but this is still not as general as I would like[^16].
+After all, the open balls in a metric space are _very_ rarely closed under 
+intersection! It took me a surprisingly long time to find a satisfying 
+construction, but Vickers (in _Compactness in Locales and in Formal Topology_)
+gives the following definition, which does exactly what I want:
+
+<div class=boxed markdown=1>
+A <span class=defn>Flat Site</span> is a [preorder][16] $(P, \leq)$ equipped
+with a _coverage relation_ $\vartriangleleft$ between $P$ and the powerset
+$\mathcal{P}(P)$ which satisfies the following "flat stability" axiom:
+
+If $p \vartriangleleft A$ and $q \leq p$, there should be a 
+$B \subseteq (\downarrow q) \cap (\downarrow A)$ so that $q \vartriangleleft B$.
+
+We think of the relation $p \vartriangleleft A$ as saying that "$A$ covers $p$"
+</div>
+
+Then the frame _presented_ by a flat site is 
+
+$$
+\mathcal{D}P \Bigg / 
+p \leq \bigvee A \text{ (for every $p \vartriangleleft A$)}
+$$
+
+That is, we we force the coverage relation $p \vartriangleleft A$ to become
+an actual covering in the frame[^17].
+
+<div class=boxed markdown=1>
+  Build a frame associated to a metric space $(X,d)$ by constructing a 
+  flat site associated to $X$.
+
+  This might feel slightly tautologous, since metric spaces are hausdorff,
+  thus their usual topology already gives us a frame.
+</div>
 
 ---
+
+## Logical Examples
+
+<br>
 
 Of course, locale theory (like most of my interests) has a dual nature 
 as a geometirc subject and a logical subject. The previous section was 
@@ -238,6 +290,8 @@ call it the <span class=defn>Classifying Locale</span> of $\mathbb{T}$.
 
 This was all very abstract, so let's see some concrete examples:
 
+---
+
 Let $X$ be a set, and consider a theory $\mathbb{T}$ with one primitive proposition 
 $\sigma_{x,y}$ for each $x,y \in X$, and axioms
 
@@ -287,15 +341,54 @@ $$
 \end{align}
 $$
 
-As before, the first two axiom schemas assert that for any (classical)
-model of $\mathbb{T}$, the subset $$\{ (n,x) \mid \theta_{n,x} = 1 \}$$ 
-defines a function $f_\theta : \mathbb{N} \to \mathbb{R}$. But the last axiom
-asserts that $f_\theta$ should be surjective!
+<div class=boxed markdown=1>
+  To get some practice interpreting geometric theories, you should try
+  to figure out what a (classical) model of this theory looks like.
 
-Thus, this theory has no (classical) models. But it is still an interesting
-object of study, in part for reasons to be discussed in the next section. 
+  As before, the first two axioms assert that a model should define a 
+  function $f_\theta : \mathbb{N} \to \mathbb{R}$. But what does the 
+  third axiom assert? 
 
-Lastly, though, we should show that _every_ locale arises in this way! 
+  Do you see why this is a nontrivial theory with _no_ classical models?
+</div>
+
+---
+
+The locales $\mathcal{L}[\mathbb{T}]$ are surprisingly flexible. For instance,
+say $B$ is a seminormed space. Then we can describe its (localic) dual space 
+by considering a geometric theory with primitive propositions "$\varphi(a) \in (r,s)$"
+for each $a \in B$, $r,s \in \mathbb{Q}$. These should satisfy axioms:
+
+$$
+\begin{align}
+\top &\vdash \varphi(0) \in (r,s) 
+&& \text{(for $r \lt 0 \lt s$)} \\
+\varphi(0) \in (r,s) &\vdash \bot
+&& \text{(otherwise)} \\
+\varphi(a) \in (r,s) &\vdash \varphi(-a) \in (-s,-r) \\
+\varphi(a) \in (r,s) &\vdash \varphi(ta) \in (tr, ts)
+&& \text{(for $t > 0 \in \mathbb{Q}$)} \\
+\varphi(a) \in (r,s), \varphi(a') \in (r',s') &\vdash \varphi(a + a') \in (r+r', s+s') \\
+\varphi(a) \in (r,s) &\vdash \varphi(a) \in (r,s') \lor \varphi(a) \in (r', s)
+&& \text{(whenever $r \lt r' \lt s' \lt s$)} \\
+\top &\vdash \varphi(a) \in (-1,1)
+&& \text{(whenever $\lVert a \rVert \lt 1$)} \\
+\varphi(a) \in (r,s) &\vdash \bigvee_{r \lt r' \lt s' \lt s} \varphi(a) \in (r',s') \\
+\bigvee_{r \lt r' \lt s' \lt s} \varphi(a) \in (r',s') &\vdash \varphi(a) \in (r,s)
+\end{align}
+$$
+
+Then a (classical) model of this theory is exactly the graph 
+of a norm-decreasing linear functional on $B$! Moreover, if we use this
+formulation of the dual space of $B$, we can get a completely constructive
+proof of the Hahn-Banach theorem[^18]!
+
+---
+
+Now, we've said that this is a very flexible appraoch for building locales...
+but just how flexible is it? 
+
+Well, it turns out that _every_ locale arises in this way!
 That is, for each locale $L$, there is a geometric theory which it classifies[^10].
 
 As our primitive propositions, we'll take the elements $U_\alpha \in L$
@@ -310,7 +403,11 @@ is $L$, as desired.
 
 ---
 
-Now, you've probably heard locale theory referred to as "pointless topology"
+## Points
+
+<br>
+
+You've probably heard locale theory referred to as "pointless topology"
 (especially since I called it that at the start of the post!). But what does that
 mean?
 
@@ -385,25 +482,6 @@ namely as a [bundle][15]. For each point $y$ of $Y$ we get a pullback
 here $X_y = f^{-1}(y)$ is a locale (since the category of locales is complete),
 and we think of $X$ as "really being" a _family_ of locales $X_y$ which varies
 continuously in $Y$. This is another very fruitful idea[^12]
-
-
-
----
-
-Exercises
-
-<div class=boxed markdown=1>
-  Show that every frame is also a [Heyting Algebra][8]. You can do this
-  with abstract nonsense (use the [adjoint functor theorem][9]) or directly
-  (give an explicit expression for the arrow $a \implies b$).
-
-  You should do whichever comes less naturally to you 
-  (or both, if neither comes naturally).
-
-  As a part 2, you should show that _defining_ frames to be complete 
-  heyting algebras is incorrect, since morphisms of heyting algebras 
-  should preserve $\implies$, whereas frame homomorphisms don't need to[^5].
-</div>
 
 ---
 
@@ -521,6 +599,43 @@ Sign off
     For the impatient reader (or if I never get to it) you can find a proof in
     Johnstone's _Stone Spaces_, section II.1.7
 
+[^15]:
+    This is yet another analogy to topos theory. Indeed, 
+
+[^16]:
+    Though it _does_ make the construction go slightly more smoothly. 
+    This, again, is analogous to the setting of sites on a category in
+    topos theory, where assuming your category has pullbacks makes the 
+    construction a bit simpler.
+
+[^17]:
+    Notice this quotient is taken in the category of suplattices, so it's not
+    obvious that we should actually get a frame out the other side. 
+
+    This is where the flat stability axiom comes into play, since it tells us
+    (roughly) that we can "pull back" a cover $A$ of $p$ to a cover $B$ of $q$
+    whenever $q \leq p$. Since for any $p$ and $r$ we'll have $p \wedge r \leq p$,
+    this will let us show the distributivity axiom for frames.
+
+    For a full proof, see theorem 5 in Vickers' 
+    _Compactness in Locales and in Formal Topology_
+
+[^18]:
+    See, for instance, Pelletier's excellent survey 
+    _Locales in Functional Analysis_.
+
+[^19]:
+      Show that every frame is also a [Heyting Algebra][8]. You can do this
+      with abstract nonsense (use the [adjoint functor theorem][9]) or directly
+      (give an explicit expression for the arrow $a \implies b$).
+
+      You should do whichever comes less naturally to you 
+      (or both, if neither comes naturally).
+
+      As a part 2, you should show that _defining_ frames to be complete 
+      heyting algebras is incorrect, since morphisms of heyting algebras 
+      should preserve $\implies$, whereas frame homomorphisms might not[^5].
+
 
 [1]: https://en.wikipedia.org/wiki/Pointless_topology
 [2]: https://en.wikipedia.org/wiki/Galois_connection
@@ -537,3 +652,4 @@ Sign off
 [13]: https://en.wikipedia.org/wiki/Sequent_calculus
 [14]: https://en.wikipedia.org/wiki/Structural_rule
 [15]: https://en.wikipedia.org/wiki/Bundle_(mathematics)
+[16]: https://en.wikipedia.org/wiki/Preorder
