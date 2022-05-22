@@ -168,8 +168,9 @@ Intuitively, we're identifying an open set of $S^1$ with its preimage in $\mathb
 which lets us identify the frame of opens of $S^1$ with a subframe of the 
 opens of $\mathbb{R}$.
 
-TODO: put a picture here? 
-Take an open arc of the circle, and show its preimage in $\mathbb{R}$
+<p style="text-align:center;">
+<img src="/assets/images/locale-basics/circle.png" width="75%">
+</p>
 
 ---
 
