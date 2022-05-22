@@ -440,7 +440,6 @@ In this way, we can view $\mathcal{L}[\mathbb{T}]$ as the "space of models"
 of $\mathbb{T}$. Of course, some theories don't _have_ any classical models:
 for instance, the theory of surjections $$\mathbb{N} \to \mathbb{R}$$ that we 
 built earlier.
-
 In this case, our locale has no points! But nonetheless it has 
 nontrivial topological structure.
 
@@ -480,12 +479,47 @@ namely as a [bundle][15]. For each point $y$ of $Y$ we get a pullback
 </p>
 
 here $X_y = f^{-1}(y)$ is a locale (since the category of locales is complete),
-and we think of $X$ as "really being" a _family_ of locales $X_y$ which varies
-continuously in $Y$. This is another very fruitful idea[^12]
+and we think of $X$ as being a _family_ of locales $X_y$ which varies
+continuously in $Y$. This is another very fruitful idea which I'll probably
+talk about in a future blog post[^12].
 
 ---
 
-Sign off
+Ok, this was a _long one_, but I think there's a lot to say about frames 
+and locales. I'm surprised how difficult it is to find concrete examples 
+of certain calculations on frames, and ways of building them 
+(though maybe I'm just not sure where to look). Either way, I hope my 
+students find this a useful (if somewhat fleshed out) review of the localic 
+material we've covered so far, and I hope that future readers find this an
+approachable introduction to the basics of locale theory. 
+
+Take care, everyone, and I'll see you soon ^_^
+
+---
+
+PS: I've been reading a lot of locale theory lately, particularly while 
+looking for references that showcase either explicit constructions or 
+interesting use cases. I usually include references either in the text or
+in footnotes, but I'll actually include a short bibliography here for the 
+papers that I found particularly insightful:
+
+ - Anel, Mathieu, and André Joyal. “Topo-Logie.” In New Spaces in Mathematics, edited by Mathieu Anel and Gabriel Catren, 1st ed., 155–257. Cambridge University Press, 2021. https://doi.org/10.1017/9781108854429.007.
+ - Banaschewski, Bernhard, and Christopher J. Mulvey. “A Constructive Proof of the Stone-Weierstrass Theorem.” Journal of Pure and Applied Algebra 116, no. 1 (March 28, 1997): 25–40. https://doi.org/10.1016/S0022-4049(96)00160-0.
+ - ———. “A Globalisation of the Gelfand Duality Theorem.” Annals of Pure and Applied Logic 137, no. 1 (January 1, 2006): 62–103. https://doi.org/10.1016/j.apal.2005.05.018.
+ - Blechschmidt, Ingo. “Generalized Spaces for Constructive Algebra.” ArXiv:2012.13850 [Math], December 26, 2020. http://arxiv.org/abs/2012.13850.
+ - Borceux, Francis. Categories of Sheaves. Digitally printed version. Handbook of Categorical Algebra / Francis Borceux 3. Cambridge: Cambridge Univ. Press, 2008.
+ - Chen, Xiangdong. “On Binary Coproducts of Frames,” n.d., 14.
+ - Day, B. J. “Locale Geometry.” Pacific Journal of Mathematics 83, no. 2 (August 1, 1979): 333–39. https://doi.org/10.2140/pjm.1979.83.333.
+ - He, Wei, and MaoKang Luo. “Completely Regular Proper Reflection of Locales over a given Locale.” Proceedings of the American Mathematical Society 141, no. 2 (June 5, 2012): 403–8. https://doi.org/10.1090/S0002-9939-2012-11329-2.
+ - Isbell, John. “Product Spaces in Locales.” Proceedings of the American Mathematical Society 81, no. 1 (1981): 116–18. https://doi.org/10.2307/2044000.
+ - ———. “Atomless Parts of Spaces.” MATHEMATICA SCANDINAVICA 31 (June 1, 1972): 5. https://doi.org/10.7146/math.scand.a-11409.
+ - Johnstone, Peter T. Stone Spaces. Paperback ed., Repr. Cambridge Studies in Advanced Mathematics 3. Cambridge: Cambridge Univ. Press, 1992.
+ - Pelletier, Joan Wick. “Locales in Functional Analysis.” Journal of Pure and Applied Algebra 70, no. 1 (March 15, 1991): 133–45. https://doi.org/10.1016/0022-4049(91)90013-R.
+ - Picado, Jorge, and Aleš Pultr. Frames and Locales: Topology without Points. Frontiers in Mathematics. Basel: Birkhäuser, 2012.
+ - ———. “Notes on the Product of Locales.” Mathematica Slovaca 65, no. 2 (April 1, 2015): 247–64. https://doi.org/10.1515/ms-2015-0020.
+ - Vickers, Steven. “Geometric Logic in Computer Science.” In Theory and Formal Methods 1993, edited by Geoffrey Burn, Simon Gay, and Mark Ryan, 37–54. Workshops in Computing. London: Springer London, 1993. https://doi.org/10.1007/978-1-4471-3503-6_4.
+ - ———. “Compactness in Locales and in Formal Topology.” Annals of Pure and Applied Logic 137, no. 1–3 (January 2006): 413–38. https://doi.org/10.1016/j.apal.2005.05.028.
+ - ———. “Continuity and Geometric Logic.” Journal of Applied Logic, Logic Categories Semantics, 12, no. 1 (March 1, 2014): 14–27. https://doi.org/10.1016/j.jal.2013.07.004.
 
 ---
 
@@ -562,7 +596,13 @@ Sign off
 
     Since every algebraic theory is geometric, this tells us that there's a 
     topos $\mathcal{G}$ so that for any topos $\mathcal{E}$, the 
-    "$\mathcal{E}-points of $\mathcal{G}$" are exactly group objects in $\mathcal{E}$!
+    "$\mathcal{E}$-points of $\mathcal{G}$" are exactly group objects in $\mathcal{E}$!
+
+    This also plays nicely with the intution that $\mathcal{E}$-points of 
+    $\mathcal{G}$ are "points of $\mathcal{G}$ varying continuously in $\mathcal{E}$",
+    since a group object in a sheaf topos (say) is exactly a sheaf of groups.
+    That is, a family of groups varying continuously in the base space of the
+    topos!
 
 [^12]:
     And is one of the big reasons to favor locales over topological spaces! 
@@ -600,7 +640,7 @@ Sign off
     Johnstone's _Stone Spaces_, section II.1.7
 
 [^15]:
-    This is yet another analogy to topos theory. Indeed, 
+    This is yet another analogy to topos theory. See [here][17] for more
 
 [^16]:
     Though it _does_ make the construction go slightly more smoothly. 
@@ -625,6 +665,8 @@ Sign off
     _Locales in Functional Analysis_.
 
 [^19]:
+      As a nice exercise:
+      
       Show that every frame is also a [Heyting Algebra][8]. You can do this
       with abstract nonsense (use the [adjoint functor theorem][9]) or directly
       (give an explicit expression for the arrow $a \implies b$).
@@ -653,3 +695,4 @@ Sign off
 [14]: https://en.wikipedia.org/wiki/Structural_rule
 [15]: https://en.wikipedia.org/wiki/Bundle_(mathematics)
 [16]: https://en.wikipedia.org/wiki/Preorder
+[17]: https://ncatlab.org/nlab/show/posite
