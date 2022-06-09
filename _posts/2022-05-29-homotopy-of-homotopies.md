@@ -7,13 +7,13 @@ tags:
 
 I'm a TA at the [HoTTEST Summer 2022][1] summer school on homotopy type theory,
 and while I feel quite comfortable with the basics of HoTT, there's a TON of 
-things that I should really know better: so I've been reading a lot to prepare.
+things that I should really know better; so I've been reading a lot to prepare.
 One of the things that I really didn't know _anything_ about was the theory of
 [model categories][2]. I knew they had something to do with 
-[$\infty$-categories][3] and [homotopy theory][4]... but I really didn't know
+[$\infty$-categories][3] and [homotopy theory][4]... but I didn't really know
 _what_ :P. Well, multiple papers later, I have a better idea of what's going on,
-and I'll say a few words about it in this post. THe focus, though, is going to
-be on the "homotopy theory of homotopy theories" -- a groundbreaking 
+and I'll say a few words about it in this post. The focus, though, is going to
+be on the "homotopy theory of homotopy theories" -- this was a groundbreaking 
 development in the field... but one which seems _very_ abstract. I've been 
 thinking about why we should care about this result, and in the process I 
 discovered a _new reason_ to care about things! 
@@ -25,18 +25,65 @@ So then, let's get to it!
 First of all, what even _is_ a "homotopy theory"? And what does it have to do
 with model categories?
 
-Say we have a (complete and cocomplete) category $\mathcal{C}$, which has some 
-arrows (called <span class=defn>weak equivalences</span>) that we _want_ to 
-consider as isomorphisms... but which aren't. The two motivating examples are 
+Well, let's look at the primordial example first: 
 
-- topological spaces with weak homotopy equivalences[^1]
-- chains of $R$-modules with quasi-isomorphisms
+<div class=boxed markdown=1>
+Whatever a "Homotopy Theory" is, it should encompass the category $\mathsf{Top}$
+of topological spaces where we identify spaces up to [(weak) homotopy equivalence][5]
+</div>
+
+But there's another motivating example, which we also call "homotopy":
+
+<div class=boxed markdown=1>
+Whatever a "Homotopy Theory" is, it should encompass the chains of modules,
+where we identify two chains up to [homotopy equivalence][6]
+</div>
+
+Obviously these are related -- after all, from a topological space we can
+get an associated chain of [(co)homology groups][7] with coefficients in our 
+favorite abelian group. Then a homotopy of spaces induces a homotopy of chains.
+
+More abstractly, what links these situations? Well, we have some objects that
+we want to consider "the same up to homotopy", and we capture this 
+(as the categry inclined are liable to do) by picking out some special arrows.
+These are the "homotopy equivalences" -- and they're maps that we _want_ to 
+think of as isomorphisms... but which aren't.
+
+So, in $\mathsf{Top}$, we have the class of weak homotopy equivalences[^1],
+which we want to turn into isomorhpisms. And in $\mathsf{Ch}(R\text{-mod})$,
+the category of chains of $R$-modules, we want to turn the [quasi-isomorphisms][8]
+into isomorhpisms.
+
+So then, with these examples in mind, what should a 
+<span class=defn>homotopy theory</span> be?
+
+<div class=boxed markdown=1>
+A <span class=defn>Relative Category</span> is a category $\mathcal{C}$ 
+equipped with a set of arrows
+$\mathcal{W}$ that contains all the isomorphisms in $\mathcal{C}$[^7].
+</div>
+
+<div class=boxed markdown=1>
+Then, a Homotopy Theory is a category of the form 
+$\mathcal{C}[\mathcal{W}^{-1}]$ for some relative category.
+
+Notice the choice of $(\mathcal{C}, \mathcal{W})$ is far from unique, and we
+think of it as being a "presentation" for the homotopy theory.
+
+For instance, the classical homotopy category $\mathsf{hTop}$ and the 
+derived category of chain complexes $\mathcal{D}(R\text{-mod})$ are both
+examples of homotopy theories.
+</div>
+
+Say we have a (complete and cocomplete) category $\mathcal{C}$, which has some 
+arrows (called $\mathcal{W}$ for <span class=defn>weak equivalences</span>) 
+that we _want_ to consider as isomorphisms... but which aren't. 
 
 Now, a category is an algebraic structure, so there's nothing stopping us from
 just... adding in new arrrows, plus relations saying that they're inverses for
-the arrows we wanted to be isomorphisms. By analogy with ring theory, if 
-$\mathcal{W}$ is the family of arrows to invert[^2] then we call this new 
-category the <span class=defn>Localization</span> $\mathcal{C}[\mathcal{W}^{-1}]$.
+the arrows we wanted to be isomorphisms. By analogy with ring theory, 
+we call this new category the <span class=defn>Localization</span> 
+$\mathcal{C}[\mathcal{W}^{-1}]$.
 
 There's just one hitch... the new notion of isomorhpism might be very complicated!
 Indeed, it's possible that we end up with a _proper class_ of arrows between
@@ -164,6 +211,28 @@ earlier on in the post.
 
 ---
 
+TODO: I think you didn't make it clear that the previous section should be 
+taken as _evidence_ for $\infty$-categories and homotopy theories being 
+the same thing... You should make that clearer so that this section hits harder.
+
+So we see that there is an intuitive sense in which $\infty$-categories 
+"are the same thing" as homotopy theories. Wouldn't it be nice if we could make
+that precise somehow?
+
+And _this_ is the new justification that I've found for high power or high 
+abstraction theorems! 
+
+It's not clear to me TODO: it doesn't "solve problems" but it lets us make our
+intuition precise!
+
+---
+
+TODO: somewhere we should say something about multiple model structures 
+with the same homotopy category. This feels analogous to Caramello's "bridges"
+(probably put this in a footnote)
+
+---
+
 [^1]:
     It turns out there's _also_ a model category structure whose homotopy 
     category gives homotopy equivalence, rather than weak homotopy equivalence.
@@ -171,9 +240,6 @@ earlier on in the post.
     But the model structure on $\mathsf{Top}$ which gives weak homotopy 
     equivalence is the "standard" one, so that's what I'm listing as the 
     motivating example.
-
-[^2]:
-    $\mathcal{W}$ is short for "Weak Equivalence"
 
 [^3]:
     There's also intuition that the cofibrant objects are the ones which can
@@ -200,8 +266,14 @@ earlier on in the post.
 [^6]:
     Experts should wait _slightly_ longer before leaving angry comments!
 
+[^7]:
+    Be careful, though, I've seen a handful of other definitions too!
 
 [1]: HoTTEST Summer 2022 website
 [2]: model categories
 [3]: oo-cats
 [4]: homotopy theory
+[5]: https://en.wikipedia.org/wiki/Homotopy
+[6]: https://en.wikipedia.org/wiki/Chain_complex#Chain_homotopy
+[7]: https://en.wikipedia.org/wiki/Homology_(mathematics)
+[8]: https://en.wikipedia.org/wiki/Quasi-isomorphism
