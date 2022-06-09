@@ -55,41 +55,50 @@ the category of chains of $R$-modules, we want to turn the [quasi-isomorphisms][
 into isomorhpisms.
 
 So then, with these examples in mind, what should a 
-<span class=defn>homotopy theory</span> be?
+<span class=defn>homotopy theory</span> be? First:
 
 <div class=boxed markdown=1>
-A <span class=defn>Relative Category</span> is a category $\mathcal{C}$ 
+A <span class=defn>Relative Category</span> is a small[^8] category $\mathcal{C}$ 
 equipped with a set of arrows
-$\mathcal{W}$ that contains all the isomorphisms in $\mathcal{C}$[^7].
+$\mathcal{W}$ (called the <span class=defn>Weak Equivalences</span>) 
+that contains all the isomorphisms in $\mathcal{C}$[^7].
 </div>
 
-<div class=boxed markdown=1>
-Then, a Homotopy Theory is a category of the form 
-$\mathcal{C}[\mathcal{W}^{-1}]$ for some relative category.
+Following our examples, we want to think of the arrows in $\mathcal{W}$ as 
+being _morally_ isomorphisms, even though they might not _actually_ be 
+isomorphisms.
 
-Notice the choice of $(\mathcal{C}, \mathcal{W})$ is far from unique, and we
-think of it as being a "presentation" for the homotopy theory.
-
-For instance, the classical homotopy category $\mathsf{hTop}$ and the 
-derived category of chain complexes $\mathcal{D}(R\text{-mod})$ are both
-examples of homotopy theories.
-</div>
-
-Say we have a (complete and cocomplete) category $\mathcal{C}$, which has some 
-arrows (called $\mathcal{W}$ for <span class=defn>weak equivalences</span>) 
-that we _want_ to consider as isomorphisms... but which aren't. 
-
-Now, a category is an algebraic structure, so there's nothing stopping us from
+Now, a (small) category is an algebraic structure, so there's nothing stopping us from
 just... adding in new arrrows, plus relations saying that they're inverses for
 the arrows we wanted to be isomorphisms. By analogy with ring theory, 
 we call this new category the <span class=defn>Localization</span> 
-$\mathcal{C}[\mathcal{W}^{-1}]$.
+$\mathcal{C}[\mathcal{W}^{-1}]$. 
 
-There's just one hitch... the new notion of isomorhpism might be very complicated!
+Finally, then:
+
+<div class=boxed markdown=1>
+A Homotopy Theory is a category of the form 
+$\mathcal{C}[\mathcal{W}^{-1}]$ for some relative category.
+
+⚠ The choice of $(\mathcal{C}, \mathcal{W})$ is far from unique. It's 
+entirely possible[^11] for two relative categories to have the same homotopy category
+
+$$\mathcal{C_1}[\mathcal{W_1}^{-1}] \simeq \mathcal{C_2}[\mathcal{W_2}^{-1}]$$
+</div>
+
+So, for instance, the classical homotopy category $\mathsf{hTop}$ and the 
+derived category[^4] of $R$ modules $\mathcal{D}(R\text{-mod})$ are both
+examples of homotopy theories.
+
+---
+
+This is great, but there's one hitch...
+the new notion of isomorhpism might be very complicated!
 Indeed, it's possible that we end up with a _proper class_ of arrows between
 two objects, even if $\mathcal{C}$ started out locally small. Moreover, since
 the new isomorphism relation is so complicated, it becomes unwieldy to do 
 computations in this category (for instance, computing limits and colimits).
+
 
 It would be really nice if we had some way to reign in this localization 
 process so that we end up with a category of roughly the same size as the
@@ -117,7 +126,7 @@ But it's a theorem that we have _excellent_ control over the maps between
 fibrant/cofibrant objects in the localization! In fact, there's a notion of
 "homotopy" between maps, which is entirely analogous to the notion of 
 homotopy in topology, and maps $X \to Y$ in $\mathcal{C}[\mathcal{W}^{-1}]$
-are exactly homotopy classes of maps from $X \to Y$ \in $\mathcal{C}$
+are exactly homotopy classes of maps from $X \to Y$ in $\mathcal{C}$
 (provided $X$ and $Y$ are fibrant/cofibrant)!
 
 ---
@@ -153,10 +162,7 @@ TODO: fact check that footnote!
 ---
 
 Notice that the model structure is primarily a computational tool for 
-working with the localization $\mathcal{C}[\mathcal{W}^{-1}]$. If you're
-a topologist you call this the <span class=defn>Homotopy Category</span> of
-$\mathcal{C}$, and if you're an algebraist you call it the 
-<span class=defn>Derived Category</span> instead[^4]. 
+working with the localization $\mathcal{C}[\mathcal{W}^{-1}]$. 
 
 There might also be multiple model structures on $(\mathcal{C}, \mathcal{W})$,
 and we can use whichever one makes our computation easier. For instance,
@@ -185,51 +191,79 @@ Now _this_ is starting to feel more like Homotopy Type Theory[^5]!
 
 It turns out that localizing a model category forgets a _lot_ of information! 
 
-We can remember some of this by building an $\infty$-category instead. It's 
-still not entirely clear to me how to build it from the model structure, 
-but that information is in a paper TODO: cite that paper
+This is to be expected somewhat, since we're intentionally adding extra 
+isomorphisms to "forget" the distinction between certain objects. But it 
+turns out to be a good idea to invert these arrows, yes, but to _remember_
+how our arrows composed to give the new equivalence classes of arrows,
+rather than identifying them outright[^9].
 
-We can recover the localization, though, since maps $f : A \to B$ in the
-localization are the same thing as the connected components of the space 
-of maps from $A$ to $B$ in the $\infty$-category!
+We can remember some of this by building an $\infty$-category instead. 
+TODO: figure out how to build an $\infty$-cat from a model cat.
+
+This construction retains strictly more information, since we can easily 
+recover the localization. Maps $f : A \to B$ in $\mathcal{C}[\mathcal{W}^{-1}]$
+are the same thing as the connected components of the space of maps 
+$A \to B$ in the simplicial localization! This should make intuitive sense,
+as we connected two arrows exactly when they represented "the same map".
 
 Moreover, (up to size issues) _every_ $\infty$-category arises from a 
-pair $(\mathcal{C}, \mathcal{W})$, so that it's reasonable to identify
-$\infty$-categories with homotopy theories. _Unfortunately_ not every 
-such system admits a compatible model structure. We say that an $\infty$-category
-is <span class=defn>Presentable</span> if it comes from a model structure --
-so the presentable $\infty$-categories are those in which we can do 
-computations. 
-
-This is analogous to a (finite) presentation of a group, say. Indeed, not every
-group has a finite presentation, and those that do don't have a _canonical_ 
-finite presentation. But if you _fix_ a presentation, it greatly expands the 
-kinds of (combinatorial and computational) tools for working with your group.
-
-TODO: restructure this, and make sure you introduce the name "homotopy theory"
-earlier on in the post.
+pair $(\mathcal{C}, \mathcal{W})$[^10]. Since the $\infty$-categories inverted
+$\mathcal{W}$, it's reasonable to think of $\infty$-categories as 
+"homotopy theories" as well... But is there a way to make this precise?
 
 ---
 
-TODO: I think you didn't make it clear that the previous section should be 
-taken as _evidence_ for $\infty$-categories and homotopy theories being 
-the same thing... You should make that clearer so that this section hits harder.
+TODO: mention quillen equivalences somewhere earlier?
 
-So we see that there is an intuitive sense in which $\infty$-categories 
-"are the same thing" as homotopy theories. Wouldn't it be nice if we could make
-that precise somehow?
+Now we get to the point of this whole post. Why care about the 
+"homotopy theory of homotopy theories"? What does that even _mean_?
+
+To start, recall that we might want to consider two relative categories
+"the same" if they present the same homotopy theory. That is, if
+
+$$\mathcal{C_1}[\mathcal{W}_1^{-1}] \simeq \mathcal{C_2}[\mathcal{W}_2^{-1}]$$
+
+but wait... $\mathsf{RelCat}$ has certain objects we would _like_ to 
+consider equivalent? Are you thinking what I'm thinking?
+
+It turns out that we can put a model structure on $\mathsf{RelCat}$,
+where the weak equivalences are exactly those functors $f$ which 
+become equivalences of $\infty$-categories! 
+TODO: see "models for oo-cats part 2"
+
+In this sense, $\mathsf{RelCat}$ becomes itself a homotopy theory! And the
+homotopy classes of objects in $\mathsf{RelCat}$ are themselves (smaller)
+homotopy theories! 
+
+But what about $\infty$-categories, I hear you asking? Well, there's 
+also a model structure on the category of simplicial categories! Impressively,
+one can show that the homotopy category of $\mathsf{RelCat}$ is equivalent
+to the homotopy category of $\mathsf{sCat}$, so that we might reasonably 
+also say that $\mathsf{sCat}$ presents the homotopy theory of homotopy theories!
 
 And _this_ is the new justification that I've found for high power or high 
 abstraction theorems! 
 
-It's not clear to me TODO: it doesn't "solve problems" but it lets us make our
-intuition precise!
+Even though it's not clear to me how this high power construction helps us
+compute things in practice, or lets us solve concrete problems, it still 
+does something obviously useful! We have at least two competing notions of
+what a homotopy theory _is_, which should intuitively be "the same". 
+
+We could work with relative categories, or we could work with 
+$\infty$-categories directly. It turns out that these have pros and cons
+when we _do_ want to make explicit computations, and there's still _other_ models 
+as well which also present the homotopy theory of homotopy theories!
+
+Thankfully, since these categories all have the same homotopy category, 
+we can use whichever is most convenient as our definition of a "homotopy theory".
+
+The innovation of the "homotopy theory of homotopy theories", besides being 
+objectively cool, allows us to make precise our intuition that these different
+categories are "describing the same thing".
+
 
 ---
 
-TODO: somewhere we should say something about multiple model structures 
-with the same homotopy category. This feels analogous to Caramello's "bridges"
-(probably put this in a footnote)
 
 ---
 
@@ -250,8 +284,8 @@ with the same homotopy category. This feels analogous to Caramello's "bridges"
 [^4]:
     This was a pleasant surprise for me. I've heard a lot of talk about 
     derived categories, and they always seemed quite scary. It's been very
-    exciting to feel like I'm getting a two-for-one deal every time I feel
-    another concept start to make sense ^_^.
+    exciting to feel like I'm getting a two-for-one deal every time I notice
+    another concept in this subject start to make sense ^_^.
 
 [^5]:
     I don't want to say more about this, since I really want the focus of
@@ -269,6 +303,63 @@ with the same homotopy category. This feels analogous to Caramello's "bridges"
 [^7]:
     Be careful, though, I've seen a handful of other definitions too!
 
+[^8]:
+    A better word would probably be "strict". Since we're going to be 
+    treating $\mathcal{C}$ like an algebraic structure pretty soon, it 
+    should have fixed _sets_ of objects and arrows, which we will manipulate
+    like we might manipulate the underlying set of a group, ring, etc.
+
+[^9]:
+    If I'm being perfectly honest, I don't know why a homotopy theorist 
+    would care about this. But I can _definitely_ speak to way a 
+    logician might care!
+
+    We can think about an arrow $A \to B$ as being a proof that $A$ implies $B$,
+    or more properly, a function turning a proof of $A$ into a proof of $B$.
+    Then the existence of multiple arrows is giving us multiple ways of 
+    witnessing $A \to B$, which might have different _computational content_.
+
+    Under the Curry-Howard correspondence, where proofs are programs, these 
+    genuinely different proofs give different programs. Moreover, remembering 
+    the simplicial structure (that is, remembering which weak equivalences composed
+    in order to get a new arrow) is roughly the same as remembering the 
+    _computation trace_ itself.
+
+    For more information about this link, you should check out John Baez's 
+    _Cohomology and Computation_ series [here][9]
+
+[^10]:
+    
+    _Unfortunately_ not every 
+    such system admits a compatible model structure. We say that an $\infty$-category
+    is <span class=defn>Presentable</span> if it comes from a model structure --
+    so the presentable $\infty$-categories are those in which we can do 
+    computations. 
+
+    This is analogous to a (finite) presentation of a group, say. Indeed, not every
+    group has a finite presentation, and those that do don't have a _canonical_ 
+    finite presentation. But if you _fix_ a presentation, it greatly expands the 
+    kinds of (combinatorial and computational) tools for working with your group.
+
+[^11]:
+    For example, $\mathsf{Top}$ with the weak homotopy equivalences gives 
+    the same localization as the category of simplicial sets with the 
+    [Quillen Model Structure][10].
+
+    As an aside, as a topos theorist, this all feels a bit familiar. 
+
+    Just like a model structure is some structure that presents a homotopy 
+    theory in a way that lets us do concrete computation, a [site][11] is 
+    a structure that presents a (grothendieck) topos and lets us do 
+    concrete computations.
+
+    Now, in the topos theory world, 
+    Olivia Caramello's bridges program is based on the idea that we can 
+    find nontrivial relationships between two sites presenting the same 
+    topos... I wonder if there are any theorems that let us relate two 
+    model categories presenting the same homotopy theory.
+
+
 [1]: HoTTEST Summer 2022 website
 [2]: model categories
 [3]: oo-cats
@@ -277,3 +368,6 @@ with the same homotopy category. This feels analogous to Caramello's "bridges"
 [6]: https://en.wikipedia.org/wiki/Chain_complex#Chain_homotopy
 [7]: https://en.wikipedia.org/wiki/Homology_(mathematics)
 [8]: https://en.wikipedia.org/wiki/Quasi-isomorphism
+[9]: https://math.ucr.edu/home/baez/qg-spring2007/qg-spring2007.html#computation
+[10]: https://ncatlab.org/nlab/show/model+structure+on+simplicial+sets
+[11]: https://ncatlab.org/nlab/show/site
