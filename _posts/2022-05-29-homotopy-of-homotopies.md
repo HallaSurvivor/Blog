@@ -10,7 +10,7 @@ and while I feel quite comfortable with the basics of HoTT, there's a TON of
 things that I should really know better; so I've been reading a lot to prepare.
 One of the things that I really didn't know _anything_ about was the theory of
 [model categories][2]. I knew they had something to do with 
-[$\infty$-categories][3] and [homotopy theory][4]... but I didn't really know
+[$\infty$-categories][3] and homotopy theory... but I didn't really know
 _what_ :P. Well, multiple papers later, I have a better idea of what's going on,
 and I'll say a few words about it in this post. The focus, though, is going to
 be on the "homotopy theory of homotopy theories" -- this was a groundbreaking 
@@ -22,10 +22,8 @@ So then, let's get to it!
 
 ---
 
-First of all, what even _is_ a "homotopy theory"? And what does it have to do
-with model categories?
-
-Well, let's look at the primordial example first: 
+First of all, what even _is_ a "homotopy theory"? 
+Let's look at the primordial example: 
 
 <div class=boxed markdown=1>
 Whatever a "Homotopy Theory" is, it should encompass the category $\mathsf{Top}$
@@ -45,9 +43,9 @@ favorite abelian group. Then a homotopy of spaces induces a homotopy of chains.
 
 More abstractly, what links these situations? Well, we have some objects that
 we want to consider "the same up to homotopy", and we capture this 
-(as the categry inclined are liable to do) by picking out some special arrows.
-These are the "homotopy equivalences" -- and they're maps that we _want_ to 
-think of as isomorphisms... but which aren't.
+(as the category inclined are liable to do) by picking out some special arrows.
+These are the "homotopy equivalences" -- and they're maps that we want to 
+think of as isomorphisms... but which might not _actually_ be.
 
 So, in $\mathsf{Top}$, we have the class of weak homotopy equivalences[^1],
 which we want to turn into isomorhpisms. And in $\mathsf{Ch}(R\text{-mod})$,
@@ -55,7 +53,7 @@ the category of chains of $R$-modules, we want to turn the [quasi-isomorphisms][
 into isomorhpisms.
 
 So then, with these examples in mind, what should a 
-<span class=defn>homotopy theory</span> be? First:
+_homotopy theory_ be? First:
 
 <div class=boxed markdown=1>
 A <span class=defn>Relative Category</span> is a small[^8] category $\mathcal{C}$ 
@@ -93,11 +91,12 @@ examples of homotopy theories.
 ---
 
 This is great, but there's one hitch...
-the new notion of isomorhpism might be very complicated!
+the localized category might be extremely complicated!
 Indeed, it's possible that we end up with a _proper class_ of arrows between
 two objects, even if $\mathcal{C}$ started out locally small. Moreover, since
-the new isomorphism relation is so complicated, it becomes unwieldy to do 
-computations in this category (for instance, computing limits and colimits).
+arrows in the localized category are so hard to get our hands on,
+it becomes unwieldy to do computations in this category 
+(for instance, computing limits and colimits).
 
 
 It would be really nice if we had some way to reign in this localization 
@@ -116,78 +115,90 @@ We then define two "nice" subclasses of objects:
     terminal object is a fibration
 - $X$ is called <span class=defn>cofibrant</span> if the unique arrow from 
     the initial object is a cofibration
+- $X$ is called <span class=defn>bifibrant</span> if it is both
 
-Then we have axioms which imply that every object is weakly equivalent to an 
-object which is both fibrant and cofibrant. Since, after localizing, our 
+Then we have axioms[^12] which imply that every object is weakly equivalent to a
+bifibrant object. Since, after localizing, our 
 weak equivalences become isomorphisms, this means we can restrict attention to
-the fibrant/cofibrant objects.
+the bifibrant objects... But why bother?
 
-But it's a theorem that we have _excellent_ control over the maps between 
-fibrant/cofibrant objects in the localization! In fact, there's a notion of
+It's a theorem that we have _excellent_ control over the maps between 
+bifibrant objects in the localization! In fact, there's a notion of
 "homotopy" between maps, which is entirely analogous to the notion of 
 homotopy in topology, and maps $X \to Y$ in $\mathcal{C}[\mathcal{W}^{-1}]$
-are exactly homotopy classes of maps from $X \to Y$ in $\mathcal{C}$
-(provided $X$ and $Y$ are fibrant/cofibrant)!
+between bifibrant objects
+are exactly homotopy classes of maps from $X \to Y$ in $\mathcal{C}$!
+
+Thus, a very common way we use model structures to perform computations is by
+first replacing the object we want to compute with by a weakly equivalent 
+bifibrant one. For instance, we might replace a module by its injective 
+resolution. Then maps in the homotopy category $\mathcal{C}[\mathcal{W}^{-1}]$ 
+are just maps in $\mathcal{C}$ up to homotopy[^13]! 
+
+This is made even more useful by the existence of _multiple_ model structures
+on $(\mathcal{C}, \mathcal{W})$. Depending on the computation, we might choose
+one model structure over another in order to make our lives as simple as possible.
+
+Another reason is to help us understand when 
+$\mathcal{C}_1[\mathcal{W}_1^{-1}] \simeq \mathcal{C}_2[\mathcal{W}_2^{-1}]$.
+Indeed, there's a notion of [Quillen Equivalence][24], which is quite 
+easy to work with, and guarantees that two quillen equivalent model categories
+present the same homotopy theory[^14].
 
 ---
 
 We should probably say a few words about the intuition for fibrations and
-cofibrations, as well as fibrant and cofibrant objects.
+cofibrations.
 
-A _fibration_ is an arrow that's easy to "lift" into:
+A _fibration_ $f$ is an arrow that's easy to "lift" into:
 
-TODO: a picture of a lifting diagram
+<p style="text-align:center;">
+<img src="/assets/images/homotopy-of-homotopies/fibration.png" width="30%">
+</p>
 
 For instance, covering spaces and bundles are examples of fibrations in 
-topology. Algebraically, a map of chains of $R$-modules 
-$f : A_\bullet \to B_\bullet$ is fibrant if each $f_n$ is a surjection.
+topology. Algebraically, there's a model structure where a map of chains of 
+$R$-modules $f : A_\bullet \to B_\bullet$ is a fibration if each $f_n$ is a surjection.
 
-Dually, a _cofibration_ is an arrow that's easy to "extend" out of:
+Dually, a _cofibration_ $i$ is an arrow that's easy to "extend" out of:
 
-TODO: a picture of an extension diagram
+<p style="text-align:center;">
+<img src="/assets/images/homotopy-of-homotopies/cofibration.png" width="30%">
+</p>
 
-For instance, the inclusion arrow of a "good pair" is a cofibration 
-(TODO: double check this). So we should think of a cofibration as being
-a subspace inclusion $A \hookrightarrow B$ where $A$ "sits nicely" inside $B$.
-Algebraically, a map $f : A_\bullet \to B_\bullet$ is a cofibration if it's
-(TODO: figure this out).
+We should think of a cofibration as being a subspace inclusion 
+$A \hookrightarrow X$ where $A$ "sits nicely" inside of $X$.
 
-Then a _fibrant_ object is one which is particularly easy to map into
-(since we can lift the unique map to the terminal object), and a 
-_cofibrant_ object is one which is particularly easy to map out of
-(since we can extend the unique map from the initial object)[^3].
+For instance, the inclusion arrow of a "good pair" is a cofibration. Thus
+inclusion maps of subcomplexes of a simplicial/CW/etc. complex are cofibrations. 
+More generally, any subspace inclusion $A \hookrightarrow X$ where $A$ is a 
+[nieghborhood deformation retract][23] in $X$.
 
-TODO: fact check that footnote!
+Algebraically, the same model structure as before thinks that a map 
+$f : A_\bullet \to B_\bullet$ is a cofibration exactly when each $f_n$ is an
+injection whose cokernel is projective.
 
----
+<br>
 
-Notice that the model structure is primarily a computational tool for 
-working with the localization $\mathcal{C}[\mathcal{W}^{-1}]$. 
+Precisely, these triangles are really special cases of squares. In the 
+fibration case, the left side of the square is the unique map from the 
+initial object to $A$. Dually, in the cofibration case the right 
+hand side of the square should really be the unique map from $Y$ to the 
+terminal object. 
 
-There might also be multiple model structures on $(\mathcal{C}, \mathcal{W})$,
-and we can use whichever one makes our computation easier. For instance,
-when working with chains of $R$-modules up to quasi-isomorphism, we have 
-compatible model structures based on injective _and_ projective resolutions!
-When computing right derived functors, we use the injective model structure,
-and when computing left derived functors, we use the projective model structure.
+This lets us unify these diagrams into a single axiom, which says that
+a square of the form
 
-TODO: fact check this.
+<p style="text-align:center;">
+<img src="/assets/images/homotopy-of-homotopies/full-square.png" width="30%">
+</p>
 
----
-
-Now, for something seemingly unrelated.
-
-An <span class=defn>$\infty$-category</span> (properly an $(\infty,1)$-category)
-is a category "enriched in spaces"[^6]. Between any two objects we have a 
-homotopy-type worth of arrows. So we might have two arrows $f,g : A \to B$,
-which are connected by homotopies $H$ and $K$. In this case we have a 
-"circle's worth" of arrows from $A \to B$:
-
-TODO: a picture of $f$, $g$, $H$, and $K$.
-
-Now _this_ is starting to feel more like Homotopy Type Theory[^5]!
+has a lift whenever $i$ is a cofibration, $f$ is a fibration, and one of $i$
+or $f$ is a weak equivalence. 
 
 ---
+
+Now, back to the main storyline:
 
 It turns out that localizing a model category forgets a _lot_ of information! 
 
@@ -197,8 +208,42 @@ turns out to be a good idea to invert these arrows, yes, but to _remember_
 how our arrows composed to give the new equivalence classes of arrows,
 rather than identifying them outright[^9].
 
-We can remember some of this by building an $\infty$-category instead. 
-TODO: figure out how to build an $\infty$-cat from a model cat.
+We can remember some of this by building an $\infty$-category,
+called the <span class=defn>Simplicial Localization</span> instead.
+
+What's an $\infty$-category? I'm glad you asked!
+
+<div class=boxed markdown=1>
+  An <span class=defn>$\infty$-category</span> (properly an $(\infty,1)$-category)
+  is a category "enriched in spaces"[^6]. Between any two objects we have a 
+  homotopy-type worth of arrows. 
+
+  There's a natural way of getting an ordinary category from an $\infty$-category,
+  by keeping the same objects, but replacing the space of arrows $A \to B$ by
+  its connected components. 
+</div>
+
+As an example, we might have two arrows $f,g : A \to B$,
+which are connected by homotopies $H$ and $K$. In this case we have a 
+"circle's worth" of arrows from $A \to B$:
+
+<p style="text-align:center;">
+<img src="/assets/images/homotopy-of-homotopies/circle.png" width="30%">
+</p>
+
+but when we take connected components, these two points $f$ and $g$ are 
+treated as the same arrow. 
+
+<br>
+
+Now, in the case of a relative category $(\mathcal{C},\mathcal{W})$, we build
+an $\infty$ category by 
+
+TODO: write this
+
+Now _this_ is starting to feel more like Homotopy Type Theory[^5]!
+
+---
 
 This construction retains strictly more information, since we can easily 
 recover the localization. Maps $f : A \to B$ in $\mathcal{C}[\mathcal{W}^{-1}]$
@@ -359,11 +404,34 @@ categories are "describing the same thing".
     topos... I wonder if there are any theorems that let us relate two 
     model categories presenting the same homotopy theory.
 
+[^12]:
+    I don't want to get into the precise details of a model structure here, 
+    but you can (and should!) read more in Dwyer and Spalinski's excellent 
+    introduction _Homotopy Theory and Model Categories_, available 
+    [here][12], for instance. 
 
-[1]: HoTTEST Summer 2022 website
-[2]: model categories
-[3]: oo-cats
-[4]: homotopy theory
+    There's also Mazel-Gee's _The Zen of $\infty$-Categories_, avaialable 
+    [here][13], and Kantor's survey _Model Categories: Theory and Applications_,
+    available [here][14].
+
+    While we're at it, there's also Goerss and Schemmerhorn's 
+    _Model Categories and Simplicial Methods_ ([here][15]), Hovey's book
+    ([here][16]), and MO questions [here][17], [here][18], [here][19], and
+    [here][20]. There's also Ponto and May's _More Concise Algebraic Topology_
+    ([here][21]), but at some point I should stop. 
+
+[^13]:
+    For an example of this idea in action, see [this][22] answer of mine.
+
+[^14]:
+    In a stronger way than we currently have the language to describe.
+    Not only are the localizations (read: homotopy categories) equivalent,
+    but actually the presented $\infty$-categories are equivalent too!
+
+
+[1]: https://uwo.ca/math/faculty/kapulkin/seminars/hottest_summer_school_2022.html
+[2]: https://en.wikipedia.org/wiki/Model_category
+[3]: https://ncatlab.org/nlab/show/%28infinity%2C1%29-category
 [5]: https://en.wikipedia.org/wiki/Homotopy
 [6]: https://en.wikipedia.org/wiki/Chain_complex#Chain_homotopy
 [7]: https://en.wikipedia.org/wiki/Homology_(mathematics)
@@ -371,3 +439,16 @@ categories are "describing the same thing".
 [9]: https://math.ucr.edu/home/baez/qg-spring2007/qg-spring2007.html#computation
 [10]: https://ncatlab.org/nlab/show/model+structure+on+simplicial+sets
 [11]: https://ncatlab.org/nlab/show/site
+[12]: https://math.jhu.edu/~eriehl/616-s16/DwyerSpalinski.pdf
+[13]: https://etale.site/writing/zen-of-infty-cats.pdf
+[14]: http://math.uchicago.edu/~may/REU2016/REUPapers/Kantor.pdf
+[15]: https://sites.math.northwestern.edu/~pgoerss/papers/ucnotes.pdf
+[16]: https://people.math.rochester.edu/faculty/doug/otherpapers/hovey-model-cats.pdf
+[17]: https://mathoverflow.net/questions/361191/applications-of-model-categories
+[18]: https://mathoverflow.net/questions/84381/computations-in-infty-categories
+[19]: https://mathoverflow.net/questions/169187/what-non-categorical-applications-are-there-of-homotopical-algebra?noredirect=1&lq=1
+[20]: https://mathoverflow.net/questions/78400/do-we-still-need-model-categories?noredirect=1&lq=1
+[21]: http://www.math.uchicago.edu/~may/TEAK/KateBookFinal.pdf
+[22]: https://math.stackexchange.com/questions/4461610/maps-in-the-homotopy-category-and-derived-category-to-and-from-concentrated-in/4461656#4461656
+[23]: https://ncatlab.org/nlab/show/neighborhood+retract
+[24]: https://ncatlab.org/nlab/show/Quillen+equivalence
