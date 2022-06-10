@@ -12,7 +12,7 @@ One of the things that I really didn't know _anything_ about was the theory of
 [model categories][2]. I knew they had something to do with 
 [$\infty$-categories][3] and homotopy theory... but I didn't really know
 _what_ :P. Well, multiple papers later, I have a better idea of what's going on,
-and I'll say a few words about it in this post. The focus, though, is going to
+and I'll say a few words about it in this post. The end goal, though, is going to
 be on the "homotopy theory of homotopy theories" -- this was a groundbreaking 
 development in the field... but one which seems _very_ abstract. I've been 
 thinking about why we should care about this result, and in the process I 
@@ -52,8 +52,7 @@ which we want to turn into isomorhpisms. And in $\mathsf{Ch}(R\text{-mod})$,
 the category of chains of $R$-modules, we want to turn the [quasi-isomorphisms][8]
 into isomorhpisms.
 
-So then, with these examples in mind, what should a 
-_homotopy theory_ be? First:
+With these examples in mind, what should a _homotopy theory_ be? First:
 
 <div class=boxed markdown=1>
 A <span class=defn>Relative Category</span> is a small[^8] category $\mathcal{C}$ 
@@ -75,11 +74,11 @@ $\mathcal{C}[\mathcal{W}^{-1}]$.
 Finally, then:
 
 <div class=boxed markdown=1>
-A Homotopy Theory is a category of the form 
+A <span class=defn>Homotopy Theory</span> is a category of the form 
 $\mathcal{C}[\mathcal{W}^{-1}]$ for some relative category.
 
 ⚠ The choice of $(\mathcal{C}, \mathcal{W})$ is far from unique. It's 
-entirely possible[^11] for two relative categories to have the same homotopy category
+entirely possible for two relative categories to have the same homotopy category[^11]
 
 $$\mathcal{C_1}[\mathcal{W_1}^{-1}] \simeq \mathcal{C_2}[\mathcal{W_2}^{-1}]$$
 </div>
@@ -87,6 +86,18 @@ $$\mathcal{C_1}[\mathcal{W_1}^{-1}] \simeq \mathcal{C_2}[\mathcal{W_2}^{-1}]$$
 So, for instance, the classical homotopy category $\mathsf{hTop}$ and the 
 derived category[^4] of $R$ modules $\mathcal{D}(R\text{-mod})$ are both
 examples of homotopy theories.
+
+As an aside, this "warning" that two relative categories can have the 
+same homotopy theory should be viewed as a _feature_, not a bug! 
+For instance, there's a notion of weak equivalence in $s\mathsf{Set}$, the 
+category of [simplicial sets][30], and this has the same homotopy theory
+as $\mathsf{Top}$ with its weak homotopy equivalences!
+
+This means that if we have a question about topological spaces up to homotopy,
+we can study simplicial sets instead, with _no loss of information_! This is
+fantastic, since simplicial sets are purely combinatorial objects, so 
+(in addition to other benefits)
+it's much easier to tell a computer how to work with them[^20]!
 
 ---
 
@@ -109,7 +120,7 @@ $(\mathcal{C}, \mathcal{W})$ solves both of these problems simultaneously!
 
 The idea is to choose two new subfamilies of arrows: the 
 <span class=defn>fibrations</span> and the <span class=defn>cofibrations</span>.
-We then define two "nice" subclasses of objects: 
+We then define the "nice" subclasses of objects: 
 
 - $X$ is called <span class=defn>fibrant</span> if the unique arrow to the 
     terminal object is a fibration
@@ -130,8 +141,8 @@ between bifibrant objects
 are exactly homotopy classes of maps from $X \to Y$ in $\mathcal{C}$!
 
 Thus, a very common way we use model structures to perform computations is by
-first replacing the object we want to compute with by a weakly equivalent 
-bifibrant one. For instance, we might replace a module by its injective 
+first replacing the objects we want to compute with by weakly equivalent 
+bifibrant ones. For instance, we might replace a module by its injective 
 resolution. Then maps in the homotopy category $\mathcal{C}[\mathcal{W}^{-1}]$ 
 are just maps in $\mathcal{C}$ up to homotopy[^13]! 
 
@@ -142,8 +153,12 @@ one model structure over another in order to make our lives as simple as possibl
 Another reason is to help us understand when 
 $\mathcal{C}_1[\mathcal{W}_1^{-1}] \simeq \mathcal{C}_2[\mathcal{W}_2^{-1}]$.
 Indeed, there's a notion of [Quillen Equivalence][24], which is quite 
-easy to work with, and guarantees that two quillen equivalent model categories
-present the same homotopy theory[^14].
+easy to work with, and which guarantees that two model categories have the
+same homotopy theory[^14].
+
+For example, the earlier example of $\mathsf{Top}$ and $s\mathsf{Set}$,
+which have the same homotopy theory, comes from a quillen equivalence.
+See [here][29], for instance.
 
 ---
 
@@ -172,7 +187,7 @@ $A \hookrightarrow X$ where $A$ "sits nicely" inside of $X$.
 For instance, the inclusion arrow of a "good pair" is a cofibration. Thus
 inclusion maps of subcomplexes of a simplicial/CW/etc. complex are cofibrations. 
 More generally, any subspace inclusion $A \hookrightarrow X$ where $A$ is a 
-[nieghborhood deformation retract][23] in $X$.
+[nieghborhood deformation retract][23] in $X$ will be a cofibration.
 
 Algebraically, the same model structure as before thinks that a map 
 $f : A_\bullet \to B_\bullet$ is a cofibration exactly when each $f_n$ is an
@@ -200,10 +215,14 @@ or $f$ is a weak equivalence.
 
 Now, back to the main storyline:
 
+<p style="text-align:center;">
+<img src="/assets/images/homotopy-of-homotopies/hammock.gif" width="50%">
+</p>
+
 It turns out that localizing a model category forgets a _lot_ of information! 
 
 This is to be expected somewhat, since we're intentionally adding extra 
-isomorphisms to "forget" the distinction between certain objects. But it 
+isomorphisms to "forget" the distinction between certain objects. It 
 turns out to be a good idea to invert these arrows, yes, but to _remember_
 how our arrows composed to give the new equivalence classes of arrows,
 rather than identifying them outright[^9].
@@ -231,50 +250,104 @@ which are connected by homotopies $H$ and $K$. In this case we have a
 <img src="/assets/images/homotopy-of-homotopies/circle.png" width="30%">
 </p>
 
-but when we take connected components, these two points $f$ and $g$ are 
-treated as the same arrow. 
+but when we take connected components, these two maps $f$ and $g$ are 
+identified.
 
 <br>
 
-Now, in the case of a relative category $(\mathcal{C},\mathcal{W})$, we build
-an $\infty$ category by 
+This blog post is already plenty rambly, so I don't mind taking some
+time to tell you how we can build an $\infty$-category from a 
+relative category $(\mathcal{C},\mathcal{W})$.
+This is called the 
+<span class=defn>Hammock Construction</span>[^15], and while we won't spend 
+_too_ much time on this, it's worth at least a few words!
 
-TODO: write this
+We want to build up a space of maps $A \to B$. 
 
-Now _this_ is starting to feel more like Homotopy Type Theory[^5]!
+The $0$-cells will be zigzags of the form:
+
+ - $$ A \to B $$
+ - $$ A \to C_0 \overset{\sim}{\leftarrow} B $$
+ - $$ A \to C_0 \overset{\sim}{\leftarrow} C_1 \to B $$
+ - $$ A \to C_0 \overset{\sim}{\leftarrow} C_1 \to C_2 \overset{\sim}{\leftarrow} B $$
+ - etc.[^17]
+
+where the left-pointing arrows are weak equivalences. Notice that, after we 
+invert the weak equivalences, the left facing arrows will have inverses, 
+which will compose with the other right facing arrows to give an 
+honest-to-goodness arrow $A \to B$. That is, the $0$-cells really are 
+maps $A \to B$ in $\mathcal{C}[\mathcal{W}^{-1}]$.
+
+Now, a $1$-cell from $f$ to $g$ should be a "proof" that $f$ and $g$ are homotopic.
+If $f$ and $g$ have the same length, then we can represent this with a 
+"hammock"[^16]:
+
+<p style="text-align:center;">
+<img src="/assets/images/homotopy-of-homotopies/1hammock.png" width="50%">
+</p>
+
+Similarly, a $k$-cell will be a hammock that is $k$ strands "wide".
+Here's the picture from the original paper:
+
+<p style="text-align:center;">
+<img src="/assets/images/homotopy-of-homotopies/wide-hammock.png" width="50%">
+</p>
+
+As before, the vertical arrows should all be weak equivalences, as should all
+the backwards facing arrows in the zigzags.
+
+Of course, we need the [face maps][27] between simplicies. We get the $i$th face map
+by just omitting row $i$ from the hammock. We get the $i$th degeneracy map
+by repeating the $i$th row, using the identity map in each column as the weak
+equivalence.
+
+<div class=boxed markdown=1>
+The resulting $\infty$-category $L^H(\mathcal{C}, \mathcal{W})$ is called the 
+(Hammock) Simplicial Localization of $(\mathcal{C}, \mathcal{W})$.
+</div>
 
 ---
 
-This construction retains strictly more information, since we can easily 
-recover the localization. Maps $f : A \to B$ in $\mathcal{C}[\mathcal{W}^{-1}]$
-are the same thing as the connected components of the space of maps 
-$A \to B$ in the simplicial localization! This should make intuitive sense,
-as we connected two arrows exactly when they represented "the same map".
+So we see how to associate to each relative category $(\mathcal{C}, \mathcal{W})$
+an $\infty$-category[^18].
+Surprisingly, (up to size issues), _every_ $\infty$-category arises from a 
+pair $(\mathcal{C}, \mathcal{W})$ in this way[^10]. Moreover, 
+$\infty$-categories have much nicer formal properties than relative or model
+categories. There's a huge body of literature[^19] showing how $\infty$-categories
+behave analogously to $1$-categories (which is what we call "ordinary"
+categories in this context). 
 
-Moreover, (up to size issues) _every_ $\infty$-category arises from a 
-pair $(\mathcal{C}, \mathcal{W})$[^10]. Since the $\infty$-categories inverted
-$\mathcal{W}$, it's reasonable to think of $\infty$-categories as 
-"homotopy theories" as well... But is there a way to make this precise?
+With this in mind, we might want to think of $\infty$-categories as 
+"homotopy theories" rather than relative categories. Intuitively, the facts 
+in the previous paragraph tell us that we shouldn't lose any information by
+doing this... But the correspondence isn't _actually_ one-to-one.
+
+Is there any way to remedy this, and put our intuition on solid ground?
 
 ---
 
-TODO: mention quillen equivalences somewhere earlier?
-
-Now we get to the point of this whole post. Why care about the 
+Now we get to the point of this whole post[^21]. Why care about the 
 "homotopy theory of homotopy theories"? What does that even _mean_?
 
 To start, recall that we might want to consider two relative categories
-"the same" if they present the same homotopy theory. That is, if
+"the same" if they present the same homotopy theory. With our new, 
+more subtle tool, that's asking if
 
-$$\mathcal{C_1}[\mathcal{W}_1^{-1}] \simeq \mathcal{C_2}[\mathcal{W}_2^{-1}]$$
+$$L^H(\mathcal{C}_1, \mathcal{W}_1) \simeq L^H(\mathcal{C}_2, \mathcal{W}_2)$$
 
-but wait... $\mathsf{RelCat}$ has certain objects we would _like_ to 
-consider equivalent? Are you thinking what I'm thinking?
+but wait... There's an obvious category $\mathsf{RelCat}$ whose objects
+are relative categories and arrows 
+$(\mathcal{C}_1, \mathcal{W}_1) \to (\mathcal{C}_2, \mathcal{W}_2)$ are functors 
+$\mathcal{C}_1 \to \mathcal{C}_2$ sending each arrow in $\mathcal{W}_1$ to
+an arrow in $\mathcal{W}_2$.
+
+So $\mathsf{RelCat}$ has some objects that are _morally_ equivalent,
+but which aren't actually isomorphic? Are you thinking what I'm thinking!?
 
 It turns out that we can put a model structure on $\mathsf{RelCat}$,
-where the weak equivalences are exactly those functors $f$ which 
-become equivalences of $\infty$-categories! 
-TODO: see "models for oo-cats part 2"
+where the weak equivalences are exactly those functors $f$ for which
+$L^H(f)$ is an equivalence[^22] of $\infty$-categories! Notice, by taking
+components in each homset, this means they'll have the same localization too.
 
 In this sense, $\mathsf{RelCat}$ becomes itself a homotopy theory! And the
 homotopy classes of objects in $\mathsf{RelCat}$ are themselves (smaller)
@@ -286,29 +359,58 @@ one can show that the homotopy category of $\mathsf{RelCat}$ is equivalent
 to the homotopy category of $\mathsf{sCat}$, so that we might reasonably 
 also say that $\mathsf{sCat}$ presents the homotopy theory of homotopy theories!
 
+---
+
+Let's slow down for a second, and say what we just said again.
+
+<div class=boxed markdown=1>
+We have a category $\mathsf{RelCat}$ whose objects are
+(up to some notion of equivalence) homotopy theories.
+
+We also have a category $\mathsf{sCat}$ whose objects are
+(up to some notion of equivalence) $\infty$-categories.
+
+Moreover, there is a quillen equivalence between $\mathsf{RelCat}$ and 
+$\mathsf{sCat}$ (equipped with some natural model structures), so that 
+we get an equivalence of homotopy theories
+
+$$\mathsf{RelCat}[\mathcal{W}^{-1}] \simeq \mathsf{sCat}[\mathcal{W}^{-1}]$$
+
+Now, the _objects_ of this homotopy theory are _themselves_ 
+homotopy theories (objects of $\mathsf{RelCat}$), or equivalently, 
+$\infty$-categories (objects of $\mathsf{sCat}$).
+</div>
+
 And _this_ is the new justification that I've found for high power or high 
 abstraction theorems! 
 
-Even though it's not clear to me how this high power construction helps us
-compute things in practice, or lets us solve concrete problems, it still 
-does something obviously useful! We have at least two competing notions of
-what a homotopy theory _is_, which should intuitively be "the same". 
+---
 
-We could work with relative categories, or we could work with 
-$\infty$-categories directly. It turns out that these have pros and cons
-when we _do_ want to make explicit computations, and there's still _other_ models 
-as well which also present the homotopy theory of homotopy theories!
+Even though this construction of the homotopy theory of homotopy theories 
+doesn't let us perform computations, or solve concrete problems 
+(as far as I know), it's still an extremely useful construction!
 
-Thankfully, since these categories all have the same homotopy category, 
-we can use whichever is most convenient as our definition of a "homotopy theory".
+Why care?
+
+Well to start, it lets us firmly define "homotopy theory" and "$\infty$-category".
+These should actually be seen as objects in this localized category,
+a fact I've been hiding for most of this post.
+
+This is good, because there are _lots_ of competing definitions for
+$\infty$-category, all of which have pros and cons. By showing that they
+all present the same homotopy category, this means that we can use 
+whichever definition is most convenient for us! 
+
+The situation is perfectly analogous to getting to work with topological
+spaces or simplicial sets -- as long as we're only asking questions 
+up to homotopy equivalence, they're interchangeable! Similarly, as long as
+we're only asking questions about $\infty$-categories 
+(equivalently homotopy theories) up to equivalence, we can use whichever
+definition we want!
 
 The innovation of the "homotopy theory of homotopy theories", besides being 
 objectively cool, allows us to make precise our intuition that these different
-categories are "describing the same thing".
-
-
----
-
+categories are "describing the same thing", and that by itself is a reason to care.
 
 ---
 
@@ -343,7 +445,12 @@ categories are "describing the same thing".
     an $\infty$-groupoid!
 
 [^6]:
-    Experts should wait _slightly_ longer before leaving angry comments!
+    I'm being intentionally vague here, but by "spaces" I mean the homotopy
+    category of $\mathsf{Top}$. Or, equivalently,
+    the homotopy category of $s\mathsf{Set}$!
+
+    It turns out to be easier to work with simplicial objects, so that's what
+    we'll be doing here.
 
 [^7]:
     Be careful, though, I've seen a handful of other definitions too!
@@ -371,10 +478,14 @@ categories are "describing the same thing".
     _computation trace_ itself.
 
     For more information about this link, you should check out John Baez's 
-    _Cohomology and Computation_ series [here][9]
+    _Cohomology and Computation_ series [here][9]. He also has a good discussion
+    of this for computation in monoids [here][26]. I definitely went to a talk
+    at CMU once where the speaker built a similar structure for the computation
+    of $\lambda$-terms... But I can't find anything about that right now! 
+
+    If someone happens to know a source, I would LOVE to hear about it ^_^
 
 [^10]:
-    
     _Unfortunately_ not every 
     such system admits a compatible model structure. We say that an $\infty$-category
     is <span class=defn>Presentable</span> if it comes from a model structure --
@@ -387,10 +498,6 @@ categories are "describing the same thing".
     kinds of (combinatorial and computational) tools for working with your group.
 
 [^11]:
-    For example, $\mathsf{Top}$ with the weak homotopy equivalences gives 
-    the same localization as the category of simplicial sets with the 
-    [Quillen Model Structure][10].
-
     As an aside, as a topos theorist, this all feels a bit familiar. 
 
     Just like a model structure is some structure that presents a homotopy 
@@ -424,10 +531,93 @@ categories are "describing the same thing".
     For an example of this idea in action, see [this][22] answer of mine.
 
 [^14]:
-    In a stronger way than we currently have the language to describe.
+    In fact, this is true 
+    in a stronger way than we currently have the language to describe.
     Not only are the localizations (read: homotopy categories) equivalent,
     but actually the presented $\infty$-categories are equivalent too!
 
+[^15]:
+    You can read more in the (surprisingly readable!) paper 
+    _Calculating Simplicial Localizations_ by Dwyer and Kan. 
+
+    The other approach to simplicial localization is explained in another
+    readable paper by the same authors: _Simplicial Localizations of Categories_.
+    It's a perfectly good definition, and works well in the abstract, but 
+    the "hammock" definition is more amenable to direct computation, since it's
+    slightly more explicit.
+
+    See [here][25] for more details.
+
+[^16]:
+    As before, we also allow the first map to face left instead of right,
+    as long as our maps strictly alternate. What does this mean for our hammocks?
+    The horizontal threads of our hammock must be oriented the same way!
+
+    For instance, this is a valid hammock:
+
+    <p style="text-align:center;">
+    <img src="/assets/images/homotopy-of-homotopies/legal-hammock-1.png" width="30%">
+    </p>
+
+    This is a valid hammock:
+
+    <p style="text-align:center;">
+    <img src="/assets/images/homotopy-of-homotopies/legal-hammock-2.png" width="30%">
+    </p>
+
+    But this is _not_ a valid hammock:
+
+    <p style="text-align:center;">
+    <img src="/assets/images/homotopy-of-homotopies/illegal-hammock.png" width="30%">
+    </p>
+
+
+
+    Also, I can't express enough how much I love this naming idea! 
+    It's quirky and apt in equal measure. 10/10.
+
+[^17]:
+    It's actually _slightly_ more general. The first arrow is also allowed to
+    point left, as long as things still alternate. For instance, we allow 
+    a zigzag of the form
+
+    $$ A \overset{\sim}{\leftarrow} C_0 \to B $$
+
+    as well.
+
+    For the specifics of the construction, see 
+    _Calculating Simplicial Localizations_ by Dwyer and Kan.
+
+[^18]:
+    And in case $(\mathcal{C}, \mathcal{W})$ admits a model structure
+    (or even slightly less -- see _Calculating Simplicial Localizations_)
+    we have ways of computing the homotopy type of $\text{Hom}(A,B)$ using
+    only the data in $(\mathcal{C}, \mathcal{W})$! Again, see the paper.
+
+[^19]:
+    This is the plot of the first few chapters of Lurie's tome 
+    [Higher Topos Theory][28]. 
+
+[^20]:
+    See, for instance, the sage documentation [here][32].
+
+    (Yes, I know about the subtle distinction between simplical complexes and
+    simplicial sets. If you want to be a pedant, see the documentation 
+    for the category structure [here][31])
+
+[^21]:
+    Though this post has been _particularly_ rambly because I've also been
+    using it to get my thoughts about model categories and $\infty$-categories
+    in order...
+
+[^22]:
+    By which I mean [Dwyer-Kan Equivalence][33], since $\infty$-categories are
+    "really" objects in the homotopy category of homotopy categories, 
+    equivalence comes from weak equivalences in one of the (many) model 
+    categories presenting the homotopy theory of homotopy theories. 
+
+    Throughout this post I'm implicitly working with Julie Bergner's 
+    model structure on simplicial categories.
 
 [1]: https://uwo.ca/math/faculty/kapulkin/seminars/hottest_summer_school_2022.html
 [2]: https://en.wikipedia.org/wiki/Model_category
@@ -452,3 +642,12 @@ categories are "describing the same thing".
 [22]: https://math.stackexchange.com/questions/4461610/maps-in-the-homotopy-category-and-derived-category-to-and-from-concentrated-in/4461656#4461656
 [23]: https://ncatlab.org/nlab/show/neighborhood+retract
 [24]: https://ncatlab.org/nlab/show/Quillen+equivalence
+[25]: https://ncatlab.org/nlab/show/simplicial+localization
+[26]: https://golem.ph.utexas.edu/category/2019/09/partial_evaluations_2.html#c056600
+[27]: https://en.wikipedia.org/wiki/Simplicial_set#Face_and_degeneracy_maps_and_simplicial_identities
+[28]: https://people.math.harvard.edu/~lurie/papers/highertopoi.pdf
+[29]: https://ncatlab.org/nlab/show/classical+model+structure+on+simplicial+sets#quillen_equivalence_with_
+[30]: https://en.wikipedia.org/wiki/Simplicial_set
+[31]: https://doc.sagemath.org/html/en/reference/categories/sage/categories/simplicial_sets.html
+[32]: https://doc.sagemath.org/html/en/reference/topology/sage/topology/simplicial_complex.html
+[33]: https://ncatlab.org/nlab/show/model+structure+on+sSet-categories#ModelForInfinityCategories
