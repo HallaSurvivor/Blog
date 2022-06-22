@@ -22,92 +22,7 @@ So then, let's get to it!
 
 ---
 
-First of all, what even _is_ a "homotopy theory"? 
-Let's look at the primordial example: 
-
-<div class=boxed markdown=1>
-Whatever a "Homotopy Theory" is, it should encompass the category $\mathsf{Top}$
-of topological spaces where we identify spaces up to [(weak) homotopy equivalence][5]
-</div>
-
-But there's another motivating example, which we also call "homotopy":
-
-<div class=boxed markdown=1>
-Whatever a "Homotopy Theory" is, it should encompass the chains of modules,
-where we identify two chains up to [homotopy equivalence][6]
-</div>
-
-Obviously these are related -- after all, from a topological space we can
-get an associated chain of [(co)homology groups][7] with coefficients in our 
-favorite abelian group. Then a homotopy of spaces induces a homotopy of chains.
-
-More abstractly, what links these situations? Well, we have some objects that
-we want to consider "the same up to homotopy", and we capture this 
-(as the category inclined are liable to do) by picking out some special arrows.
-These are the "homotopy equivalences" -- and they're maps that we want to 
-think of as isomorphisms... but which might not _actually_ be.
-
-So, in $\mathsf{Top}$, we have the class of weak homotopy equivalences[^1],
-which we want to turn into isomorphisms. And in $\mathsf{Ch}(R\text{-mod})$,
-the category of chains of $R$-modules, we want to turn the [quasi-isomorphisms][8]
-into isomorphisms.
-
-With these examples in mind, what should a _homotopy theory_ be?
-
-<div class=boxed markdown=1>
-A <span class=defn>Relative Category</span> is a small[^8] category $\mathcal{C}$ 
-equipped with a set of arrows
-$\mathcal{W}$ (called the <span class=defn>Weak Equivalences</span>) 
-that contains all the isomorphisms in $\mathcal{C}$[^7].
-</div>
-
-Following our examples, we want to think of the arrows in $\mathcal{W}$ as 
-being _morally_ isomorphisms, even though they might not _actually_ be 
-isomorphisms.
-
-Now, a (small) category is an algebraic structure, so there's nothing stopping us from
-just... adding in new arrows, plus relations saying that they're inverses for
-the arrows we wanted to be isomorphisms. By analogy with ring theory, 
-we call this new category the <span class=defn>Localization</span> 
-$\mathcal{C}[\mathcal{W}^{-1}]$. 
-
-For example, if we localize $\mathsf{Top}$ at the weak homotopy equivalences,
-we get the classical homotopy category $\mathsf{hTop}$. If we invert the 
-quasi-isomorphisms of chains of $R$ modules, we get the
-derived category[^4] of $R$ modules $\mathcal{D}(R\text{-mod})$.
-
-<div class=boxed markdown=1>
-⚠ The choice of $(\mathcal{C}, \mathcal{W})$ is far from unique. It's 
-entirely possible for two relative categories to have the same homotopy category[^11]
-
-$$\mathcal{C_1}[\mathcal{W_1}^{-1}] \simeq \mathcal{C_2}[\mathcal{W_2}^{-1}]$$
-
-Tentatively, we'll say that a homotopy theory is a relative category. 
-But we'll say that two relative categories present _the same_ homotopy theory
-exactly when their localizations agree.
-</div>
-
-This "warning" that two relative categories can have the 
-same homotopy theory should be viewed as a _feature_, not a bug! 
-For instance, there's a notion of weak equivalence in $s\mathsf{Set}$, the 
-category of [simplicial sets][30], and this has the same homotopy theory
-as $\mathsf{Top}$ with its weak homotopy equivalences!
-
-This means that if we have a question about topological spaces up to homotopy,
-we can study simplicial sets instead, with _no loss of information_! This is
-fantastic, since simplicial sets are purely combinatorial objects, so 
-(in addition to other benefits)
-it's much easier to tell a computer how to work with them[^20]!
-
 ---
-
-This is great, but there's one hitch...
-
-The homotopy category $\mathcal{C}[\mathcal{W}^{-1}]$ might be 
-_terribly behaved_. For instance, even if $\mathcal{C}$ is (co)complete, 
-the homotopy category might not be[^23]! 
-Even worse, it's possible that we end up with a _proper class_ of arrows between
-two objects, even if $\mathcal{C}$ started out locally small. 
 
 It turns out this defect is because we're throwing out _too much information_
 when we invert the arrows in $\mathcal{W}$. Rather than just inverting the 
@@ -338,25 +253,12 @@ I'll see you there ^_^
 
 ---
 
-[^1]:
-    It turns out there's _also_ a model category structure whose homotopy 
-    category gives homotopy equivalence, rather than weak homotopy equivalence.
-
-    But the model structure on $\mathsf{Top}$ which gives weak homotopy 
-    equivalence is the "standard" one, so that's what I'm listing as the 
-    motivating example.
 
 [^3]:
     There's also intuition that the cofibrant objects are the ones which can
     be built by repeatedly gluing together "nice" objects. In $\mathsf{Top}$,
     for instance, the cofibrant objects are the CW-complexes, and in 
     $R$-mod, they're the injective resolutions.
-
-[^4]:
-    This was a pleasant surprise for me. I've heard a lot of talk about 
-    derived categories, and they always seemed quite scary. It's been very
-    exciting to feel like I'm getting a two-for-one deal every time I notice
-    another concept in this subject start to make sense ^_^.
 
 [^5]:
     I don't want to say more about this, since I really want the focus of
@@ -376,14 +278,6 @@ I'll see you there ^_^
     It turns out to be easier to work with simplicial objects, so that's what
     we'll be doing here.
 
-[^7]:
-    Be careful, though, I've seen a handful of other definitions too!
-
-[^8]:
-    A better word would probably be "strict". Since we're going to be 
-    treating $\mathcal{C}$ like an algebraic structure pretty soon, it 
-    should have fixed _sets_ of objects and arrows, which we will manipulate
-    like we might manipulate the underlying set of a group, ring, etc.
 
 [^9]:
     This is a common theme, which shows up in logic as well!
@@ -429,21 +323,6 @@ I'll see you there ^_^
     group has a finite presentation, and those that do don't have a _canonical_ 
     finite presentation. But if you _fix_ a presentation, it greatly expands the 
     kinds of (combinatorial and computational) tools for working with your group.
-
-[^11]:
-    As an aside, as a topos theorist, this all feels a bit familiar. 
-
-    Just like a model structure (which we'll define later) is some 
-    structure that presents a homotopy 
-    theory in a way that lets us do concrete computation, a [site][11] is 
-    a structure that presents a (grothendieck) topos and lets us do 
-    concrete computations.
-
-    Now, in the topos theory world, 
-    Olivia Caramello's bridges program is based on the idea that we can 
-    find nontrivial relationships between two sites presenting the same 
-    topos... I wonder if there are any theorems that let us relate two 
-    model categories presenting the same homotopy theory.
 
 [^15]:
     You can read more in the (surprisingly readable!) paper 
@@ -507,12 +386,6 @@ I'll see you there ^_^
     This is the plot of the first few chapters of Lurie's tome 
     [Higher Topos Theory][28]. 
 
-[^20]:
-    See, for instance, the sage documentation [here][32].
-
-    (Yes, I know about the subtle distinction between simplical complexes and
-    simplicial sets. If you want to be a pedant, see the documentation 
-    for the category structure [here][31])
 
 [^21]:
     Though this post has been _particularly_ rambly because I've also been
@@ -527,15 +400,6 @@ I'll see you there ^_^
 
     Throughout this post I'm implicitly working with Julie Bergner's 
     model structure on simplicial categories.
-
-[^23]:
-    Even in the case of $\mathsf{hTop}$, we might not have (co)limits! 
-    See [here][34], for instance!
-
-    If you've heard of [homotopy (co)limits][35], they exist in order to 
-    patch this hole. Unfortunately, their definition is rather technical,
-    and can be opaque on first reading. Thankfully, $\infty$-categories
-    solve this same problem in a _much_ more elegant way!
 
 [^24]:
     I haven't forgotten that I said we can use $\infty$-categories to 
@@ -575,22 +439,13 @@ I'll see you there ^_^
 [2]: https://en.wikipedia.org/wiki/Model_category
 [3]: https://ncatlab.org/nlab/show/%28infinity%2C1%29-category
 [5]: https://en.wikipedia.org/wiki/Homotopy
-[6]: https://en.wikipedia.org/wiki/Chain_complex#Chain_homotopy
-[7]: https://en.wikipedia.org/wiki/Homology_(mathematics)
-[8]: https://en.wikipedia.org/wiki/Quasi-isomorphism
-[9]: https://math.ucr.edu/home/baez/qg-spring2007/qg-spring2007.html#computation
 [10]: https://ncatlab.org/nlab/show/model+structure+on+simplicial+sets
 [11]: https://ncatlab.org/nlab/show/site
 [25]: https://ncatlab.org/nlab/show/simplicial+localization
 [26]: https://golem.ph.utexas.edu/category/2019/09/partial_evaluations_2.html#c056600
 [27]: https://en.wikipedia.org/wiki/Simplicial_set#Face_and_degeneracy_maps_and_simplicial_identities
 [28]: https://people.math.harvard.edu/~lurie/papers/highertopoi.pdf
-[30]: https://en.wikipedia.org/wiki/Simplicial_set
-[31]: https://doc.sagemath.org/html/en/reference/categories/sage/categories/simplicial_sets.html
-[32]: https://doc.sagemath.org/html/en/reference/topology/sage/topology/simplicial_complex.html
 [33]: https://ncatlab.org/nlab/show/model+structure+on+sSet-categories#ModelForInfinityCategories
-[34]: https://mathoverflow.net/questions/10364/categorical-homotopy-colimits
-[35]: https://en.wikipedia.org/wiki/Homotopy_colimit
 [36]: https://en.wikipedia.org/wiki/Quasi-category
 [37]: https://ncatlab.org/nlab/show/complete+Segal+space
 [38]: https://youtu.be/YFX7SOLoi1Y?t=246
