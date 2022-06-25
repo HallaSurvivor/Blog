@@ -72,7 +72,12 @@ TODO: in fact, we can redo all of CT!
 TODO: what is the precise relationship between relative categories and 
 oo-categories? do we lose anything when we make this upgrade?
 
+TODO: notice that oo-functors, suitably truncated, define functors on the 
+homotopy category [here][4]
+
+
 
 [1]: part 1
 [2]: model structure
 [3]: https://math.stackexchange.com/questions/2219726/what-is-an-example-showing-the-failure-of-the-functoriality-of-the-cone-construc
+[4]: https://kerodon.net/tag/005Z
