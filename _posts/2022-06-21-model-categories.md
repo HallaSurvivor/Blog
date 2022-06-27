@@ -537,7 +537,7 @@ How exactly does this work? You'll have to read more in [part 2][4]!
     we would like to have a choice-free way of defining homotopy (co)limits.
 
 
-[1]: HoTTEST Summer
+[1]: https://uwo.ca/math/faculty/kapulkin/seminars/hottest_summer_school_2022.html
 [2]: https://ncatlab.org/nlab/show/infinity-category
 [3]: https://en.wikipedia.org/wiki/Model_category
 [4]: sceond post on oo-cats
