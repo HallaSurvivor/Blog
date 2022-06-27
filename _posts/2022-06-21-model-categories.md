@@ -86,21 +86,23 @@ quasi-isomorphisms of chains of $R$ modules, we get the
 derived category[^5] of $R$ modules $\mathcal{D}(R\text{-mod})$.
 
 <div class=boxed markdown=1>
-⚠ The choice of $(\mathcal{C}, \mathcal{W})$ is far from unique. It's 
+Tentatively, then, we'll say that a _homotopy theory_ is a category of the 
+form $\mathcal{C}[\mathcal{W}^{-1}]$.
+
+Notice that the choice of $(\mathcal{C}, \mathcal{W})$ is far from unique. It's 
 entirely possible for two relative categories to have the same homotopy category[^6]
 
 $$\mathcal{C_1}[\mathcal{W_1}^{-1}] \simeq \mathcal{C_2}[\mathcal{W_2}^{-1}]$$
 
-Tentatively, we'll say that a homotopy theory is a relative category. 
-But we'll say that two relative categories _present the same homotopy theory_
-exactly when their localizations agree.
+In this situation we say that $$(\mathcal{C}_1, \mathcal{W}_1)$$ and 
+$$(\mathcal{C}_2, \mathcal{W}_2)$$ _present the same homotopy theory_.
 </div>
 
-This "warning" that two relative categories can have the 
-same homotopy theory should be viewed as a _feature_, not a bug! 
-For instance, there's a notion of weak equivalence in $s\mathsf{Set}$, the 
-category of [simplicial sets][8], and this gives the same homotopy theory
-as $\mathsf{Top}$ with its weak homotopy equivalences!
+There are many important examples of two relative categories
+presentinj the same homotopy theory. To start, let's consider the 
+category $s\mathsf{Set}$ of [simplical sets][8], equipped with a notion
+of weak equivalence. It turns out that this presents the same homotopy 
+theory as $\mathsf{Top}$ with weak homotopy equivalences!
 
 This means that if we have a question about topological spaces up to homotopy,
 we can study simplicial sets instead, with _no loss of information_! This is
@@ -114,7 +116,7 @@ This is great, but there's one hitch...
 
 The homotopy category $\mathcal{C}[\mathcal{W}^{-1}]$ might be 
 _terribly behaved_. For instance, even if $\mathcal{C}$ is (co)complete, 
-the homotopy category might not be[^8]! 
+the homotopy category almost never is[^8]! 
 Even worse, it's possible that we end up with a _proper class_ of arrows between
 two objects, even if $\mathcal{C}$ started out locally small. Lastly, it's
 difficult to tell when two relative categories present the same homotopy 
@@ -149,17 +151,35 @@ Roughly, to put a model structure on $(\mathcal{C}, \mathcal{W})$
 choose two new subfamilies of arrows: the 
 <span class=defn>fibrations</span> and the <span class=defn>cofibrations</span>.
 
-A _fibration_ $f$ is an arrow that's easy to "lift" into:
+From these, we define some "nice" classes of objects:
+
+- $X$ is called <span class=defn>fibrant</span> if the unique arrow to the 
+    terminal object is a fibration
+- $X$ is called <span class=defn>cofibrant</span> if the unique arrow from 
+    the initial object is a cofibration
+- $X$ is called <span class=defn>bifibrant</span> if it is both fibrant and cofibrant
+
+Let's see some examples:
+
+A _fibration_ $f$ is an arrow that's easy to "lift" into from cofibrant objects $A$:
 
 <p style="text-align:center;">
 <img src="/assets/images/model-categories/fibration.png" width="30%">
 </p>
 
 For instance, covering spaces and bundles are examples of fibrations in 
-topology. Algebraically, there's a model structure where a map of chains of 
-$R$-modules $f : A_\bullet \to B_\bullet$ is a fibration if each $f_n$ is a surjection.
+topology. If we restrict attention to the [CW-complexes][36] then every
+object is cofibrant, and this statement is basically the 
+[homotopy lifting property][37] for covering spaces.
 
-Dually, a _cofibration_ $i$ is an arrow that's easy to "extend" out of:
+Algebraically, there's a model structure where a map of chains of 
+$R$-modules $f : A_\bullet \to B_\bullet$ is a fibration if each $f_n$ is a surjection.
+The cofibrant objects in this model structure are exactly the levelwise
+projective complexes, so this lifting property becomes the usual 
+lifting property for projective modules.
+
+Dually, a _cofibration_ $i$ is an arrow that's easy to "extend" out of
+provided our target $Y$ is fibrant:
 
 <p style="text-align:center;">
 <img src="/assets/images/model-categories/cofibration.png" width="30%">
@@ -173,9 +193,12 @@ inclusion maps of subcomplexes of a simplicial/CW/etc. complex are cofibrations.
 More generally, any subspace inclusion $A \hookrightarrow X$ where $A$ is a 
 [nieghborhood deformation retract][28] in $X$ will be a cofibration.
 
-Algebraically, the same model structure as before thinks that a map 
+Algebraically, a map
 $f : A_\bullet \to B_\bullet$ is a cofibration exactly when each $f_n$ is an
-injection whose cokernel is projective.
+injection whose cokernel is projective[^17]. This is a somewhat subtle condition,
+which basically says that each $B_n \cong A_n \oplus P_n$ where $P_n$ is 
+proejctive. It should be intuitive that given a map $A_n \to Y_n$, it's 
+easy to extend this to a map $B_n \to Y_n$ under these hypotehses.
 
 <br>
 
@@ -192,18 +215,13 @@ a square of the form
 <img src="/assets/images/model-categories/full-square.png" width="30%">
 </p>
 
-has a lift whenever $i$ is a cofibration, $f$ is a fibration, and one of $i$
+has a lift (the dotted map $X \to E$) 
+whenever $i$ is a cofibration, $f$ is a fibration, and one of $i$
 or $f$ is a weak equivalence. 
 
-We then define the "nice" subclasses of objects: 
+---
 
-- $X$ is called <span class=defn>fibrant</span> if the unique arrow to the 
-    terminal object is a fibration
-- $X$ is called <span class=defn>cofibrant</span> if the unique arrow from 
-    the initial object is a cofibration
-- $X$ is called <span class=defn>bifibrant</span> if it is both fibrant and cofibrant
-
-The model category axioms[^10] then imply that every object is weakly equivalent to a
+The model category axioms[^10] imply that every object is weakly equivalent to a
 bifibrant object. Since, after localizing, our 
 weak equivalences become isomorphisms, this means we can restrict attention to
 the bifibrant objects... But why bother?
@@ -221,7 +239,11 @@ $\iota_0 : A \to A \times I$ and $\iota_1 : A \to A \times I$.
 <div class=boxed markdown=1>
 ⚠ This is _not_ in general an actual product with some element $I$. 
 It's purely notational. Some authors use $A \wedge I$ instead, but 
-I don't really like that either.
+I don't really like that either. 
+
+The best notation is probably $\text{Cyl}(A)$ or something similar, but
+in this post I want to emphasize the relationship with the classical
+topological case, so I'll stick with $A \times I$.
 </div>
 
 Now if $f, g : A \to B$, then a homotopy between $f$ and $g$ is
@@ -248,13 +270,26 @@ homotopy equivalence classes of arrows in $\mathcal{C}$.
 
 Thus, a very common way we use model structures to perform computations is by
 first replacing the objects we want to compute with by weakly equivalent 
-bifibrant ones. For instance, we might replace a module by its injective 
+bifibrant ones. For instance, we might replace a module by a projective 
 resolution[^15]. Then maps in the homotopy category $\mathcal{C}[\mathcal{W}^{-1}]$ 
 are just maps in $\mathcal{C}$ up to homotopy[^11]! 
 
 Notice this, off the bat, solves one of the problems with homotopy categories.
 Maybe $\mathcal{C}[\mathcal{W}^{-1}]$ isn't locally small, but it's 
 _equivalent_ to something locally small. 
+
+Moreover, model structures give us a very flexible way to tell when two 
+relative categories have the same homotopy theory. Indeed, say we we have
+a pair of adjoint functors $L \dashv R$ between $\mathcal{C}_1$ and 
+$\mathcal{C}_2$ that respect the weak equivalences in the sense that 
+$f : c_1 \to R(c_2)$ is in $\mathcal{W}_1$ if and only if its adjoint 
+$\tilde{f} : L(c_1) \to c_2$ is in $\mathcal{W}_2$. 
+Then $\mathcal{C}_1[\mathcal{W}_1^{-1}] \simeq \mathcal{C}_2[\mathcal{W}_2^{-1}]$,
+and moreover, this equivalence can be computed from the adjunction $L \dashv R$.
+
+This is called a [Quillen Equivalence][26] between $$(\mathcal{C}_1, \mathcal{W}_1)$$
+and $$(\mathcal{C}_2, \mathcal{W}_2)$$[^12].
+
 Moreover, even if $\mathcal{C}[\mathcal{W}^{-1}]$ doesn't have (co)limits,
 we _can_ always construct [homotopy (co)limits][30], which we can compute
 using the same cylinder objects from before. For instance, the homotopy pushout
@@ -277,18 +312,11 @@ We do this by taking disjoint copies of $X$ and $Y$, and then gluing
 one side of the cylinder $A \times I$ to $X$ along $f$, and gluing the 
 other side of $A \times I$ to $Y$ along $g$.
 
-Something like this will always work, but knowing which objects need to be 
-replaced by cylinders and why is quite convoluted[^14]. Thus we've succeeded in 
+Something like this will always work, but knowing how to modify our diagram
+(and why) can be quite involved[^14]. Thus we've succeeded in 
 computationally solving the (co)limit issue, but it would be nice to have a 
 more conceptual framework, in which it's obvious why this is the 
-"right thing to do". More unsettling than the complicated definition,
-though, is the lack of defining universal property! Don't worry, though,
-we'll remedy this situation soon.
-
-Lastly, model categories help us understand when two homotopy categories are
-equivalent. Indeed, there's a notion of [Quillen Equivalence][26] which is
-quite easy to work with, and which guarantees the two model categories present
-the same homotopy theory[^12].
+"right thing to do"... 
 
 ---
 
@@ -297,7 +325,7 @@ computations in the localized category $\mathcal{C}[\mathcal{W}^{-1}]$
 effective (or even possible). But model categories have a fair number 
 of problems themselves.
 
-For one, besides quillen equivalence, there's no _great_ notion of a 
+For one, there's no _great_ notion of a 
 functor between model categories. In the case that a functor
 $F : (\mathcal{C}_1, \mathcal{W}_1) \to (\mathcal{C}_2, \mathcal{W}_2)$
 comes from and adjoint pair, then we can [derive][34] it to get a 
@@ -307,16 +335,15 @@ be the general notion of functor between model categories.
 Related to functors, if $\mathcal{C}$ has a model structure and $\mathcal{I}$
 is an indexing category, then $\mathcal{C}^\mathcal{I}$, the category of
 $\mathcal{I}$-diagrams in $\mathcal{C}$ (with the pointwise weak equivalences)
-may not have a model structure. See [here][35], for instance. 
+may not have a model structure. See [here][35], for instance[^18]. 
 
 With this in mind, we would like to have a version of the theory of model 
 categories which has better "formal properties". While working with a 
 _single_ model category is often quite easy to do, as soon as one looks
 for relationships _between_ model categories, we're frequently out of luck.
-In fact, since (co)limits are based on diagram categories, the difficulties
-with homotopy (co)limits are implicit in these same difficulties, so even
-inside a single category the formal issues with model categories rears its
-head.
+In fact, since (co)limits come from functors, as soon as we're interested in
+(co)limits we already run into this problem! This is one philosophical reason
+for the complexity of homotopy (co)limits.
 
 The solution lies upwards, in the land of $\infty$-categories. These are categories
 with homotopy theoretic structure (in the classical sense of topological spaces)
@@ -325,7 +352,7 @@ and more -- while the category of model categories is a terrible place to live
 (if we can define it at all...) the category of $\infty$-categories[^16]
 is extremely similar to the category of categories. Then, since every 
 model category presents an $\infty$-category, we'll be able to use this
-machinery to solve our problems with model categories! 
+machinery to solve our formal problems with model categories! 
 
 How exactly does this work? You'll have to read more in [part 2][4]!
 
@@ -419,12 +446,16 @@ How exactly does this work? You'll have to read more in [part 2][4]!
     [here][13], for a really nice treatment using this language.
 
 [^10]:
+    Which I still haven't _really_ told you, haha.
+
     I don't want to get into the precise details of a model structure here, 
     but you can (and should!) read more in Dwyer and Spalinski's excellent 
     introduction _Homotopy Theory and Model Categories_, available 
     [here][22], for instance. 
 
-    There's also Mazel-Gee's _The Zen of $\infty$-Categories_, avaialable 
+    There's a lot of good places to get intuition for model structures as well.
+
+    For instance, Mazel-Gee's _The Zen of $\infty$-Categories_, avaialable 
     [here][23], Kantor's survey _Model Categories: Theory and Applications_,
     available [here][14], and of course, the [nlab][3].
 
@@ -460,11 +491,14 @@ How exactly does this work? You'll have to read more in [part 2][4]!
     weak equivalence. 
     
 [^14]:
+    Even though it's complicated, this _is_ a solved problem. We understand 
+    how to take a diagram and massage it into a new, "homotopy coherent" 
+    diagram.
     See either the notes by Dugger [here][32] or by Hirschhorn [here][33]
-    if you don't believe me.
+    for specifics.
 
-    Also, notice that already the best way to organize this data is with
-    some kind of simplicial object... Keep a pin in that.
+    Also, after reading those, notice that already the best way to organize 
+    this data is with some kind of simplicial object... and keep a pin in that.
 
 [^15]:
     This is made even more useful by the existence of _multiple_ model structures
@@ -478,6 +512,29 @@ How exactly does this work? You'll have to read more in [part 2][4]!
 [^16]:
     In fact, it eats its own tail, and we have an $\infty$-category of 
     $\infty$-categories. But more on that later.
+
+[^17]:
+    Really we're describing the _projective_ model structure here. 
+    There's a dual model structure with the same weak equivalences
+    where we work with injectives instead.
+
+[^18]:
+    Though, thankfully, most model categories that arise in practice are 
+    (quillen equivalent to) a (simplicial) combinatorial model category. 
+
+    In particular, this means that we can usually put a model structure on 
+    the category of diagram in $\mathcal{C}$. In fact, this is one way to
+    effectively compute homotopy (co)limits in practice. We replace our 
+    functor $F : I \to \mathcal{C}$ by a weakly equivalent bifibrant 
+    functor $\tilde{F} : I \to \mathcal{C}$ and then output the 
+    (weak equivalence class of) the (co)limit of $\tilde{F}$. 
+
+    This is basically the derived functor approach to homotopy (co)limits,
+    and while it's effective, it requires us to _choose_ a bifibrant 
+    replacement. Much like choosing coordinates or a basis makes some proofs 
+    more annoying in the setting of differential geometry or linear algebra
+    (since we then have to prove our results are independent of this choice),
+    we would like to have a choice-free way of defining homotopy (co)limits.
 
 
 [1]: HoTTEST Summer
@@ -515,3 +572,5 @@ How exactly does this work? You'll have to read more in [part 2][4]!
 [33]: https://math.mit.edu/~psh/notes/hocolim.pdf
 [34]: https://ncatlab.org/nlab/show/derived+functor
 [35]: https://ncatlab.org/nlab/show/model+structure+on+functors
+[36]: https://en.wikipedia.org/wiki/CW_complex
+[37]: https://ncatlab.org/nlab/show/homotopy+lifting+property
