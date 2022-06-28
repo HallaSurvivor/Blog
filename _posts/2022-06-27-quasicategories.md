@@ -11,7 +11,7 @@ fairly quick to introduce, but if you start reading the
 $\infty$-category theoretic literature, you'll quickly run into
 another definition: <span class=defn>Quasicategories</span>.
 In this post, we'll give a quick introduction to quasicategories,
-and talk about how they're related to the $s\mathsf{Set}$-enriched
+and talk about how they're related to the $\mathcal{S}$-enriched
 categories we've come to know and love.
 
 ---
