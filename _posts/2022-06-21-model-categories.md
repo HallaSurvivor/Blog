@@ -494,6 +494,12 @@ How exactly does this work? You'll have to read more in [part 2][4]!
     Even though it's complicated, this _is_ a solved problem. We understand 
     how to take a diagram and massage it into a new, "homotopy coherent" 
     diagram.
+    The idea is again one of bifibrant replacement! 
+
+    In many cases we can put a model structure on the category of 
+    functors into a model category $\mathcal{C}$. Then instead of taking the
+    (co)limit of a diagram $F$, we cake the (co)limit of its bifrant replacement.
+
     See either the notes by Dugger [here][32] or by Hirschhorn [here][33]
     for specifics.
 

@@ -235,57 +235,8 @@ I'll see you there ^_^
     finite presentation. But if you _fix_ a presentation, it greatly expands the 
     kinds of (combinatorial and computational) tools for working with your group.
 
-[^15]:
-    You can read more in the (surprisingly readable!) paper 
-    _Calculating Simplicial Localizations_ by Dwyer and Kan. 
-
-    Another approach to simplicial localization is explained in another
-    readable paper by the same authors: _Simplicial Localizations of Categories_.
-    It's a perfectly good definition, and works well in the abstract, but 
-    the "hammock" definition is more amenable to direct computation, since it's
-    slightly more explicit.
-
-    See [here][25] for more details.
-
-[^16]:
-    As before, we also allow the first map to face left instead of right,
-    as long as our maps strictly alternate. What does this mean for our hammocks?
-    The horizontal threads of our hammock must be oriented the same way!
-
-    For instance, this is a valid hammock:
-
-    <p style="text-align:center;">
-    <img src="/assets/images/homotopy-of-homotopies/legal-hammock-1.png" width="30%">
-    </p>
-
-    This is a valid hammock:
-
-    <p style="text-align:center;">
-    <img src="/assets/images/homotopy-of-homotopies/legal-hammock-2.png" width="30%">
-    </p>
-
-    But this is _not_ a valid hammock:
-
-    <p style="text-align:center;">
-    <img src="/assets/images/homotopy-of-homotopies/illegal-hammock.png" width="30%">
-    </p>
 
 
-
-    Also, I can't express enough how much I love this naming idea! 
-    It's quirky and apt in equal measure. 10/10.
-
-[^17]:
-    It's actually _slightly_ more general. The first arrow is also allowed to
-    point left, as long as things still alternate. For instance, we allow 
-    a zigzag of the form
-
-    $$ A \overset{\sim}{\leftarrow} C_0 \to B $$
-
-    as well.
-
-    For the specifics of the construction, see 
-    _Calculating Simplicial Localizations_ by Dwyer and Kan.
 
 [^18]:
     And in case $(\mathcal{C}, \mathcal{W})$ admits a model structure
@@ -352,9 +303,8 @@ I'll see you there ^_^
 [5]: https://en.wikipedia.org/wiki/Homotopy
 [10]: https://ncatlab.org/nlab/show/model+structure+on+simplicial+sets
 [11]: https://ncatlab.org/nlab/show/site
-[25]: https://ncatlab.org/nlab/show/simplicial+localization
 [26]: https://golem.ph.utexas.edu/category/2019/09/partial_evaluations_2.html#c056600
-[27]: https://en.wikipedia.org/wiki/Simplicial_set#Face_and_degeneracy_maps_and_simplicial_identities
+
 [28]: https://people.math.harvard.edu/~lurie/papers/highertopoi.pdf
 [33]: https://ncatlab.org/nlab/show/model+structure+on+sSet-categories#ModelForInfinityCategories
 [36]: https://en.wikipedia.org/wiki/Quasi-category
