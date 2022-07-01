@@ -49,7 +49,7 @@ not without flaws. As soon as we want to talk about relationships _between_
 model categories, we start running into trouble. For instance, there's 
 no good notion of a functor between model categories.
 
-What, then are we to do? The answer is to fully accept homotopy theory as 
+What, then, are we to do? The answer is to fully accept homotopy theory as 
 part of our life, and to move to a notion of "category" which is better 
 equipped to handle the geometry which is implicit in the machinery of 
 model categories.
@@ -114,7 +114,7 @@ That is, given two objects $A$ and $B$ in our category, we have a
 _space_ of morphisms $\text{Map}(A,B)$.
 
 There is a natural notion of equivalence between two simplicial categories,
-called [Dwyer-Kan equivalence][7], then we say an
+called _Dwyer-Kan equivalence_, then we say an
 <span class=defn>$\infty$-category</span> is a simplicial category
 up to DK-equivalence.
 
@@ -266,6 +266,7 @@ _specific_ category in mind, model categories are
 where we actually want to do our computations.
 
 It begs the question, though, just how nice _are_ $\infty$-categories?
+After all, this abstraction needs to justify itself somehowj
 
 Let's start with the most obvious issue with model categories: the lack of
 functors between them. Once we pass to $\infty$-categories, then we know 
@@ -327,11 +328,14 @@ in some form in $\infty$-category theory!
 So, miraculously, in the passage from model categories to $\infty$-categories,
 not only have we solved our quibbles about the formal properties of model
 categories, but we've done so in the most powerful possible way! 
+We have access, in the $\infty$-category setting, to all the nice formal
+properties that made classical $1$-category theory so effective.
 
 What's even more remarkable is that this notion of a (co)limit 
 computes homotopy (co)limits as a special case! 
 
-Remember from before that taking the nerve of a category lets us build an
+In the [sister post][12] about quasicategories, we introduce the 
+nerve construction, which lets us build an
 $\infty$-category from a $1$-category. Well if $\mathcal{C}$ is a model 
 category, then a homotopy (co)limit of some functor 
 $F : \mathcal{I} \to \mathcal{C}$ is the same thing as the
@@ -340,13 +344,12 @@ $\tilde{F}$ from the nerve of $\mathcal{I}$ to $L^H(\mathcal{C}, \mathcal{W})$.
 
 Lastly, let's note that this is all good for something. 
 Functors on $\infty$-categories can be "truncated" in a way
-that induces functors on the homotopy categories. See [here][4],
-for instance.
-
+that induces functors on the homotopy categories 
+(see [here][4], for instance).
 This means that, at least in the abstract, we can prove theorems using
 the language of $\infty$-categories, and at the end of the day we can 
 take homotopy categories. After doing this any categories or functors 
-we've built will descent nicely. In particular, since the homotopy 
+we've built will descend nicely. In particular, since the homotopy 
 category of $L^H(\mathcal{C}, \mathcal{W})$ is $\mathcal{C}[\mathcal{W}^{-1}]$
 this gives us a very powerful mode of argument for dealing with localizations!
 
@@ -364,8 +367,7 @@ conceptually clean way to see what the hammock localization is
 "really doing"?
 
 For answers to both of these questions, I'll see you in the 
-[last post][11]
-of this ~~trilogy~~ tetralogy? 
+[last post][11] of this ~~trilogy~~... tetralogy? 
 
 Maybe it's best to call it a trilogy with a long quasi-categorical ~bonus post~.
 
@@ -452,7 +454,6 @@ Take care, all ^_^
 [4]: https://kerodon.net/tag/005Z
 [5]: https://en.wikipedia.org/wiki/Simplex
 [6]: https://en.wikipedia.org/wiki/Singular_homology
-[7]: DK equivalence
 [8]: quasicategories
 [9]: nerve
 [10]: https://www.youtube.com/watch?v=3IjAy0gHRyY&list=PLsmqTkj4MGTDenpj574aSvIRBROwCugoB

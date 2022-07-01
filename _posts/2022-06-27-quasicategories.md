@@ -31,7 +31,7 @@ we can do that!
 <div class=boxed markdown=1>
 The <span class=defn>$i$th Horn</span> of $\Delta^n$ is (geometrically) 
 the space we get by removing the interior of $\Delta^n$, along with the 
-face opposite the $i$th vertex. We denote it $\Lambda^n_i$
+face opposite the $i$th vertex[^1]. We denote it $\Lambda^n_i$
 </div>
 
 For instance, let's look at $\Delta^2$. This is a solid triangle, and it 
@@ -135,7 +135,7 @@ $$\text{Sing}_X$$, every category _also_ defines a simplicial set,
 called the <span class=defn>Nerve</span> of the category $\mathcal{C}$.
 
 In general, the $n$-cells in the nerve $\mathcal{N}(\mathcal{C})$ will be
-given by the "paths" of arrows in $\mathcal{C}$ of length $n$. That is
+given by the "paths" of length $n$ made of arrows in $\mathcal{C}$. That is
 
  - The 0-cells will be objects of $\mathcal{C}$
  - The 1-cells will be the arrows, $C_0 \to C_1$
@@ -232,9 +232,9 @@ Notice, though, that _every kan complex is a quasicategory_! This tells us
 that quasicategories allow us to treat spaces and categories on equal footing[^5]!
 
 In particular, quasicategories give us a setting where we can 
-"do homotopy theory" to categories, and if you remember a hundred 
-years ago at the start of this post, we were looking for 
-_precisely_ such a generalization!
+"do homotopy theory" to categories, and if you remember back to 
+the main post about $\infty$-categories, and how they solve the
+formal issues with model categories, that's exactly what we were looking for!
 
 <div class=boxed markdown=1>
 Here's another tentative definition. If this reminds you of the tentative
@@ -242,12 +242,49 @@ definition of a "homotopy theory" from the last post, you have good instincts.
 
 An <span class=defn>$\infty$-category</span> is a quasicategory, where we 
 say two quasicategories _present the same $\infty$-category_ if they are
-weakly equivalent in a [certain model structure][10] on 
-simplicial sets.
+[homotopy equivalent][10] as simplicial sets.
 </div>
 
+Jacob Lurie's tomes on $\infty$-categories are primarily based on the 
+language of quasicategories. But in the main post, we defined an 
+$\infty$-category to be a category enriched in spaces...
+
+How can we reconcile these viewpoints? Is there a way for us to apply
+the machinery proven in Lurie's books to the hammock localization of
+a model category? Why have we given two seemingly unrelated definitions
+of an $\infty$-category in the first place?
+
+For answers to these questions and more, read on to the last post in this
+series[^2]!
 
 ---
+
+[^1]:
+    Super concretely, given $n+1$ vertices 
+
+    $$0 \lt 1 \lt \ldots \lt n-1 \lt n$$
+
+    the $i$th horn $\Lambda^n_i$ is $\Delta^n$ minus two cells:
+
+    - the unique $n$-cell
+    - the unique $n-1$ cell which doesn't contain $i$
+
+[^2]:
+    Thank goodness! I have been working on these for _so_ long.
+    I really didn't realize how big a project I was in for when I decided
+    to make a post clarifying the relationship between model categories
+    and $\infty$-categories...
+
+    I love how it's turning out, but I'm so ready for these posts to be 
+    behind me, haha. I also didn't want to post any of them until they
+    were all done. In part because I spent a lot of time moving various 
+    bits back and forth between posts, and once one is public I would want
+    to consider it (mostly) set in stone. But also because I wanted to make
+    sure I actually finished them all.
+
+    I have a bad habit of starting a series and leaving things unfinished
+    (rest in peace [cohomology part 1][2]), 
+    but it was important that I not do that to these posts.
 
 [^3]:
     Sorry if these are hard to understand. Drawing 3d pictures is hard, haha.
@@ -280,8 +317,10 @@ simplicial sets.
 
 
 [1]: post 2
+[2]: cohomology part 1
 [7]: https://math.stackexchange.com/questions/4475159/conceptualizing-presheaves-as-generalized-spaces/4475219#4475219
 [8]: http://arxiv.org/abs/0809.4221
 [9]: https://ncatlab.org/nlab/show/geometric+realization
 [10]: https://ncatlab.org/nlab/show/model+structure+on+simplicial+sets#joyals_model_structure
 [11]: https://ncatlab.org/nlab/show/simplicial+set
+
