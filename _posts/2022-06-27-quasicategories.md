@@ -18,13 +18,37 @@ categories we've come to know and love.
 
 First, then, a reminder:
 
-TODO: recap what a simplicial set is, and mention we can build
-$$\text{Sing}_X$$ from a space $X$ in a way that doesn't lose 
-homotopy information.
+A <span class=defn>Simplicial Set</span> is a (contravariant) 
+functor from the [simplex category][3] to $\mathsf{Set}$. 
 
-In the previous post, we were interested in recognizing when a 
-simplicial set is of the form $$\text{Sing}_X$$. Let's see how
-we can do that!
+This seems strange at first, but it turns out that we can model
+many different kinds of behavior using simplicial sets. 
+
+Most notably, simpicial sets are a common generalization of both 
+topological spaces (up to homotopy) and categories! 
+
+We've already seen how simplicial sets can represent topological spaces up to
+homotopy (this is given by a quillen equivalence of model structures on
+$\mathsf{Top}$ and $s\mathsf{Set}$). To a simplicial set, we associate its
+[geometric realization][4], and to a topological space we associate its 
+(singular) simplicial set $\text{Sing}_X$ where $\text{Sing}_X(\Delta^n)$ 
+is the set of continuous maps from the topological $n$-simplex into $X$.
+
+We know that $X$ is determined up to (weak) homotopy equivalence by 
+$\text{Sing}_X$, so we previously defined a 
+<span class=defn>Simplicial Category</span> to be a category enriched in 
+simplicial sets. We wanted to intuitively view this as a category with a
+geometric space of arrows between any two objects, as this came up in our 
+study of $\infty$-categories. This turns out to be 
+a great definition for intuition, but it can be a bit difficult to work with.
+
+I mentioned earlier that simplicial sets can _directly_ generalize categories...
+Maybe there's some way to define $\infty$-categories directly as simplicial
+sets as well?
+
+The answer will be "yes", but let's start small. Is there a way for us to
+recognize when a simplicial set is $\text{Sing}_X$ for some topological
+space $X$?
 
 ---
 
@@ -176,8 +200,6 @@ Perhaps a better way to visualize this is as a _disk_ instead:
 <img src="/assets/images/quasicategories/nerve2.png" width="50%">
 </p>
 
----
-
 Of course, it's easy to guess the next question. Can we tell 
 _which_ simplicial complexes arise as the nerve of some category?
 
@@ -226,9 +248,12 @@ quasicategory.
 
 Moreover, if $X$ is a quasicategory where each inner horn has a 
 _unique_ fill, then $X$ is isomorphic to the nerve of some category.
+
+Moreover again, the nerve construction embeds the category of categories
+fully and faithfully into the category of quasicategories.
 </div>
 
-Notice, though, that _every kan complex is a quasicategory_! This tells us
+Importantly, this means that _every kan complex is a quasicategory_! This tells us
 that quasicategories allow us to treat spaces and categories on equal footing[^5]!
 
 In particular, quasicategories give us a setting where we can 
@@ -245,16 +270,31 @@ say two quasicategories _present the same $\infty$-category_ if they are
 [homotopy equivalent][10] as simplicial sets.
 </div>
 
+This is great because it gives us a super concrete way of working with 
+$\infty$ categories. 
+
+In this framework, our categories literally are geometric objects! The 
+category of simplicial sets is a topos, so it has as many nice constructions
+as we could want, and many of these preserve kan complexes and quasicategories.
+
+For instance, now functors are just continuous maps, limits and colimits 
+of quasicategories can be computed as with geometric objects, exponentials 
+give us functor quasicategories, and all of these work as well as we could hope.
+
+Because of this concreteness, 
 Jacob Lurie's tomes on $\infty$-categories are primarily based on the 
 language of quasicategories. But in the main post, we defined an 
 $\infty$-category to be a category enriched in spaces...
 
 How can we reconcile these viewpoints? Is there a way for us to apply
 the machinery proven in Lurie's books to the hammock localization of
-a model category? Why have we given two seemingly unrelated definitions
-of an $\infty$-category in the first place?
+a model category?  Is there some way for us to
+use these nice geometric definitions for computations involving quasicategories,
+and leverage them to understand the simplicial categories we've been talking
+about? Why have we given two seemingly unrelated definitions of an 
+$\infty$-category in the first place?
 
-For answers to these questions and more, read on to the last post in this
+For answers to these questions and more, read on to the [last post][5] in this
 series[^2]!
 
 ---
@@ -318,6 +358,9 @@ series[^2]!
 
 [1]: post 2
 [2]: cohomology part 1
+[3]: https://en.wikipedia.org/wiki/Simplex_category
+[4]: https://ncatlab.org/nlab/show/geometric+realization#OfSimplicialSets
+[5]: post 4
 [7]: https://math.stackexchange.com/questions/4475159/conceptualizing-presheaves-as-generalized-spaces/4475219#4475219
 [8]: http://arxiv.org/abs/0809.4221
 [9]: https://ncatlab.org/nlab/show/geometric+realization
