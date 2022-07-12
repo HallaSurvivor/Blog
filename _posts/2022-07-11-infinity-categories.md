@@ -434,7 +434,7 @@ Take care, all ^_^
     It's quirky and apt in equal measure. 10/10.
 
 [^6]:
-    That's right. What was suppposed to be a single blog post 
+    That's right. What was supposed to be a single blog post 
     (albeit a technically challenging one) has now turned into $4$.
 
 [^7]:
@@ -455,8 +455,6 @@ Take care, all ^_^
 [4]: https://kerodon.net/tag/005Z
 [5]: https://en.wikipedia.org/wiki/Simplex
 [6]: https://en.wikipedia.org/wiki/Singular_homology
-[8]: quasicategories
-[9]: nerve
 [10]: https://www.youtube.com/watch?v=3IjAy0gHRyY&list=PLsmqTkj4MGTDenpj574aSvIRBROwCugoB
 [11]: homotopy-of-homotopies
 [12]: quasicategories

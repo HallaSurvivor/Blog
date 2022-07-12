@@ -67,7 +67,7 @@ Is there any way to remedy this, and put our intuition on solid ground?
 
 Also, in the [previous post][7] we gave a second definition of 
 $\infty$-category, based on [quasicategories][8]! 
-These have some pros and some cons compared to the simplical category approach,
+These have some pros and some cons compared to the simplicial category approach,
 but we now have _three different definitions_ for "homotopy theory" 
 floating around. Is there any way to get our way out of this situation?
 

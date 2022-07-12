@@ -198,8 +198,8 @@ Algebraically, a map
 $f : A_\bullet \to B_\bullet$ is a cofibration exactly when each $f_n$ is an
 injection whose cokernel is projective[^17]. This is a somewhat subtle condition,
 which basically says that each $B_n \cong A_n \oplus P_n$ where $P_n$ is 
-proejctive. It should be intuitive that given a map $A_n \to Y_n$, it's 
-easy to extend this to a map $B_n \to Y_n$ under these hypotehses.
+projective. It should be intuitive that given a map $A_n \to Y_n$, it's 
+easy to extend this to a map $B_n \to Y_n$ under these hypotheses.
 
 <br>
 

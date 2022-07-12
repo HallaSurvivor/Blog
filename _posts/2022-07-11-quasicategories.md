@@ -25,7 +25,7 @@ functor from the [simplex category][3] to $\mathsf{Set}$.
 This seems strange at first, but it turns out that we can model
 many different kinds of behavior using simplicial sets. 
 
-Most notably, simpicial sets are a common generalization of both 
+Most notably, simplicial sets are a common generalization of both 
 topological spaces (up to homotopy) and categories! 
 
 We've already seen how simplicial sets can represent topological spaces up to
@@ -330,7 +330,7 @@ series[^2]!
 [^3]:
     Sorry if these are hard to understand. Drawing 3d pictures is hard, haha.
     Each image is made up of 1-cells (colored in black) as well as 2-cells
-    (shaeded in blue). Moreover, in each pictrue we've omitted exactly one
+    (shaded in blue). Moreover, in each picture we've omitted exactly one
     2-cell from the boundary of the tetrahedron.
 
 [^4]:
