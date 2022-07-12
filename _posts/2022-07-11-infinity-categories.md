@@ -415,19 +415,19 @@ Take care, all ^_^
     For instance, this is a valid hammock:
 
     <p style="text-align:center;">
-    <img src="/assets/images/homotopy-of-homotopies/legal-hammock-1.png" width="30%">
+    <img src="/assets/images/infinity-categories/legal-hammock-1.png" width="30%">
     </p>
 
     This is a valid hammock:
 
     <p style="text-align:center;">
-    <img src="/assets/images/homotopy-of-homotopies/legal-hammock-2.png" width="30%">
+    <img src="/assets/images/infinity-categories/legal-hammock-2.png" width="30%">
     </p>
 
     But this is _not_ a valid hammock:
 
     <p style="text-align:center;">
-    <img src="/assets/images/homotopy-of-homotopies/illegal-hammock.png" width="30%">
+    <img src="/assets/images/infinity-categories/illegal-hammock.png" width="30%">
     </p>
 
     Also, I can't express enough how much I love this naming idea! 
