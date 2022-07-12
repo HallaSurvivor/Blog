@@ -23,18 +23,16 @@ Well, when I saw this post I was reminded that I want to!
 
 First, let's recall what question we want to answer:
 
-In the [last post][2], we showed that the dihedral group of an $n$-gon,
-$D_{2n}$ can embed into the symmetric group $\mathfrak{S}_m$ even if $m \lt n$.
-
-For instance, $D_{2 \cdot 6} \hookrightarrow \mathfrak{S}_5$.
+In the [last post][2], we showed that the dihedral group of an $n$-gon's symmetries
+$$D_{2n}$$ can embed into the symmetric group $$\mathfrak{S}_m$$ even if $m \lt n$.
+For instance, $$D_{2 \cdot 6} \hookrightarrow \mathfrak{S}_5$$.
 
 A perfectly natural question, then, is _how much smaller_ can we make this?
 
 We showed that if $n = \prod p_i^{k_i}$ is the prime factorization of $n$,
 then $D_{2n} \hookrightarrow \mathfrak{S}_{\sum p_i^{k_i}}$. 
-
 For instance, since $6 = 2 \cdot 3$, we have 
-$D_{2 \cdot 6} \hookrightarrow \mathfrak{S}_{2+3} = \mathfrak{S}_5$.
+$$D_{2 \cdot 6} \hookrightarrow \mathfrak{S}_{2+3} = \mathfrak{S}_5$$.
 
 With this in mind, it seems entirely believable that we can get the ratio to
 be _very_ small.
@@ -45,7 +43,9 @@ necessary in hindsight, but it did make for some pretty pictures!
 
 ---
 
-First, here's a plot of the minimal $m$ so that $D_{2n} \hookrightarrow \mathfrak{S}_m$.
+TODO: copy your sage code into footnote 3
+
+First, here's a plot of the minimal $m$ so that $D_{2n} \hookrightarrow \mathfrak{S}_m$[^3].
 
 TODO: a scatter plot of m vs n
 
@@ -123,6 +123,17 @@ Take care, and stay safe all ^_^. Talk Soon!
 [^2]:
     I don't know why, but submitting to the OEIS always makes me kind of
     giddy with excitement!
+
+[^3]:
+    The code is simple enough that I probably don't _need_ to include it?
+    It also disrupts the flow of the post more than I would like, so I'll 
+    put it here for completeness:
+
+    <div class="linked_auto">
+    <script type="text/x-sage">
+
+    </script>
+    </div>
 
 [1]: https://math.stackexchange.com/questions/4491025/the-smallest-number-for-faithful-operation/4491030#4491030
 [2]: /2021/08/16/embedding-dihedral-groups-efficiently.html
