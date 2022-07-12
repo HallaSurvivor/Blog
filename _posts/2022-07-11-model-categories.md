@@ -1,8 +1,9 @@
 ---
 layout: post
-title: What Are Homotopy Theories, and Why Should We Care?
+title: What are Model Categories? (Homotopy Theories pt 1/4)
 tags:
-  - oo-categories
+  - homotopy-theories
+date: 2022-07-11 01:00
 ---
 
 I'm a TA at the [HoTTEST Summer 2022][1], a summer school about 
@@ -18,7 +19,7 @@ would love to share with you ^_^.
 This was originally going to be one post, but it ended up having
 a lot of tangentially related stuff all mashed together, and it
 felt very disorganized and unfocused[^1]. So I've decided to split it 
-into three posts, with each post introducing a new, more abstract
+into ~~three~~ four posts, with each post introducing a new, more abstract
 option, and hopefully saying how it solves problems present in 
 the more concrete settings.
 
@@ -38,7 +39,7 @@ But there's another motivating example, which we also call "homotopy":
 
 <div class=boxed markdown=1>
 Whatever a "Homotopy Theory" is, it should encompass the chains of modules,
-where we identify two chains up to [homotopy equivalence][5]
+where we identify two chains up to [quasi-isomorphism][5]
 </div>
 
 Obviously these are related -- after all, from a topological space we can
@@ -99,7 +100,7 @@ $$(\mathcal{C}_2, \mathcal{W}_2)$$ _present the same homotopy theory_.
 </div>
 
 There are many important examples of two relative categories
-presentinj the same homotopy theory. To start, let's consider the 
+presenting the same homotopy theory. To start, let's consider the 
 category $s\mathsf{Set}$ of [simplical sets][8], equipped with a notion
 of weak equivalence. It turns out that this presents the same homotopy 
 theory as $\mathsf{Top}$ with weak homotopy equivalences!
@@ -253,6 +254,9 @@ a map $H : A \times I \to B$ so that the following triangle commutes:
 <img src="/assets/images/model-categories/homotopy-triangle.png" width="33%">
 </p>
 
+If there is a homotopy between $f$ and $g$, we say that $f$ and $g$ are 
+_homotopic_ or _homotopy equivalent_, often written $f \sim g$.
+
 This brings us to the big punchline:
 
 <div class=boxed markdown=1>
@@ -290,7 +294,7 @@ and moreover, this equivalence can be computed from the adjunction $L \dashv R$.
 This is called a [Quillen Equivalence][26] between $$(\mathcal{C}_1, \mathcal{W}_1)$$
 and $$(\mathcal{C}_2, \mathcal{W}_2)$$[^12].
 
-Moreover, even if $\mathcal{C}[\mathcal{W}^{-1}]$ doesn't have (co)limits,
+Moreover again, even if $\mathcal{C}[\mathcal{W}^{-1}]$ doesn't have (co)limits,
 we _can_ always construct [homotopy (co)limits][30], which we can compute
 using the same cylinder objects from before. For instance, the homotopy pushout
 of 
@@ -546,7 +550,7 @@ How exactly does this work? You'll have to read more in [part 2][4]!
 [1]: https://uwo.ca/math/faculty/kapulkin/seminars/hottest_summer_school_2022.html
 [2]: https://ncatlab.org/nlab/show/infinity-category
 [3]: https://en.wikipedia.org/wiki/Model_category
-[4]: sceond post on oo-cats
+[4]: infinity-categories
 [5]: https://en.wikipedia.org/wiki/Chain_complex#Chain_homotopy
 [6]: https://en.wikipedia.org/wiki/Cohomology
 [7]: https://en.wikipedia.org/wiki/Quasi-isomorphism

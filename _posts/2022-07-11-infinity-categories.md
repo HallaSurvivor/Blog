@@ -1,8 +1,9 @@
 ---
 layout: post
-title: Infinity Categories and Model Categories
+title: Why Care About Infinity Categories? (Homotopy Theories pt 2/4)
 tags:
-  - oo-categories
+  - homotopy-theories
+date: 2022-07-11 02:00
 ---
 
 The title of this post is slightly misleading. It will be almost entirely
@@ -24,15 +25,15 @@ The quintessential examples are the (weak) homotopy equivalences in
 $\mathsf{Top}$, and the quasi-isomorphisms of chain complexes.
 
 We want to build a new category 
-(called the <span class=defn>Homotopy Category</span> or <span class=defn>Localization</span>)
+(called the _homotopy category_ or _localization_)
 $\mathcal{C}[\mathcal{W}^{-1}]$ where we freely invert all the arrows in 
 $\mathcal{W}$[^1]. The issue is that this category is quite badly behaved. 
 For instance, even if $\mathcal{C}$ is (co)complete, 
 $\mathcal{C}[\mathcal{W}^{-1}]$ almost never is. 
 
 A [model structure][2] on a pair $(\mathcal{C}, \mathcal{W})$ is a choice of
-two new families of arrows, called <span class=defn>fibrations</span> and
-<span class=defn>cofibrations</span>, plus axioms saying how they relate to 
+two new families of arrows, called _fibrations_ and
+_cofibrations_, plus axioms saying how they relate to 
 each other and to the weak equivalences $\mathcal{W}$.
 
 A model structure on $(\mathcal{C}, \mathcal{W})$ solves many of the 
@@ -92,7 +93,7 @@ simplicial sets really _can_ be used to model homotopy types.
 But there's a natural follow up question: Can we recognize when a 
 simplicial set is $$\text{Sing}_X$$ for some space $X$? The answer,
 of course, is _yes_, but we're not going to talk about that here. 
-This topic deserves its own post, and indeed it [has one][12].
+This topic deserves its own post, which is [part 3][12].
 
 For now we'll content ourselves with the knowledge that 
 simplicial sets, up to homotopy equivalence, represent spaces 
@@ -265,8 +266,8 @@ $\infty$-categories are conceptually nice but if you have a
 _specific_ category in mind, model categories are
 where we actually want to do our computations.
 
-It begs the question, though, just how nice _are_ $\infty$-categories?
-After all, this abstraction needs to justify itself somehowj
+It begs the question, though: just how nice _are_ $\infty$-categories?
+After all, this abstraction needs to justify itself somehow.
 
 Let's start with the most obvious issue with model categories: the lack of
 functors between them. Once we pass to $\infty$-categories, then we know 
@@ -334,7 +335,7 @@ properties that made classical $1$-category theory so effective.
 What's even more remarkable is that this notion of a (co)limit 
 computes homotopy (co)limits as a special case! 
 
-In the [sister post][12] about quasicategories, we introduce the 
+In the [next post][12] about quasicategories, we introduce the 
 nerve construction, which lets us build an
 $\infty$-category from a $1$-category. Well if $\mathcal{C}$ is a model 
 category, then a homotopy (co)limit of some functor 
@@ -448,7 +449,7 @@ Take care, all ^_^
 
     The second video already shows lots of sample computations for limits.
 
-[1]: part 1
+[1]: model-categories
 [2]: https://en.wikipedia.org/wiki/Model_category
 [3]: https://math.stackexchange.com/questions/2219726/what-is-an-example-showing-the-failure-of-the-functoriality-of-the-cone-construc
 [4]: https://kerodon.net/tag/005Z
@@ -457,8 +458,8 @@ Take care, all ^_^
 [8]: quasicategories
 [9]: nerve
 [10]: https://www.youtube.com/watch?v=3IjAy0gHRyY&list=PLsmqTkj4MGTDenpj574aSvIRBROwCugoB
-[11]: homotopy of homotopies post
-[12]: quasicategory post
+[11]: homotopy-of-homotopies
+[12]: quasicategories
 [13]: https://en.wikipedia.org/wiki/Enriched_category
 [25]: https://ncatlab.org/nlab/show/simplicial+localization
 [27]: https://en.wikipedia.org/wiki/Simplicial_set#Face_and_degeneracy_maps_and_simplicial_identities

@@ -1,8 +1,9 @@
 ---
 layout: post
-title: Why Care about the "Homotopy Theory of Homotopy Theories"?
+title: Why Care about the "Homotopy Theory of Homotopy Theories"? (Homotopy Theories pt 4/4)
 tags:
-  - oo-categories
+  - homotopy-theories
+date: 2022-07-11 04:00
 ---
 
 It's time for the last post of the series! Ironically, this is the post that
@@ -29,7 +30,7 @@ _actually_ isos in $\mathcal{C}$. The classical examples are topological
 spaces up to homotopy equivalence, and chains of $R$-modules up to 
 quasiisomorphism.
 
-In the first post, we defined the localization (or the _homotopy category_)
+In the first post, we defined the _localization_ (or the _homotopy category_)
 $\mathcal{C}[\mathcal{W}^{-1}]$, which we get by freely inverting the arrows
 in $\mathcal{W}$. We say that a _homotopy theory_ is a category of the form
 $\mathcal{C}[\mathcal{W}^{-1}]$ up to equivalence.
@@ -52,18 +53,19 @@ categories that have a _space_ worth of arrows between any two objects,
 rather than just a set. We call simplicial categories 
 (up to equivalence) $\infty$-categories.
 
-We know how to associate to each relative category $(\mathcal{C}, \mathcal{W})$
+Now, we know how to associate to each relative category $(\mathcal{C}, \mathcal{W})$
 an $\infty$-category via _hammock localization_.
 Surprisingly, (up to size issues), _every_ $\infty$-category arises from a 
 pair $(\mathcal{C}, \mathcal{W})$ in this way. 
-
-With this in mind, we might want to think of $\infty$-categories as 
-"homotopy theories" rather than relative categories. Intuitively, the facts 
+With this in mind, and knowing how nice the world of $\infty$-categories is,
+we might want to say a "homotopy theory" is an $\infty$-category rather than
+a relative category.
+Intuitively, the facts 
 in the previous paragraph tell us that we shouldn't lose any information by
 doing this... But the correspondence isn't _actually_ one-to-one.
 Is there any way to remedy this, and put our intuition on solid ground?
 
-Moreover, in the [previous post][7] we gave a second definition of 
+Also, in the [previous post][7] we gave a second definition of 
 $\infty$-category, based on [quasicategories][8]! 
 These have some pros and some cons compared to the simplical category approach,
 but we now have _three different definitions_ for "homotopy theory" 
@@ -116,7 +118,7 @@ in any (thus every) of the localizations of the categories we've just discussed.
 
 Perhaps unsurprisingly, we can do the same simplicial localization 
 maneuver to one of these relative categories 
-in order to get an $\infty$-category of $\infty$-categories. 
+in order to get an $\infty$-category of $\infty$-categories!
 
 But why care about all this?
 
@@ -128,7 +130,7 @@ for the task at hand. But are there any more concrete reasons to care?
 
 Remember all those words ago in the [first post][12] of this series, 
 I mentioned that hammock localization _works_, but feels somewhat 
-unmotivated. Foreshadowing with about as much grace as a new 
+unmotivated. Foreshadowing with about as much grace as a young 
 fanfiction author, I asked if there were some more conceptual way to 
 understand the hammock construction, which shows us "what's really going on".
 
@@ -247,12 +249,12 @@ Stay safe, all, and I'll see you soon!
 [4]: https://ncatlab.org/nlab/show/Quillen+equivalence
 [5]: https://en.wikipedia.org/wiki/Homotopy
 [6]: https://mathoverflow.net/questions/135717/examples-of-non-quillen-equivalent-model-categories-having-equivalent-homotopy-c
-[7]: quasicategory post
+[7]: quasicategories
 [8]: https://en.wikipedia.org/wiki/Quasi-category
 [9]: https://arxiv.org/pdf/math/0610239.pdf
 [10]: https://ncatlab.org/nlab/show/model+structure+on+simplicial+sets
 [11]: https://ncatlab.org/nlab/show/site
-[12]: model categories post
+[12]: model-categories
 [26]: https://golem.ph.utexas.edu/category/2019/09/partial_evaluations_2.html#c056600
 
 [28]: https://people.math.harvard.edu/~lurie/papers/highertopoi.pdf

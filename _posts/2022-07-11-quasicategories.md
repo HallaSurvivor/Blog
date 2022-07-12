@@ -1,8 +1,9 @@
 ---
 layout: post
-title: An Interlude -- quasicategories
+title: An Interlude -- Quasicategories (Homotopy Theories pt 3/4)
 tags:
-  - oo-categories
+  - homotopy-theories
+date: 2022-07-11 03:00
 ---
 
 In the [other posts][1], we defined $\infty$-categories as being 
@@ -277,7 +278,7 @@ In this framework, our categories literally are geometric objects! The
 category of simplicial sets is a topos, so it has as many nice constructions
 as we could want, and many of these preserve kan complexes and quasicategories.
 
-For instance, now functors are just continuous maps, limits and colimits 
+For instance, now functors are just simplicial maps, many limits and colimits 
 of quasicategories can be computed as with geometric objects, exponentials 
 give us functor quasicategories, and all of these work as well as we could hope.
 
@@ -356,11 +357,11 @@ series[^2]!
 
 
 
-[1]: post 2
-[2]: cohomology part 1
+[1]: infinity-categories
+[2]: /2021/03/01/cohomology-intuitively.html
 [3]: https://en.wikipedia.org/wiki/Simplex_category
 [4]: https://ncatlab.org/nlab/show/geometric+realization#OfSimplicialSets
-[5]: post 4
+[5]: homotopy-of-homotopies
 [7]: https://math.stackexchange.com/questions/4475159/conceptualizing-presheaves-as-generalized-spaces/4475219#4475219
 [8]: http://arxiv.org/abs/0809.4221
 [9]: https://ncatlab.org/nlab/show/geometric+realization
