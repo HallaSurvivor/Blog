@@ -6,7 +6,7 @@ tags:
 date: 2022-07-11 03:00
 ---
 
-In the [other posts][1], we defined $\infty$-categories as being 
+In the [previous post][1], we defined $\infty$-categories as being 
 categories "enriched in simplicial sets". These are nice, and 
 fairly quick to introduce, but if you start reading the 
 $\infty$-category theoretic literature, you'll quickly run into
@@ -119,7 +119,7 @@ and $\Lambda^3_3$ is
 As a (quick?) exercise, you should try to write down a definition of
 $\Lambda^n_i$ as a simplicial set. 
 
-Remember that, by the yoneda lemma, it suffices to say what the
+Remember that, by the yoneda lemma, it (more or less) suffices to say what the
 $k$-cells are for each $k$[^4].
 </div>
 

@@ -32,7 +32,7 @@ Let's look at the primordial example:
 
 <div class=boxed markdown=1>
 Whatever a "Homotopy Theory" is, it should encompass the category $\mathsf{Top}$
-of topological spaces where we identify spaces up to [(weak) homotopy equivalence][5]
+of topological spaces where we identify spaces up to [(weak) homotopy equivalence][38]
 </div>
 
 But there's another motivating example, which we also call "homotopy":
@@ -367,15 +367,12 @@ How exactly does this work? You'll have to read more in [part 2][4]!
     Especially while you're still trying to sort them out yourself! 
 
     All of this material was scattered in my head with messy interconnections,
-    but of course words have to be linearly ordered on a page. So any expositor
-    has to figure out how to put these ideas into a fixed order. Ideally one
-    that has a narrative that's easy to follow, and which motivates all of 
-    the ideas involved.
+    but of course words have to be linearly ordered on a page, and it took 
+    a lot of work to figure out how to put these ideas into a fixed order. 
+    Especially one which has a nice narrative.
 
-    It's currently my fifth time restarting this post (now trilogy), but I 
-    finally feel like I _really_ understand how things fit together and how 
-    to put them all into a satisfying narrative. 
-
+    It's currently my fifth time restarting this post (now ~~trilogy~~ tetralogy), 
+    but I think I'm finally happy with my outline.
     I don't know why I'm writing this footnote, to be honest. But it felt
     like something I wanted to say, so here we are. 
 
@@ -412,7 +409,9 @@ How exactly does this work? You'll have to read more in [part 2][4]!
     This was a pleasant surprise for me. I've heard a lot of talk about 
     derived categories, and they always seemed quite scary. It's been very
     exciting to feel like I'm getting a two-for-one deal every time I notice
-    another concept in this subject start to make sense ^_^.
+    another concept in this subject start to make sense -- after all, it 
+    means I'm learning about both homotopy theories _and_ derived categories!
+    ^_^
 
 [^6]:
     As an aside, as a topos theorist, this all feels a bit familiar. 
@@ -433,7 +432,7 @@ How exactly does this work? You'll have to read more in [part 2][4]!
     See, for instance, the sage documentation [here][9] and [here][10].
 
 [^8]:
-    Even in the case of $\mathsf{hTop}$, we might not have (co)limits! 
+    Even in the case of $\mathsf{hTop}$, we don't have all (co)limits! 
     See [here][11], for instance!
 
 [^9]:
@@ -584,3 +583,4 @@ How exactly does this work? You'll have to read more in [part 2][4]!
 [35]: https://ncatlab.org/nlab/show/model+structure+on+functors
 [36]: https://en.wikipedia.org/wiki/CW_complex
 [37]: https://ncatlab.org/nlab/show/homotopy+lifting+property
+[38]: https://ncatlab.org/nlab/show/weak+homotopy+equivalence

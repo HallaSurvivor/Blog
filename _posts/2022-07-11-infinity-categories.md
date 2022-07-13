@@ -13,8 +13,6 @@ that we outlined in [part 1][1] of this trilogy.
 
 With the intro out of the way, let's have a quick recap.
 
-TODO: fix all the links and the image links too
-
 ---
 
 The setting we're interested in is a category $\mathcal{C}$ equipped with
@@ -115,7 +113,7 @@ That is, given two objects $A$ and $B$ in our category, we have a
 _space_ of morphisms $\text{Map}(A,B)$.
 
 There is a natural notion of equivalence between two simplicial categories,
-called _Dwyer-Kan equivalence_, then we say an
+called _Dwyer-Kan equivalence_, then we (tentatively) say an
 <span class=defn>$\infty$-category</span> is a simplicial category
 up to DK-equivalence.
 
@@ -261,7 +259,7 @@ Show that, after inverting $h_1$ and $h_2$, $\text{Map}(A,B)$ is a circle.
 ---
 
 This is great, but it's far from clear how we would do this for more 
-complicated categories! This is ok, though! Remember that 
+complicated categories! This is ok, though. Remember that 
 $\infty$-categories are conceptually nice but if you have a 
 _specific_ category in mind, model categories are
 where we actually want to do our computations.
@@ -370,14 +368,16 @@ conceptually clean way to see what the hammock localization is
 For answers to both of these questions, I'll see you in the 
 [last post][11] of this ~~trilogy~~... tetralogy? 
 
-Maybe it's best to call it a trilogy with a long quasi-categorical ~bonus post~.
+Maybe it's best to call it a trilogy with a long quasi-categorical ~[bonus post][12]~.
 
 Take care, all ^_^
 
 ---
 
 [^1]:
-    As one concrete reason to do this, in chain complexes with 
+    Think about $\mathsf{Top}$ where we invert all the (weak) homotopy 
+    equivalences, or chain complexes of modules where we invert all the
+    quasi-isomorphisms.
 
 [^2]:
     Notice this is exactly what we do to make (co)homological computations
