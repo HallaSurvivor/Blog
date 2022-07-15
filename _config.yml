@@ -19,4 +19,4 @@ plugins:
   - jekyll-seo-tag
 
 url: https://grossack.site
-title: "Chris Grossack's Blog"
+name: "Chris Grossack's Blog"
