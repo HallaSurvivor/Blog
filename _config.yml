@@ -18,8 +18,5 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-feed:
-  tags: true
-
 url: https://grossack.site
 title: "Chris Grossack's Blog"
