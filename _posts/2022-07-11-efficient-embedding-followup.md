@@ -2,7 +2,8 @@
 layout: post
 title: Embedding Dihedral Groups in Vanishingly Small Symmetric Groups
 tags:
-  - sage, pretty-pictures
+  - sage
+  - pretty-pictures
 ---
 
 After the long and arduous process of writing my previous posts on
@@ -42,8 +43,6 @@ some values and see how quickly things are decreasing. This wasn't really
 necessary in hindsight, but it did make for some pretty pictures!
 
 ---
-
-TODO: copy your sage code into footnote 3
 
 First, here's a plot of the minimal $m$ so that $D_{2n} \hookrightarrow \mathfrak{S}_m$[^3].
 
@@ -129,9 +128,30 @@ Take care, and stay safe all ^_^. Talk Soon!
     It also disrupts the flow of the post more than I would like, so I'll 
     put it here for completeness:
 
-    <div class="linked_auto">
+    <div class="no_eval">
     <script type="text/x-sage">
+      memo = {0: (2,1)}
+      def a(n):
+          """
+          returns a pair (a_n, ratio)
+          """
+          if n in memo.keys():
+              return memo[n]
 
+          prev, prevRatio = a(n-1)
+
+          ratio = 1
+          N = prev
+          while ratio >= prevRatio:
+              N += 1
+
+              # compute m so that S_m has an element of order N
+              principalDivisors = list(factor(N))
+              m = sum([a^b for (a,b) in principalDivisors])
+              ratio = m/N
+
+          memo[n] = (N, ratio)
+          return (N, ratio)
     </script>
     </div>
 
