@@ -44,21 +44,54 @@ necessary in hindsight, but it did make for some pretty pictures!
 
 ---
 
-First, here's a plot of the minimal $m$ so that $D_{2n} \hookrightarrow \mathfrak{S}_m$[^3].
+First, here's a plot of the minimal $m$ so that $D_{2n} \hookrightarrow \mathfrak{S}_m$.
 
-TODO: a scatter plot of m vs n
+<div class="auto">
+<script type="text/x-sage">
+N = 100
+data = [(n, sum(a^b for (a,b) in list(factor(n)))) for n in range(2,N)]
+scatter_plot(data).show(axes_labels=['$n$', '$m$'])
+</script>
+</div>
 
 You can see that the maximal values are always $m=n$, which occurs at all the
 prime powers. However, you can _also_ see that the minimal values can be 
 substantially smaller.
 
-To get a handle on just how much smaller, let's plot the ratios $m/n$ instead
+To get a handle on just how much smaller, let's plot the ratios $m/n$ instead.
 
-TODO: that
+<div class="auto">
+<script type="text/x-sage">
+N = 100
+data = [(n, sum(a^b for (a,b) in list(factor(n)))/n) for n in range(2,N)]
+scatter_plot(data).show(axes_labels=['$n$', '$m/n$'])
+</script>
+</div>
 
-and then let's take the minimal ratio we've seen so far
+<div class=boxed markdown=1>
+As a quick exercise, for which $n$ do we hit the ratio $1$? How often
+do these occur?
 
-TODO: that
+As a less quick exercise, set $N = 1000$ in the above code and notice how 
+we stratify into multiple limiting ratios. Can you tell what some of these
+ratios are?
+</div>
+
+Lastly, let's take the minimal ratio we've seen so far
+
+<div class="auto">
+<script type="text/x-sage">
+N = 100
+rmin = 1
+data = []
+for n in range(2,N):
+    r = sum(a^b for (a,b) in list(factor(n)))/n
+    if r < rmin:
+        rmin = r
+    data += [(n,rmin)]
+scatter_plot(data).show(axes_labels=['$n$', '$\\min_{k < n}\\ m(k)/k$'])
+</script>
+</div>
 
 I would love to find a nice curve upper bounding this last scatter plot,
 but it seems like a possibly tricky problem in number theory. Formally:
@@ -71,14 +104,16 @@ $$f(n) \triangleq \text{min}_{\prod p_i^{k_i} \leq n} \frac{\sum p_i^{k_i}}{\pro
 Can you find asymptotics for $f$?
 </div>
 
-If anyone wants to take a stab at this, I would love to hear what you find ^_^.
+If anyone wants to take a stab at this 
+(or any other problems related to this sequence[^4]), 
+I would love to hear what you find ^_^.
 
 ---
 
 Whatever the asymptotics are, it's clear that $f(n) \to 0$. That is,
 for any $\epsilon$ you like, there's a dihedral group $D_{2n}$ embedding into
 a symmetric group $\mathfrak{S}_{n \epsilon}$. I don't know why, but this 
-feels remarkable to me. It says that somehow asymptotically, we can get away
+feels remarkable to me. It says that somehow we can get away
 with practically no objects at all in order to faithfully represent a dihedral
 group action. Said another way, there's some $n$-gon whose symmetries can be
 faithfully represented in the symmetries of only $\frac{n}{1000000}$ many points.
@@ -92,23 +127,36 @@ easily tweaked to allow us to put lots of bonus conditions on the prime
 factorization of $n$.
 
 $\ulcorner$
-TODO: this
+Let $\epsilon \gt 0$.
+
+Pick two primes $p,q \gt \frac{2}{\epsilon}$. Then from the results in 
+the [last post][2] the dihedral group $D_{2pq}$ embeds into the symmetric group
+$\mathfrak{S}_{p+q}$. But now
+
+$$\frac{m}{n} = \frac{p+q}{pq} = \frac{1}{q} + \frac{1}{p} \lt \epsilon$$
+
+That is, $f(pq) \lt \epsilon$, so that $f(n) \to 0$.
 <span style="float:right">$\lrcorner$</span>
 
 ---
 
-This was an exciting post because it gave me an excuse to submit another
-sequence to the OEIS. The inputs for which $f(n)$ changes are 
-interesting, but were not in the OEIS already, so I submitted them 
+It's nice to write up a quick relaxing post for once. I thought about trying
+to answer some of the number theoretic questions that I posed throughout 
+(as well as a few that I didn't), but I really wanted to keep this quick.
+Plus, I suspect a lot of these questions will be somewhat simple, and I might
+keep them in my back pocket in case a younger undergraduate comes to me 
+looking for a project.
+
+Also there's an _extra_ reason to be excited about this post:
+it gave me an excuse to submit another sequence to the OEIS! 
+The inputs for which $f(n)$ changes are 
+interesting, and were not in the OEIS already, so I submitted them 
 while I was writing this up! If all goes well, they should be available as 
 [A354424][3] in the near future[^2]. 
 
 It's also nice to go back to an older post and give it the closure it really
 deserves. The asymptotic result I cited there is borderline unusable, and
-this post answers the question that I really _wanted_ to ask in that post.
-
-It's off to bed, though. A close friend is visiting me tomorrow, and I want to make 
-sure she has all the time she deserves!
+this post answers the question that I really _wanted_ to ask in that post[^3].
 
 Take care, and stay safe all ^_^. Talk Soon!
 
@@ -124,36 +172,16 @@ Take care, and stay safe all ^_^. Talk Soon!
     giddy with excitement!
 
 [^3]:
-    The code is simple enough that I probably don't _need_ to include it?
-    It also disrupts the flow of the post more than I would like, so I'll 
-    put it here for completeness:
+    It also brought up a whole host of other questions! This is a huge part 
+    of the fun of math for me -- there's always more to explore.
 
-    <div class="no_eval">
-    <script type="text/x-sage">
-      memo = {0: (2,1)}
-      def a(n):
-          """
-          returns a pair (a_n, ratio)
-          """
-          if n in memo.keys():
-              return memo[n]
+[^4]:
+    For instance, how long can the wait time be before we see a better ratio?
 
-          prev, prevRatio = a(n-1)
+    Precisely, let $a_n$ be the sequence of values so that $f(a_n) \neq f(a_n-1)$.
+    How far apart can $a_n$ be from $a_{n+1}$? 
 
-          ratio = 1
-          N = prev
-          while ratio >= prevRatio:
-              N += 1
-
-              # compute m so that S_m has an element of order N
-              principalDivisors = list(factor(N))
-              m = sum([a^b for (a,b) in principalDivisors])
-              ratio = m/N
-
-          memo[n] = (N, ratio)
-          return (N, ratio)
-    </script>
-    </div>
+    Said another way, how large are the gaps in [A354424][3]?
 
 [1]: https://math.stackexchange.com/questions/4491025/the-smallest-number-for-faithful-operation/4491030#4491030
 [2]: /2021/08/16/embedding-dihedral-groups-efficiently.html
