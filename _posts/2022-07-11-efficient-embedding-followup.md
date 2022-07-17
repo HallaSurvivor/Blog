@@ -11,14 +11,14 @@ homotpy theories and $\infty$-categories, it's nice to go back to a
 relaxed post based on an [mse question][1] I answered the other day.
 Nature is healing ^_^. 
 
-This post was asking about the smallest set certain groups can faithfully
-act on. I actually wrote about this same idea almost exactly a year ago
+This post was asking about the smallest set on which certain groups can faithfully
+act. I actually wrote about this same idea almost exactly a year ago
 in a blog post [here][2], and while answering this question I remembered 
 that I wanted to follow up on that post. I mentioned some asymptotic result
 at the end of it that's super hard to use, 
 and I was sure I could get a more legible result if I wanted to[^1].
 
-Well, when I saw this post I was reminded that I want to!
+Well, when answering this question I was reminded that I want to!
 
 ---
 
@@ -69,7 +69,7 @@ scatter_plot(data).show(axes_labels=['$n$', '$m/n$'])
 </div>
 
 <div class=boxed markdown=1>
-As a quick exercise, for which $n$ do we hit the ratio $1$? How often
+As a (very) quick exercise, for which $n$ do we hit the ratio $1$? How often
 do these occur?
 
 As a less quick exercise, set $N = 1000$ in the above code and notice how 
@@ -89,7 +89,7 @@ for n in range(2,N):
     if r < rmin:
         rmin = r
     data += [(n,rmin)]
-scatter_plot(data).show(axes_labels=['$n$', '$\\min_{k < n}\\ m(k)/k$'])
+scatter_plot(data).show(axes_labels=['$n$', '$\\min_{k \\leq n}\\ m(k)/k$'])
 </script>
 </div>
 
