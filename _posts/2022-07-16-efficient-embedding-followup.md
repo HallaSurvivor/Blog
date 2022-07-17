@@ -7,7 +7,7 @@ tags:
 ---
 
 After the long and arduous process of writing my previous posts on
-homotpy theories and $\infty$-categories, it's nice to go back to a
+homotopy theories and $\infty$-categories, it's nice to go back to a
 relaxed post based on an [mse question][1] I answered the other day.
 Nature is healing ^_^. 
 
@@ -99,7 +99,7 @@ but it seems like a possibly tricky problem in number theory. Formally:
 <div class=boxed markdown=1>
 Define
 
-$$f(n) \triangleq \text{min}_{\prod p_i^{k_i} \leq n} \frac{\sum p_i^{k_i}}{\prod p_i^{k_i}}$$
+$$f(n) \triangleq \displaystyle \min_{\prod p_i^{k_i} \leq n} \frac{\sum p_i^{k_i}}{\prod p_i^{k_i}}$$
 
 Can you find asymptotics for $f$?
 </div>
