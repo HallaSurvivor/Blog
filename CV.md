@@ -2,7 +2,7 @@
 title: CV
 ---
 
-## Chris Grossack
+## Chris Grossack (they/them)
 
 ---
 
@@ -67,6 +67,7 @@ B.S. in Discrete Math and Logic (May 2019)
 
  - Academic Review Board and University Disciplinary Committee (Board Member, 2017-2019)
 
+ - Frequently in the top 0.1% of users on [math.stackexchange][3]
 
 ## Teaching Experience
 
@@ -78,15 +79,6 @@ B.S. in Discrete Math and Logic (May 2019)
 - Co-Primary Instructor (CMU)
   - 98-317: Hype For Types (Spring 2018, Fall 2018, Spring 2019)
 
-
-<details markdown=1>
-<summary>Teaching Assistant (CMU)</summary>
-
-  - 15-150: Principles of Functional Proramming 
-  - 21-373: Algebraic Structures 
-  - 15-354: Computation and Discrete Math 
-</details>
-
 <details markdown=1>
 <summary>Teaching Assistant (UCR)</summary>
   - Math-7A/B: Calculus for The Life Sciences (Fall/Winter 2020)
@@ -97,6 +89,14 @@ B.S. in Discrete Math and Logic (May 2019)
   - Math-136: Introduction to the Theory of Numbers (Winter 2022)
   - Math-140: Polynomials and Number Systems (Winter 2022)
   - Math-165A: Complex Analysis (Winter 2022)
+</details>
+
+<details markdown=1>
+<summary>Teaching Assistant (CMU)</summary>
+
+  - 15-150: Principles of Functional Proramming 
+  - 21-373: Algebraic Structures 
+  - 15-354: Computation and Discrete Math 
 </details>
 
 
@@ -160,3 +160,4 @@ B.S. in Discrete Math and Logic (May 2019)
 
 [1]: https://uwo.ca/math/faculty/kapulkin/seminars/hottest_summer_school_2022.html
 [2]: https://scicomm.ucr.edu/
+[3]: https://math.stackexchange.com/users/655547/hallasurvivor
