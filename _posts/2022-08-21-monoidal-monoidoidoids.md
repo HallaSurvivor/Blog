@@ -156,7 +156,7 @@ lonely being the only logician at UC Riverside. Everyone was super nice, and
 I had a lot of great conversations. I'll definitely be at BLAST next year,
 and I might try to spend a bit of time at Chapman too.
 
-For now, though, I have to start packing. Take care, everyone, and 
+For now, though, I have to start packing. Take care everyone, and 
 see you soon ^_^
 
 ---
