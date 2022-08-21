@@ -38,9 +38,9 @@ genuinely think the meme
 > monads are "just" monoids in the category of endofunctors
 
 is a useful way to explain monads provided you're talking to 
-another category theorist. How this hypothetical category theorist got 
-comfortable with algebra internal to functor categories before getting 
-comfortable with monads is beyond me, but weirder things have happened.
+another category theorist. It's not even that hard to imagine 
+somebody who knows things about algebra internal to functor categories,
+but who _doesn't_ know things about monads! 
 
 Of course, this quip is _entirely unhelpful_ if you're trying to explain 
 monads to a software engineer with little to no knowledge of category theory...
