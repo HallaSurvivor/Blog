@@ -135,7 +135,7 @@ called <span class=defn>horizontal composition</span>)[^2].
 So finally, we see that we can oid-ify the notion of monoidal category by
 removing the assumption that there be a single object $\star$.
 
-Now a "monoidal category"-oid (or a monoidal monoidoid oid, or a 2-category)
+Now a "monoidal category"-oid (or a monoidal monoidoid oid)
 has
 
  - Objects
@@ -145,6 +145,14 @@ has
 We can compose 1-arrows in the expected way, and we can compose 2-arrows
 _vertically_ (which is the obvious way) and _horizontally_ (which says that 
 2-arrows are compatible with composition of 1-arrows)[^3].
+
+Of course, this is the usual definition of a (strict) 2-category! 
+Now you're officially in on the joke ^_^
+
+<p style="text-align:center;">
+<img src="/assets/images/monoidal-monoidoidoids/joke.gif" width="50%">
+</p>
+
 
 ---
 
