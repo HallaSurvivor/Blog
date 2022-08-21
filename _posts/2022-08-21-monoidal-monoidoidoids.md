@@ -207,4 +207,4 @@ see you soon ^_^
 [3]: https://ncatlab.org/nlab/show/oidification
 [4]: https://en.wikipedia.org/wiki/Monoidal_category
 [5]: https://ncatlab.org/nlab/show/enriched+category
-[6] https://math.chapman.edu/blast2022/
+[6]: https://math.chapman.edu/blast2022/
