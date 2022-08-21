@@ -149,7 +149,12 @@ _vertically_ (which is the obvious way) and _horizontally_ (which says that
 ---
 
 Another short post for once! I'm once again on my way to New York tonight
-to see some friends. I was also at [BLAST][6] last week, and had a _ton_
+to see some friends, but when I saw "monoidal monoidoidoid" on the nlab 
+I literally laughed out loud. I spent a bit of time yesterday figuring out
+what it meant (though in hindsight the nlab page just tells you...) and wanted
+to write this up and share it today before I head to the airport.
+
+As another little life update, I was at [BLAST][6] last week, and had a _ton_
 of fun[^4]! It was great to hang out with other logicians, and it's super exciting
 to know that there's likeminded people so near me -- It was getting kind of 
 lonely being the only logician at UC Riverside. Everyone was super nice, and 
