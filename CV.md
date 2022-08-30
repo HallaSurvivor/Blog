@@ -131,7 +131,7 @@ B.S. in Discrete Math and Logic (May 2019)
 - Programming Language Theory
 - Modal Logic
 - Computational Discrete Math
-- Intermediate Logic
+- Model Theory and Arithmetic
 - Combinatorics
 - Great Theoretical Ideas in Computer Science
 - Linear Algebra
@@ -143,18 +143,22 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Research/Reading Experience
 
-- Automata Groups (2018-2020)
-  - Advisor: Klaus Sutner
-
-- Right Angled Artin Groups (2020)
-  - Advisor: Matt Durham
+- Stacks and Moduli Spaces (2022)
+  - Advisor: Patricio Gallardo
 
 - CAT(0) Cube Complexes (2021)
   - Advisor: Matt Durham
 
+- Right Angled Artin Groups (2020)
+  - Advisor: Matt Durham
+
+- Automata Groups (2018-2020)
+  - Advisor: Klaus Sutner
+
 
 ## Conferences
 
+- BLAST (Summer 2022)
 - HoTTEST Colloquia (Summer 2022)
 - Western Algebraic Geometry Symposium (Spring 2022)
 
