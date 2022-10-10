@@ -175,6 +175,12 @@ classical topology.
 You can find the slides [here][24], and I'll post the recording as 
 soon as it's up.
 
+**Edit:** 
+
+Here's the recording ^_^
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/syftUuf5Hpk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ---
 
 [^1]:
