@@ -50,7 +50,10 @@ where I ramble about some examples and reasons to care about a topic.
 
 ---
 
-
+- informal idea for "new semantics for old syntax"
+    
+- explain topos of $G$-sets and topos of sheaves
+- talk about externalizing (copy the algorithm from Maclane & Moerdijk)
 
 
 ---
