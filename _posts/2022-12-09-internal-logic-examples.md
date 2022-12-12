@@ -206,10 +206,77 @@ finiteness. See [here][7] for a discussion[^5].
 
 ---
 
-$a = a' \lor a \neq a'$ 
+$$\forall x,y : X . x = y \lor x \neq y$$
 
-(decidable. Show the example of the topos $\mathsf{Set}^\to$ where $A_0 \to A_1$ 
-is decidable iff it's a mono)
+This says that $X$ is [_decidable_][8] in the sense that we can _decide_
+whether two elements of $X$ are equal. 
+
+Let's start with the externalization. If 
+$\mathcal{E} \models \forall x, y : X . x = y \lor x \neq y$,
+then in the forcing notation we have
+
+$$
+1 \Vdash \forall x, y : X . x = y \lor x \neq y
+$$
+
+which we can cash out (again, see chapter VI in Mac Lane and Moerdijk) for
+
+$$
+X \times X \Vdash \pi_1 = \pi_2 \lor \pi_1 \neq \pi_2
+$$
+
+where $\pi_1$ and $\pi_2$ are the projections $X \times X \to X$.
+
+Now, just like existential quantifiers, disjunctions need only be true 
+locally. So in the case $\mathcal{E} = G\text{-}\mathsf{Set}$ we want to 
+find $G$-sets $V$ and $W$, with maps $p: V \to X^2$ and $q : W \to X^2$
+so that 
+
+1. $V \Vdash \pi_1 p = \pi_2 p$
+2. $W \Vdash \pi_1 q \neq \pi_2 q$
+3. $p+q : V + W \to X^2$ is an epi
+
+Of course, this isn't hard to do! Let's take 
+$$V = \{ (x,x) \mid x \in X \}$$ (equipped with the diagonal $G$-action)
+and $$W = X^2 \setminus V$$ (also equipped with the diagonal $G$-action).
+
+<div class=boxed markdown=1>
+If it's not obvious, prove that $W$ really is a $G$-set.
+</div>
+
+Then it's easy to see that by taking $p$ and $q$ to be the relevant inclusion 
+maps we can satisfy our 3 conditions. Thus _every_ $G$-set $X$ is decidable![^6]
+
+<br><br>
+
+Next, let's look at $\mathsf{Sh}(S)$.
+
+- externalize
+- mention $\mathbb{R}$, which is definitely not decidable. For instance, if
+  $S = [-1,1]$, $f = x$ and $g = \lvert x \rvert$. Then $f=g$ corresponds to
+  $(0,1)$ and $f \neq g$ corresponds to $(-1,0)$. But these don't union to
+  all of $[-1,1]$! 
+- There might be a better example... Think harder
+- link this to computability. Distinguishing $0$ from $\epsilon$ is merely
+  semidecidable
+
+<br><br>
+
+Let's give a bonus example as well, since this is a fairly subtle concept.
+
+We'll work in the arrow topos $\mathsf{Set}^{\to}$ whose objects are triples
+$(a,f,b)$ where $f : a \to b$ in $\mathsf{Set}$. An arrow 
+$(\varphi_0, \varphi_1) : (a,f,b) \to (c,g,d)$ is a pair of arrows in $\mathsf{Set}$
+making the obvious square commute:
+
+<p style="text-align:center;">
+<img src="/assets/images/internal-logic-examples/arrow-arrow.png" width="50%">
+</p>
+
+- Work out the truth values in this topos
+- Work out the notion of subobject
+- Show that an arrow $(a,f,b)$ is decidable iff $f$ is monic
+
 
 ---
 
@@ -246,7 +313,100 @@ come up with exactly one more.
     calls "(bishop) finite", and it's a stronger condition than what we've been
     working with.
 
+[^6]: 
+    This should make intuitive sense. A topos of $G$-sets is boolean, and
+    even satisfies AC. So it looks almost exactly like $\mathsf{Set}$! 
+    In particular, we can see that every object in $G\text{-}\mathsf{Set}$ 
+    is decidable by appeal to LEM, rather than by building the witnesses directly. 
+
+    Yet another way to see this (which I'm 80% sure is true) is by working
+    in the slice topos. I'm pretty sure that 
+
+    $$X^2 \Vdash \pi_1 = \pi_2 \lor \lnot \pi_1 = \pi_2$$
+
+    is the same thing as asking for 
+
+    $$\pi_1 = \pi_2 \lor \lnot \pi_1 = \pi_2$$
+
+    to name $\top$ in the slice topos $\mathcal{E} /_{ X^2}$. 
+
+    Here the truth values are subobjects of $X^2$ in $\mathcal{E}$, 
+    with $\pi_1 = \pi_2$ naming the truth value 
+
+    $$\{ (x,y) \mid x = y \}$$
+
+    and $\lnot \pi_1 = \pi_2$ naming the truth value 
     
+    $$\text{``the biggest sub-$G$-set disjoint from } \{ (x,y) \mid x = y \} \text{''}$$
+
+    of course, since the complement of the diagonal is a sub-$G$-set,
+    these two sets union to the whole of $X^2$. That is, the truth value of
+    their disjunction is $\top$, as desired.
+
+    Note this is _not_ the case for $M$-sets for a monoid $M$!
+
+    If we work with the monoid $\mathbb{N}$, let's consider the 
+    $\mathbb{N}$-set $X = \{a,b\}$ with $1a = 1b = b$. That is,
+
+    <p style="text-align:center;">
+    <img src="/assets/images/internal-logic-examples/arrow.png" width="25%">
+    </p>
+
+    (plus a self loop at $b$ that q.uiver won't draw for me... I'd make it
+    myself but it's getting late and I don't feel like it, haha)
+
+    Then the product $X^2$ is
+
+    <p style="text-align:center;">
+    <img src="/assets/images/internal-logic-examples/square.png" width="25%">
+    </p>
+
+    (again, with a secret self loop at $(b,b)$).
+
+    The diagonal, of course, is a sub-$M$-set:
+
+    <p style="text-align:center;">
+    <img src="/assets/images/internal-logic-examples/diagonal.png" width="25%">
+    </p>
+
+    But now the off-diagonal is _not_ a sub-$M$-set. It's not closed under
+    the $M$-action:
+
+    <p style="text-align:center;">
+    <img src="/assets/images/internal-logic-examples/off-diagonal.png" width="25%">
+    </p>
+
+    So the complement $$\{ (x,y) \mid x \neq y \}$$ will be the largest 
+    sub-$M$-set contained inside the off-diagonal. But in this example
+    that's empty!
+
+    In particular, $$\{ (x,y) \mid x=y \} \lor \{ (x,y) \mid x \neq y \}$$,
+    a subobject of $X^2$, and thus a truth value in 
+    $$M\text{-}\mathsf{Set} \big /_{\! X^2}$$,
+    is _not_ $X^2$. So $M\text{-}\mathsf{Set}$ thinks 
+    $\forall x,y : X . x = y \lor x \neq y$ is not true.
+
+    <div class=boxed markdown=1>
+    It also thinks it's not false, for what that's worth.
+
+    As a nice (slightly more challenging) exercise, figure out 
+    what the truth value of that statement actually is!
+    </div>
+
+    It's still not fully clear to me what truth values in 
+    $M\text{-}\mathsf{Set} /_{X^2}$ should look like... 
+    In $M\text{-}\mathsf{Set}$ there are only two global truth values,
+    even though externally we can see that $\Omega$ is the set of all
+    (left) ideals of $M$.
+
+    Presumably in $M\text{-}\mathsf{Set} /_{X^2}$ the global truth values
+    are the sub-$M$-sets of $X^2$... But I'm not sure about what exactly
+    $\Omega$ looks like.
+
+    If someone wants to work this out, I'd love to hear your thoughts in the
+    comments! This footnote is already getting _super_ long, though, and I 
+    have the rest of the post to work on!
+
 
 [1]: https://www.fairucnow.org/
 [2]: https://sites.google.com/view/petersamuelson/home?pli=1
@@ -255,3 +415,4 @@ come up with exactly one more.
 [5]: https://ncatlab.org/nlab/show/%C3%A9tendue
 [6]: https://ncatlab.org/nlab/show/locale
 [7]: https://ncatlab.org/nlab/show/finite+set
+[8]: https://ncatlab.org/nlab/show/decidable+object
