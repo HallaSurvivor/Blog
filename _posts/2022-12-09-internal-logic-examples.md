@@ -208,8 +208,9 @@ finiteness. See [here][7] for a discussion[^5].
 
 $$\forall x,y : X . x = y \lor x \neq y$$
 
-This says that $X$ is [_decidable_][8] in the sense that we can _decide_
-whether two elements of $X$ are equal. 
+This says that $X$ is [_decidable_][8], which is language coming from a 
+computability theoretic interpretation of our logic that I'll save for a 
+different post[^7].
 
 Let's start with the externalization. If 
 $\mathcal{E} \models \forall x, y : X . x = y \lor x \neq y$,
@@ -251,14 +252,72 @@ maps we can satisfy our 3 conditions. Thus _every_ $G$-set $X$ is decidable![^6]
 
 Next, let's look at $\mathsf{Sh}(S)$.
 
-- externalize
-- mention $\mathbb{R}$, which is definitely not decidable. For instance, if
-  $S = [-1,1]$, $f = x$ and $g = \lvert x \rvert$. Then $f=g$ corresponds to
-  $(0,1)$ and $f \neq g$ corresponds to $(-1,0)$. But these don't union to
-  all of $[-1,1]$! 
-- There might be a better example... Think harder
-- link this to computability. Distinguishing $0$ from $\epsilon$ is merely
-  semidecidable
+Again, we'll take an object $X$ and look at the statement 
+$\forall x,y : X . x = y \lor x \neq y$.
+
+The flow of the computation is hopefully becoming familiar now.
+For variety, since we're working in a sheaf topos, let's do this
+computation with the sheaf semantics (Maclane and Moerdijk VI.7).
+This lets us restrict attention to open subsets of $S$, which is 
+sometimes useful.
+
+We start with $1 \Vdash \forall x,y : X . x = y \lor x \neq y$, 
+that is, $S \Vdash \forall x,y : X . x = y \lor x \neq y$.
+
+Now the universal quantifiers represent true statements for any local section.
+That is, for each $U$ open in $S$, and for each generalized element
+$x,y : U \to X$ 
+(that is, by yoneda, local sections $x,y \in X(U)$ of the sheaf $X$ over $U$)
+
+$$
+U \Vdash x = y \lor x \neq y
+$$
+
+Then since disjunctions need only be true locally, this is true exactly when
+we can over $U$ by opens $V_i$ so that, on each $V_i$, either 
+
+$$
+V_i \Vdash x = y
+$$
+
+or 
+
+$$
+V_i \Vdash x \neq y
+$$
+
+That is, on each $V_i$ in the cover, either the sections 
+$x \upharpoonright_{V_i}$ and $y \upharpoonright_{V_i}$ are everywhere equal
+or they're nowhere equal.
+
+So an object $X$ in $\mathsf{Sh}(S)$ is decidable exactly when, for
+any connected open $U \subseteq S$, any two local sections of $X$ are either 
+everywhere equal or nowhere equal. 
+
+This is obviously an _extremely_ strict condition! If we think about the sheaf
+of real-valued continuous functions on $S$, it's hard to imagine the case that
+two functions which agree on a point automatically agree everywhere!
+
+For example, let's look at $S = [-1,1]$ and $X$ be the sheaf of continuous
+functions on $S$. Then if we look at $x = s$ and $y = \lvert s \rvert$, we
+can ask about the truth values $x=y$ and $x \neq y$.
+
+Here $x=y$ is the largest open subset of $S = [-1,1]$ on which 
+$s = \lvert s \rvert$. This is, of course, $(0,1]$. Similarly, 
+$x \neq y$ is the largest open subset on which $s \neq \lvert s \rvert$,
+but her friends call her $[-1,0)$.
+
+Notice the truth values are open subsets of $S$. We're keeping track of 
+_where_ something is true, which is a finer (and more useful!) tool
+than just a simple boolean true/false.
+
+But of course, this means that $x=y \lor x \neq y$ is the 
+union $$(0,1] \cup [-1,0) = [-1,1] \setminus \{0\} \neq [-1,1]$$. Which
+is _not_ the top element of the lattice of opens, and thus is not "true"!
+
+Even though $0 = \lvert 0 \rvert$, this truth is not local! No matter slightly
+we wiggle $0$, this truth value can change. This instability is exactly what
+keeps $0$ from being in the set $$[-1,0) \cup (0,1] = [ \! [ s = |s| \lor s \neq |s| ] \! ]$$
 
 <br><br>
 
@@ -273,15 +332,124 @@ making the obvious square commute:
 <img src="/assets/images/internal-logic-examples/arrow-arrow.png" width="50%">
 </p>
 
-- Work out the truth values in this topos
-- Work out the notion of subobject
-- Show that an arrow $(a,f,b)$ is decidable iff $f$ is monic
+I'll leave much of this example as a fun exercise, since it's important to
+get practice working these things out for yourself! If you want to check 
+your work, though, I'll leave brief solutions in a fold!
 
+<div class=boxed markdown=1>
+First, can you compute the object of truth values $\Omega$?
+</div>
+
+<details markdown=1>
+  <summary>solution</summary>
+  
+  This is worked out in detail in chapter I of Mac Lane and Moerdijk
+  (pages 35 and 36 of my edition) but briefly we get
+
+  $$
+  \Omega = \{ \top, \bot', \bot \} \overset{\sigma}{\to} \{ \top, \bot \}
+  $$
+
+  with $\sigma(\top) = \top$, $\sigma(\bot') = \top$, $\sigma(\bot) = \bot$.
+
+  Remember that a subobject of $X_0 \overset{f}{\to} X_1$ is a pair of subsets 
+  $A_0 \subseteq X_0$, $A_1 \subseteq X_1$ so that $f[A_0] \subseteq A_1$. 
+  This is exactly a _restriction_ of $f$!
+
+  Then any $x_1 \in X_1$ is either in $A_1$ or it isn't. That's why the 
+  target of $\sigma$ is $$\{ \top, \bot \}$$. But an $x_0 \in X_0$ has more
+  options. Either 
+
+  - $x_0 \in A_0$ and, necessarily, $f x_0 \in A_1$
+  - $x_0 \not \in A_0$ but $f x_0 \in A_1$ anyways
+  - $x_0 \not \in A_0$ and $f x_0 \not \in A_1$
+
+  these correspond to the truth values $\top$, $\bot'$, and $\bot$ in the 
+  domain of $\sigma$.
+</details>
+
+<div class=boxed markdown=1>
+Next, can you figure out what it means for an object $a \overset{f}{\to} b$
+to be decidable?
+</div>
+
+<details markdown=1>
+  <summary>solution</summary>
+
+  Let's compute.
+
+  We quickly get to $f^2 \Vdash x=y \lor x \neq y$, where (as usual) 
+  $x$ and $y$ are the projection maps from $f^2 \to f$.
+
+  Another, smaller, computation shows that $f^2 = a^2 \to b^2$ is just the
+  map sending $(x,y) \mapsto (fx,fy)$. Moreover, an epi 
+
+  $$
+  (\tilde{a} \overset{\tilde{f}}{\to} \tilde{b}) \twoheadrightarrow (a \overset{f}{\to} b)
+  $$
+
+  is a pair of surjections $\tilde{a} \to a$ and $\tilde{b} \to b$ making the square commute.
+
+  With this in mind, when we unwind the disjunction to a pair of maps 
+  $V \to f^2$ and $W \to f^2$ so that 
+
+  - $V \Vdash x=y$ 
+  - $W \Vdash x \neq y$
+  - $V+W \to f^2$ is epi
+
+  it's enough to look at the images of the maps $V \to f^2$ and $W \to f^2$.
+  That is, it's enough to look at $V$ and $W$ _subobjects_ of $f^2$ 
+  and ask that the union $V \cup W$ is all of $f^2$.
+
+  To have our best chance at covering $f^2$, we should take $V$ and $W$ to be
+  as big as possible under the restrictions that $V \Vdash x=y$ and 
+  $W \Vdash x \neq y$. 
+
+  Unwinding $V \Vdash x=y$, the best we can do is to take $V$ to be the diagonal
+  $$\{ (x,y) \in a^2 \mid x=y \} \overset{f^2}{\to} \{ (x,y) \in b^2 \mid x=y \}$$.
+
+  Then unwinding $W \Vdash x \neq y$, the best we can do is
+  $$\{ (x,y) \in a^2 \mid x \neq y \land fx \neq fy \} \overset{f^2}{\to} \{ (x,y) \in b^2 \mid x \neq y \}$$.
+
+  Notice we have to restrict the domain to those elements who _stay_ separated
+  after we apply $f^2$! After all, if $x \neq y$ but $fx = fy$, then we wouldn't
+  land in the right codomain[^8]. 
+
+  So if we want the union of $V$ and $W$ to be all of $f$, we need to know that
+  each pair $(x,y)$ with $x \neq y$ gets sent to a pair with $fx \neq fy$,
+  and this happens exactly when $f$ is a monomorphism!
+
+  So the decidable objects of $\mathsf{Set}^\to$ are the monos.
+
+  Hopefully this also makes clear, in a more discrete way than the $\mathsf{Sh}(S)$ 
+  example, how decidability can fail! For a super concrete example[^9], 
+  consider the ring object in $\mathsf{Set}^\to$ given by 
+
+  $$
+  \mathbb{Z}[\epsilon] / \epsilon^2 
+  \overset{\epsilon \mapsto 0}{\longrightarrow}
+  \mathbb{Z}
+  $$
+
+  This ring is not decidable since $\epsilon = 0$ is neither true nor false!
+</details>
 
 ---
 
-come up with exactly one more.
+This was a lot of fun, and hopefully you feel more comfortable externalizing
+some simple statements after reading through these. It's all about 
+practice practice practice, though, so I encourage everyone to come up with
+their own easy examples and try externalizing them! I learned a _ton_ while
+writing this blog post, and that's on top of everything I learned trying
+to work out what a manifold inside $G\text{-}\mathsf{Set}$ should be!
 
+I won't make promises, but I would love to write another post of this flavor
+sometime soon, where we can talk about something simple like linear algebra
+or basic analysis inside a topos. Of course, I have lots of ideas, and 
+comparatively little time to write them all, so things will happen when they do
+^_^.
+
+Stay warm and stay safe, all! We'll talk soon 💖
 
 ---
 
@@ -406,6 +574,58 @@ come up with exactly one more.
     If someone wants to work this out, I'd love to hear your thoughts in the
     comments! This footnote is already getting _super_ long, though, and I 
     have the rest of the post to work on!
+
+[^7]:
+    Briefly, a property is called _decidable_ if a computer can check if the
+    answer is yes or no.
+
+    A property is called _semidecidable_ if a computer can check if the answer
+    is "yes", but we don't know how long it'll take. What's worse, the code
+    is allowed to loop forever if the answer is "no"! So really we get a "yes"
+    or "maybe".
+
+    Dually, we say a property is _cosemidecidable_ if a computer can answer
+    "no" or "maybe". If you run it long enoguh and the ansewr is "no", 
+    it will always say so. But if the answer is "yes" the code might loop forever.
+
+    <div class=boxed markdown=1>
+    As a (fairly easy?) exercise, show that something is decidable 
+    if and only if it's both semidecidable and cosemidecidable.
+    same thing as 
+    </div>
+
+    To finish the brief explanation, equality is _such_ an important 
+    predicate that we say $X$ is decidable exactly when equality on $X$ 
+    is, and this is the definition we ported to topos theory.
+
+[^8]:
+    This is worth some meditation. There's something model-theoretic
+    happening here, where truth is _preserved_ as we move from the 
+    domain to the codomain. But falsity does _not_ need to be preserved
+    (said another way, truth does not need to be _reflected_ from the codomain
+    to the domain).
+
+    So true things stay true, but false things can _become_ true later on.
+
+    It's possible for $x$ and $y$ to start different and end the same, but 
+    if they start the same they have to stay that way.
+
+    Somehow the logic of the topos handles all of this for us, which doesn't
+    seem so impressive when we only have one arrow, but you can imagine as
+    we increase the complexity of the category $\mathcal{C}$ in the 
+    topos $\mathsf{Set}^\mathcal{C}$ that it becomes more annoying to do this
+    bookkeeping by hand.
+
+    Regardless, it's not lost on me that $f$ is decidable in 
+    $\mathsf{Set}^\to$ exactly when it's a monomorphism in $\mathsf{Set}$...
+    This has something to do with the fact that, model theoretically,
+    monos _do_ reflect the truth of negated atomic questions. I'm seeing
+    some connection here, but I can't quite make it precise.
+
+[^9]:
+    taken from Johnstone's _Rings, Fields, and Spectra_, which should
+    really be required reading for anyone interested in applications 
+    of topos theory!
 
 
 [1]: https://www.fairucnow.org/
