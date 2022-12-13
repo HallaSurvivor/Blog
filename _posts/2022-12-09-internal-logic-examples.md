@@ -11,6 +11,11 @@ serious capacity for almost the past month. It's been a
 lot of hard work trying to get fair contracts out of the UC, 
 but I had a lot of travel plans this December to see my friends,
 so I've taken a step back from the picket line until January.
+Right now I'm in Chicago, so here's an obligatory bean pic:
+
+<p style="text-align:center;">
+<img src="/assets/images/internal-logic-examples/bean.jpg" width="50%">
+</p>
 
 This means I have time to do math again, and it's been really good 
 for me to get back into it! I've started working with [Peter Samuelson][2]
@@ -22,8 +27,10 @@ I gave a (fairly informal) talk in Dave Weisbart's seminar, where I tried to
 pitch him topos theory as a method of studying $G$-invariant constructions[^1],
 and I thought I remembered a result that we can get our hands on a 
 [global quotient orbifold][3] $M // G$ by working with a manifold internal to 
-$G$-set... but I couldn't find a reference for this, and it turns out it's 
-false. So my last couple weeks, when I had the energy to do math after picketing,
+$G$-set... I couldn't find a reference for this, so I set about trying to 
+prove it myself, and (to nobody's surprise) it's false, haha.
+
+So my last couple weeks, when I had the energy to do math after picketing,
 looked eerily like Julia Robinson's famous description of her week:
 
 <p style="text-align:center;">
@@ -31,15 +38,13 @@ looked eerily like Julia Robinson's famous description of her week:
 </p>
 
 I learned a _ton_ while doing this, though, and I wanted to share some 
-insights with everyone. I haven't been able to find many examples of 
+insights with everyone. It's really hard to find examples of 
 people taking statements in the internal logic of a topos and externalizing
 them to get "classical" statements, so I had to work out a bunch of small
 examples myself.
 
-I want to share some of them here, and hopefully explain how they work, so 
-the next people interested in this have an easier time ^_^. 
-
-Let's get started!
+Let's go over a few together, and hopefully make things easier for the 
+next round of topos theorists looking to do this ^_^
 
 ---
 
@@ -159,7 +164,7 @@ $$
 U_i \Vdash \alpha_i \beta_i = \text{id}_3 \land \beta_i \alpha_i = \text{id}_X
 $$
 
-Now, an element $U_i \to A^B$ is "just" a function $B \to A$ defined over $U_i$.
+Now (by yoneda), an element $U_i \to A^B$ is "just" a function $B \to A$ defined over $U_i$.
 So altogether we see that $\lvert X \rvert = 3$ if and only if there's an open
 cover $$\{U_i\}$$ of $S$ so that 
 $$X \! \upharpoonright_{U_i} \cong 3 \! \upharpoonright_{U_i}$$
@@ -185,8 +190,8 @@ then $X$ is locally isomorphic to the trivial triple cover $3$:
 
 despite the fact that they _aren't_ globally isomorphic!
 
-From the perspective of the internal logic, the issue is that the isomorphisms
-over each $U_i$ are not compatible in the sense that 
+From the perspective of the internal logic, the point is that the isomorphisms
+over each $U_i$ need not be compatible in the sense that 
 $$\alpha_i \! \upharpoonright_{U_i \cap U_j} \neq \alpha_j \! \upharpoonright_{U_i \cap U_j}$$.
 
 <div class=boxed markdown=1>
@@ -292,13 +297,10 @@ or they're nowhere equal.
 
 So an object $X$ in $\mathsf{Sh}(S)$ is decidable exactly when, for
 any connected open $U \subseteq S$, any two local sections of $X$ are either 
-everywhere equal or nowhere equal. 
+everywhere equal or nowhere equal[^10].
 
-This is obviously an _extremely_ strict condition! If we think about the sheaf
-of real-valued continuous functions on $S$, it's hard to imagine the case that
-two functions which agree on a point automatically agree everywhere!
-
-For example, let's look at $S = [-1,1]$ and $X$ be the sheaf of continuous
+For a _super_ concrete example, let's look at $S = [-1,1]$ and 
+$X$ the sheaf of continuous
 functions on $S$. Then if we look at $x = s$ and $y = \lvert s \rvert$, we
 can ask about the truth values $x=y$ and $x \neq y$.
 
@@ -312,11 +314,10 @@ _where_ something is true, which is a finer (and more useful!) tool
 than just a simple boolean true/false.
 
 But of course, this means that $x=y \lor x \neq y$ is the 
-union $$(0,1] \cup [-1,0) = [-1,1] \setminus \{0\} \neq [-1,1]$$. Which
+union $$(0,1] \cup [-1,0) = [-1,1] \setminus \{0\}$$. Which
 is _not_ the top element of the lattice of opens, and thus is not "true"!
-
-Even though $0 = \lvert 0 \rvert$, this truth is not local! No matter slightly
-we wiggle $0$, this truth value can change. This instability is exactly what
+Even though $0 = \lvert 0 \rvert$, this truth is not local -- No matter how slightly
+we wiggle $0$, this truth value can change, and this instability is exactly what
 keeps $0$ from being in the set $$[-1,0) \cup (0,1] = [ \! [ s = |s| \lor s \neq |s| ] \! ]$$
 
 <br><br>
@@ -344,7 +345,7 @@ First, can you compute the object of truth values $\Omega$?
   <summary>solution</summary>
   
   This is worked out in detail in chapter I of Mac Lane and Moerdijk
-  (pages 35 and 36 of my edition) but briefly we get
+  (pages 35 and 36 of my edition) but briefly, we get
 
   $$
   \Omega = \{ \top, \bot', \bot \} \overset{\sigma}{\to} \{ \top, \bot \}
@@ -381,7 +382,7 @@ to be decidable?
   We quickly get to $f^2 \Vdash x=y \lor x \neq y$, where (as usual) 
   $x$ and $y$ are the projection maps from $f^2 \to f$.
 
-  Another, smaller, computation shows that $f^2 = a^2 \to b^2$ is just the
+  Another, smaller, computation shows that $f^2 : a^2 \to b^2$ is just the
   map sending $(x,y) \mapsto (fx,fy)$. Moreover, an epi 
 
   $$
@@ -469,7 +470,7 @@ Stay warm and stay safe, all! We'll talk soon 💖
     $\mathsf{Set} = \mathsf{Sh}(\star)$.
 
 [^4]:
-    Nothing at all changes if we instead take $X$ to be a [locale][6]
+    Nothing at all changes if we instead take $S$ to be a [locale][6]
 
 [^5]:
     Also note that the existential quantifier really impacts things. Essentially
@@ -584,14 +585,13 @@ Stay warm and stay safe, all! We'll talk soon 💖
     is allowed to loop forever if the answer is "no"! So really we get a "yes"
     or "maybe".
 
-    Dually, we say a property is _cosemidecidable_ if a computer can answer
-    "no" or "maybe". If you run it long enoguh and the ansewr is "no", 
+    Dually, we say a property is _co-semidecidable_ if a computer can answer
+    "no" or "maybe". If you run it long enough and the answer is "no", 
     it will always say so. But if the answer is "yes" the code might loop forever.
 
     <div class=boxed markdown=1>
     As a (fairly easy?) exercise, show that something is decidable 
-    if and only if it's both semidecidable and cosemidecidable.
-    same thing as 
+    if and only if it's both semidecidable and co-semidecidable.
     </div>
 
     To finish the brief explanation, equality is _such_ an important 
@@ -619,13 +619,18 @@ Stay warm and stay safe, all! We'll talk soon 💖
     Regardless, it's not lost on me that $f$ is decidable in 
     $\mathsf{Set}^\to$ exactly when it's a monomorphism in $\mathsf{Set}$...
     This has something to do with the fact that, model theoretically,
-    monos _do_ reflect the truth of negated atomic questions. I'm seeing
+    monos _do_ reflect the truth of atomic questions (like equality). I'm seeing
     some connection here, but I can't quite make it precise.
 
 [^9]:
     taken from Johnstone's _Rings, Fields, and Spectra_, which should
     really be required reading for anyone interested in applications 
     of topos theory!
+
+[^10]:
+    This is obviously an _extremely_ strict condition! If we think about the sheaf
+    of real-valued continuous functions on $S$, it's hard to imagine the case that
+    two functions which agree on a point automatically agree everywhere!
 
 
 [1]: https://www.fairucnow.org/
