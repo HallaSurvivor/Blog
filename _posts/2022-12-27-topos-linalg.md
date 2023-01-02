@@ -32,7 +32,7 @@ satisfying the usual axioms for a (commutative) ring:
 
 - $0 + a = a = a + 0$
 - $a + (-a) = (-a) + a = 0$
-- $(a + b) + c = a + (b + c)
+- $(a + b) + c = a + (b + c)$
 - $a + b = b + a$
 - $1 \times a = a = a \times 1$
 - $(a \times b) \times c = a \times (b \times c)$
@@ -56,9 +56,13 @@ broad phenomenon in mathematics, and you can find more examples in an
 Let's contrast this with the case of fields. There's a handful of ways you
 might try to write down the extra axiom:
 
-$$(F1) \quad \quad a = 0 \lor \exists b . ab = 1$$
-$$(F2) \quad \quad a \neq 0 \to \exists b . ab = 1$$
-$$(F3) \quad \quad \not \exists b . ab = 1 \implies a = 0$$
+$$
+\begin{align}
+& (F1) & (a = 0)                    & \lor \ \ (\exists b . ab = 1) \\
+& (F2) & (a \neq 0)                 & \to  (\exists b . ab = 1) \\
+& (F3) & (\lnot \exists b . ab = 1) & \to  (a = 0)
+\end{align}
+$$
 
 Notice these are all "more complicated" than the other axioms in a way
 we can make precise. They all feature logical connectives, like $\lnot$,
@@ -70,8 +74,7 @@ theory and thus have more complicated semantics!
 
 For example, say $R$ is a ring object in $\mathcal{E}$, 
 $S$ is a ring object in $\mathcal{F}$, and 
-$(f_*, f^*) : \mathcal{E} \to \mathcal{F}$ is a [geometric morphism][3].
-
+$$(f_*, f^*) : \mathcal{E} \to \mathcal{F}$$ is a [geometric morphism][3].
 Then $f_* R$ is a ring object in $\mathcal{F}$ and $f^* S$ is a ring object
 in $\mathcal{E}$! The ring-ness both pushes forwards and pulls back 
 under geometric morphisms. 
@@ -79,7 +82,7 @@ under geometric morphisms.
 Contrast this with the field axioms above. Axiom $F1$ is a 
 [geometric formula][4], so it pulls back under geometric morphisms,
 but it can be shown that every $F1$-field is [decidable][5].
-Since many objects that we _want_ to be fields are not often decidable
+Since many objects that we _want_ to be fields are often not decidable
 (for instance, the dedekind real numbers object $\mathbb{R}$) we're forced to 
 consider axioms $F2$ and $F3$, which are not preserved under 
 _any_ part of a geometric morphism in general!
@@ -305,6 +308,21 @@ has homotopy structure, and every function is continuous! This makes some
 arguments much easier, by leveraging [path induction][17] or other tools, 
 which are simply _false_ in $\mathsf{Set}$!
 
+<div class=boxed markdown=1>
+
+Now, let $R$ be a ring object in $\mathcal{E}$, and $M$ an abelian group 
+object. We say that $M$ is an $R$-module if it comes equipped with a 
+ring hom $\varphi : R \to \text{End}(M)$[^5].
+
+As usual, we write $r \cdot m$ (or even $rm$) instead of $\varphi(r)(m)$.
+
+</div>
+
+Let's go through some simple examples in various topoi.
+
+---
+
+First, let's look at the topos $\mathcal{E} = \mathsf{Set}^{\cdot \to \cdot}$
 
 
 ---
@@ -335,6 +353,25 @@ which are simply _false_ in $\mathsf{Set}$!
 
 [^4]:
     Actually an $\infty$-topos
+
+[^5]:
+    Classically we can write an $R$-module (for fixed $R$) as an 
+    algebraic theory directly. We do this by adding a unary operation
+    $(r \cdot -)$ for each element of $R$, and adding axioms saying that
+    $(r \cdot (s \cdot -)) = rs \cdot -$. 
+
+    It's not entirely obvious if we can immtitate this construction in 
+    $\mathcal{E}$, since now our ring object $R$ is not constant. That said,
+    there's still a way to make things work out.
+
+    The idea is to immitate the usual study of lawvere theories 
+    in the internal logic of $\mathcal{E}$! Then we end up with a version
+    of lawvere theories that work with topoi "relative to $\mathcal{E}$",
+    and in this world the $\mathcal{E}$-object $R$ "looks constant"
+    (since it _is_ constant inside $\mathcal{E}$).
+
+    For more about this approach, see Chapter 6 section 4 of 
+    Johnstone's _Topos Theory_.
 
 [1]: /2022/12/13/internal-logic-examples.html
 [2]: /2021/09/07/examples-of-sns-theorems.html
