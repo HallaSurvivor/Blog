@@ -14,6 +14,13 @@ spend some time talking about all the ways I know of for thinking about
 categories, and hopefully also explain what each viewpoint brings to the
 table.
 
+This post has actually been in my drafts for almost a year now[^3]
+which is pretty wild to think about... I got in a discussion on 
+mastodon recently that inspired me to come back and finish this up. 
+
+I have a long train ride ahead of me anyways (I'm coming into New York City
+from upstate where I spent new years eve with some friends) so let's do it ^_^.
+
 ---
 
 ## Universes Of Discourse
@@ -53,14 +60,16 @@ affine plane $\mathbb{A}^2$!
 
 This intuition for what a "product" of objects should be was later made
 precise by looking at universal properties, and a general idea of product
-in a category. 
+in a category. There's a similar story for coproducts, direct and inverse limits, etc. 
 
-Similarly with coproducts, direct and inverse limits, etc. 
+Of course, the reason people were interested in developing universes of
+discourse is so that they can develop _transformations_ that eat one kind
+of object and output a new kind of object! Through this lens, these _functors_, 
+like the fundamamental group $\pi_1$, essentially let us travel between 
+universes in order to translate our problem into a new domain where it's 
+(hopefully) easier to solve!
 
-Of course, once we have universes of discourse, we have maps between them,
-for instance the fundamental group functor $\pi_1$. 
-
-Also, the language of categories lets us express when two classes of objects
+Lastly, the language of categories lets us express when two types of objects
 are "really the same". The (anti)equivalence of categories between stone spaces
 and boolean algebras is beautiful and useful. Similarly, the (anti)equivalence
 of finitely generated reduced $k$-algebras with algebraic varieties led 
@@ -72,6 +81,36 @@ of commutative rings. This, of course, revolutionized algebraic geometry.
 ## Algebraic Objects
 
 Categories can also be seen as algebraic objects in their own right.
+
+After all, a category with one object $\star$ is "just" a monoid. Our 
+elements are the arrows $\text{Hom}(\star, \star)$ and multiplication is 
+composition.
+
+Through this lens, a category is a generalization where multiplication isn't
+always defined. Instead we have a set of "labels" (the objects of our category)
+and we can only multiply two eleemnts whose labels agree. 
+
+To make this extremely concrete, consider the category which has natural
+numbers as objects. Then the arrows $\text{Hom}(m,n)$ are exactly the 
+matrices with $m$ rows and $n$ columns. 
+
+TODO: picture
+
+We know how to multiply matrices, but we are only allowed to do this when
+the labels match up
+
+TODO: another picture of the composite
+
+So a category is a kind of algebraic gadget that allows us to keep track
+of _which_ elements we're allowed to multiply! 
+
+Now a functor between two categories is just a homomorphism. It's a 
+structure preserving map between two algebras. Indeed, in case our 
+categories both have a single object, a functor is _literally_ a 
+monoid homomorphism.
+
+For instance, a groupoid is a category where every arrow is invertible. 
+
 
 After all, one standard definition of a category _looks_ like 
 a definition of an algebraic structure: 
@@ -162,6 +201,9 @@ Invariant
 [^2]:
     I'll be following the usual tradition of ignoring foundational issues here,
     much to the disappointment of my set theorist friends, I'm sure.
+
+[^3]:
+    since March of 2022
 
 
 [1]: https://en.wikipedia.org/wiki/Enriched_category
