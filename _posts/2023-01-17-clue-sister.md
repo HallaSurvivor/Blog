@@ -5,17 +5,14 @@ tags:
   - 
 ---
 
-This is the sister post to blah blah blah
-
-Make this interactive
+This is the sister post to the [main post][1] on the board game clue. 
+In this post we give some sage code for analyzing a simpler game that 
+my old professor [Adam Bjorndahl][2] used to use to introduce modal logic.
+It won't make a ton of sense without the context in the main post,
+so I suggest reading it first ^_^.
 
 <div class="linked_auto">
 <script type="text/x-sage">
-"""
-Compute the maximum and expected game lengths for 
-n players each wearing either a red or blue hat.
-See the main blog post for more.
-"""
 
 def areAdj(v,w):
     """
@@ -38,8 +35,8 @@ def buildFrame(n):
     G = Graph()
     G.add_vertices([tuple(x) for x in Tuples([0,1],n)])
 
-    for v in G.vertices():
-        for w in G.vertices():
+    for v in G.vertices(sort=True):
+        for w in G.vertices(sort=True):
             l = areAdj(v,w)
             if l is not None:
                 G.add_edge(v,w,l)
@@ -54,7 +51,7 @@ def getLabeledNeighbors(G,v,l):
     
     ns = []
     for w in G.neighbors(v):
-        if (v,w,l) in G.edges() or (w,v,l) in G.edges():
+        if (v,w,l) in G.edges(sort=True) or (w,v,l) in G.edges(sort=True):
             ns += [w]
 
     return ns
@@ -78,7 +75,7 @@ def playTurn(G,l):
     """
 
     ws = []
-    for v in G.vertices():
+    for v in G.vertices(sort=True):
         if isIsolated(G,v,l):
             ws += [v]
 
@@ -86,7 +83,8 @@ def playTurn(G,l):
 
     return ws
 
-def playGame(n):
+@interact
+def playGame(n=selector(values=list(range(1,11)), label="players", default=3)):
     """
     Play a game with n players.
 
@@ -118,9 +116,22 @@ def playGame(n):
     prob = len(out[-1]) / (2^n - 1)
 
     print("maximum game length: ", maxm)
-    print("average game length: ", avg, "   ", avg.n())
-    print("probability of max length", prob, "   ", prob.n())
-    return out
+    print("average game length: ", avg, " (", avg.n(), ")")
+    print("probability of max length: ", prob, " (", prob.n(), ")")
+    print("")
 
+    for (i,ws) in enumerate(out):
+        if i != 0:
+            print("worlds where someone wins on turn {}:".format(i))
+            # there MUST be a better way to do this, haha
+            wsFormatted = [
+                str(w).replace('(', '').replace(')', '').replace(',', '').replace(' ','')
+                 for w in ws]
+            print(wsFormatted)
 </script>
 </div>
+
+---
+
+[1]: /2023/01/17/clue.html
+[2]: https://www.adambjorndahl.com/
