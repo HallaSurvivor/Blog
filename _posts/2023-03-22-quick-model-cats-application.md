@@ -12,7 +12,7 @@ reason to care about the whole endeavor! I'd love to share it ^_^
 
 Also, I know the blog posts have been slow lately. I have a handful of bigger
 posts in the pipeline that I really want to finish up as soon as I find the time.
-One is one 2-categories and what kinds of problems they solve (with a little
+One is on 2-categories and what kinds of problems they solve (with a little
 appendix on an application of 3-categories), and another is on various ways
 of understanding categories. A category is simultaneously a 
 geometric, logical, algebraic, set theoretic, etc. object, and this is part of
@@ -28,7 +28,7 @@ next week: The ASL general meeting in Irvine (where I'll get to hang out with
 other logicians again!) as well as a geometric group theory conference at 
 UC Riverside. I'm going to have to split my time between the two conferences,
 since they perfectly overlap, but I really want to go to both. Thankfully
-Irvine and Riverside are only a trainride away!
+Irvine and Riverside are only a 2 hour trainride apart!
 
 There's a paper of mine that's been literally written, and just needs 
 some revision, since _august of last year_. I want to talk about it with 
@@ -52,7 +52,7 @@ $\mathsf{hTop}$ which is as badly behaved as it is useful.
 
 Mathematicians developed lots of tools for studying this category by working
 in (the much better behaved) $\mathsf{Top}$ for as long as possible, then
-quotienting only at the end. 
+quotienting out the homotopy relation at the very end.
 
 Algebraically, we have the [derived category][3] of Grothendieck's school.
 Here we have a notion of "chain homotopy" and again we want to consider 
@@ -64,8 +64,8 @@ and quotient at the end.
 There are many informal analogies between these two settings, morally mediated
 by the functor assigning to a topological space $X$ its "singular chain complex"
 $\text{Sing}_\bullet(X)$. Then homotopy in the topological setting becomes 
-homotopy in the chain complex setting after applying this functor. But 
-Quillen distilled the common techniques between these two settings into the
+homotopy in the chain complex setting. Quillen made this analogy precise by
+distilling the common techniques between these two settings into the
 axioms for a model category. Now we know if we have a category $\mathcal{C}$ 
 that admits a model structure, many of the techniques for working 
 "up to homotopy" are immediately applicable to working with objects of 
@@ -116,7 +116,7 @@ in the right level of generality, there's often only one obvious thing to try!
 
 And this is what prompted me to write this post. Earlier today I was reading
 Kottke's notes on bundles (available [here][5]), which led me to a slightly
-surprising theorem (which, in hindsight, I think I've seen before):
+surprising theorem in the comments of a [mse question][9] (which, in hindsight, I think I've seen before):
 
 <div class=boxed markdown=1>
 If $\pi : E \to B$ is a fibre bundle with contractible fibres, then we 
@@ -150,8 +150,7 @@ Again, one can show this always exists.
 
 In general, inductively assume we've defined a map $B^{(k)} \to E$ from
 the $k$-skeleton of $B$ to $E$. We would like to extend this map to the 
-$(k+1)$-skeleton, so that the union of these functions gives the desired
-map $B \to E$. One can show that the function extends to a $(k+1)$ cell 
+$(k+1)$-skeleton. One can show that the function extends to a $(k+1)$ cell 
 exactly when its image, restricted to the boundary of our cell, is 
 nullhomotopic. But we use our contractibility assumption here in order to 
 show that this condition always holds, so that we can always extend our function!
@@ -159,7 +158,8 @@ show that this condition always holds, so that we can always extend our function
 Along the way, we must be careful to make sure that our extension is always
 a section of $\pi$ at each step, but again this is doable.
 
-Thus a global section exists, as desired.
+If you believe all this, then the union of these partial sections $s^{(k)}$
+is the desired global section $s : B \to E$.
 <span style="float:right">$\lrcorner$</span>
 
 <br>
@@ -196,7 +196,7 @@ weak equivalence we'll be able to fill this square:
 and commutativity of this diagram says that $\pi s = \text{id}_B$ so that
 $s$ is a section of $\pi$!
 
-Now there's no way that $\emptyset$ is going to be weakly equivalent to $B$,
+There's no way that $\emptyset$ is going to be weakly equivalent to $B$,
 so we need to show that $\pi$ is a weak equivalence. That is, we need to 
 show that the maps on homotopy groups (sorry in advance for this notation)
 
@@ -204,7 +204,7 @@ $$\pi_n(\pi) : \pi_n(E) \to \pi_n(B)$$
 
 should all be isomorphisms.
 
-But now the [long exact sequence][8] of a fibration tells us
+Now the [long exact sequence][8] of a fibration tells us
 
 $$
 \cdots \to \pi_n(F) \to \pi_n(E) \to \pi_n(B) \to \pi_{n-1}(F) \to \cdots
@@ -227,7 +227,6 @@ I wouldn't be surprised if there's a fiddly inductive proof involved in
 the proof that $\mathsf{Top}$ really _does_ satisfy the model category
 axioms (in particular this lifting axiom), but that's part of the beauty of
 theories like this! 
-
 By packaging these technical proofs into a single (easy to use) set of axioms,
 we're able to make future proofs less error prone! We get the technical work
 out of the way up front and all at once so that future mathematicians will 
@@ -236,7 +235,7 @@ have an easier time.
 This is analogous to building a nice API for the theory. Lots of work
 went on behind the scenes, but now we can use that work without needing to 
 check ourselves that $\mathsf{Top}$ really _is_ a model category! But to 
-avoid duplicating work, we need to know that the API exists. So it's useful 
+use it, we need to _know that the API exists_. So it's useful 
 to learn the language of model categories even if we _aren't_ interested in 
 the vast generalization of homotopy theory to other categories.
 
@@ -255,7 +254,7 @@ satisfied for other categories as well can be thought of as icing on the cake!
 This was a super quick one (I think I wrote it in under two hours, which is 
 unheard of for me) because I really wanted to get it out before I do a bunch
 of other, more pressing work. This was helpful as well, because it means I 
-allowed myself to not look too deeply into the details of proof 1. I don't 
+allowed myself to not look too deeply into the details of proof $1$. I don't 
 fully understand it (and that probably shows from my sketch) but I think 
 that's ok. One of these days I'll get around to learning some obstruction 
 theory, and at that point I'll come back to the proof with a better 
@@ -285,3 +284,4 @@ Stay warm, everyone. Talk soon!
 [6]: https://en.wikipedia.org/wiki/Universal_bundle
 [7]: https://en.wikipedia.org/wiki/Obstruction_theory
 [8]: https://en.wikipedia.org/wiki/Homotopy_group#Long_exact_sequence_of_a_fibration
+[9]: https://math.stackexchange.com/questions/3548714/existence-of-section-on-fiber-bundles-with-contractible-fibers
