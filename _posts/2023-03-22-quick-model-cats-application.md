@@ -25,7 +25,9 @@ both be good posts, so I'm excited to get them finished.
 
 As long as we're giving little life updates, I'm going to two conferences 
 next week: The ASL general meeting in Irvine (where I'll get to hang out with 
-other logicians again!) as well as a geometric group theory conference at 
+other logicians again! Actually, one of my best friends [Pedro Marun][10] is 
+giving a talk on Tuesday, which I'm looking forward to) as well as a 
+geometric group theory conference at 
 UC Riverside. I'm going to have to split my time between the two conferences,
 since they perfectly overlap, but I really want to go to both. Thankfully
 Irvine and Riverside are only a 2 hour trainride apart!
@@ -285,3 +287,4 @@ Stay warm, everyone. Talk soon!
 [7]: https://en.wikipedia.org/wiki/Obstruction_theory
 [8]: https://en.wikipedia.org/wiki/Homotopy_group#Long_exact_sequence_of_a_fibration
 [9]: https://math.stackexchange.com/questions/3548714/existence-of-section-on-fiber-bundles-with-contractible-fibers
+[10]: https://pedromarun.github.io
