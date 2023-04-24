@@ -154,6 +154,7 @@ way, we say our category has an $(\mathcal{M}, \mathcal{E})$-factorization syste
 
 ---
 
+
 Algebraic
   - can be defined by generators and relations
   - factorization systems
@@ -162,7 +163,6 @@ Algebraic
   - representation, cohomology, etc
   - https://mathoverflow.net/a/43615/145247 ?
   - localization
-      
 
 Geometric
   - objects are "points", arrows are "paths"
@@ -190,6 +190,8 @@ Invariant
   - category of covering spaces is equivalent to category of subgroups
 
 
+
+"proof relevant preorder", which has algebraic, geometric, and logical content.
 
 ---
 
