@@ -142,6 +142,10 @@ Brown, and probably another too?
 
 TODO: say something about rings as monoids in Ab, etc.
 
+TODO: say something about category actions, and the category of 
+$\mathcal{C}$-sets is a topos! But this also lets us do functor 
+homology on a standard footing.
+
 ## Functors
 
 When we view a category as a model of some theory, a functor becomes 
