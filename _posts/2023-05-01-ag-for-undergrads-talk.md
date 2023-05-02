@@ -32,6 +32,8 @@ to... So we're going to have to go without. You can see the kind of thing
 I would have made at an old blog post [here][1], and you can imagine 3d 
 versions of some of the pictures in the slides.
 
+---
+
 As a quick summary of what's _in_ the talk, I make an analogy to 
 linear algebra (which is about as elementary as I think you can go 
 while still giving an honest look into how the machinery works). Here 
