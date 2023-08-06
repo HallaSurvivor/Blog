@@ -10,7 +10,7 @@ title: CV
 
 ### UC Riverside
 
-Mathematics PhD Student (Ongoing)
+Mathematics PhD Student (Ongoing) with [Peter Samuelson][peter samuelson website]
 
 ### Carnegie Mellon University
 
@@ -74,6 +74,7 @@ B.S. in Discrete Math and Logic (May 2019)
 - Teaching Assistant At [HoTTEST Summer 2022][1]
 
 - Primary Instructor (UCR)
+    - Math-194: reading course on lawvere duality (Spring 2023)
     - Math-194: reading course on locales and category theory (Spring 2022)
 
 - Co-Primary Instructor (CMU)
@@ -143,25 +144,44 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Research/Reading Experience
 
+- Fukaya Categories and Mirror Symmetry (2023)
+  - Reading Group, co-organized with [Catherine Cannizzo][catherine cannizzo website]
+
+- Morse Theory (2022)
+  - Reading Course with [Brian Collier][brian collier website]
+
 - Stacks and Moduli Spaces (2022)
-  - Advisor: Patricio Gallardo
+  - Reading Course with [Patricio Gallardo][patricio gallardo website]
 
 - CAT(0) Cube Complexes (2021)
-  - Advisor: Matt Durham
+  - Reading Course with [Matt Durham][matt durham website]
 
 - Right Angled Artin Groups (2020)
-  - Advisor: Matt Durham
+  - Advisor: [Matt Durham][matt durham website]
 
 - Automata Groups (2018-2020)
-  - Advisor: Klaus Sutner
+  - Advisor: [Klaus Sutner][klaus sutner website]
 
 
 ## Conferences
 
-- BLAST (Summer 2022)
-- HoTTEST Colloquia (Summer 2022)
-- Western Algebraic Geometry Symposium (Spring 2022)
+- [Representation Theory, Noncommutative Algebra, and Categorification](https://www.crmath.ca/en/activities/#/type/activity/id/3879) (Summer 2023)
+- [CT2023](https://sites.uclouvain.be/ct2023/) (Summer 2023)
+- [HoTT 2023](https://hott.github.io/HoTT-2023/) (Spring 2023)
+- [Workshop on Geoemtric Group Theory](https://sites.google.com/view/riggthew-2023/home) (Spring 2023)
+- [ASL Annual Meeting](https://sites.uci.edu/asl2023/) (Spring 2023)
+- [JMM](https://www.jointmathematicsmeetings.org/meetings/national/jmm2023/2270_program.html) (Winter 2023)
+- [BLAST](https://math.chapman.edu/blast2022/) (Summer 2022)
+- [HoTTEST Colloquia](https://uwo.ca/math/faculty/kapulkin/seminars/hottest_summer_school_2022.html) (Summer 2022)
+- [WAGS](https://sites.google.com/wagsymposium.org/wags-spring-2022) (Spring 2022)
 
 [1]: https://uwo.ca/math/faculty/kapulkin/seminars/hottest_summer_school_2022.html
 [2]: https://scicomm.ucr.edu/
 [3]: https://math.stackexchange.com/users/655547/hallasurvivor
+
+[matt durham website]: https://sites.google.com/view/mgdurham/
+[catherine cannizzo website]: https://sites.google.com/view/ccannizzo/about-me
+[brian collier website]: https://sites.google.com/view/brian-collier/home
+[patricio gallardo website]: https://sites.google.com/site/patriciogallardomath/
+[peter samuelson website]: https://sites.google.com/view/petersamuelson/home
+[klaus sutner website]: https://www.cs.cmu.edu/~sutner/
