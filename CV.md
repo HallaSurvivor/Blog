@@ -123,6 +123,7 @@ B.S. in Discrete Math and Logic (May 2019)
 - Homological Algebra 
 - Lie Groups 
 - Algebraic Geometry (Varieties and Schemes)
+- Representation Theory 
 
 - Categorical Logic 
 - Descriptive Set Theory 
