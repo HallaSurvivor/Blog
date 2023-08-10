@@ -57,6 +57,8 @@ B.S. in Discrete Math and Logic (May 2019)
      everyone who is interested, regardless of cultural background, age, 
      ability, formal education, ethnicity, gender identity, or expression."
 
+ - Speaker at Trans Math Day 2022
+
  - [SciComm@UCR][2] (2021-present)
      - "A student organization working to communicate science in creative ways"
 
