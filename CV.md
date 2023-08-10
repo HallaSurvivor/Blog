@@ -167,6 +167,9 @@ B.S. in Discrete Math and Logic (May 2019)
 - Right Angled Artin Groups (2020)
   - Advisor: [Matt Durham][matt durham website]
 
+- Topological Combinatorics and Zero-Sum Ramsey Theory (2018-2019)
+  - Advisor: [Florian Frick][florian frick website]
+
 - Automata Groups (2018-2020)
   - Advisor: [Klaus Sutner][klaus sutner website]
 
@@ -193,3 +196,4 @@ B.S. in Discrete Math and Logic (May 2019)
 [patricio gallardo website]: https://sites.google.com/site/patriciogallardomath/
 [peter samuelson website]: https://sites.google.com/view/petersamuelson/home
 [klaus sutner website]: https://www.cs.cmu.edu/~sutner/
+[florian frick website]: https://www.math.cmu.edu/~ffrick
