@@ -90,6 +90,13 @@ B.S. in Discrete Math and Logic (May 2019)
   - Math-136: Introduction to the Theory of Numbers (Winter 2022)
   - Math-140: Polynomials and Number Systems (Winter 2022)
   - Math-165A: Complex Analysis (Winter 2022)
+  - Math-9C: Calculus (Spring 2022)
+  - Math-31: Applied Linear Algebra (Spring 2022)
+  - Math-10A: Calculus in Several Variables (Fall 2022)
+  - Math-133: Geometry (Fall 2022)
+  - CS-011: Introduction to Discrete Structures (Winter 2023)
+  - Math-6B: Introduction to College Math for the Sciences (Winter 2023)
+  - Math-10A: Calculus in Several Variables (Spring 2023)
 </details>
 
 <details markdown=1>
