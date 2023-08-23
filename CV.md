@@ -57,7 +57,7 @@ B.S. in Discrete Math and Logic (May 2019)
      everyone who is interested, regardless of cultural background, age, 
      ability, formal education, ethnicity, gender identity, or expression."
 
- - Speaker at Trans Math Day 2020
+ - [SUBGroups][4] (Group Leader and Mentor, 2022)
 
  - [SciComm@UCR][2] (2021-present)
      - "A student organization working to communicate science in creative ways"
@@ -191,6 +191,7 @@ B.S. in Discrete Math and Logic (May 2019)
 [1]: https://uwo.ca/math/faculty/kapulkin/seminars/hottest_summer_school_2022.html
 [2]: https://scicomm.ucr.edu/
 [3]: https://math.stackexchange.com/users/655547/hallasurvivor
+[4]: https://gradsubgroups.org/
 
 [matt durham website]: https://sites.google.com/view/mgdurham/
 [catherine cannizzo website]: https://sites.google.com/view/ccannizzo/about-me
