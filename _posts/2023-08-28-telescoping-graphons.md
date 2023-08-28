@@ -144,7 +144,7 @@ bound that we're after[^2]!
 
 ---
 
-Ok, that one really _was_ quick! I've been traveling a TON lately 
+Ok, that one really _was_ quick[^3]! I've been traveling a TON lately 
 (I've been to 11 conferences this year...) but now I'm finally done and 
 I should have time to work on blog posts more regularly. I have a lot of 
 ideas, and a lot of drafts, and hopefully I'm able to get them out soon ^_^.
@@ -163,6 +163,12 @@ Thanks for hanging out, all. Stay safe, and we'll talk soon!
 [^2]:
     Again, I'm glossing over a lot of details here. Thankfully they're all in
     [the relevant lecture][3].
+
+[^3]:
+    I actually had a couple extra things I was considering saying in this 
+    post, but that goes against the low-effort spirit of quick-analysis-tricks!
+    I'm glad I was able to get this written quickly, because I have a fair 
+    amount of stuff to do around the house today.
 
 [1]: https://www.youtube.com/playlist?list=PLUl4u3cNGP62qauV_CpT1zKaGG_Vj5igX
 [2]: https://en.wikipedia.org/wiki/Graphon
