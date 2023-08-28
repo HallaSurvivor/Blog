@@ -190,4 +190,4 @@ Thanks for hanging out, all. Stay safe, and we'll talk soon!
 [1]: https://www.youtube.com/playlist?list=PLUl4u3cNGP62qauV_CpT1zKaGG_Vj5igX
 [2]: https://en.wikipedia.org/wiki/Graphon
 [3]: https://youtu.be/9gy-CAwx0Ls?si=E2ZFePCdidTBbKzk
-[4]: https://en.wikipedia.org/wiki/Abel%27s_summation_formula
+[4]: https://en.wikipedia.org/wiki/Summation_by_parts
