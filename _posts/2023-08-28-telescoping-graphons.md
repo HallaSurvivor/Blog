@@ -176,10 +176,14 @@ Thanks for hanging out, all. Stay safe, and we'll talk soon!
 
 [^3]:
     I actually had a couple extra things I was considering saying in this 
-    post, but that goes against the low-effort spirit of quick-analysis-tricks!
-    I'm glad I was able to get this written quickly, because I have a fair 
-    amount of stuff to do around the house today.
+    post, like a potential relationship with Abel's [summation by parts][4].
+    But I don't actually know if that relationship exists, so I would need to 
+    figure it out myself. I don't know if that would be easy or hard, 
+    but either way it goes against the low-effort spirit of quick-analysis-tricks,
+    haha. I ended up deciding not to think about that, because I have a fair 
+    amount of stuff I have to do around the house today.
 
 [1]: https://www.youtube.com/playlist?list=PLUl4u3cNGP62qauV_CpT1zKaGG_Vj5igX
 [2]: https://en.wikipedia.org/wiki/Graphon
 [3]: https://youtu.be/9gy-CAwx0Ls?si=E2ZFePCdidTBbKzk
+[4]: 
