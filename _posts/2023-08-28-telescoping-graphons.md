@@ -14,12 +14,16 @@ goes into some of my longer-form posts (which I'm still working on, of course).
 I got back from a conference yesterday night, and gave myself the day off to 
 recover (and do some chores...) so I decided to do some low-energy math while 
 my laundry was going. I _love_ watching lectures in computer-science-y and 
-combinatorics-y subjects that I don't get to spend much time doing anymore 
-since it doesn't take much effort to get the gist of the subject, and learn 
-some surface level techniques that I can dig into more deeply should the need 
-ever arise. So it's not surprising that I've slowly been making progress in 
+combinatorics-y subjects that I don't get to spend much time doing anymore.
+It doesn't take much effort to get the gist of the subject, learn 
+some surface level techniques, etc. that keep me feeling like I'm improving,
+even though I don't have the time to read papers and do serious research 
+in these areas right now.
+This year I've been slowly been making progress in 
 Yufei Zhao's phenomenal course on "Graph Theory and Combinatorics", available 
-freely on [youtube][1]. While talking about [graphons][2], Zhao gives an 
+freely on [youtube][1]. 
+
+While talking about [graphons][2], Zhao gives an 
 analytical argument that I can see being _extremely_ applicable in other 
 settings, so I figured I would talk about it here[^1]!
 
@@ -67,6 +71,11 @@ a_1 a_2 a_3 a_4 - b_1 b_2 b_3 b_4
 \end{align}
 $$
 
+You start with $(a_1 - b_1)$ and all the $a_i$s on the right. Then
+to get from one term to the next you hop an $a_i$ over the difference, 
+turning it into a $b_i$ along the way. You finish when you're left with 
+all the $b_i$s on the left.
+
 This has a kind of "product rule" feeling to it, where we replace the 
 difference of products (analogous to the derivative of a product) with 
 a sum of products over all places we could "put" the difference 
@@ -103,12 +112,13 @@ In fact, this problem was exactly the flavor of the graphon application
 from Zhao's lectures! Say we have two graphons $W, U : [0,1]^2 \to [0,1]$
 which are "close" in the sense that 
 
-$$\int \int \Big ( W(x,y) - U(x,y) \Big ) \phi(x) \psi(y) \ dy \ dx \quad \quad (\star)$$ 
+$$\iint_{[0,1]^2} \Big ( W(x,y) - U(x,y) \Big ) \phi(x) \psi(y) \ dy \ dx \quad \quad (\star)$$ 
+
 is small for each pair of weight functions $\phi$ and $\psi$.
 
 The "number of triangles in $W$" is given by 
 
-$$t(W) = \iiint W(x,y) W(y,z) W(z,x) \ dx \ dy \ dz$$
+$$t(W) = \iiint_{[0,1]^3} W(x,y) W(y,z) W(z,x) \ dx \ dy \ dz$$
 
 since we think of $W(x,y)$ as being the "probability of an edge" 
 between $x$ and $y$.
