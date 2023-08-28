@@ -183,7 +183,11 @@ Thanks for hanging out, all. Stay safe, and we'll talk soon!
     haha. I ended up deciding not to think about that, because I have a fair 
     amount of stuff I have to do around the house today.
 
+    Though if any ambitious readers want to look for a connection between 
+    this trick and abel summation, I would be super interested in hearing 
+    about it!
+
 [1]: https://www.youtube.com/playlist?list=PLUl4u3cNGP62qauV_CpT1zKaGG_Vj5igX
 [2]: https://en.wikipedia.org/wiki/Graphon
 [3]: https://youtu.be/9gy-CAwx0Ls?si=E2ZFePCdidTBbKzk
-[4]: 
+[4]: https://en.wikipedia.org/wiki/Abel%27s_summation_formula
