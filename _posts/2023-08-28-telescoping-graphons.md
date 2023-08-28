@@ -155,7 +155,7 @@ bound that we're after[^2]!
 ---
 
 Ok, that one really _was_ quick[^3]! I've been traveling a TON lately 
-(I've been to 11 conferences this year...) but now I'm finally done and 
+(I've been to way too many conferences this year...) but now I'm finally done and 
 I should have time to work on blog posts more regularly. I have a lot of 
 ideas, and a lot of drafts, and hopefully I'm able to get them out soon ^_^.
 
