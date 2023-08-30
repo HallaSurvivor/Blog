@@ -7,6 +7,8 @@ tags:
 
 TODO: Intro
 
+https://qchu.wordpress.com/2016/05/31/higher-linear-algebra/
+
 ---
 
 # Universes of Discourse
