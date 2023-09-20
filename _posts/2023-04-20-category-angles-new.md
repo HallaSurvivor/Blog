@@ -9,6 +9,14 @@ TODO: Intro
 
 https://qchu.wordpress.com/2016/05/31/higher-linear-algebra/
 
+TODO: mention stacks, which are in some ways a "universe of discourse" 
+and "invariant" and a "geometric space"! For instance, a stack is "just" 
+a category over a site that satisfies descent. But also it's a geometric 
+space in its own right (since we know how to probe it by maps from objects 
+in the site). And frequently we build stacks to represent moduli spaces, 
+which themselves are meant to be invariants of some object (for instance, 
+the stack $\text{QCoh}(-)$).
+
 ---
 
 # Universes of Discourse
