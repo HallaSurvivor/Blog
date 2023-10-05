@@ -198,7 +198,7 @@ Ok, with the history out of the way, let's talk about
 
     I was actually able to work this out as well during [CT2023][8], but 
     unfortunately I learned while writing it up that Pedicciho and Wood 
-    had published the same result in 99. I was sad, of course, but I learned 
+    had published the same result in '99. I was sad, of course, but I learned 
     a TON while working on that project, about essentailly algebraic 
     theories, locally finitely presentable categories, 2-categories, and 
     lots more! That's actually coming in super handy with my thesis project,
