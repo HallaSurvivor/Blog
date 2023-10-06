@@ -141,6 +141,73 @@ Ok, with the history out of the way, let's talk about
 
 ### What's in the paper
 
+This is pretty quick to outline, since I'm assuming a category theory 
+background of my blog readers that I wasn't assuming of my paper readers.
+That said, if it ever gets too heavy, feel free to read the first few 
+sections of [the paper][1], since I go into much more detail there.
+
+The main result is implied by the categorical statement that the adjunction 
+$A \dashv C$ is <span class=defn>Comonadic</span>. This says that 
+$\mathsf{Gph}$ is equivalent to the category of $AC$-coalgebras on 
+$\mathsf{Grp}$, and moreover that the equivalence intertwice the
+adjunctions $A \dashv C$ (on the $\mathsf{Gph}$ side) 
+and the co-free/forgetful adjunction (on the $\mathsf{Grp}_{AC}$ side).
+
+That is, we have a situation as below:
+
+<p style="text-align:center;">
+<img src="/assets/images/descent-for-raags/comonadic-triangle.png" width="50%">
+</p>
+
+Really the equivalence $A$ sends a graph $\Gamma$ to the group $A\Gamma$ 
+with the coalgebra structure $A \eta_\Gamma : A \Gamma \to ACA \Gamma$, so 
+that after forgetting this structure we get $A : \mathsf{Gph} \to \mathsf{Grp}$.
+
+How do we show that this really is an equivalence? The answer is 
+[Beck's (Co)monadicity Theorem][10]! It says that for _any_ adjunction $A \dashv C$
+the base of that triangle is an equivalence if and only if $A$ reflects 
+isomorphisms and preserves equalizers of "$A$-split parallel pairs".
+
+In the paper we use a different version of the comonadicity theorem which is 
+easier to check, but it boils down to the same proof.
+
+It's "well known" in raag circles that $A$ is conservative (this can already 
+be found in a 1987 paper of Droms), so we need to check that $A$ preserves 
+certain equalizers. We can do this with a slightly technical argument of 
+combinatorics on words. The key fact is that we have a good understanding 
+of normal forms for the elements in $A\Gamma$[^8].
+
+The last section of this paper was a small application of this machinery. We're 
+able to reprove a result that we can effectively recover $\Gamma$ from the 
+isomorphism type of $G \cong A \Gamma$, as long as we're promised that $G$ 
+really is a raag[^9]. We also show that if we have any concrete examples of 
+groups $G$ with $AC$-coalgebra structures, we can really do all the 
+computations that we would want to do!
+
+---
+
+I think I like this format of blog posts putting more emphasis on the things 
+that were on my mind when I was working on a paper, rather than the contents 
+of the paper itself. Maybe if I write a more detailed paper I can say some 
+informal words about what's in it, but I think the historical perspective 
+might help younger mathematicians see how messy research can be, and how 
+incidental things can all blend together into a result. I just _happened_ 
+to be thinking about raags a few years before I _happened_ to learn about 
+stacks and descent, which opened the door to a result on descent for raags.
+Hopefully you all also like the historical perspective ^_^.
+
+I'm also going to try to keep these paper announcement posts a bit less 
+polished. It's easy to get paralysis and revise posts forever and never 
+finish them (ask me how I know...) I want to make sure that these actually 
+get out, so I'll try to keep them light on the revision. That shouldn't 
+be hard if the main point is the history!
+
+---
+
+Anyways, thanks for hanging out, all. I'm super excited to have a 
+result, and I'll be submitting to journals in the near future. Stay warm,
+and we'll talk soon ^_^.
+
 ---
 
 [^1]:
@@ -212,6 +279,18 @@ Ok, with the history out of the way, let's talk about
     Teaching is a great way to learn, and to make sure you really understand 
     a subject.
 
+[^8]:
+    In fact, in multiple of these comonadicity proofs I've done, the key 
+    to checking this equalizer condition is an understanding of normal forms 
+    for the free objects!
+
+    This is yet another reason that the search for "normal form" theorems 
+    for various algebras is an incredibly useful pursuit!
+
+[^9]:
+    Determining whether or not a group $G$ is a raag, without being promised 
+    that it is one, is undecidable.
+
 [1]: https://arxiv.org/abs/2309.06614
 [2]: https://en.wikipedia.org/wiki/Artin%E2%80%93Tits_group#Right-angled_Artin_groups
 [3]: https://sites.google.com/view/cf-nb/
@@ -221,3 +300,4 @@ Ok, with the history out of the way, let's talk about
 [7]: https://en.wikipedia.org/wiki/Descent_(mathematics)
 [8]: https://sites.uclouvain.be/ct2023/
 [9]: https://ncatlab.org/nlab/show/factorization+homology
+[10]: https://ncatlab.org/nlab/show/monadicity+theorem
