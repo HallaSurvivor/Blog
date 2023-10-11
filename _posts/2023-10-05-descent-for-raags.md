@@ -7,7 +7,7 @@ tags:
 
 After almost a _year_ of sitting on my hard drive, I finally had time in 
 August to finish revising my [new preprint][1] on 
-[Right Angled Artin Groups][2] (Raags), and in September I had time to put 
+[Right Angled Artin Groups][2] (Raags). And in September I had time to put 
 it on the arxiv for people to see! Within 24 hours I had an email from 
 somebody who had read it, and was interested in reading it closely!
 It's super exciting to see that people are 
