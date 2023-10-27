@@ -20,15 +20,23 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Papers and Preprints
 
-- A Descent Theorem for Right Angled Artin Groups (in preparation)
+- A Descent Theorem for Right Angled Artin Groups ([preprint](https://arxiv.org/abs/2309.06614))
 - Extensions of Abelian Automata Groups ([preprint](https://arxiv.org/abs/1903.06997))
 
 
-## Talks
+## Talks Outside UCR/CMU
+- 2-Categorical Descent and (Essentially) Algebraic Theories (CT Octoberfest, 2023)
+- The Univalence Axiom (University of Florida, 2021)
+- Categories, Modalities, and Type Theories: Oh My! (HoTT Workshop, 2021)
+- Syntax and Semantics (Trans Math Day, 2020)
 
+## Seminar Talks In Department
+
+- Introduction to Symplectic Geometry (UCR, 2023)
+- Introduction to $A_\infty$ Categories and the Fukaya Category (UCR, 2023)
+- Introduction to $A_\infty$ Algebras (UCR, 2023)
 - Let's Solve A Simple Analysis Problem Together (applications of topos theory) (UCR, 2022)
 - The Weil Conjectures (UCR, 2021)
-- The Univalence Axiom (University of Florida, 2021)
 
 <details markdown=1>
 <summary>See more (reverse chronological order)</summary>
@@ -36,9 +44,7 @@ B.S. in Discrete Math and Logic (May 2019)
 - Bring Out the Crayons: A Survey of Descriptive Combinatorics (UCR, 2021)
 - Top 5 Undecidable Problems: Number 4 will Shock You! (UCR, 2021)
 - Problem Solving Without Ansibles: An Introduction to Communication Complexity (UCR, 2021)
-- Categories, Modalities, and Type Theories: Oh My! (CMU HoTT Workshop, 2021)
 - Why Think? Letting Computers do Math for Us (UCR, 2021)
-- Syntax and Semantics (Trans Math Day, 2020)
 - Programming for Category Theorists (UCR, 2020)
 - Model Theory and You (UCR, 2020)
 - Synthetic Differential Geometry: A How-To Guide (CMU, 2019)
@@ -51,6 +57,10 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Outreach
 
+ - Founding member of UCR [Spectra][5] Chapter (2023)
+
+ - Vice President of UCR [AMS Chapter][6] (2023)
+
  - [HoTTEST Summer School][1] (TA and Unofficial Organizer, 2022)
      - Stated goal is 
      "to make homotopy type theory accessible to, and inclusive of, 
@@ -59,7 +69,7 @@ B.S. in Discrete Math and Logic (May 2019)
 
  - [SUBGroups][4] (Group Leader and Mentor, 2022)
 
- - [SciComm@UCR][2] (2021-present)
+ - [SciComm@UCR][2] (2021)
      - "A student organization working to communicate science in creative ways"
 
  - Math/Music Event (Lead Organizer and Composer, 2020, cancelled due to covid)
@@ -154,8 +164,11 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Research/Reading Experience
 
+- HoTT Seminar (2023)
+  - Homotopy Type Theory Learning Seminar at UCR, organized by me
+
 - Fukaya Categories and Mirror Symmetry (2023)
-  - Reading Group, co-organized with [Catherine Cannizzo][catherine cannizzo website]
+  - Reading Group, co-organized by me and [Catherine Cannizzo][catherine cannizzo website]
 
 - Morse Theory (2022)
   - Reading Course with [Brian Collier][brian collier website]
@@ -176,8 +189,9 @@ B.S. in Discrete Math and Logic (May 2019)
   - Advisor: [Klaus Sutner][klaus sutner website]
 
 
-## Conferences
+## Conferences Attended
 
+- [CT Octoberfest 2023](https://richardblute.ca/octoberfest-2023/) (Fall 2023)
 - [Representation Theory, Noncommutative Algebra, and Categorification](https://www.crmath.ca/en/activities/#/type/activity/id/3879) (Summer 2023)
 - [CT2023](https://sites.uclouvain.be/ct2023/) (Summer 2023)
 - [HoTT 2023](https://hott.github.io/HoTT-2023/) (Spring 2023)
@@ -192,6 +206,8 @@ B.S. in Discrete Math and Logic (May 2019)
 [2]: https://scicomm.ucr.edu/
 [3]: https://math.stackexchange.com/users/655547/hallasurvivor
 [4]: https://gradsubgroups.org/
+[5]: http://lgbtmath.org/
+[6]: http://www.ams.org/programs/studentchapters
 
 [matt durham website]: https://sites.google.com/view/mgdurham/
 [catherine cannizzo website]: https://sites.google.com/view/ccannizzo/about-me
