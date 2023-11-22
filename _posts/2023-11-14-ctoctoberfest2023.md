@@ -20,8 +20,8 @@ etc. It's a structure that can be defined as a set (or possibly multiple sets)
 with some operations defined on it (allowing constants as $0$-ary operations) 
 and equations specifying the behavior of those operations.
 
-An [essentially algebraic theory][3] is something like a category. It's a 
-structure that can be defined as a site (or possibly multiple sets) with some 
+An [essentially algebraic theory][3] is something like categories. It's a 
+structure that can be defined as a set (or possibly multiple sets) with some 
 operations defined on it, etc. The main superpower we get in the _essentially_
 algebraic world over the algebraic one is _partially defined functions_. 
 Now our operations don't have to be defined everywhere, they are allowed 
@@ -54,7 +54,7 @@ but they're not _quite_ as nice as honest algebraic theories.
 For instance, the underlying set of a quotient of groups is a quotient 
 of the underlying set. If we have a surjection $G \twoheadrightarrow H$,
 then there's an equivalence relation[^2] $\theta$ on $UG$ (the underlying set of $G$)
-so that $UH \cong UG \big / \theta$.
+so that $UH \cong (UG) \big / \theta$.
 
 This is no longer the case for models of an _essentially_ algebraic theory! 
 That is, the underlying set of a quotient might not be a quotient of the underlying set[^3].
