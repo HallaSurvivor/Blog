@@ -4,6 +4,7 @@ title: Cohomology Intuitively
 tags:
   - cohomology-intuitively
   - sage
+  - featured
 ---
 
 So I was on mse the other day... 

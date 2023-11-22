@@ -3,6 +3,7 @@ layout: post
 title: Slaughtering Competition Problems with Quantifier Elimination
 tags:
   - sage
+  - featured
 ---
 
 Anytime I see questions on mse that ask something "simple", I feel a

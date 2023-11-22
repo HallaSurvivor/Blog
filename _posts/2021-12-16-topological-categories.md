@@ -2,7 +2,7 @@
 layout: post
 title: Topological Categories -- A Unifying Framework
 tags:
-  - 
+  - featured
 ---
 
 I think there is an obvious analogy that most mathematicians notice, perhaps

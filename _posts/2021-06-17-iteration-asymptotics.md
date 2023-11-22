@@ -3,6 +3,7 @@ layout: post
 title: Iteration Asymptotics
 tags:
   - sage
+  - featured
 ---
 
 I really like recurrences, and the kind of asymptotic

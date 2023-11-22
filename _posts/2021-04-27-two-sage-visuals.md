@@ -4,6 +4,7 @@ title: Two Sage Visuals
 tags:
   - sage
   - pretty-pictures
+  - featured
 ---
 
 I'm in a reading group with Elliott Vest and [Jacob Garcia][11]

@@ -4,6 +4,7 @@ title: Dense Pythagorean Triples -- A Cute Problem in Arithmetic Geometry
 tags:
   - pretty-pictures
   - sage
+  - featured
 ---
 
 I follow a lot of other math blogs, and it's always fun reading about what

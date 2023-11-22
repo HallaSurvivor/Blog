@@ -2,7 +2,7 @@
 layout: post
 title: Monoidal Monoidoidoids
 tags:
-  - 
+  - featured
 ---
 
 So I was on the [nlab][1] the other day, and I saw a fantastic joke: 

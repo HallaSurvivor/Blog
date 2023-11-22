@@ -2,7 +2,7 @@
 layout: post
 title: A Nonarithmetic Example of a Noneuclidean Principal Ideal Domain
 tags:
-  - 
+  - featured
 ---
 
 This blog post changed dramatically over the course of writing it... 

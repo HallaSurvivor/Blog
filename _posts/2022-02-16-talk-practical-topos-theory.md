@@ -3,6 +3,7 @@ layout: post
 title: Talk -- Let's Solve a Simple Analysis Problem. Together.
 tags:
   - my-talks
+  - featured
 ---
 
 Last Friday I gave a talk in GSS where I tried to give a super concrete

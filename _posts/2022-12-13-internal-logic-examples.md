@@ -2,7 +2,7 @@
 layout: post
 title: Externalizing Some Simple Topos Statements
 tags:
-  - 
+  - featured
 ---
 
 Hey all! It's been a minute. I've been super busy with 
