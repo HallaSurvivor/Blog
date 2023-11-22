@@ -163,17 +163,17 @@ With this in mind, we see how to rephrase our problem of recognizing
 the algebraic theories among the essentially algebraic ones!
 
 <div class=boxed markdown=1>
-    Fix an essentially algebraic theory $\mathbb{E}$, with 
-    (finite limit) classifying category $\mathcal{E}$.
+Fix an essentially algebraic theory $\mathbb{E}$, with 
+(finite limit) classifying category $\mathcal{E}$.
 
-    Then $\mathbb{E}$ is actually algebraic if and only if 
-    $\mathcal{E}$ is equivalent to the 
-    <span class=defn>free equalizer completion</span> of a 
-    finite product category $\mathcal{A}$!
+Then $\mathbb{E}$ is actually algebraic if and only if 
+$\mathcal{E}$ is equivalent to the 
+<span class=defn>free equalizer completion</span> of a 
+finite product category $\mathcal{A}$!
 
-    This means if we want to recognize the algebraic theories, 
-    we just need a way to recognize the essential image of 
-    the equalizer completion functor!
+This means if we want to recognize the algebraic theories, 
+we just need a way to recognize the essential image of 
+the equalizer completion functor!
 </div>
 
 Thankfully, there's a very heavy hammer we can use to understand 
