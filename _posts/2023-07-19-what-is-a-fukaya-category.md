@@ -5,30 +5,32 @@ tags:
   - 
 ---
 
-Interesting for physicists and symplectic geometers 
-(TODO: link some stuff on mirror symmetry) but I'm woefully 
-underqualified to talk about any of that stuff.
+The [Fukaya Category][1] of a surface is a deep and interesting invariant 
+with important applications to physics (in particular, to [Mirror Symmetry][2]).
+They've recently shown up in my research, which is exciting and scary in 
+equal measure. The definition is already pretty intimidating, and if you 
+try to look up motivation and examples, you'll be met with a deluge of terms 
+like "$A_\infty$ Structure", "Maslov Index", and "Novikov Field". Even just 
+trying to understand the chain complex structure requires knowledge of 
+(compactifications of) moduli spaces of pseudoholomorphic disks in your surface! 
+It's unbelievable to me that anyone could have come up with this, or worse, 
+that anyone could calculate anything to do with it! With this in mind, 
+I wanted to find a different (more mathematical) motivation for the fukaya 
+category, which made it feel more natural (at least to me).
+Earlier this year I co-organized a reading group on symplectic geometry 
+and fukaya categories with [Catherine Cannizzo][3], and I got to organize 
+my thoughts into a talk. Now, _months_ later, I'm finally writing up a blog 
+post about them. I hope this is as helpful for other people as it was for me!
 
-Let's talk about what it _is_, then I'll pick a _different_ 
-motivating problem that's a bit closer to earth.
+---
 
-It's a "category" whose objects are curves in your surface, 
-and where you have a chain complex worth of arrows between 
-any two curves.
 
-TODO: Link the floer homology or whatever it's called, mention in a footnote
-that it's like morse homology.
 
-Why would you want to do this? Motivate via intersection numbers of curves.
-This categorifies the intersection numbers, which can reveal structure 
-that we wouldn't otherwise see.
 
-Now, why was "category" in scare quotes? Well because composition 
-_isn't associative_! It's not the case that $(fg)h = f(gh)$. But we 
-have the next best thing. There's a homotopy $H : (fg)h \sim f(gh)$.
 
-Now mention how to compose four arrows. There's multple homotopies involved...
-But there's a higher homotopy showing they're the same!
+---
 
-Should I split off a "What is an $A_\infty$-algebra" into a separate post? 
-Maybe...
+[1]: fukaya category
+[2]: mirror symmetry
+[3]: https://sites.google.com/view/ccannizzo/
+
