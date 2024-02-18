@@ -7,7 +7,7 @@ tags:
 
 TODO: maybe box more things?
 
-Earlier today on the [Category Theory Zulip][1], Bernd Losert asked an 
+Earlier ~~today~~ this month on the [Category Theory Zulip][1], Bernd Losert asked an 
 extremely natural question about how we might study topological group 
 actions via the functorial approach beloved by category theorists. 
 The usual story is to treat a group $G$ as a one-object category $\mathsf{B}G$. 
@@ -22,6 +22,10 @@ This is a great case study in the ideas behind both [internalization][2] and
 mathematicians wondering why you might care about such things.
 
 Hopefully people find this helpful ^_^.
+
+(Also, I'm especially sorry for the wait on this one, since I know at least 
+one person has been waiting on it for two weeks now! Life got busy, but I'm 
+excited to finally get this posted.)
 
 ---
 
@@ -100,27 +104,29 @@ The fact that these categories can "talk about their own homsets" might
 make you wonder about other categories with structured homsets.
 
 For instance, there are _lots_ of categories in the wild whose homsets 
-are vector spaces! If $R$ is any $k$-algebra, then for any modules 
-$M$ and $N$, we have a vector space of module homs $\text{Hom}(M,N)$.
-If $G$ is any group, then the category of $G$-representations has vector 
-spaces for homsets.
+are vector spaces! If $R$ is any $k$-algebra, then for $R$-modules $M$ 
+and $N$ the homset $\text{Hom}_{R\text{-mod}}(M,N)$ is a vector space.
+Similarly, if $G$ is any group, then the homset between any two 
+$G$-representations is actually a vector space! We say that the categories 
+$R\text{-mod}$ and $G\text{-rep}$ are <span class=defn>Enriched</span> over 
+$\mathsf{Vect}$.
 
-Similarly, the idea of categories where each homset is a topological space 
-(and functors which have to be "continuous") gives a fantastic first-order 
-approximation[^4] to the theory of [$\infty$-categories][15].
+Similarly, you can ask about categories where each homset is a 
+topological space. It turns out that these give a _fantastic_ 
+first-order approximation[^4] to the theory of [$\infty$-categories][15]!
 
-<br>
-
-This leads to the definition of a 
+More generally, we can define a 
 <span class=defn>$\mathcal{C}$-Enriched Category</span> 
-which has 
+to be the data of 
 
+<div class=boxed markdown=1>
 - A set of objects
-- For each pair of objects $x,y$, a hom-$\mathcal{C}$-object $\text{Hom}(x,y)$
-- For each triple of objects, we should have a composition map in $\mathcal{C}$:
+- For each pair of objects $x,y$, a $\mathcal{C}$-object $\text{Hom}(x,y)$
+- For each triple of objects, a composition map in $\mathcal{C}$,
     $\circ : \text{Hom}(y,z) \otimes \text{Hom}(x,y) \to \text{Hom}(x,z)$
 - For each object $x$, a distinguished element[^5] $\text{id}_x \in \text{Hom}(x,x)$
 - Satisfying the usual axioms.
+</div>
 
 And what will be relevant for us, a $\mathcal{C}$-enriched *groupoid*, 
 which moreover has an inverse map $i : \text{Hom}(x,y) \to \text{Hom}(y,x)$
@@ -133,17 +139,17 @@ $\text{Hom}(x,y)$ to be the $\mathcal{C}$-object $[x,y]$. This specializes to
 the right notion for vector spaces and topological spaces which were examples 
 earlier in this section.
 
-<br>
-
 We'll also need the notion of a $\mathcal{C}$-enriched functor, which is 
 exactly what you might expect given the above definition.
 
+<div class=boxed markdown=1>
 Given two $\mathcal{C}$-enriched categories $\mathbf{A}$ and $\mathbf{B}$, an 
 <span class=defn>Enriched Functor</span> $F : \mathbf{A} \to \mathbf{B}$ sends 
 objects of $\mathbf{A}$ to objects of $\mathbf{B}$. Moreover, for every pair 
 of objects in $\mathbf{A}$ there should be a $\mathcal{C}$-arrow
 $$F_{x,y} : \text{Hom}_{\mathbf{A}}(x,y) \to \text{Hom}_{\mathbf{B}}(Fx,Fy)$$
 which are compatible with identities and composition.
+</div>
 
 For example, a $\mathsf{Vect}$-enriched functor is just a functor so that 
 the map $\text{Hom}(x,y) \to \text{Hom}(Fx,Fy)$ is moreover a linear map 
@@ -153,9 +159,20 @@ $\text{Hom}(x,y) \to \text{Hom}(Fx,Fy)$ are continuous.
 
 ---
 
-Now we have all the pieces we'll need!
+Now we have all the pieces we'll need to prove
 
-Say that we have a group object $G$ internal to a ([cartesian closed][10])
+<div class=boxed markdown=1>
+**Theorem**: Fix a [cartesian closed][10] category $\mathcal{C}$.
+
+There is a natural bijection between group objects $G$ internal to $\mathcal{C}$ 
+and $1$-object groupoids $\mathsf{B}G$ enriched over $\mathcal{C}$. 
+
+Moreover, for a fixed group object $G$, there is a bijection between 
+internal $G$-actions and enriched functors $\mathsf{B}G \to \mathcal{C}$.
+</div>
+
+$\ulcorner$
+Say that we have a group object $G$ internal to a (cartesian closed)
 category $\mathcal{C}$. Then let's build a $\mathcal{C}$-enriched category,
 $\mathsf{B}G$ with a single object $\star$, where $\text{Hom}(\star,\star) = G$.
 Of course, we write $\text{id}_\star = e$, and composition is multiplication.
@@ -163,6 +180,16 @@ Of course, we write $\text{id}_\star = e$, and composition is multiplication.
 Note that $G$ is an object of $\mathcal{C}$, and the identity/composition/inverse
 maps are $\mathcal{C}$-arrows. So this really is a $\mathcal{C}$-enriched 
 groupoid with one object!
+
+Conversely, say we have a one-object $\mathcal{C}$-enriched groupoid 
+$\mathcal{G}$. Then $\text{Hom}_\mathcal{G}(\star,\star)$ had better be an 
+object of $\mathcal{C}$, and it's easy to check that composition and inverse 
+in $\mathcal{G}$ gives this object an internal group structure!
+
+So the data of an enriched $1$-object groupoid is *exactly* the data of an 
+internal group!
+
+<br>
 
 Now, what is a $\mathcal{C}$-enriched functor $F : \mathsf{B}G \to \mathcal{C}$?
 
@@ -176,7 +203,61 @@ a $\mathcal{C}$-arrow $G \times X \to X$, and one can check that the identity
 and composition preservation for the functor corresponds exactly to the 
 axioms for $G \times X \to X$ to be a group action internal to $\mathcal{C}$.
 
-Conversely, given a (this works the other way too)
+Of course, walking backwards through the above discussion shows that an 
+internal group action $G \times X \to X$ in $\mathcal{C}$ is exactly the 
+data of a $\mathcal{C}$-enriched functor $\mathsf{B}G \to \mathcal{C}$ 
+sending $\star \mapsto X$!
+<span style="float:right">$\lrcorner$</span>
+
+<div class=boxed markdown=1>
+Your category-theorist senses should be tingling after reading the 
+statement of the previous theorem! 
+
+Sure there's a bijection of group/group actions, but *what about the arrows!?*
+
+As a cute exercise, prove that this theorem upgrades to an 
+equivalence[^7] of categories between
+
+$$
+\left \{ 
+    \begin{array}{c}
+    \text{group objects internal to $\mathcal{C}$ with} \\
+    \text{internal group homs as arrows}
+    \end{array}
+\right \}
+\simeq
+\left \{ 
+    \begin{array}{c}
+    \text{$1$-object groupoids enriched over $\mathcal{C}$ with} \\
+    \text{enriched functors as arrows}
+    \end{array}
+\right \}
+$$
+
+and for fixed $G$
+
+$$
+\left \{ 
+    \begin{array}{c}
+    \text{Internal actions $G \times X \to X$ in $\mathcal{C}$ with} \\
+    \text{internal $G$-equivariant arrows}
+    \end{array}
+\right \}
+\simeq
+\left \{ 
+    \begin{array}{c}
+    \text{Enriched functors $\mathsf{B}G \to \mathcal{C}$ with} \\
+    \text{enriched natural transformations as arrows}
+    \end{array}
+\right \}
+$$
+
+Part of the puzzle is how to define some of these notions
+(such as "internal $G$-equivariant arrows"). You might find it helpful 
+to read the preexisting definition of an [enriched natural transformation][19].
+</div>
+
+---
 
 ---
 
@@ -212,6 +293,7 @@ to $\mathsf{Set}$.
 [16]: https://en.wikipedia.org/wiki/Simplicial_set
 [17]: https://ncatlab.org/nlab/show/relation+between+quasi-categories+and+simplicial+categories
 [18]: https://ncatlab.org/nlab/show/formal+category+theory
+[19]: https://ncatlab.org/nlab/show/enriched+natural+transformation
 
 [^1]:
     Note that the "usual axioms" can all be expressed as equalities between 
@@ -281,3 +363,6 @@ to $\mathsf{Set}$.
 
 [^6]:
     Ignoring size issues
+
+[^7]:
+    Isomorphism?
