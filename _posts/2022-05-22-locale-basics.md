@@ -131,6 +131,14 @@ the principal downset $$\downarrow \! m \in \mathcal{D}M$$).
   and we'll show that $\mathbb{R} \times \mathbb{R} \cong \mathbb{R}^2$.
 </div>
 
+**Edit:** Thanks to Graham Manuell from the CT Zulip for catching a small bug 
+here! It's not enough to take the downset lattice of intervals. We also 
+need to quotient to make sure 
+$\bigvee_{n} \left (a + \frac{1}{n}, b - \frac{1}{n} \right ) = (a,b)$,
+for instance. More generally we say that the join of all intervals contained 
+in $(a,b)$ should be $(a,b)$ itself. This is actually a special case of a 
+<span class=defn>Coverage</span>, which we'll discuss more later on!
+
 ---
 
 For another example of building locales from a geometric space, let's
