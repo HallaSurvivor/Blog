@@ -2,7 +2,7 @@
 layout: post
 title: Internal Group Actions as Enriched Functors
 tags:
-  - 
+  - featured
 ---
 
 Earlier ~~today~~ this month on the [Category Theory Zulip][1], Bernd Losert asked an 
