@@ -5,8 +5,6 @@ tags:
   - 
 ---
 
-TODO: maybe box more things?
-
 Earlier ~~today~~ this month on the [Category Theory Zulip][1], Bernd Losert asked an 
 extremely natural question about how we might study topological group 
 actions via the functorial approach beloved by category theorists. 
@@ -259,19 +257,111 @@ to read the preexisting definition of an [enriched natural transformation][19].
 
 ---
 
+Let's take a second to meditate on the difference between "internalization" 
+and "enrichment". This difference is usually invisible, since for "ordinary" 
+categories we're always working both internal to $\mathsf{Set}$[^8] and 
+enriched over $\mathsf{Set}$. That is, our categories are always sets with 
+some structure, and our homsets are always... well, sets!
+
+When you have some gadget and you think 
+"Gee! I sure wish this gadget automatically had the structure of a 
+$\mathcal{C}$-object!"[^9], you want to work _internally_ to $\mathcal{C}$.
+Doing this means that pretending that $\mathcal{C}$ _is_ the 
+universe of sets, and the $\mathcal{C}$-arrows _are_ the universe of 
+functions, and then just doing whatever we usually do but "inside $\mathcal{C}$".
+
+Figuring out exactly how to do this is the purview of much of 
+[categorical logic][7]. We can construct standard ways of interpreting 
+set theoretic constructions 
+(such as "$\{x \in \mathbb{N} \mid \exists y. y^2 = x\}$", etc.)
+inside a (sufficiently structured) category $\mathcal{C}$. Then there's a 
+routine, but slightly annoying[^10], method for cashing out these 
+set theoretic constructions for an "internal" version in $\mathcal{C}$!
+You can read all about this [here][21] or [here][22]. One of the reasons 
+so many people care about [topos theory][23] is because a topos is 
+a category with _so much_ structure that we can actually internalize 
+_any concept we want_ inside it!
+
+<br>
+
+What about enrichment? This is useful when you have an otherwise "normal" 
+category, but your homsets have ~bonus structure~ that you want to respect. 
+For instance, your homsets might be abelian groups, or vector spaces,
+topological spaces, or chain complexes! Then _enriched_ category theory tells 
+you that, say, yoneda's lemma [still works][24] when you ask that everything 
+in sight respects this ~bonus structure~. This turns out to be the start 
+of an incredibly interesting subject called [formal category theory][18][^6].
+
+<div class=boxed markdown=1>
+To see how well you understand internal versus enriched things, here's a cute 
+exercise:
+
+Write out, in some detail, the definition of a category _internal_ to 
+$\mathsf{Cat}$ (the category of categories).
+Then write out, in some detail, the definition of a category _enriched_ over 
+$\mathsf{Cat}$ (with $\times$ as its monoidal structure).
+
+Both of these concepts are extremely useful in lots of ongoing research in 
+algebra, logic, and applied category theory! 
+A category internal to $\mathsf{Cat}$ is a [double category][29] (See 
+Evan Patterson's [excellent blog post][30] on the subject).
+A category enriched over $\mathsf{Cat}$ is a [2-category][31], these show 
+up very naturally, as I'll hopefully show in an upcoming blog post!
+</div>
+
 ---
 
-Spend a bit of time meditating on enrichment vs internalization as two 
-different ways to make a category have structure related to the structure 
-of $\mathcal{C}$. It's natural to ask how much category theory you can 
-redo in the setting of enriched/internal categories. Can you recover some 
-kind of yoneda lemma? This is the start of [formal category theory][18]
+Ok, this blog post became something much longer than I originally intended 
+(to nobody's surprise), but let's have one more cute puzzle before we go.
 
-Maybe also meditate on the way that working over $\mathcal{C}$ clarifies 
-the two ways that $\mathsf{Set}$ functions (internalization vs enrichment)
-even in the classical case. But this difference is usually invisible to us 
-since every category[^6] is always both $\mathsf{Set}$-enriched and internal 
-to $\mathsf{Set}$.
+Another common way group actions get treated is as a group homomoprhism 
+$G \to \text{Aut}(X)$, where $\text{Aut}(X)$ is the group of automorphisms 
+of $X$. Is there some way to make this perspective fit in with the 
+internal/enriched perspectives we've been working with so far?
+
+Again, the answer is _yes_, but now we need to work with a 
+cartesian closed category _with all finite limits_. 
+
+<div class=boxed markdown=1>
+Given a cartesian closed category with finite limits $\mathcal{C}$, 
+and an object $X \in \mathcal{C}$, can you build a group object 
+$\underline{\text{Aut}}(X)$ internal to $\mathcal{C}$ so that the 
+global elements $1 \to \underline{\text{Aut}}(X)$ are in bijection with 
+the usual automorphism group $\text{Aut}(X)$ (which is just a set)?
+
+Then, once you've defined $\underline{\text{Aut}}(X)$, can you show that an 
+internal group action $G \times X \to X$ is the same data as an internal 
+group hom $G \to \underline{\text{Aut}}(X)$?
+</div>
+
+If you find this exercise hard, maybe that's incentive to learn some 
+categorical logic! The category $\mathcal{C}$ has enough structure[^11] for 
+its internal language to support a definition
+
+$$
+\{ f : X \to X \mid \exists g : X \to X . fg = \text{id}_X \land gf = \text{id}_X \}
+$$
+
+which we can then cash out for an honest object $\underline{\text{Aut}}(X)$ 
+in $\mathcal{C}$.
+
+Since the usual proof that this set is a group is constructive, we get 
+_for free_ that any object $\underline{\text{Aut}}(X)$ in any $\mathcal{C}$
+is actually a group object in $\mathcal{C}$! Moreover, the usual proof that 
+an action $G \curvearrowright X$ is a group hom $G \to \text{Aut}(X)$ is 
+constructive. So we learn, for free, that in $\mathcal{C}$ an internal group 
+action is the same thing as an internal group hom 
+$G \to \underline{\text{Aut}}(X)$! 
+
+---
+
+Thanks for sticking around! This was a super fun post to write since it 
+touches on a LOT of aspects of "more advanced" category theory that people 
+might struggle with at first. I would normally give more of an outro, but I 
+have some friends coming over in a half hour and I _really_ want to get 
+this posted!
+
+Stay warm, and stay safe, all! We'll talk soon ^_^
 
 ---
 
@@ -294,6 +384,18 @@ to $\mathsf{Set}$.
 [17]: https://ncatlab.org/nlab/show/relation+between+quasi-categories+and+simplicial+categories
 [18]: https://ncatlab.org/nlab/show/formal+category+theory
 [19]: https://ncatlab.org/nlab/show/enriched+natural+transformation
+[20]: https://youtu.be/GCm4r0F0tts?si=C-Ib3E5NbugEg0el&t=145
+[21]: https://ncatlab.org/nlab/show/internal+logic
+[22]: https://github.com/awodey/CatLogNotes/blob/master/2019/catlog.pdf
+[23]: https://en.wikipedia.org/wiki/Topos
+[24]: https://ncatlab.org/nlab/show/enriched+Yoneda+lemma
+[25]: https://ncatlab.org/nlab/show/metric+space#LawvereMetricSpace
+[26]: https://ncatlab.org/nlab/show/regular+category
+[27]: https://ncatlab.org/nlab/show/cartesian+logic
+[28]: https://ncatlab.org/nlab/show/regular+logic
+[29]: https://ncatlab.org/nlab/show/double+category
+[30]: https://www.epatters.org/post/why-double-categories-1/
+[31]: https://ncatlab.org/nlab/show/2-category
 
 [^1]:
     Note that the "usual axioms" can all be expressed as equalities between 
@@ -362,7 +464,30 @@ to $\mathsf{Set}$.
     map from the monoidal unit $\text{id}_x : I \to \text{Hom}(x,x)$.
 
 [^6]:
-    Ignoring size issues
+    Of course, there's other more exotic ways to use enriched categories where 
+    the hom-objects _aren't_ structured sets! See, for instance, the famous 
+    [Lawvere Metric Spaces][25]. These are still extremely interesting, but 
+    are of a different flavor to the enriched categories that fit into the 
+    story I'm trying to tell.
 
 [^7]:
     Isomorphism?
+
+[^8]:
+    Ignoring size issues
+
+[^9]:
+    Which for some reason I'm hearing in 
+    [Tom Mullica's voice][20]
+    
+[^10]:
+    In exactly the same way that, say, gaussian elimination, 
+    is routine but annoying.
+
+[^11]:
+    Notice that, in this definition, the $g$ in the existential quantifier 
+    is provably unique. This is _super_ important because it means we can 
+    make this definition using only finite limits. More complicted 
+    existential quantifiers require more structure on our category, namely 
+    [regularity][26]. For more information see the nlab pages on 
+    [cartesian logic][27] and [regular logic][28].
