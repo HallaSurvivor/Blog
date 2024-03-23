@@ -55,8 +55,8 @@ know what the second component _must_ be, this is the same data as a function
 $K \times X \to \mathbb{R}$! This tells us that, if we can prove some 
 "$X$-parameterized" version of the extreme value theorem 
 (where the resulting maxima also depend continuously on a parameter $x \in X$), 
-it should give us the OP's question in the special case where $K_x$ is a 
-constant family!
+we can answer the OP's question by looking at the special case where $K_x$ 
+is a constant family!
 
 If you've been exposed to some ideas in topos theory, you should be screaming 
 something to do with the "internal logic" right now! Indeed, a theorem inside 
@@ -69,10 +69,7 @@ we would _immediately_ get the parameterized version for free!
 ---
 
 So then, we want to get our hands on a constructive proof of the extreme 
-value theorem. Then, interpreting this proof inside the topos $\mathsf{Sh}(X)$ 
-of sheaves on $X$ will give us the claim. In fact, as we'll see later, it 
-gives us a slightly stronger claim.
-
+value theorem. 
 Typically constructive theorems which assert the _existence_ of something 
 (in this case, a maximum) require some ~bonus assumptions~ which are invisible 
 in the classical case. This is because existence is a much stronger 
@@ -93,8 +90,61 @@ If $K$ is a compact, overt, positive locale, and $f : K \to \mathbb{R}$
 is continuous, then $f$ has a maximum $\max_K f$ given by a dedekind real.
 </div>
 
+Before we copy his proof[^5], we should probably say some words about 
+what all these new adjectives mean!
 
+First, let's handle the easiest one: <span class=defn>Compact</span>.
 
+The most familiar definition of compactness is that every open cover 
+has a finite subcover. Precisely, if $\mathcal{U}$ is a family of open 
+subsets of $X$ with $X = \bigvee \mathcal{U}$, then there should be a 
+([kuratowski-][13])finite subfamily $\mathcal{U}_0 \subseteq \mathcal{U}$ 
+so that actually $X = \bigvee \mathcal{U}_0$.
+
+However, constructively it's better to avoid saying the word "finite" 
+if you can. The notion of finiteness splits into different inequivalent 
+notions (kuratowski-finite, bishop-finite, dedekind-finite, etc) which makes 
+the whole thing a bit of a mess[^6]. For this reason, there's a different,
+equivalent definition of compactness which we often prefer:
+
+We say $X$ is called compact if for every _directed_ open cover $\mathcal{U}$[^7]
+with $X = \bigvee \mathcal{U}$, we must actually have $X \in \mathcal{U}$!
+
+<div class=boxed markdown=1>
+As a cute exercise, prove these two definitions are equivalent! Try your 
+hardest to make sure your proof is constructive!
+</div>
+
+There's one last angle on compactness that I want to emphasize here as well:
+We say a locale is compact if _universal quantification is open_. That is, 
+if $U \subseteq K \times X$ is open, we want to know if 
+$$\{ x \mid \forall k . (k,x) \in U \} \subseteq X$$ is open.
+
+This turns out to be true (for every $X$ and every $U$) if and only if $K$ 
+is compact[^8]!
+
+<br>
+
+The next adjective on the list is <span class=defn>Overt</span>. This is 
+a kind of tricky notion to work with, since it's invisible classically. 
+We say a locale $O$ is overt iff for any locale $X$ and open subset 
+$U \subseteq O \times X$, the projection 
+$\{ x \mid \exists o \in O . (o,x) \} \subseteq X$ is open. Note how this is 
+dual to the universal quantifier present for compact sets. Also note that 
+this set is exactly the image of $U$ under $\pi_X : O \times X \to X$. 
+Since, classically, this projection map is always [open][16], we learn that 
+classically _every_ locale is overt[^9].
+
+Going back to Manuell's slides 
+(this time from the [third lecture][20]), we get another definition of overtness:
+We say that an element $U$ in a frame is <span class=defn>positive</span> 
+if whenever $U \leq \bigvee S$, the family $S$ of open sets must be inhabited.
+Then a locale $X$ is overt if and only if its frame of opens has a 
+[base][19] of positive elements.
+
+<br>
+
+Lastly, we say that a locale is <span class=defn>Positive</span> iff 
 
 ---
 
@@ -109,6 +159,15 @@ is continuous, then $f$ has a maximum $\max_K f$ given by a dedekind real.
 [9]: https://ncatlab.org/nlab/show/sheaf
 [10]: https://ncatlab.org/nlab/show/constructive+mathematics
 [11]: https://en.wikipedia.org/wiki/Fiber_bundle
+[12]: http://logicandanalysis.org/index.php/jla/article/view/63/25
+[13]: https://ncatlab.org/nlab/show/finite+set
+[14]: https://pedromarun.github.io/
+[15]: https://en.wikipedia.org/wiki/Tube_lemma
+[16]: https://en.wikipedia.org/wiki/Open_and_closed_maps#Open_maps
+[17]: https://ncatlab.org/nlab/show/overt+space
+[18]: https://mathoverflow.net/questions/405866/what-does-overtness-mean-for-metric-spaces
+[19]: https://en.wikipedia.org/wiki/Base_(topology)
+[20]: https://www.mat.uc.pt/~tacl2022/slides/GMlecture3.pdf
 
 [^1]:
     Note that it's possible to have constant fibres, _without_ being the 
@@ -133,7 +192,8 @@ is continuous, then $f$ has a maximum $\max_K f$ given by a dedekind real.
     a constructive existence proof gives rise to free theorems saying 
     there's an algorithm that produces the desired object, or that the 
     desired object can be defined continuously in a parameter, etc. This is 
-    exactly the phenomenon we're trying to exploit!
+    exactly the phenomenon we're trying to exploit, and we have to do work 
+    somewhere!
 
 [^3]:
     Any type theorists in the room are probably screaming
@@ -145,3 +205,37 @@ is continuous, then $f$ has a maximum $\max_K f$ given by a dedekind real.
     relationship between bundles over $X$ and sets continuously "indexed" by $X$
     is super good. It's chapter 4 section 5, and it has some really helpful
     pictures and examples!
+
+[^5]:
+    Which he, in turn, mentions was based on the treatment in Paul Taylor's 
+    [_A Lambda-Calculus for Real Analysis_][12]. I actually have this paper 
+    saved, but it's long and I wasn't sure how easy it would be to translate 
+    Taylor's results into language I'm more familiar with. Now that I've seen 
+    Manuell do it, though, I have plans to read this paper pretty soon!
+
+[^6]:
+    I still haven't taken the time to _really_ familiarize myself with the 
+    various notions of finiteness, and how they "feel". One day soon I want 
+    to, though. 
+
+[^7]:
+    Recall a partial order $(D,\leq)$ is called <\span class=defn>directed</span>
+    if it's inhabited and for any $x,y \in D$ their join $x \lor y$ is 
+    in $D$ too.
+
+    This is really hiding kuratowski-finiteness again, since directedness 
+    guarantees that for any kuratowski-finite subset $F \subseteq D$ that 
+    $\bigvee F \in D$. This is the usual argument that binary joins 
+    imply finite (nonempty) joins.
+
+[^8]:
+    I was curious about this, and [Pedro][14] pointed out that one 
+    direction is basically the classical [tube lemma][15]. I don't 
+    actually see how to do the other direction (at least quickly) 
+    and I don't really have time to think about it right now. If 
+    someone figures it out I'd love to hear about it in the comments!
+
+[^9]:
+    Constructively it's still true that every locale with enough points is 
+    automatically overt (see the [nlab][17]). It seems like a very mild 
+    condition, see the discussion [here][18], for instance.
