@@ -135,16 +135,47 @@ this set is exactly the image of $U$ under $\pi_X : O \times X \to X$.
 Since, classically, this projection map is always [open][16], we learn that 
 classically _every_ locale is overt[^9].
 
-Going back to Manuell's slides 
-(this time from the [third lecture][20]), we get another definition of overtness:
-We say that an element $U$ in a frame is <span class=defn>positive</span> 
-if whenever $U \leq \bigvee S$, the family $S$ of open sets must be inhabited.
-Then a locale $X$ is overt if and only if its frame of opens has a 
-[base][19] of positive elements.
+There's an equivalent characterization of overtness, which is often useful 
+in practice. We want to check that the unique map $X \overset{!}{\to} 1$ 
+is open. Since open maps are preserved by pullbacks, this gives the 
+original definition for free. It also shows how this definition is classically 
+invisible, since every subset of the terminal locale is open when the terminal 
+locale is $\{\star\}$.
+
+However, recall that in a sheaf topos $\text{Sh}(X)$ the terminal locale is 
+$X$! Then a locale in $\text{Sh}(X)$ is just an external locale with a map 
+into $X$, and overtness of the internal locale corresponds to openness of the 
+external map! So there's obviously no reason to expect every locale to be 
+overt constructively, since it's easy to find continuous functions 
+that aren't open.
 
 <br>
 
-Lastly, we say that a locale is <span class=defn>Positive</span> iff 
+Lastly, we say that a locale is <span class=defn>Positive</span> iff every 
+open cover must be inhabited. That is, if $X = \bigvee \mathcal{U}$ for 
+$\mathcal{U}$ a family of open sets, the family $\mathcal{U}$ must be inhabited.
+
+Recall we say $A$ is \emph{inhabited} exactly when $\exists a \in A$ is true.
+In $\text{Sh}(X)$, this means that there's an open cover of $X$ so that $A$ 
+has a section on every element of the cover. That is, exactly when the 
+structure map $A \to X$ is surjective.
+
+---
+
+Now, let's outline the proof of the theorem. Recall a 
+<span class=defn>Dedekind Real</span> is a pair of cuts $(L,U)$ where
+
+- $L$ is a \emph{lower cut} in the sense that 
+- $U$ is an \emph{upper cut} in the sense that
+- $L$ and $U$ "have no gap" in the sense that
+
+Now say $f : K \to \mathbb{R}$ is a map from a positive, overt, compact 
+locale $K$. We'll use positive compactness to build 
+$U = \{ q \mid \forall k \in K . k \lt q \}$ 
+Then we'll use positive overtness to build 
+$L = \{ q \mid \exists k \in K . q \lt k \}$. Lastly, we need to show 
+that the $L$ and $U$ we just built "have no gap", which requires a 
+small argument that you can read in Manuell's [slides][5].
 
 ---
 
