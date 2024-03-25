@@ -80,9 +80,11 @@ topological spaces. Since the person on mse was happy with $K$ and $X$
 _metrizable_, they'll certainly be ok with [sobriety][3] since hausdorff-ness 
 already implies it! Since sober spaces and locales (with enough points) are 
 the same thing, we lose nothing by moving to the world of locales. There's a 
-good notion of compactness for locales, and so one can google
-`"extreme value theorem"+"locale"`
-to find [Graham Manuell's slides][5] from [TACL 2022][4] which give a 
+good notion of compactness for locales, and people have spent a lot of time 
+proving classical theorems constructively in this setting! So, optimistically, 
+we can google `"extreme value theorem"+"locale"` to see if someone has 
+already done what we're looking for, and our optimism is quickly rewarded!
+We find [Graham Manuell's slides][5] from [TACL 2022][4] which give a 
 constructive proof of the following:
 
 <div class=boxed markdown=1>
@@ -90,8 +92,7 @@ If $K$ is a compact, overt, positive locale, and $f : K \to \mathbb{R}$
 is continuous, then $f$ has a maximum $\max_K f$ given by a dedekind real.
 </div>
 
-Before we copy his proof[^5], we should probably say some words about 
-what all these new adjectives mean!
+Let's say a few words about what all these weird adjectives mean!
 
 First, let's handle the easiest one: <span class=defn>Compact</span>.
 
@@ -129,7 +130,7 @@ The next adjective on the list is <span class=defn>Overt</span>. This is
 a kind of tricky notion to work with, since it's invisible classically. 
 We say a locale $O$ is overt iff for any locale $X$ and open subset 
 $U \subseteq O \times X$, the projection 
-$\{ x \mid \exists o \in O . (o,x) \} \subseteq X$ is open. Note how this is 
+$$\{ x \mid \exists o \in O . (o,x) \} \subseteq X$$ is open. Note how this is 
 dual to the universal quantifier present for compact sets. Also note that 
 this set is exactly the image of $U$ under $\pi_X : O \times X \to X$. 
 Since, classically, this projection map is always [open][16], we learn that 
@@ -140,7 +141,7 @@ in practice. We want to check that the unique map $X \overset{!}{\to} 1$
 is open. Since open maps are preserved by pullbacks, this gives the 
 original definition for free. It also shows how this definition is classically 
 invisible, since every subset of the terminal locale is open when the terminal 
-locale is $\{\star\}$.
+locale is $$\{\star\}$$.
 
 However, recall that in a sheaf topos $\text{Sh}(X)$ the terminal locale is 
 $X$! Then a locale in $\text{Sh}(X)$ is just an external locale with a map 
@@ -155,27 +156,90 @@ Lastly, we say that a locale is <span class=defn>Positive</span> iff every
 open cover must be inhabited. That is, if $X = \bigvee \mathcal{U}$ for 
 $\mathcal{U}$ a family of open sets, the family $\mathcal{U}$ must be inhabited.
 
-Recall we say $A$ is \emph{inhabited} exactly when $\exists a \in A$ is true.
+Recall we say $A$ is _inhabited_ exactly when $\exists a \in A$ is true.
 In $\text{Sh}(X)$, this means that there's an open cover of $X$ so that $A$ 
 has a section on every element of the cover. That is, exactly when the 
 structure map $A \to X$ is surjective.
 
 ---
 
-Now, let's outline the proof of the theorem. Recall a 
+Now, let's outline the proof from Manuell's [slides][5][^5]. Recall a 
 <span class=defn>Dedekind Real</span> is a pair of cuts $(L,U)$ where
 
-- $L$ is a \emph{lower cut} in the sense that 
-- $U$ is an \emph{upper cut} in the sense that
-- $L$ and $U$ "have no gap" in the sense that
+- $L$ is a _lower cut_ of rational numbers in the sense that 
+    1. $\exists p \in L$ ($L$ is inhabited)
+    2. if $p \lt q$ and $q \in L$, then $p \in L$ too ($L$ is downwards closed)
+    3. if $p \in L$, then $\exists q \in L . q \gt p$ ($L$ is upwards open)
+- $U$ is an _upper cut_ of rational numbers in the sense that
+    1. $\exists p \in U$ ($U$ is inhabited)
+    2. if $p \gt q$ and $q \in U$, then $p \in U$ too ($U$ is upwards closed)
+    3. if $p \in U$, then $\exists q \in U . q \lt p$ ($U$ is downwards open)
+- $L$ and $U$ are _compatible_ in the sense that
+    1. If $p \in L$ and $q \in U$, then $p \lt q$ ($L$ and $U$ don't overlap)
+    2. If $p \lt q$ are any rationals, then $p \in L \lor q \in U$ 
+        ($L$ and $U$ have no gap between them)
 
-Now say $f : K \to \mathbb{R}$ is a map from a positive, overt, compact 
-locale $K$. We'll use positive compactness to build 
-$U = \{ q \mid \forall k \in K . k \lt q \}$ 
-Then we'll use positive overtness to build 
-$L = \{ q \mid \exists k \in K . q \lt k \}$. Lastly, we need to show 
-that the $L$ and $U$ we just built "have no gap", which requires a 
-small argument that you can read in Manuell's [slides][5].
+If you haven't seen this before, we think of $r = (L,U)$ as pinning down a 
+real number by saying how it compares to every rational. If 
+$q \in L$, we say $q \lt r$, and if $q \in U$ we say $q \gt r$. See 
+the [nlab page][21] for more.
+Recall also[^10] that, a real number in $\text{Sh}(X)$ is a continuous 
+function $X \to \mathbb{R}$. The lower/upper cuts are also useful separately,
+and externalize to lower/upper [semicontinuous functions][23] on $X$.
+
+Now, finally, for the proof idea:
+
+$\ulcorner$
+Say $f : K \to \mathbb{R}$ is a map from a positive, overt, compact 
+locale $K$. First we'll use positive overtness to build 
+
+$$L = \{ q \in \mathbb{Q} \mid \exists k \in K . q \lt k \}.$$
+
+Then, we'll use positive compactness to build 
+
+$$U = \{ q \in \mathbb{Q} \mid \forall k \in K . k \lt q \}.$$
+
+Lastly, we need to show 
+that the $L$ and $U$ we just built are compatible. It's easy to 
+show they don't overlap, but showing they "have no gap" requires a 
+small argument (which you can find on Manuell's slide 8).
+<span style="float:right">$\lrcorner$</span>
+
+<br>
+
+Note how (after externalizing) this is _really_ the same argument that 
+Sangchul Lee gave in the accepted answer on [mse][6]!
+
+First we show that $g(x) = \max_K f(k,x)$ is lower semicontinuous 
+(that is, we show that it's a lower real). This doesn't use any 
+facts about $K$, since it's only using positive overtness of $K \times X$, 
+which is _always_ true!
+
+Then we show that $g(x)$ is upper semicontinuous 
+(that is, we show it's an upper real). This is where we crucially use 
+compactness, both externally and internally.
+
+The compatibility conditions basically amount to checking your upper and 
+lower semicontinuous functions are the same, but since Sangchul's answer 
+is working with a single function the whole time there's no need to verify 
+that.
+
+---
+
+So now we have this constructive theorem. What does it _actually_ tell us 
+after we externalize?
+
+---
+
+Ok! Thanks for reading, all! This felt like it took forever for what a short 
+post it was, but I had a great time writing it. I'm flying home from the 
+AMS Sectional today, where I gave a talk at the special session on 
+[Homotopy Theory and Category Theory in Interaction][24]. I had a _great_ 
+time, and met a lot of really awesome people. It was a small group, which 
+means we had lots of time to hang out and get to know each other.
+
+I'll write up some stuff about the conference (and my talk) soon, but for 
+now I need to get ready to go to the airport! Stay safe ^_^.
 
 ---
 
@@ -199,6 +263,10 @@ small argument that you can read in Manuell's [slides][5].
 [18]: https://mathoverflow.net/questions/405866/what-does-overtness-mean-for-metric-spaces
 [19]: https://en.wikipedia.org/wiki/Base_(topology)
 [20]: https://www.mat.uc.pt/~tacl2022/slides/GMlecture3.pdf
+[21]: https://ncatlab.org/nlab/show/Dedekind+cut#idea
+[22]: /2022/12/13/internal-logic-examples.html
+[23]: https://en.wikipedia.org/wiki/Semi-continuity
+[24]: https://www.ams.org/meetings/sectional/2313_program_ss13.html
 
 [^1]:
     Note that it's possible to have constant fibres, _without_ being the 
@@ -238,7 +306,7 @@ small argument that you can read in Manuell's [slides][5].
     pictures and examples!
 
 [^5]:
-    Which he, in turn, mentions was based on the treatment in Paul Taylor's 
+    He, in turn, mentions was based on the treatment in Paul Taylor's 
     [_A Lambda-Calculus for Real Analysis_][12]. I actually have this paper 
     saved, but it's long and I wasn't sure how easy it would be to translate 
     Taylor's results into language I'm more familiar with. Now that I've seen 
@@ -270,3 +338,26 @@ small argument that you can read in Manuell's [slides][5].
     Constructively it's still true that every locale with enough points is 
     automatically overt (see the [nlab][17]). It seems like a very mild 
     condition, see the discussion [here][18], for instance.
+
+[^10]:
+    I've always gotten slightly annoyed, or at least laughed quietly to 
+    myself, when authors ask the reader to "recall" some fact that they 
+    quite possibly don't know. 
+
+    I really want this post to be done, though 
+    (I've been working on it for almost a month) and if I have to explain 
+    why upper/lower reals correspond to upper/lower semicontinuous functions 
+    I'll never finish... I know, I tried.
+
+    You can find an _extremely_ detailed treatment in Mac Lane and Moerdijk's 
+    _Sheaves in Geometry and Logic_ Chapter VI.8. Understanding this well 
+    is probably enough to work out that upper/lower reals correspond to 
+    upper/lower semicontinuous functions yourself 
+    (which will make a great exercise!). Depending on your experience, 
+    you might be helped by my [old post][22] on externalizing formulas 
+    inside a topos.
+
+    There's also a great treatment in Johnstone's 
+    _Sketches of an Elephant_, Chapter D4.7. This works out the case of 
+    lower reals and lower semicontinuous functions explicitly, but does so 
+    quite quickly.
