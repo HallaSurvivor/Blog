@@ -227,7 +227,37 @@ that.
 ---
 
 So now we have this constructive theorem. What does it _actually_ tell us 
-after we externalize?
+after we externalize? 
+
+Well, you can chase through the definitions of compact, overt, and positive 
+inside (say) a sheaf topos $\text{Sh}(X)$ and see what you get!
+
+First, as we alluded to in the introduction to this post, 
+a locale $K$ internal to $\text{Sh}(X)$ is exactly a locale map[^11]
+$\pi : \Gamma(K) \to X$ where $\Gamma$ is the usual [global sections map][25].
+
+From here, it's not (too) hard to see that $K$ is compact if and only if 
+$\pi$ is [proper][26], that $K$ is overt if and only if $\pi$ is 
+[open][27], and that $K$ is positive if and only if $\pi$ is surjective[^12].
+
+So altogether we learn that
+
+<div class=boxed markdown=1>
+If $\pi : A \to X$ is a proper, open, surjection and we have
+$f : A \to \mathbb{R}$, then 
+
+$$x \mapsto \max_{k \in \pi^{-1}(x)} f(k)$$
+
+is continuous.
+</div>
+
+In particular, we answer the OP's question! Taking $\pi : K \times X \to X$ 
+to be the usual projection map 
+(which is open and surjective, plus proper since $K$ is compact) we learn that 
+
+$$x \mapsto \max_{(k,x) \in \pi^{-1}(x)} f(k,x)$$
+
+is continuous. As desired!
 
 ---
 
@@ -267,6 +297,9 @@ now I need to get ready to go to the airport! Stay safe ^_^.
 [22]: /2022/12/13/internal-logic-examples.html
 [23]: https://en.wikipedia.org/wiki/Semi-continuity
 [24]: https://www.ams.org/meetings/sectional/2313_program_ss13.html
+[25]: https://ncatlab.org/nlab/show/global+section
+[26]: https://ncatlab.org/nlab/show/proper+map
+[27]: https://ncatlab.org/nlab/show/open+map
 
 [^1]:
     Note that it's possible to have constant fibres, _without_ being the 
@@ -361,3 +394,30 @@ now I need to get ready to go to the airport! Stay safe ^_^.
     _Sketches of an Elephant_, Chapter D4.7. This works out the case of 
     lower reals and lower semicontinuous functions explicitly, but does so 
     quite quickly.
+
+[^11]:
+    In fact we can say exactly _which_ map it is! We want a locale map 
+    from $\Gamma(K) \to X$, which means we want a frame homomorphism 
+    from $\mathcal{O}(X) \to \mathcal{O}(\Gamma(K)) = \Gamma(\mathcal{O}(K))$.
+
+    But given an open set $U \subseteq X$, we can look at the local sections
+    $\Gamma(\mathcal{O}(K),U)$. This is again a frame, and the restriction 
+    map $\rho^X_U : \Gamma(\mathcal{O}(K)) \to \Gamma(\mathcal{O}(K),U)$ 
+    has a left adjoint 
+    $\sigma_U : \Gamma(\mathcal{O}(K),U) \to \Gamma(\mathcal{O}(K))$.
+
+    The desired map from $\mathcal{O}(X) \to \mathcal{O}(\Gamma(K))$ sends 
+    $U \subseteq X$ to $\sigma_U(\top)$, where $\top$ is the top element 
+    of $\Gamma(\mathcal{O}(K),U)$.
+
+[^12]:
+    I feel kind of bad not proving these facts, since they're not _so_ 
+    hard? But I really am trying to finish this post quickly.
+
+    You can find a lot of this in Johnstone's _Elephant_. In particular,
+
+    - Getting a locale map $\pi : \Gamma(K) \to X$ from an internal locale is 
+        proposition chapter C1.6.2
+    - Compactness of $K$ agrees with properness of $\pi$ is theorem C3.2.8
+    - Overtness of $K$ agrees with openness of $\pi$ is lemma C3.1.17 
+    - We've already talked about why positivity means $\pi$ is surjective
