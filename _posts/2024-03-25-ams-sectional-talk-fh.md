@@ -266,7 +266,9 @@ left kan extension of $A$ along $j$. We can think of this as a kind of
 operations between these graded pieces corresponding to smooth embeddings!
 
 For instance, if $i : M_1 \coprod M_2 \to N$ is a smooth embedding, then 
-we get an operation from $\int_{M_1} A \otimes \int_{M_2} A \to \int_N A$.
+we get an operation $\int_{M_1} A \otimes \int_{M_2} A \to \int_N A$.
+
+TODO: write the section on "how"... Also, revise all of this, haha
 
 ---
 
