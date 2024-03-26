@@ -28,6 +28,7 @@ TODO: Also a few words about how they helped answer silly questions
     while drafting the talk... on friday, lol
 
 TODO: put some pictures here
+TODO: mention that you were the opening talk of the afternoon session?
 
 It was like $400 cheaper to fly out on Monday evening, even 
 though the conference ended on Sunday, so [Kaya][2] and I had 
@@ -187,6 +188,85 @@ here is [left kan extension][14].
 If you're me, this feels a _whole_ lot like a familiar story 
 from categorical logic!
 
+TODO: where the hell did I put part 2 on the "what"?
+TODO: Valeria's last name?
+
+At this point in the talk I took a quick diversion to remind 
+people about [Functorial Semantics][15]. This was extra easy
+since in the morning session [Valeria][16] spent some time 
+talking about the lawvere theory for monoids!
+
+<br>
+
+In (1-categorical) functorial semantics, we have _classifying categories_ 
+associated to algebraic theories. Then a model of that 
+theory is "just" a functor from the classifying category to 
+$\mathsf{Set}$. For instance, the classifying category $\mathcal{A}$ 
+for abelian groups looks like this[^5]:
+
+TODO: put the picture here
+
+and the classifying category for rings $\mathcal{R}$ is:
+
+TODO: another picture.
+
+Indeed, a finite product functor $\mathcal{A} \to \mathsf{Set}$ 
+has to send $1$ to some set $A$. Then, since it's product preserving, 
+it has to send $2$ to $A^2$, and $0$ to $A^0 = \{ \star \}$. Then 
+the indicated maps get sent to honest operations on $A$, which give us 
+the desired abelian group structure on $A$.
+
+TODO: in footnote 5... have we talked about this kind of stuff before?
+We must have, right? Link the relevant blog post. If not, link 
+Awodey's notes on the topic.
+
+Note that we have an embedding $j : \mathcal{A} \hookrightarrow \mathcal{R}$.
+
+Now any ring $R$ is a (finite product) functor 
+$\mathcal{R} \to \mathsf{Set}$, and if we _restrict_ along $j$ 
+we get a new finite product functor $\mathcal{A} \to \mathsf{Set}$. 
+That is, we get an abelian group! It should be believable that this is 
+the underlying abelian group of the ring we started with!
+
+TODO: picture of the restriction
+
+More excitingly, can we go the other way? Given a functor 
+$\mathcal{A} \to \mathsf{Set}$ (that is, an abelian group) 
+is there a way to freely _extend_ this functor to one defined 
+on all of $\mathcal{R}$? 
+
+TODO: picture of extension
+
+The answer, of course, is _yes_ and it's given by 
+left kan extension! This recovers the usual free ring on an 
+abelian group $A$.
+
+<br>
+
+Primed with this context, let's look at our definition of 
+factorization homology again:
+
+We have a (symmetric monoidal) functor $\mathcal{D}_n \to \mathcal{C}$.
+This data is actually quite well studied, since it's a model for 
+[$E_n$-algebras] in $\mathcal{C}$. These are monoids in $\mathcal{C}$ 
+that are "commutative up-to-homotopy living in dimension $n$"[^6].
+
+So we have something that looks like some kind of algebra, which is 
+given by a functor out of $\mathcal{D}_n$. Then we want to _freely extend_ 
+this data to a new kind of algebra, given by a functor out of 
+$\mathcal{M}\text{an}_n$... 
+
+Doesn't this setup sound familiar?
+
+If $A : \mathcal{D}_n \to \mathcal{C}$ is our $E_n$-algebra, 
+We define $\int_{(-)} A : \mathcal{M}\text{an}_n \to \mathcal{C}$,
+the <span class=defn>Factorization Homology</span> to be the 
+left kan extension of $A$ along $j$. We can think of this as a kind of 
+"algebra" which is graded by connected manifolds. Moreover, we have 
+operations between these graded pieces corresponding to smooth embeddings!
+
+For instance, if $i : M_1 \coprod M_2 \to N$ is a smooth embedding, then 
+we get an operation from $\int_{M_1} A \otimes \int_{M_2} A \to \int_N A$.
 
 ---
 
@@ -204,6 +284,13 @@ from categorical logic!
 [12]: cosheaf
 [13]: mayer-veitoris
 [14]: left kan extension
+[15]: functorial semantics
+[16]: Valeria's website, if you can find it
+[17]: algebraic theory
+[18]: essentially algebraic theory
+[19]: En algebra
+[20]: braided monoidal category
+[21]: symmetric monoidal category
 
 ---
 
@@ -238,3 +325,52 @@ from categorical logic!
 
     You can read more about precisely what's going on in 
     [Lurie's notes][11].
+
+[^5]:
+    Precisely, the classifying category for the models of any 
+    [algebraic theory][17] is always the opposite of the 
+    category of the finitely generated free models.
+
+    So, for instance, $\mathcal{A}^\text{op}$ is the full 
+    subcategory of abelian groups spanned by 
+
+    $$
+    \{1, \mathbb{Z}, \mathbb{Z}^2, \mathbb{Z}^3, \ldots \}
+    $$
+
+    and $\mathcal{R}^\text{op}$ is the full subcategory of 
+    (let's say commutative) rings spanned by 
+
+    $$
+    \{1, \mathbb{Z}[x], \mathbb{Z}[x,y], \mathbb{Z}[x,y,z], \ldots \}
+    $$
+
+    There's a similar version of this story that works for 
+    [essentially algebraic theories][18] where we use the 
+    finitely _presented_ models instead.
+
+[^6]:
+    I'm not going to tell you what that means, but here's an illustrative 
+    example:
+
+    An $E_1$-algebra in $\mathfrak{Cat}$ is a monoidal category. 
+
+    An $E_2$-algebra in $\mathfrak{Cat}$ is a [_braided_][20] monoidal category. 
+    That is, the multiplicative structure is commutative... but only up to a 
+    homotopy (the braiding).
+
+    An $E_3$-algebra in $\mathfrak{Cat}$ is a [symmetric][21] monoidal category.
+    That is, a category whose multiplicative structure is _genuinely_ 
+    commutative (at least, up to isomorphism, which is the best we ever 
+    want to do in a category).
+
+    All $E_n$-algebras for $n \geq 3$ are the same, since $\mathfrak{Cat}$ 
+    is a $2$-category. There _aren't any_ interesting (read: nonidentity) 
+    homotopies in dimension $\geq 3$, so if you're commutative up to a 
+    higher homotopy, the only choice for that higher homotopy is the identity! 
+    Which means you're just commutative without further qualification!
+
+    But you can imagine that, for $\infty$-categories that do have higher 
+    homotopies, we can have monoids that are commutative up to the data 
+    of an $n$-homotopy, and that's exactly an $E_n$-algebra. In case you 
+    want something that really is commutative, you can take $n=\infty$ here.
