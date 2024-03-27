@@ -303,6 +303,7 @@ now I need to get ready to go to the airport! Stay safe ^_^.
 [26]: https://ncatlab.org/nlab/show/proper+map
 [27]: https://ncatlab.org/nlab/show/open+map
 [28]: http://www.paultaylor.eu/ASD/overtrn/overtrn.pdf
+[29]: https://tdejong.com/
 
 [^1]:
     Note that it's possible to have constant fibres, _without_ being the 
@@ -359,8 +360,9 @@ now I need to get ready to go to the airport! Stay safe ^_^.
 
 [^7]:
     Recall a partial order $(D,\leq)$ is called <span class=defn>directed</span>
-    if it's inhabited and for any $x,y \in D$ their join $x \lor y$ is 
-    in $D$ too.
+    if it's inhabited and for any $x,y \in D$ ~~their join $x \lor y$ is 
+    in $D$ too~~ **Edit:** There's a mutual uppoer bound $x,y \leq z$ also 
+    in $D$. Thanks to [Tom de Jong][29] for this correction!
 
     This is really hiding kuratowski-finiteness again, since directedness 
     guarantees that for any kuratowski-finite subset $F \subseteq D$ that 
