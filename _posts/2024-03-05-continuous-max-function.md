@@ -42,6 +42,9 @@ diagram commute:
 <img src="/assets/images/continuous-max-function/bundle-map.png" width="50%">
 </p>
 
+Recall we're thinking of the sets $A_x$ and $B_x$ as being the fibres 
+$\pi_A^{-1}(x)$ and $\pi_B^{-1}(x)$.
+
 To go from the family $f_x$ to a single function $f$ on the total spaces, 
 it might be worth remembering that the total space $A$ is just the 
 disjoint union of the fibres[^3] $\sum_{x \in X} A_x$ (suitably topologized).
@@ -120,14 +123,13 @@ There's one last angle on compactness that I want to emphasize here as well:
 We say a locale is compact if _universal quantification is open_. That is, 
 if $U \subseteq K \times X$ is open, we want to know if 
 $$\{ x \mid \forall k . (k,x) \in U \} \subseteq X$$ is open.
-
 This turns out to be true (for every $X$ and every $U$) if and only if $K$ 
 is compact[^8]!
 
 <br>
 
 The next adjective on the list is <span class=defn>Overt</span>. This is 
-a kind of tricky notion to work with, since it's invisible classically. 
+a kind of tricky notion to understand at first, since it's invisible classically. 
 We say a locale $O$ is overt iff for any locale $X$ and open subset 
 $U \subseteq O \times X$, the projection 
 $$\{ x \mid \exists o \in O . (o,x) \} \subseteq X$$ is open. Note how this is 
@@ -166,11 +168,11 @@ structure map $A \to X$ is surjective.
 Now, let's outline the proof from Manuell's [slides][5][^5]. Recall a 
 <span class=defn>Dedekind Real</span> is a pair of cuts $(L,U)$ where
 
-- $L$ is a _lower cut_ of rational numbers in the sense that 
+- $L \subseteq \mathbb{Q}$ is a _lower cut_ of rational numbers in the sense that 
     1. $\exists p \in L$ ($L$ is inhabited)
     2. if $p \lt q$ and $q \in L$, then $p \in L$ too ($L$ is downwards closed)
     3. if $p \in L$, then $\exists q \in L . q \gt p$ ($L$ is upwards open)
-- $U$ is an _upper cut_ of rational numbers in the sense that
+- $U \subseteq \mathbb{Q}$ is an _upper cut_ of rational numbers in the sense that
     1. $\exists p \in U$ ($U$ is inhabited)
     2. if $p \gt q$ and $q \in U$, then $p \in U$ too ($U$ is upwards closed)
     3. if $p \in U$, then $\exists q \in U . q \lt p$ ($U$ is downwards open)
@@ -300,6 +302,7 @@ now I need to get ready to go to the airport! Stay safe ^_^.
 [25]: https://ncatlab.org/nlab/show/global+section
 [26]: https://ncatlab.org/nlab/show/proper+map
 [27]: https://ncatlab.org/nlab/show/open+map
+[28]: http://www.paultaylor.eu/ASD/overtrn/overtrn.pdf
 
 [^1]:
     Note that it's possible to have constant fibres, _without_ being the 
@@ -317,6 +320,10 @@ now I need to get ready to go to the airport! Stay safe ^_^.
     <p style="text-align:center;">
     <img src="/assets/images/continuous-max-function/mobius-bundle.png" width="75%">
     </p>
+
+    As a cute exercise, can you come up with two bundles over $S^1$ where 
+    each fibre has two elements? One should be a trivial bundle, and the 
+    other shouldn't be.
 
 
 [^2]:
@@ -351,7 +358,7 @@ now I need to get ready to go to the airport! Stay safe ^_^.
     to, though. 
 
 [^7]:
-    Recall a partial order $(D,\leq)$ is called <\span class=defn>directed</span>
+    Recall a partial order $(D,\leq)$ is called <span class=defn>directed</span>
     if it's inhabited and for any $x,y \in D$ their join $x \lor y$ is 
     in $D$ too.
 
@@ -369,8 +376,9 @@ now I need to get ready to go to the airport! Stay safe ^_^.
 
 [^9]:
     Constructively it's still true that every locale with enough points is 
-    automatically overt (see the [nlab][17]). It seems like a very mild 
-    condition, see the discussion [here][18], for instance.
+    automatically overt (see the [nlab][17]). It's a very mild 
+    condition, see the discussion [here][18], for instance, 
+    or Paul Taylor's [_Overt Subspaces of $\mathbb{R}^n$_][28].
 
 [^10]:
     I've always gotten slightly annoyed, or at least laughed quietly to 
