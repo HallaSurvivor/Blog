@@ -28,7 +28,7 @@ Eventually I'll want to learn about the effective topos[^1] (and other
 [realizability topoi][2] more generally), various [smooth topoi][3], etc. 
 but let's take them on one-at-a-time!
 
-The [topological topos][4] $\mathcal{T}$ is a world where every set is 
+The topological topos $\mathcal{T}$ is a world where every set is 
 _intrinsically_ a space. What does this mean?
 
 Well, if we're working in $\mathsf{Set}$, then a space 
@@ -63,6 +63,11 @@ function is "continuous". Inside $\mathcal{T}$, it's _literally impossible_
 to write down a function that isn't continuous, because there's no 
 ~bonus structure~ to respect! 
 
+<div class=boxed markdown=1>
+TODO: put a picture here of someone saying like "it's impossible" 
+or something. I think that'll help break up the wall of text
+</div>
+
 This is great for a couple reasons. First, it tells us that anything we 
 construct using type theory can be thought of as being, automatically, 
 some kind of "space". Understanding this relationship between types and 
@@ -75,27 +80,12 @@ Second, this tells us that any theorem we're able to prove [constructively][7]
 is automatically true "continuously", and gives us a theorem for 
 _topological_ structures! Of course, in order to _use_ these theorems, we 
 need to understand how objects inside the topological topos $\mathcal{T}$ 
-externalize to give honest topological spaces in "the real world". 
+externalize to give honest topological spaces in "the real world"[^6]. 
 
-After my [last post][29] on a constructive extreme value theorem, I wanted to 
-see how it externalizes in topoi other than $\mathsf{Sh}(B)$. I'm pretty sure 
-in the effective topos we'll get something that looks like an algorithm 
-eating a function on a compact space and returning its max... But it's 
-super unclear what we should get interpreting this in $\mathcal{T}$! 
-After all, a [frame][30] in $\mathcal{T}$ is a topological lattice $L$. So 
-a locale in $L$ is a space whose frame of opens is _itself_ a space...
-
-I still haven't totally figured out this story[^5], so I won't say anything 
-more in _this_ post, but trying to understand $\mathcal{T}$ well enough to 
-externalize the constructive extreme value theorem was the second big 
-motivator for this post. Of course, understanding $\mathcal{T}$ was so fun 
-and interesting that I got distracted from my original goal, but that's how 
-these things tend to go for me, haha.
-
-In the process of understanding $\mathcal{T}$, I worked out a bunch of 
-examples which I hope people find exciting! Even though all of this is 
-probably "well known to experts", I found a lot of it pretty hard to find, 
-so I'm excited to share ^_^.
+Of course, in the process of trying to understand $\mathcal{T}$, I had to 
+work out a bunch of examples, which I'd love to share! Even though all of this 
+is probably "well known to experts", I found a lot of it pretty hard to find, 
+so hopefully this blog post is still useful for people ^_^.
 
 Let's get started!
 
@@ -373,6 +363,22 @@ relate to function spaces in $\mathsf{Top}$ (when they exist)
     the "right" topology on an infinite product space! See, for instance,
     this old and highly upvoted [mse question][27].
 
-[^5]:
-    Though I'm much less weirded out by the idea since I remembered that 
-    [scott topologies][31] exist as a natural topology on the frame of opens.
+[^6]:
+    After my [last post][29] on a constructive extreme value theorem, I wanted to 
+    see how it externalizes in topoi other than $\mathsf{Sh}(B)$. I'm pretty sure 
+    in the effective topos we'll get something that looks like an algorithm 
+    eating a function on a compact space and returning its max... But it's 
+    super unclear what we should get interpreting this in $\mathcal{T}$! 
+    After all, a [frame][30] in $\mathcal{T}$ is a topological lattice $L$. So 
+    a locale in $L$ is a space whose frame of opens is _itself_ a space...
+
+    I still haven't totally figured out this story
+    (though I'm much less weirded out by the idea since I remembered that 
+    [scott topologies][31] exist as a natural topology on the frame of opens), 
+    so I won't say anything 
+    more in _this_ post, but trying to understand $\mathcal{T}$ well enough to 
+    externalize the constructive extreme value theorem was the second big 
+    motivator for this post. Of course, understanding $\mathcal{T}$ was so fun 
+    and interesting that I got distracted from my original goal, but that's how 
+    these things tend to go for me, haha.
+
