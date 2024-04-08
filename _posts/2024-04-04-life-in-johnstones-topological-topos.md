@@ -9,40 +9,95 @@ TODO: mention somewhere that if you want a detailed description of
 some pointset topological properties of sequential spaces, you can 
 read Dan Ma's excellent [series of blog posts][16]
 
-I've been thinking a lot about the internal logic of topoi again, and in 
-order to feel like I understand things I want more examples of topoi 
+TODO: Mention the stuff in section 9 of Johnstone's paper relating 
+$\mathsf{Sh}(X)$ to $\mathcal{T} / X$.
 
-TODO: finish this introduction. Talk about wanting examples of topoi 
-we can use to externalize stuff. We're already pretty comfortable with 
-sheaf topoi $\text{Sh}(X)$, but we want to throw some gros topoi into the 
-mix. Let's start with Johnstone's topological topos, but eventually I want 
-to learn about the effective topos[^1] (and other [realizability topoi][2]),
-various [smooth topoi][3], .... any others?
+I've been thinking a lot about the internal logic of topoi again, and I 
+want to have more examples of topoi that I understand well enough to 
+externalize some statements. There's more to life than just a localic 
+$\mathsf{Sh}(B)$, and since I'm starting to feel like I understand 
+that example pretty well, it's time to push myself to understand 
+other important examples too!
+
+In particular, it would be nice to throw some [gros topoi][23] into 
+the mix, and where better to start than Johnstone's [topological topos][24]?
+This topos is fairly small (which makes explicit computation easy) and is 
+very well studied (which makes finding references and examples merely annoying 
+instead of totally impossible). 
+Eventually I'll want to learn about the effective topos[^1] (and other 
+[realizability topoi][2] more generally), various [smooth topoi][3], etc. 
+but let's take them on one-at-a-time!
 
 The [topological topos][4] $\mathcal{T}$ is a world where every set is 
-_intrinsically_ a space. 
+_intrinsically_ a space. What does this mean?
 
-And every function is continuous intrinscially
+Well, if we're working in $\mathsf{Set}$, then a space 
+is a set $X$ equipped with some ~bonus structure~. This structure can take a 
+lot of forms, but one ubiquitous example is that of a _topology_ 
+$\tau \subseteq \mathcal{P}(X)$.
 
-TODO: say more about that, and the difference between intrisic and structure
+Then if you want to work with spaces, you have to constantly say explicitly 
+what topology you're working with. After all, there's _lots_ of topologies 
+you can put on $X \times Y$, and we need to make sure we choose the 
+_right one_ to act like the product of the _spaces_ $(X,\tau)$ and $(Y,\sigma)$.
+
+Nowadays the "right" topology is usually obvious[^4], but this is only because 
+we're able to stand on the shoulders of countless 20th century mathematicians!
+I think most people would be hard-pressed to come up with, say, the 
+[compact-open topology][28] if they hadn't seen it before!
+
+Of course, carrying around this ~bonus structure~ becomes most pronounced 
+when working with continuous maps! Now, instead of just defining a function 
+and moving on with your life, we're constantly burdened to check that our 
+function $X \to Y$ actually respects the topologies involved to be a 
+_continuous_ function $(X,\tau) \to (Y, \sigma)$! There are some friends 
+of mine who are constantly complaining that algebraic topologists never check 
+that things are continuous, and honestly I'm sympathetic. But it can be 
+a real hassle to check these things all the time... 
+
+Of course... There's a better way!
+
+As we said before, objects in $\mathcal{T}$ are _intrinsically_ spaces! 
+There's no need to choose the "right" topology, or to check that your 
+function is "continuous". Inside $\mathcal{T}$, it's _literally impossible_ 
+to write down a function that isn't continuous, because there's no 
+~bonus structure~ to respect! 
 
 This is great for a couple reasons. First, it tells us that anything we 
 construct using type theory can be thought of as being, automatically, 
 some kind of "space". Understanding this relationship between types and 
 topology has been a staple in many people's careers, but I want to single 
 out [Martín Escardó][5] as someone whose papers I've been reading lately 
-(and who I talk to fairly often on [mastodon][6]).
+(and who I talk to fairly often on [mastodon][6]). These conversations were 
+part of the reason I decided to spend some time trying to understand $\mathcal{T}$.
 
 Second, this tells us that any theorem we're able to prove [constructively][7]
 is automatically true "continuously", and gives us a theorem for 
 _topological_ structures! Of course, in order to _use_ these theorems, we 
 need to understand how objects inside the topological topos $\mathcal{T}$ 
-externalize to give honest topological spaces in "the real world".
+externalize to give honest topological spaces in "the real world". 
 
-I wasn't able to find many people talking about this, so I worked out a bunch 
-of it for myself, which I'm super excited to share ^_^.
+After my [last post][29] on a constructive extreme value theorem, I wanted to 
+see how it externalizes in topoi other than $\mathsf{Sh}(B)$. I'm pretty sure 
+in the effective topos we'll get something that looks like an algorithm 
+eating a function on a compact space and returning its max... But it's 
+super unclear what we should get interpreting this in $\mathcal{T}$! 
+After all, a [frame][30] in $\mathcal{T}$ is a topological lattice $L$. So 
+a locale in $L$ is a space whose frame of opens is _itself_ a space...
 
-So then, let's get started!
+I still haven't totally figured out this story[^5], so I won't say anything 
+more in _this_ post, but trying to understand $\mathcal{T}$ well enough to 
+externalize the constructive extreme value theorem was the second big 
+motivator for this post. Of course, understanding $\mathcal{T}$ was so fun 
+and interesting that I got distracted from my original goal, but that's how 
+these things tend to go for me, haha.
+
+In the process of understanding $\mathcal{T}$, I worked out a bunch of 
+examples which I hope people find exciting! Even though all of this is 
+probably "well known to experts", I found a lot of it pretty hard to find, 
+so I'm excited to share ^_^.
+
+Let's get started!
 
 ---
 
@@ -271,6 +326,15 @@ relate to function spaces in $\mathsf{Top}$ (when they exist)
 [20]: https://en.wikipedia.org/wiki/Axiom_of_dependent_choice
 [21]: https://ncatlab.org/nlab/files/DCTopTopos.pdf
 [22]: https://en.wikipedia.org/wiki/Solovay_model
+[23]: https://ncatlab.org/nlab/show/big+and+little+toposes
+[24]: https://ncatlab.org/nlab/show/Johnstone%27s+topological+topos
+[25]: /2021/12/16/topological-categories.html
+[26]: https://en.wikipedia.org/wiki/Box_topology
+[27]: https://math.stackexchange.com/questions/871610/why-are-box-topology-and-product-topology-different-on-infinite-products-of-topo
+[28]: https://en.wikipedia.org/wiki/Compact-open_topology
+[29]: /2024/03/25/continuous-max-function
+[30]: https://ncatlab.org/nlab/show/frame
+[31]: https://en.wikipedia.org/wiki/Scott_continuity
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -299,3 +363,16 @@ relate to function spaces in $\mathsf{Top}$ (when they exist)
 [^3]:
     You can find a proof in Shulman and Simpson's note 
     [_Dependent Choice in Johnstone's Topological Topos_][21]
+
+[^4]:
+    And even then, it might not be obvious when you're learning! I remember 
+    when I first learned pointset topology the idea of a "cylinder set" 
+    and the product topology made no sense to me! Honestly without the 
+    framework of [topological categories][25] or something similar, I could 
+    see people _still_ being surprised that the [box topology][26] isn't 
+    the "right" topology on an infinite product space! See, for instance,
+    this old and highly upvoted [mse question][27].
+
+[^5]:
+    Though I'm much less weirded out by the idea since I remembered that 
+    [scott topologies][31] exist as a natural topology on the frame of opens.
