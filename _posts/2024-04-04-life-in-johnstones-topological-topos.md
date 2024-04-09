@@ -91,6 +91,9 @@ Let's get started!
 
 ---
 
+## What Is $\mathcal{T}$?
+<br>
+
 First, what even _is_ the topological topos? It's sheaves on some site, 
 of course, but which one?
 
@@ -172,27 +175,32 @@ two sheaves?
 <br>
 
 Of course, every topological space $X$ gives an object 
-$\overline{X}$ in the topos where we set $\overline{X}(1) = X$ 
-and $$\overline{X}(\mathbb{N}_\infty) = 
+$よX = \mathsf{Top}(-,X)$ in the topos[^10], where of course 
+$よX(1) = X$ and 
+$$よX(\mathbb{N}_\infty) = 
 \{ \text{continuous functions } f : \mathbb{N}_\infty \to X \}$$. 
-That is, underlying set of $\overline{X}$ is exactly the underlying set of $X$,
+That is, underlying set of $よX$ is exactly the underlying set of $X$,
 and for every convergent sequence in $X$ we add a unique proof that that 
-sequence converges.
+sequence converges (represented by the sequence itself).
 
+If we restrict attention to the full subcategory of [sequential spaces][9],
+then $よ$ is a fully faithful embedding into $\mathcal{T}$. This shouldn't be 
+too surprising, since the sequential spaces are exactly those spaces whose 
+topologies are determined by a knowledge of which sequences converge!
 
-TODO: say that for [sequential spaces][9] this is a fully faithful 
-embedding. 
+You should think of this is a _super_ mild condition, since lots of 
+natural spaces of interest are sequential. Just to name a few:
 
+- all metric spaces 
+- more generally, all [first countable][36] spaces
+- every [CW-complex][37]
+- every [ring spectrum][38]
 
+We'll say more about this later, but for now just know that for a _huge_
+class of spaces, we can work with them in $\mathcal{T}$ just as well as 
+in $\mathsf{Top}$.
 
-
-
-
-
-
-
-
-
+<br><br>
 
 There's another definition of $\mathcal{T}$ which you're also likely to see. 
 
@@ -208,10 +216,22 @@ $$\{ \mathbb{N}_\infty \}$$.
 This gives some informal justification for the close connection between 
 $\mathcal{T}$ and sequential spaces.
 
-TODO: sequential spaces are exactly the quotients of disjoint unions of 
-copies of $$\mathbb{N}_\infty$$. We should expect objects of a topos to 
-be the things you can get by "gluing together" objects in the site, 
-and here the only object we have is $$\mathbb{N}_\infty$$!
+Indeed, objects of a sheaf topos can be thought of as being glued together 
+from objects of the underlying site. In case you're working with a presheaf 
+topos, we take _all_ the ways to glue things together, but in general a 
+grothendieck topology forces us to restrict attention to those gluings 
+which are "nice" in some sense.
+
+So, with this smaller site in hand, one way to think about objects in 
+$\mathcal{T}$ is as copies of $$\mathbb{N}_\infty$$ that are 
+"glued together nicely". And one can show that the sequential spaces 
+are _exactly_ the quotients of disjoint unions of copies of $$\mathbb{N}_\infty$$!
+
+This tells us that, in some sense, the other objects of $\mathcal{T}$ are 
+just copies of $$\mathbb{N}_\infty$$ glued together in more exotic ways,
+for instance by gluing two copies of $$\mathbb{N}_\infty$$ literally on 
+top of each other to get multiple witnesses to the convergence of the 
+same sequence!
 
 <br>
 
@@ -237,6 +257,9 @@ the topos of sheaves on a dense subsite is equivalent to the topos of sheaves
 on the whole site.
 
 ---
+
+## How Does $\mathcal{T}$ Relate to $\mathsf{Top}$?
+<br>
 
 More generally, say we have a [kuratowski limit space][10] 
 (also called a subsequential space). This is a 
@@ -451,6 +474,9 @@ relate to function spaces in $\mathsf{Top}$ (when they exist)
 [33]: https://ncatlab.org/nlab/show/canonical+topology
 [34]: https://en.wikipedia.org/wiki/Subobject_classifier
 [35]: https://londmathsoc.onlinelibrary.wiley.com/doi/abs/10.1112/plms/s3-38.2.237
+[36]: https://en.wikipedia.org/wiki/First-countable_space
+[37]: https://en.wikipedia.org/wiki/CW_complex
+[38]: https://en.wikipedia.org/wiki/Spectrum_of_a_ring
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -546,3 +572,7 @@ relate to function spaces in $\mathsf{Top}$ (when they exist)
     "monoid of continuous endomorphisms of $$\mathbb{N}_\infty$$", but 
     I'd rather not say that because I think it would confuse the 
     exposition that follows.
+
+[^10]:
+    It's not _immediately_ obvious that this presheaf is actually a sheaf,
+    but it turns out to be. This is in Johnstone's [original paper][35].
