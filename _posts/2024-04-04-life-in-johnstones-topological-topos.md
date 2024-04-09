@@ -91,30 +91,152 @@ Let's get started!
 
 ---
 
-TODO: what _is_ the topological topos? Sheaves on $\mathbb{N}_\infty$ 
-vs sheaves on $\{ \mathbb{N}_\infty, 1 \}$. These are the same 
-because one is a [dense subsite][8] of the other (prove that)
+First, what even _is_ the topological topos? It's sheaves on some site, 
+of course, but which one?
 
-A sheaf on $\{\mathbb{N}_\infty, 1\}$ is nice because we can think of $X(1)$ 
-as the _set of points_ and $X(\mathbb{N}_\infty)$ as _proofs that sequences 
-converge_. Indeed, $n : 1 \to \mathbb{N}_\infty$ gives a map on sheaves 
-$n^* : X(\mathbb{N}_\infty) \to X(1)$ for all $X$. 
-If $p \in X(\mathbb{N}_\infty)$, then we think of $n^*(p)$ as being 
-$p_n$, the $n$th point in the sequence. We think of $\infty^*(p)$ as 
-being the limit the sequence converges to. So $p$ is itself a proof that 
-$p_n \to p_\infty$, and there might well be a second proof $q$ so that 
-for all $n$, $q_n = p_n$ and $q_\infty = p_\infty$. This is a second proof 
-that the same sequence converges.
+<div class=boxed markdown=1>
+Write $$\mathbb{N}_\infty$$ for the [one point compactification][32] of 
+$\mathbb{N}$. This is the space $$\{0,1,2,3,\ldots,\infty\}$$ topologized 
+so that a convergent sequence $(x_n) \to x_\infty$ in $X$ is exactly a 
+continuous map $\mathbb{N}_\infty \to X$[^7].
+
+Then let's look at the full subcategory of $\mathsf{Top}$ spanned by 
+$$\{1, \mathbb{N}_\infty \}$$. This becomes a site if we give it the 
+[canonical topology][33] $J$, and we define the topological topos 
+$\mathcal{T}$ to be sheaves on this site.
+</div>
+
+We'll motivate this definition in a 
+minute, but first let's see how we can picture objects of $\mathcal{T}$.
+
+A presheaf on this site is a pair of sets $X(1)$ and $X(\mathbb{N}_\infty)$ 
+with a bunch of maps connecting them:
+
+- There's a map $$n^* : X(\mathbb{N}_\infty) \to X(1)$$ for each $n$, plus a map 
+    $$\infty^* : X(\mathbb{N}_\infty) \to X(1)$$
+- There's a unique map $$!^* : X(1) \to X(\mathbb{N}_\infty)$$
+- For every continuous function $$f : \mathbb{N}_\infty \to \mathbb{N}_\infty$$
+    there's a map $$f^* : X(\mathbb{N}_\infty) \to X(\mathbb{N}_\infty)$$.
+
+You should think of elements of $X(1)$ as the _points_ of $X$, and 
+the elements of $$X(\mathbb{N}_\infty)$$ as (witnesses to) convergent 
+sequences in $X(1)$.
+Indeed, if $$p \in X(\mathbb{N}_\infty)$$, then we'll write 
+$p_n$ for $$n^*(p)$$ (resp. $p_\infty$ for $$\infty^* p$$) and $p$ 
+should be thought of as a _witness_ or _proof_ that the sequence 
+$p_n$ converges to $p_\infty$ in $X(1)$[^5]. 
+
+The unique map $$!^*$$ sends a point $x \in X(1)$ to a distinguished proof 
+that the constant $x$ sequence converges to $x$, and the functions $$f^*$$ 
+"reindex" a convergent sequence. So if $p$ is a proof that $x_n \to x_\infty$,
+then $f^* p$ is a proof that $x_{fn} \to x_{f \infty}$ too.
+
+The sheaf condition for the canonical topology guarantees that 
+if every subsequence of $x_n$ converges to $x_\infty$, 
+the whole sequence $x_n$ converges to $x_\infty$ too[^8].
+
+<div class=boxed markdown=1>
+Can you prove that this is reasonable? 
+
+If $$x_n \to x$$ in some topological space $$X$$, and 
+$$f : \mathbb{N}_\infty \to \mathbb{N}_\infty$$ is continuous,
+why must $$x_{fn} \to x_{f \infty}$$?
+
+You might find it helpful to case on whether $$f(\infty) = \infty$$ or not.
+</div>
+
+<div class=boxed markdown=1>
+As a cute exercise can you find a simple description of the 
+arrows in $\mathcal{T}$? That is, for a natural transformation between 
+two sheaves?
+</div>
+
+<details>
+    <summary>solution</summary>
+    A natural transformation between $X$ and $Y$ is a pair of functions 
+
+    $$f_1 : X(1) \to Y(1)$$ 
+
+    $$f_{\mathbb{N}_\infty} : X(\mathbb{N}_\infty) \to Y(\mathbb{N}_\infty)$$
+
+    So that whenever $p$ is a proof that $x_n \to x_\infty$,
+    $f_{\mathbb{N}_\infty}(p)$ is a proof that 
+    $f_1(x_n) \to f_1(x_\infty)$.
+
+    Moreover, $f_{\mathbb{N}_\infty}$ should respect the distinguished proofs 
+    that constant sequences converge 
+    (so $f_{\mathbb{N}_\infty}(!^* x) = !^* f_1(x)$) as well as reindexing
+    (so $f_{\mathbb{N}_\infty}(g^* p) = g^* (f_{\mathbb{N}_\infty} p)$)
+</details>
+
+<br>
 
 Of course, every topological space $X$ gives an object 
 $\overline{X}$ in the topos where we set $\overline{X}(1) = X$ 
-and $\overline{X}(\mathbb{N}_\infty) = \{ f : \mathbb{N}_\infty \to X \}$. 
+and $$\overline{X}(\mathbb{N}_\infty) = 
+\{ \text{continuous functions } f : \mathbb{N}_\infty \to X \}$$. 
 That is, underlying set of $\overline{X}$ is exactly the underlying set of $X$,
 and for every convergent sequence in $X$ we add a unique proof that that 
 sequence converges.
 
+
 TODO: say that for [sequential spaces][9] this is a fully faithful 
 embedding. 
+
+
+
+
+
+
+
+
+
+
+
+
+There's another definition of $\mathcal{T}$ which you're also likely to see. 
+
+Having $X(1)$ around explicitly as a set of points is helpful for 
+exposition and intuition, but it turns out to not change the topos if we 
+work without it! Intuitively, we can recover the points from the constant maps 
+$$n : \mathbb{N}_\infty \to \mathbb{N}_\infty$$. 
+
+With this in mind, some authors define $\mathcal{T}$ to be the sheaves[^9]
+on _just_ the full subcategory of $\mathsf{Top}$ spanned by 
+$$\{ \mathbb{N}_\infty \}$$.
+
+This gives some informal justification for the close connection between 
+$\mathcal{T}$ and sequential spaces.
+
+TODO: sequential spaces are exactly the quotients of disjoint unions of 
+copies of $$\mathbb{N}_\infty$$. We should expect objects of a topos to 
+be the things you can get by "gluing together" objects in the site, 
+and here the only object we have is $$\mathbb{N}_\infty$$!
+
+<br>
+
+Of course, how do we _know_ that these two definitions agree? I wasn't 
+able to find this written down anywhere, but it's not so hard to check 
+for ourselves!
+
+The key observation is that $$\{ \mathbb{N}_\infty \}$$ is a 
+[dense subsite][8] of $$\{ \mathbb{N}_\infty, 1 \}$$. Here, of course, 
+I'm writing a set to mean a full subcategory of $\mathsf{Top}$ equipped 
+with the canonical topology.
+
+$\ulcorner$
+Indeed, to check this, we only need to show that 
+
+TODO: check this.
+
+
+<span style="float:right">$\lrcorner$</span>
+
+Now we learn that the two definitions really _do_ agree since, in general,
+the topos of sheaves on a dense subsite is equivalent to the topos of sheaves 
+on the whole site.
+
+---
 
 More generally, say we have a [kuratowski limit space][10] 
 (also called a subsequential space). This is a 
@@ -325,6 +447,10 @@ relate to function spaces in $\mathsf{Top}$ (when they exist)
 [29]: /2024/03/25/continuous-max-function
 [30]: https://ncatlab.org/nlab/show/frame
 [31]: https://en.wikipedia.org/wiki/Scott_continuity
+[32]: https://en.wikipedia.org/wiki/Alexandroff_extension
+[33]: https://ncatlab.org/nlab/show/canonical+topology
+[34]: https://en.wikipedia.org/wiki/Subobject_classifier
+[35]: https://londmathsoc.onlinelibrary.wiley.com/doi/abs/10.1112/plms/s3-38.2.237
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -363,6 +489,14 @@ relate to function spaces in $\mathsf{Top}$ (when they exist)
     the "right" topology on an infinite product space! See, for instance,
     this old and highly upvoted [mse question][27].
 
+[^5]:
+    Note that it's entirely possible for two different elements
+    $$p \neq q \in X(\mathbb{N}_\infty)$$ to witness convergence of 
+    the same sequence (so $p_n = q_n$ for all $n$ and $\infty$)!
+
+    Indeed, this will be crucial later, for instance in our discussion 
+    of the [subobject classifier][34] $\Omega$.
+
 [^6]:
     After my [last post][29] on a constructive extreme value theorem, I wanted to 
     see how it externalizes in topoi other than $\mathsf{Sh}(B)$. I'm pretty sure 
@@ -382,3 +516,33 @@ relate to function spaces in $\mathsf{Top}$ (when they exist)
     and interesting that I got distracted from my original goal, but that's how 
     these things tend to go for me, haha.
 
+[^7]:
+    If you want a _super_ concrete description, it's equivalent to 
+
+    $$
+    \left \{ 
+        1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots, \frac{1}{n}, \ldots, 0 
+    \right \}
+    \subseteq \mathbb{R}
+    $$
+
+    with the subspace topology.
+
+[^8]:
+    This is spelled out quite clearly in Johnstone's original paper 
+    [_On a Topological Topos_][35]. Indeed, Johnstone computes the 
+    covering sieves _very_ explicitly, and I highly recommend reading 
+    about it there.
+
+    I don't want to mention the grothendieck topology explicitly because 
+    I think it would take too much time for not much payoff. I'm happy to 
+    mainly summarize facts that are useful for working with 
+    $\mathcal{T}$, and point to the relevant references where necessary.
+
+[^9]:
+    Still with the canonical grothendieck topology.
+
+    Some people like to describe this (one object) category as the 
+    "monoid of continuous endomorphisms of $$\mathbb{N}_\infty$$", but 
+    I'd rather not say that because I think it would confuse the 
+    exposition that follows.
