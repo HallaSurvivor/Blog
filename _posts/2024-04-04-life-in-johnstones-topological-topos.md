@@ -407,6 +407,8 @@ this earlier in the post.
 
 ---
 
+## Bonus Axioms Validated by $\mathcal{T}$
+
 Speaking of proving theorems in $\mathcal{T}$, we actually don't have to 
 be _totally_ constructive! The topological topos satisfies certain nice 
 ~bonus axioms~ that make it a particularly nice place to work.
@@ -418,15 +420,23 @@ dedekind and cauchy reals agree, and many of the pathologies
 from constructive math go away!
 
 Moreover, $\mathcal{T}$ models Brouwer's Continuity Principle that 
-"Every function $f : \mathbb{R} \to \mathbb{R}$ is continuous".
+"Every function $f : \mathbb{R} \to \mathbb{R}$ is continuous"!
 
-TODO: find a proof. Maybe ML&M?
+It's shockingly hard to find this written down anywhere, but it's 
+cited in lots of places! It's definitely part of the folklore, 
+but for completeness I'll include a proof in an "appendix" 
+at the bottom of this post. If you know of a reference, or of a 
+slicker proof than the one I found, I would REALLY love to hear 
+about it!
 
-TODO: mention that this makes $\mathcal{T}$ a rather stronger version of 
-[Solovay's Model][22] which models 
-$$\mathsf{LEM}+\mathsf{DC}$+"every function $\mathbb{R} \to \mathbb{R}$ is measurable".
+Regardless, the truth of Brouwer's principle tells us that 
+$\mathcal{T}$ is a rather stronger version of [Solovay's Model][22]. 
+Solovay's model validates
+$$\mathsf{LEM}+\mathsf{DC}+$$"every function $\mathbb{R} \to \mathbb{R}$ is measurable".
 
-In order to get all functions to be _continuous_, we have to drop LEM.
+In $\mathcal{T}$, we have $\mathsf{DC}$ and the stronger 
+"every function $\mathbb{R} \to \mathbb{R}$ is continuous". But the price 
+we pay is LEM.
 
 ---
 
@@ -436,6 +446,284 @@ TODO: say something about $\Omega$
 
 TODO: figure out how function spaces in $\mathcal{T}$ (really in $\mathsf{Seq}$)
 relate to function spaces in $\mathsf{Top}$ (when they exist)
+
+
+---
+---
+
+## Appendix: A Proof that Johnstone's Topos Models Brouwer's Continuity Principle
+
+If you're not super familiar with externalizing formulas, you 
+might want to read my [old blog post][39] with a bunch of simpler 
+examples before trying to tackle this one!
+
+We'll be doing this computation using the site with two objects, 
+$$\{1, \mathbb{N}_\infty\}$$.
+
+$\ulcorner$
+We want to show that
+
+$$
+\mathcal{T} \models 
+\ulcorner 
+\text{every function $f : \mathbb{R} \to \mathbb{R}$ is continuous}
+\urcorner
+$$
+
+Which happens if and only if the terminal object $1$ _forces_ it. 
+Switching to the forcing notation and writing down the definition 
+of continuity explicitly[^11], we get
+
+$$
+1 \Vdash
+\forall f : \mathbb{R}^\mathbb{R} . 
+\forall \epsilon : \mathbb{R}_{\gt 0} .
+\forall x : \mathbb{R} .
+\exists \delta : \mathbb{R}_{\gt 0} .
+\forall y : \mathbb{R} . 
+|x-y| \lt \delta \to |fx - fy| \lt \epsilon 
+$$
+
+But now we can start cashing out what _this_ is equivalent to, 
+until we're left with a statement purely about "the real world".
+Then we'll check directly that this "real world" statement is true 
+to prove the claim!
+
+Well, to cash out some universal quantifiers, we need to know that 
+for every arrow $U \to 1$ in the site and for every 
+
+- $f \in \mathbb{R}^\mathbb{R}(U)$
+- $\epsilon \in \mathbb{R}_{\gt 0}(U)$
+- $x \in \mathbb{R}(U)$
+
+that 
+
+$$
+U \Vdash 
+\exists \delta : \mathbb{R}_{\gt 0} . 
+\forall y : \mathbb{R} . 
+|x-y| \lt \delta \to |fx - fy| \lt \epsilon 
+$$
+
+Thankfully, there's only two maps $U \to 1$ in our site! 
+The unique maps $1 \to 1$ and $\mathbb{N}_\infty \to 1$.
+
+<br>
+
+Let's check $1 \to 1$ first, since that's easier. Remembering 
+that $\mathbb{R}$ in $\mathcal{T}$ is represented by 
+$よ\mathbb{R} = \text{Hom}_\mathsf{Top}(-,\mathbb{R})$, we see
+
+$$
+\begin{align}
+\mathbb{R}^\mathbb{R}(1)
+&= よ1 \to よ\mathbb{R}^{よ\mathbb{R}} \\
+&= よ1 \times よ\mathbb{R} \to よ\mathbb{R} \\
+&= よ(1 \times \mathbb{R}) \to よ\mathbb{R} \\
+&= よ\mathbb{R} \to よ\mathbb{R} \\
+&= \Big \{ \text{continuous functions $\mathbb{R} \to \mathbb{R}$} \Big \}
+\end{align}
+$$
+
+Here the first step is yoneda, then the fact that product is left adjoint 
+to exponential. Then the fact that yoneda preserves limits, and 
+finally yoneda again.
+
+This means that if $f \in \mathbb{R}^\mathbb{R}(1)$, then $f$ is just 
+a continuous function $\mathbb{R} \to \mathbb{R}$ in "the real world",
+and similar computations show that $\epsilon$ and $x$ are honest real 
+numbers (with $\epsilon \gt 0$, of course).
+
+Now to show that 
+
+$$
+1 \Vdash 
+\exists \delta : \mathbb{R}_{\gt 0} . 
+\forall y : \mathbb{R} . 
+|x-y| \lt \delta \to |fx - fy| \lt \epsilon 
+$$
+
+we need to find a cover $V \twoheadrightarrow 1$ and a 
+$\delta \in \mathbb{R}_{\gt 0}(V)$ so that 
+$V \Vdash \forall y : \mathbb{R} . |x-y| \lt \delta \to |fx - fy| \lt \epsilon$.
+Thankfully, this is surprisingly easy!
+
+We'll choose the (rather silly) cover $1 \to 1$. Then we need a 
+$\delta \in \mathbb{R}_{\gt 0}(1)$, which we'll take to be the 
+$\delta$ (in the real world!) promised by the fact that $f$ is 
+continuous at $x$.
+
+For our last universal quantifier, we have to show that for any map 
+$W \to 1$ in our site (again, there's only two options) and any 
+$y \in \mathbb{R}(W)$ that
+
+$$
+|x-y| \lt \delta \to |fx - fy| \lt \epsilon 
+$$
+
+where this implication is in the real world!
+
+In case $W = 1$, $y \in \mathbb{R}(1)$ is just a real number. 
+So the claim is immediate from our choice of $\delta$ 
+(the external witness to continuity of $f$).
+
+In case $$W = \mathbb{N}_\infty$$, then $$y \in \mathbb{R}(\mathbb{N}_\infty)$$
+is a convergent sequence $$y_n : \mathbb{N}_\infty \to \mathbb{R}$$. Then 
+we need to show that whenever $|x - y_n| \lt \delta$ for all $n$ 
+(including $n=\infty$) that $|fx - f y_n| \lt \epsilon$ for all $n$ 
+as well. But, of course, this follows immediately from continuity on 
+each $y_n$ separately.
+
+<br>
+
+Whew! Halfway done!
+Unfortunately that was the easier case, haha.
+Now let's see what happens when $U \to 1$ is $$\mathbb{N}_\infty \to 1$$.
+
+Then a similar argument from before shows that 
+$$f \in \mathbb{R}^\mathbb{R}(\mathbb{N}_\infty)$$ means exactly that 
+(externally)
+$$f : \mathbb{N}_\infty \times \mathbb{R} \to \mathbb{R}$$ is continuous.
+
+Similarly, we get continuous functions (read: convergent sequences)
+$$\epsilon : \mathbb{N}_\infty \to \mathbb{R}_{\gt 0}$$ and 
+$$x : \mathbb{N}_\infty \to \mathbb{R}$$.
+
+Now we need to find a cover $$V \twoheadrightarrow \mathbb{N}_\infty$$, 
+which we'll again take to be the identity 
+$$\mathbb{N}_\infty \to \mathbb{N}_\infty$$, and a choice of 
+$$\delta \in \mathbb{R}_{\gt 0}(V) = \mathbb{R}_{\gt 0}(\mathbb{N}_\infty)$$
+so that for every $$g : W \to \mathbb{N}_\infty$$ and every $y : \mathbb{R}(W)$, 
+we have (pointwise)
+
+$$
+|x \circ g - y| \lt \delta \circ g \to |f \circ x \circ g - f \circ y| \lt \epsilon \circ g
+$$
+
+Now, what should $\delta$ be? Once we have that in hand, we can 
+just check the above inequality and finally be done with this proof!
+
+Morally, the question is this: If we treat 
+$$f : \mathbb{N}_\infty \times \mathbb{R} \to \mathbb{R}$$ 
+as a convergent sequence of functions $f_n : \mathbb{R} \to \mathbb{R}$,
+and we're given a convergent sequence $\epsilon_n$, can we choose our 
+witnesses $\delta_n$ to continuity of $f_n$ at $x_n$ so that the 
+$\delta_n$ themselves are a convergent sequence?
+
+This would probably be easy for an actual analyst, but I found the 
+construction a bit delicate. I'm particularly happy to have it 
+written down somewhere!
+
+We'll first notice that 
+$$\epsilon_* = \inf \{ \epsilon_1, \epsilon_2, \ldots, \epsilon_\infty \}$$
+is bounded away from $0$. After all, for $n \gg 1$, 
+$\epsilon_n \gt \frac{\epsilon_\infty}{2}$. So this infimum is taken over 
+the first finitely many $\epsilon_n$s (which are all $\gt 0$) and an 
+infinite tail of $\epsilon_n$s which are uniformly 
+$\gt \frac{\epsilon_\infty}{2} \gt 0$.
+Now, since $$f : \mathbb{N}_\infty \times \mathbb{R} \to \mathbb{R}$$ 
+is continuous, it's _uniformly_ continuous on a compact subset. For instance, 
+on the compact subset 
+$$\mathbb{N}_\infty \times \left [x_\infty - \frac{1}{10}, x_\infty + \frac{1}{10} \right ].$$
+
+Thus, we can find a $$\delta_* (\lt \frac{1}{10})$$ so that whenever two inputs 
+$(n_1,x_1)$ and $(n_2,x_2)$ are are $$\delta_*$$-close to each other, 
+(and $x_1,x_2$ are within $\pm \frac{1}{10}$ of $x_\infty$)
+the outputs are $$\frac{\epsilon_*}{4}$$-close to each other!
+
+We'll take $m$ large enough so that 
+- $\frac{1}{m} \lt \delta_*$
+- for all $n \gt m$ we have $$\lvert x_n - x_\infty \rvert \lt \delta_*$$
+
+For $n \leq m$, we'll let $\delta_n$ be whatever reals we like so that 
+whenever $|x_n - y| \lt \delta_n$, we know $|f(n,x_n) - f(n,y)| \lt \epsilon_n$.
+There's no difficulty in doing this since each function $f(n,-)$ is 
+continuous.
+
+Of course, we want these $\delta_n$s to assemble into a convergent sequence, 
+so we'll need to be more careful when $n \gt m$ is "large".
+For these, we'll let $$\delta_n = \delta_* - |x_\infty - x_n|$$. 
+Note that, as $n \to \infty$, the $\delta_n$s really do converge to 
+$$\delta_\infty = \delta_*$$.
+
+<br>
+
+Now that we know what our $$\delta : \mathbb{N}_\infty \to \mathbb{R}_{\gt 0}$$ 
+is, we need to verify those inequalities!
+
+For every arrow $$g : W \to \mathbb{N}_\infty$$, we need to show that 
+(pointwise in $W$)
+
+$$
+|x \circ g - y| \lt \delta \circ g \to |f \circ x \circ g - f \circ y| \lt \epsilon \circ g
+$$
+
+First let's let $W = 1$. Then $g$ is naming an element $n$ of $$\mathbb{N}_\infty$$
+(we allow $n=\infty$).
+
+Then $x \circ g : 1 \to \mathbb{R}$ is just $x_n$, and similarly for everything 
+else in sight. So our inequality becomes 
+
+$$
+|x_n - y| \lt \delta_n \to |f(n,x_n) - f(n,y)| \lt \epsilon_n 
+$$
+
+In case $n \leq m$, we literally chose $\delta_n$ to make this true, so we're good!.
+In case $n \gt m$, then we need a small computation[^12]:
+
+$$
+\begin{align}
+|f(n,x_n) - f(n,y)| 
+&\leq |f(n,x_n) - f(\infty,x_n)| \\
+&+ |f(\infty,x_n) - f(\infty,x_\infty)| \\
+&+ |f(\infty,x_\infty) - f(\infty,y)| \\
+&+ |f(\infty,y) - f(n,y)|
+\end{align}
+$$
+
+Since $$\frac{1}{n} \lt \delta_*$$, the first summand is 
+$$\lt \frac{\epsilon_*}{4}$$. Since $$|x_n - x_\infty| \lt \delta_*$$,
+the second summand is $$\lt \frac{\epsilon_*}{4}$$ too. 
+Since $$|x_n - y| \lt \delta_n = \delta_* - |x_\infty - x_n|$$,
+we learn that 
+
+$$
+|x_\infty - y| \leq |x_\infty - x_n| + |x_n - y| \lt \delta_*
+$$
+
+so that the third summand is $$\lt \frac{\epsilon_*}{4}$$. Lastly, 
+since $$\frac{1}{n} \lt \delta_*$$, the final summand is also 
+$$\lt \frac{\epsilon_*}{4}$$.
+
+Thus (since $$\epsilon_*$$ is the infimum of the $\epsilon_n$s)
+$$|f(n,x_n) - f(n,y)| \lt \epsilon_* \leq \epsilon_n$$,
+as desired!
+
+<br>
+
+And to finish things off, what happens if $$W = \mathbb{N}_\infty$$? 
+
+Then $$g : \mathbb{N}_\infty \to \mathbb{N}_\infty$$ is continuous, 
+and our inequality amounts to verifying that 
+for every $$y : \mathbb{N}_\infty \to \mathbb{R}$$ and 
+for every $n$ (including possibly $n=\infty$),
+
+$$
+|x_{gn} - y_n| \lt \delta_{gn} \to |f(gn,x_{gn}) - f(gn,y_n)| \lt \epsilon_{gn}
+$$
+
+Of course, blessedly, we _just_ proved that if an input $y_n$ is $\delta_{gn}$ 
+close to $x_{gn}$, then its output $f(gn,y_n)$ must be 
+$\epsilon_{gn}$ close to $f(gn,x_n)$! 
+
+So finally, we're done ^_^
+
+<span style="float:right">$\lrcorner$</span>
+
+<div class=boxed markdown=1>
+TODO: put an image here of someone sighing with relief 
+</div>
+
 
 ---
 
@@ -477,6 +765,7 @@ relate to function spaces in $\mathsf{Top}$ (when they exist)
 [36]: https://en.wikipedia.org/wiki/First-countable_space
 [37]: https://en.wikipedia.org/wiki/CW_complex
 [38]: https://en.wikipedia.org/wiki/Spectrum_of_a_ring
+[39]: /2022/12/13/internal-logic-examples.html
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -576,3 +865,13 @@ relate to function spaces in $\mathsf{Top}$ (when they exist)
 [^10]:
     It's not _immediately_ obvious that this presheaf is actually a sheaf,
     but it turns out to be. This is in Johnstone's [original paper][35].
+
+[^11]:
+    This is the first time I'm actually written down the definition of 
+    (metric space) continuity in full! No wonder students struggle with 
+    this, haha. I've forgotten what a mouthful it is!
+
+[^12]:
+    Which looks simple now, but coming up with it took me longer than 
+    I'd care to admit.
+    Making this computation work is the crux of the whole proof.
