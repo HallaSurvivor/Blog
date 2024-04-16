@@ -413,11 +413,75 @@ Speaking of proving theorems in $\mathcal{T}$, we actually don't have to
 be _totally_ constructive! The topological topos satisfies certain nice 
 ~bonus axioms~ that make it a particularly nice place to work.
 
-For instance, $\mathcal{T}$ models [Dependent Choice][20][^3]
+For instance, $\mathcal{T}$ models [Dependent Choice][20][^3]. 
 
-TODO: say some words about what this means, for instance, the 
-dedekind and cauchy reals agree, and many of the pathologies 
-from constructive math go away!
+Say you have a relation $R \subseteq X \times X$ which is 
+<span class=defn>total</span> in the sense that 
+$\forall x . \exists y . R(x,y)$.
+
+Then DC says for each $x_0 : X$, there's a function 
+$f : \mathbb{N} \to X$ so that $f(0) = x_0$ and for each $n$,
+$R(f(n), f(n+1))$.
+
+If we think of $$\{ y \mid R(x_n,y) \}$$ as being 
+"allowable values for $x_{n+1}$", then totality of $R$ says that 
+we can always take one more step. However, we might have to _choose_ 
+the next step from inhabited set of allowable options, and these choices 
+_depend_ on the choices that came before (since if we'd chosen a different 
+$x_1$, we might have different allowable choices for $x_2$, and so on).
+
+Thus, DC basically tells us that recursive definitions work, even if we 
+don't have a canonical way to _choose_ one of many options at each 
+recursive stage. Indeed, most recursive definitions work by first choosing 
+an $x_0$, and then arguing that the set of "allowable" next steps is 
+always inhabited[^16].
+
+Here's an idiomatic example of dependent choice in action: The 
+[Baire Category Theorem][45] for complete metric spaces.
+
+<div class=boxed markdown=1>
+Let $(X,d)$ be a (cauchy) complete metric space[^14] with inhabited 
+(strongly[^15]) dense open sets $U_1, U_2, U_3, \ldots$.
+
+Then the countable intersection $\bigcap_n U_n$ is still (strongly) dense.
+</div>
+
+The usual proof doesn't use LEM, so it goes through unchanged. 
+We'll present it here, though, paying special attention to the 
+use of DC.
+
+TODO: are we using DC? or $\mathsf{DC}$? I think we should do the former
+
+$\ulcorner$
+
+Let $V$ be open in $X$. We need to show that $V \cap \bigcap_n U_n$ is 
+inhabited. We proceed recursively:
+
+Since $U_1$ is strongly dense, we know that $U_1 \cap V$ is inhabited, 
+say by $x_1$. Now since $U_1 \cap V$ is open, we can find a neighborhood of 
+$x_1$, say $B
+
+<span style="float:right">$\lrcorner$</span>
+
+TODO: ok so here's some facts you might want later:
+
+$C \subseteq X$ is _weakly closed_ if it contains all its limit points. 
+It's _strongly closed_ if it's the complement of an open set. 
+
+Strongly closed always implies weakly closed, and I think we can use 
+regularity of a metric space to show that $x \in C \subseteq U$ 
+with $C$ strongly closed and $U$ any neighborhood of $x$ 
+(which will be enough to make the BCT proof go through)
+
+<br>
+
+Dependent Choice implies [Countable Choice][41], which itself implies 
+[Weak Countable Choice][42]. But WCC implies that the 
+[dedekind reals][43] and the [cauchy reals][44] agree. And indeed one 
+can show directly that in $\mathcal{T}$ both the dedekind and cauchy reals 
+are given by $よ\mathbb{R}$.
+
+<br>
 
 Moreover, $\mathcal{T}$ models Brouwer's Continuity Principle that 
 "Every function $f : \mathbb{R} \to \mathbb{R}$ is continuous"!
@@ -427,7 +491,7 @@ cited in lots of places! It's definitely part of the folklore,
 but for completeness I'll include a proof in an "appendix" 
 at the bottom of this post. If you know of a reference, or of a 
 slicker proof than the one I found, I would REALLY love to hear 
-about it!
+about it[^13]!
 
 Regardless, the truth of Brouwer's principle tells us that 
 $\mathcal{T}$ is a rather stronger version of [Solovay's Model][22]. 
@@ -766,6 +830,12 @@ TODO: put an image here of someone sighing with relief
 [37]: https://en.wikipedia.org/wiki/CW_complex
 [38]: https://en.wikipedia.org/wiki/Spectrum_of_a_ring
 [39]: /2022/12/13/internal-logic-examples.html
+[40]: https://en.wikipedia.org/wiki/Sierpi%C5%84ski_space
+[41]: https://ncatlab.org/nlab/show/countable+choice
+[42]: https://ncatlab.org/nlab/show/countable+choice#WCC
+[43]: https://ncatlab.org/nlab/show/Dedekind+cut
+[44]: https://ncatlab.org/nlab/show/Cauchy+real+number
+[45]: https://en.wikipedia.org/wiki/Baire_category_theorem
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -792,7 +862,7 @@ TODO: put an image here of someone sighing with relief
     $\mathcal{T}$.
 
 [^3]:
-    You can find a proof in Shulman and Simpson's note 
+    You can find a proof in Shulman and Simpson's aptly named note 
     [_Dependent Choice in Johnstone's Topological Topos_][21]
 
 [^4]:
@@ -875,3 +945,70 @@ TODO: put an image here of someone sighing with relief
     Which looks simple now, but coming up with it took me longer than 
     I'd care to admit.
     Making this computation work is the crux of the whole proof.
+
+[^13]:
+    I would _also_ be super interested in hearing if $\mathcal{T}$ validates
+    something like "for any spaces $X$ and $Y$, every $f : Y^X$ is continuous".
+    
+    My guess is that this is also true, but it sounds kind of annoying to 
+    prove, especially in the absence of the metric space structure that we 
+    used on $\mathbb{R}$.
+
+    Or, maybe it's easier to work topologically than metrically, 
+    and we can do this synthetically by using the 
+    set of opens $\Sigma^X$ 
+    (where $\Sigma$, as usual, is the [sierpinski space][40]). I'm kind 
+    of tempted to try, but this blog post is already super long and I've 
+    _gotta_ finish it.
+
+[^14]:
+    I don't know if there are constructive subtleties with the notion of 
+    cauchy completeness which might be relevant here, and since I really 
+    want to get this blog post out I don't want to read a bunch of literature 
+    on constructive metric spaces to try and figure it out... 
+
+    If anyone happens to know some facts about constructive metric spaces, though,
+    I would love to hear about them! But for now, treat this example as being 
+    more to showcase how dependent choie works than to say anything profound 
+    about the topological topos.
+
+[^15]:
+    A set $D \subseteq X$ is called <span class=defn>Strongly Dense</span>
+    if for any open set $V$ we know that $D \cap V$ is inhabited.
+
+[^16]:
+    You might wonder why we need a "nonconstructive" axiom to do this. Why 
+    can't we use induction on $\mathbb{N}$?
+
+    After all, we can prove (constructively, in type theory) that
+
+    $$
+    \left (
+        \prod_{x:X} \sum_{y:X} R(x,y)
+    \right ) 
+    \to 
+    \left ( 
+        \prod_{x_0 : X }
+        \sum_{f : \mathbb{N} \to X}
+        f(0) = x_0 \land \prod_{n:\mathbb{N}} R(f(n), f(n+1))
+    \right )
+    $$
+
+    (and this makes a nice exercise!)
+
+    The difference lies in $\sum$ vs $\exists$! To build a term
+    of type $\prod_x \sum_y R(x,y)$ is to build a function that 
+    eats an $x$ and returns a $y$ alongside a proof that $R(x,y)$.
+    This gives us a _canonical_ choice in $$\{ y \mid R(x,y) \}$$ -- 
+    just use the one this function gave us!
+
+    Dependent choice works with something much weaker. It says we can build 
+    such a function even when there _merely exists_ such a $y$, without 
+    being handed a witness! (Of course, the function we're given only 
+    merely exists too)
+
+    Think about the semantics in $\mathsf{Sh}(B)$ for a moment. 
+    Here, to say that $\exists y . R(x,y)$ is to say that there's an 
+    open cover of $B$ and a local witness $y$ on each element of the 
+    cover. But it's entirely possible for these witnesses to not glue 
+    into a global witness!
