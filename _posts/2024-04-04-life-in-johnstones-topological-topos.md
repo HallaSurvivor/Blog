@@ -12,6 +12,11 @@ read Dan Ma's excellent [series of blog posts][16]
 TODO: Mention the stuff in section 9 of Johnstone's paper relating 
 $\mathsf{Sh}(X)$ to $\mathcal{T} / X$.
 
+TODO: say somewhere that it's also interesting to ask how Johnstone's 
+topos relates to the gros topoi described in ML&M... Maybe try to 
+work this out?
+
+
 I've been thinking a lot about the internal logic of topoi again, and I 
 want to have more examples of topoi that I understand well enough to 
 externalize some statements. There's more to life than just a localic 
@@ -408,6 +413,8 @@ this earlier in the post.
 ---
 
 ## Bonus Axioms Validated by $\mathcal{T}$
+
+TODO: mention LLPO too
 
 Speaking of proving theorems in $\mathcal{T}$, we actually don't have to 
 be _totally_ constructive! The topological topos satisfies certain nice 
