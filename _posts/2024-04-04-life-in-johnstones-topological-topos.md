@@ -218,9 +218,8 @@ With this in mind, some authors define $\mathcal{T}$ to be the sheaves[^9]
 on _just_ the full subcategory of $\mathsf{Top}$ spanned by 
 $$\{ \mathbb{N}_\infty \}$$.
 
-This gives some informal justification for the close connection between 
+This gives a different informal justification for the close connection between 
 $\mathcal{T}$ and sequential spaces.
-
 Indeed, objects of a sheaf topos can be thought of as being glued together 
 from objects of the underlying site. In case you're working with a presheaf 
 topos, we take _all_ the ways to glue things together, but in general a 
@@ -241,7 +240,7 @@ same sequence!
 <br>
 
 Of course, how do we _know_ that these two definitions agree? I wasn't 
-able to find this written down anywhere, but it's not so hard to check 
+able to find this written down anywhere, but it's easy to check
 for ourselves!
 
 The key observation is that $$\{ \mathbb{N}_\infty \}$$ is a 
@@ -250,16 +249,19 @@ I'm writing a set to mean a full subcategory of $\mathsf{Top}$ equipped
 with the canonical topology.
 
 $\ulcorner$
-Indeed, to check this, we only need to show that 
+Indeed, to check this, we only need to show that every object in 
+$$\{ \mathbb{N}_\infty, 1 \}$$ is covered by maps with domain in 
+$$\{ \mathbb{N}_\infty \}$$. But, of course, the identity function 
+$$\mathbb{N}_\infty \to \mathbb{N}_\infty$$ covers, and the unique map 
+$$\mathbb{N}_\infty \to 1$$ covers too. 
 
-TODO: check this.
+Since $$\{ \mathbb{N}_\infty \}$$ is a _full_ subcategory of 
+$$\{ \mathbb{N}_\infty, 1 \}$$, the second condition of the 
+[comparison lemma][8] is trivial, and we learn that the geometric map 
+induced by the inclusion is an equivalence.
 
-
+In particular, the two common definitions really _do_ agree!
 <span style="float:right">$\lrcorner$</span>
-
-Now we learn that the two definitions really _do_ agree since, in general,
-the topos of sheaves on a dense subsite is equivalent to the topos of sheaves 
-on the whole site.
 
 ---
 
