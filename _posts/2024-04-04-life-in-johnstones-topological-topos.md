@@ -496,8 +496,6 @@ this earlier in the post.
 
 ## Bonus Axioms Validated by $\mathcal{T}$
 
-TODO: mention LLPO too
-
 Speaking of proving theorems in $\mathcal{T}$, we actually don't have to 
 be _totally_ constructive! The topological topos satisfies certain nice 
 ~bonus axioms~ that make it a particularly nice place to work.
@@ -590,6 +588,63 @@ $$\mathsf{LEM}+\mathsf{DC}+$$"every function $\mathbb{R} \to \mathbb{R}$ is meas
 In $\mathcal{T}$, we have $\mathsf{DC}$ and the stronger 
 "every function $\mathbb{R} \to \mathbb{R}$ is continuous". But the price 
 we pay is LEM.
+
+<br>
+
+We can ask about other nonconstructive principles too. For instance, 
+the [(Lesser) Limited Principle of Omniscience][49]!
+
+LPO says that every sequence of bits is either $0^\omega$ or 
+contains a $1$. That is:
+
+$$\forall s : 2^\mathbb{N} . (\forall n . s(n) = 0) \lor (\exists n . s(n) = 1)$$
+
+This is false in $\mathcal{T}$:
+
+$\ulcorner$
+If it were true, then we would know $1 \Vdash \text{LPO}$. Now 
+cashing out the universal quantifier, we would know that 
+for every $$s \in 2^\mathbb{N}(\mathbb{N}_\infty)$$
+
+$$\mathbb{N}_\infty \Vdash (\forall n . s_k(n) = 0_k) \lor (\exists n . s_k(n) = 1_k)$$
+
+Here $$s_k : \mathbb{N}_\infty \to 2^\mathbb{N}$$ is allowed to be any 
+convergent sequence in cantor space, and we interpret $0_k$ and $1_k$ as 
+constant sequences.
+
+Let's take $s_k$ to be the sequence $0^k 1^\omega$.
+That is, the $k$th element of this sequence, $s_k$, should be the point in 
+cantor space with $k$ many $0$s followed by an infinite tail of $1$s.
+Note this sequence converges to $0^\omega$.
+
+Now what would it mean to have $(\forall n . s(n) = 0) \lor (\exists n . s(n) = 1)$?
+We would have an open cover of $$\mathbb{N}_\infty$$ where each element of 
+that cover thinks that one of these disjuncts is true. But every covering 
+seive of $$\mathbb{N}_\infty$$ contains a function $f_U$ for $U$ an infinite 
+subset of $\mathbb{N}$.
+
+TODO: say what this means? 
+
+Now restricting $s$ to this member of the cover amounts to restricting $s$ 
+to a subsequence, $s_{r_k}$.
+
+Is it possible that $$\mathbb{N}_\infty \Vdash \forall n . s_{r_k}(n) = 0_{r_k}$$?
+This says for every convergent sequence 
+$$n_k \in \mathbb{N}(\mathbb{N}_\infty)$$, we must have $$s_{r_k}(n_k) = 0_{r_k}$$
+for all $k$. Of course, it's easy to find a convergent sequence where this 
+is false! We can just choose $$n_1 \gt r_1$$ to make $$s_{r_1}(n_1) = 1 \neq 0$$.
+
+Is it possible for $$\mathbb{N}_\infty \Vdash \exists n . s_{r_k}(n) = 1_{r_k}$$?
+This says we can pass to a further subsequence $$s_{\ell_{r_k}}$$ so that 
+for some convergent sequence $$n_k \in \mathbb{N}(\mathbb{N}_\infty)$$ we 
+have $$s_{\ell_{r_k}}(n_k) = 1_k$$ for all $k$. But of course this is false too!
+Every convergent sequence of naturals is eventually constant, say $n_k = N$ 
+for $k \gg 1$. Then for $k$ large enough, we'll have both $n_k = N$ and 
+$$\ell_{r_k} \gt N$$, in which case $$s_{\ell_{r_k}}(n_k) = 0 \neq 1$$.
+
+So we see that LPO externalizes to a false claim, and thus is not validated 
+by $\mathcal{T}$.
+<span style="float:right">$\lrcorner$</span>
 
 ---
 
@@ -928,6 +983,7 @@ TODO: put an image here of someone sighing with relief
 [46]: https://en.wikipedia.org/wiki/Second-countable_space
 [47]: https://en.wikipedia.org/wiki/Compactly_generated_space
 [48]: https://en.wikipedia.org/wiki/Locally_compact_space
+[49]: https://ncatlab.org/nlab/show/principle+of+omniscience
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
