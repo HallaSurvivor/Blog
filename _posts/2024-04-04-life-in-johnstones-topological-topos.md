@@ -297,7 +297,7 @@ $\text{Seq} \leftrightarrows \text{Kur}$ is an adjoint equivalence!
 
 Here $\text{Seq}$ is bicartesian closed, 
 $\text{Kur}$ is locally cartesian closed,
-and $\mathcal{T}$ is a topos, and the embeddings preserve all of 
+$\mathcal{T}$ is a topos, and the embeddings preserve all of 
 this structure. Thus one can say that at each level we add new
 "type constructors", as shown in the following diagram 
 (stolen from Martín Escardó):
