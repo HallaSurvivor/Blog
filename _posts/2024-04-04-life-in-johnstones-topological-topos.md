@@ -268,21 +268,101 @@ In particular, the two common definitions really _do_ agree!
 ## How Does $\mathcal{T}$ Relate to $\mathsf{Top}$?
 <br>
 
-More generally, say we have a [kuratowski limit space][10] 
-(also called a subsequential space). This is a 
+<div class=boxed markdown=1>
 
-TODO: definition, and mention what the homs are
+Here's the tl;dr for this section, for ease of reference. 
 
-Every sequential space is automatically a limit space. And the argument from 
-before gives a fully faithful embedding of limit spaces into $\mathcal{T}$.
+We have a sequence of fully-faithful embeddings of cartesian closed categories, 
+each of which admits a left adjoint, as shown below:
+
+<p style="text-align:center;">
+<img src="/assets/images/life-in-johnstones-topological-topos/relationship-adjoints.png" width="75%">
+</p>
+
+The embeddings preserve all limits (as right adjoints) but moreover preserve 
+the cartesian closed structure, as well 
+as certain "nice" colimits (in particular, all colimits involved in the 
+creation of CW-complexes). The exact definition of "nice" here is 
+explained below, but includes the coproduct.
+
+The left adjoints preserve all colimits, and moreover preserve finite products 
+(and thus, in particular, models of algebraic theories).
+
+Lastly, in case we restrict to the full subcategory of 
+"sequentially hausdorff spaces", in the sense that every convergent sequence 
+has a unique limit, then the adjunction 
+$\text{Seq} \leftrightarrows \text{Kur}$ is an adjoint equivalence!
+
+<br>
+
+Here $\text{Seq}$ is bicartesian closed, 
+$\text{Kur}$ is locally cartesian closed,
+and $\mathcal{T}$ is a topos, and the embeddings preserve all of 
+this structure. Thus one can say that at each level we add new
+"type constructors", as shown in the following diagram 
+(stolen from Martín Escardó):
+
+<p style="text-align:center;">
+<img src="/assets/images/life-in-johnstones-topological-topos/venn-diagram.png" width="50%">
+</p>
+
+Colimits in $\text{Seq}$ are computed as in $\mathsf{Top}$, so 
+in particular the "nice colimits" that get preserved between 
+$\text{Seq}$ and $\mathcal{T}$ agree with colimits in $\mathsf{Top}$.
+
+The relationship of limits in $\text{Seq}$ to limits in 
+$\mathsf{Top}$ is more subtle. If you only care about (quotients of)
+[second countable][46] spaces, then the bicartesian closed structure 
+on $\text{Seq}$ (and thus in $\mathcal{T}$) agrees with the usual 
+bicartesian closed structure on the "convenient category" of 
+[compactly generated spaces][47]. In particular, function spaces 
+get the [compact-open topology][28].
+
+If your spaces are [locally compact][48], then the (finite) 
+product in $\text{Seq}$ (and thus in $\mathcal{T}$) agrees with 
+the product in $\mathsf{Top}$.
+</div>
+
+---
+
+That's a _lot_, so let's go more in depth into what all of this means, haha.
+
+We'll start with the definition of a [kuratowski limit space][10] 
+(also called a subsequential space): 
+
+<div class=boxed markdown=1>
+A <span class=defn>Kuratowski Limit Space</span> is a set $X$ 
+equipped with a set of <span class=defn>Convergent Sequences</span> in $X$ 
+subject to the following axioms:
+
+1. For every $x \in X$, the constant sequence $(x)$ converges to $x$
+2. If $(x_n)$ converges to $x$, then every subsequence of $(x_n)$ converges to 
+$x$ too
+3. If, for some $x$, every subsequence of $(x_n)$ contains a further subsequence 
+converging to $x$, then the whole sequence $(x_n)$ already converges to $x$.
+
+<br>
+
+A function $f : X \to Y$ between limit spaces is called 
+<span class=defn>continuous</span> if whenever $x_n \to x$, 
+we have $fx_n \to fx$.
+</div>
+
+Every sequential topological space is automatically a limit space, where we 
+just let the convergent sequences be the (topologically) convergent sequences.
+Moreover, there's a fully faithful embedding of limit spaces into $\mathcal{T}$ 
+where we let $X(1) = X$ and $$X(\mathbb{N}_\infty)$$ be the set of converget 
+sequences in $X$. 
+
+TODO: decide if you want to include the definition of the coverings, 
+and verify (or leave as an exercise) that this embedding really gives us 
+a _sheaf_... Cf also footnote[^8].
 
 Taken together, we have fully faithful embeddings 
 
 $$
 \mathsf{Seq} \hookrightarrow \mathsf{Kur} \hookrightarrow \mathcal{T}
 $$
-
-TODO: say something about "processes", a la lawvere?
 
 
 <br>
@@ -845,6 +925,9 @@ TODO: put an image here of someone sighing with relief
 [43]: https://ncatlab.org/nlab/show/Dedekind+cut
 [44]: https://ncatlab.org/nlab/show/Cauchy+real+number
 [45]: https://en.wikipedia.org/wiki/Baire_category_theorem
+[46]: https://en.wikipedia.org/wiki/Second-countable_space
+[47]: https://en.wikipedia.org/wiki/Compactly_generated_space
+[48]: https://en.wikipedia.org/wiki/Locally_compact_space
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
