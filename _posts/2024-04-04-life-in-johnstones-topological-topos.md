@@ -646,6 +646,43 @@ So we see that LPO externalizes to a false claim, and thus is not validated
 by $\mathcal{T}$.
 <span style="float:right">$\lrcorner$</span>
 
+<br>
+
+What about LLPO? This turns out to be true[^17]! In fact, we'll prove 
+something a priori stronger: _Analytic_ LLPO. This is well known 
+to imply LLPO, and the converse is true under weak countable choice.
+Since $\mathcal{T}$ models DC, it certainly models WCC, so this is 
+equivalent to checking LLPO directly.
+
+Analytic LLPO says that $$\forall x : \mathbb{R} . (x \geq 0) \lor (x \leq 0)$$.
+
+$\ulcorner$
+Proposition 6.2 in Johnstone's original paper implies that $\mathbb{R}$ 
+is the pushout of the closed cover 
+
+<p style="text-align:center;">
+<img src="/assets/images/life-in-johnstones-topological-topos/closed-pushout.png" width="25%">
+</p>
+
+Now showing $\forall x : \mathbb{R} . (x \geq 0) \lor (x \leq 0)$ amounts 
+to building a section of the projection 
+$\pi : \sum_{x : \mathbb{R}} \lVert (x \geq 0) + (x \leq 0) \rVert$.
+Here I've also cashed out the $\lor$ for a [propositional truncation][53]
+of a coproduct.
+
+But by the universal property of the pushout, we get a map 
+$s : \mathbb{R} \to \sum_{x : \mathbb{R}} \lVert (x \geq 0) + (x \leq 0) \rVert$
+as below:
+
+<p style="text-align:center;">
+<img src="/assets/images/life-in-johnstones-topological-topos/llpo-universal-property.png" width="100%">
+</p>
+
+Moreover, since both $\pi s$ and $\text{id}_\mathbb{R}$ make the outer 
+square commute, they must be equal by uniqueness in the universal property. 
+So $s$ is the desired section of $\pi$, and $\mathcal{T}$ models LLPO.
+<span style="float:right">$\lrcorner$</span>
+
 ---
 
 TODO: don't forget to say something about universes
@@ -984,6 +1021,10 @@ TODO: put an image here of someone sighing with relief
 [47]: https://en.wikipedia.org/wiki/Compactly_generated_space
 [48]: https://en.wikipedia.org/wiki/Locally_compact_space
 [49]: https://ncatlab.org/nlab/show/principle+of+omniscience
+[50]: https://ncatlab.org/nlab/show/quotient+type
+[51]: http://www.lfcs.inf.ed.ac.uk/reports/92/ECS-LFCS-92-208/
+[52]: https://core.ac.uk/download/33573841.pdf
+[53]: https://planetmath.org/37propositionaltruncation
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -1160,3 +1201,7 @@ TODO: put an image here of someone sighing with relief
     open cover of $B$ and a local witness $y$ on each element of the 
     cover. But it's entirely possible for these witnesses to not glue 
     into a global witness!
+
+[^17]:
+    This realization has probably been made by many people, but it was 
+    added to the nlab by Mike Shulman.
