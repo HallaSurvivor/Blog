@@ -263,6 +263,12 @@ induced by the inclusion is an equivalence.
 In particular, the two common definitions really _do_ agree!
 <span style="float:right">$\lrcorner$</span>
 
+
+<br><br>
+
+TODO: Also compare this with the definition in The Elephant A2.1.11(j)
+(pdf pg 98 in your edition). Mention this is easy to compute with.
+
 ---
 
 ## How Does $\mathcal{T}$ Relate to $\mathsf{Top}$?
@@ -324,6 +330,31 @@ the product in $\mathsf{Top}$.
 </div>
 
 ---
+
+TODO: do these embeddings preserve/reflect monos/epis/isos? Say explicitly 
+that if $\mathcal{T}$ proves two spaces are isomorphic, then reflecting 
+isos (fully faithfulness) means that $\text{Seq}$ thinks they're isomorphic, 
+which means $\mathsf{Top}$ thinks they're homeomorphic 
+(since all functors preserve isomorphisms). I think fully faithful functors 
+_reflect_ monos/epis, so if we show something is mono/epi in $\mathcal{T}$ 
+that tells us that it's mono/epi in $\text{Seq}$... Does this mean it's 
+mono/epi in $\mathsf{Top}$? Conversely, if we have something that's 
+mono/epi/iso in $\mathsf{Top}$, does that mean it's mono/epi/iso in 
+$\mathsf{Seq}$/$\mathcal{T}$? This should be related to continuous functors 
+preserving monos?
+
+TODO: Actually, I bet Seq is topologically concrete. Or at least it has 
+discrete/codiscrete functors from $\mathsf{Set}$! This tells us that we 
+can check mono/epi-ness in Seq by checking injectivity/surjectivity of the 
+map on points.
+
+TODO: use this (in the bonus axioms section) to show $\mathcal{T}$ is not 
+de morgan. Indeed, from the [nlab page][56] deMorgan-ness is equivalent 
+to $1+1$ being injective. But it _isn't_, since in Seq there's a map
+$(0,1) + (2,3) \to 1+1$ which doesn't extend to a map $(0,3) \to 1+1$ 
+(which has to be constant). Since monos in Seq are still monos in $\mathcal{T}$,
+we're done. If you really want to be careful, we know a mono in Top reflects 
+to a mono in Seq, which gives us a mono in $\mathcal{T}$.
 
 That's a _lot_, so let's go more in depth into what all of this means, haha.
 
@@ -683,6 +714,27 @@ square commute, they must be equal by uniqueness in the universal property.
 So $s$ is the desired section of $\pi$, and $\mathcal{T}$ models LLPO.
 <span style="float:right">$\lrcorner$</span>
 
+
+<br><br>
+
+Aaaand last but not least, let's check [Markov's Principle][54]:
+
+We'll show that 
+$\mathcal{T} \models \forall x : \mathbb{R} . (x \neq 0) \to (x \# 0)$.
+Here $\#$ means that $x$ is [apart][55] from $0$. That is, 
+$\exists q : \mathbb{Q} . (x \lt q \lt 0) \lor (0 \lt q \lt x)$.
+
+This is actually a bit stronger than what we need. We leave it as a 
+nice exercise to show that $(x \neq 0) \to (x \# 0)$ implies the 
+usual statement of (analytic) MP: $\lnot (x \leq 0) \to (x \gt 0)$.
+
+TODO: this proof
+
+TODO: mention $\lnot (x \# 0) \to (x = 0)$.
+
+TODO: does $\mathcal{T}$ model de morgan's laws?
+
+
 ---
 
 TODO: don't forget to say something about universes
@@ -692,6 +744,10 @@ TODO: say something about $\Omega$
 TODO: figure out how function spaces in $\mathcal{T}$ (really in $\mathsf{Seq}$)
 relate to function spaces in $\mathsf{Top}$ (when they exist)
 
+TODO: mention that, for sequential spaces, the image of a map $X \to Y$ 
+(where $Y$ is sequentially hausdorff) as computed in $\mathcal{T}$ is 
+the set-theoretic image, equipped with the quotient topology. 
+This is Corollary 6.4 in Johnstone's original paper.
 
 ---
 ---
@@ -1025,6 +1081,9 @@ TODO: put an image here of someone sighing with relief
 [51]: http://www.lfcs.inf.ed.ac.uk/reports/92/ECS-LFCS-92-208/
 [52]: https://core.ac.uk/download/33573841.pdf
 [53]: https://planetmath.org/37propositionaltruncation
+[54]: https://en.wikipedia.org/wiki/Markov%27s_principle
+[55]: https://en.wikipedia.org/wiki/Apartness_relation
+[56]: https://ncatlab.org/nlab/show/De+Morgan+topos
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
