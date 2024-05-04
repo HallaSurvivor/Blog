@@ -356,6 +356,14 @@ $(0,1) + (2,3) \to 1+1$ which doesn't extend to a map $(0,3) \to 1+1$
 we're done. If you really want to be careful, we know a mono in Top reflects 
 to a mono in Seq, which gives us a mono in $\mathcal{T}$.
 
+TODO: Of course, another way to do this 
+is to note that the double negation topos is $\mathsf{Set}$ with the 
+indiscrete topology (maybe this is worth checking explicitly?) Then 
+(also following that nlab page) we want to know if $1+1 \to \Omega_{\lnot \lnot}$ 
+is an isomorphism, and it isn't. They're both supported on $\{0,1\}$, but 
+the topologies are different!
+
+
 That's a _lot_, so let's go more in depth into what all of this means, haha.
 
 We'll start with the definition of a [kuratowski limit space][10] 
