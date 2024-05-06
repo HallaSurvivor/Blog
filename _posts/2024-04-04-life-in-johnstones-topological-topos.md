@@ -16,6 +16,15 @@ TODO: say somewhere that it's also interesting to ask how Johnstone's
 topos relates to the gros topoi described in ML&M... Maybe try to 
 work this out?
 
+TODO: What do "mere existentials" look like in $\mathcal{T}$? In a 
+sheaf topos it means something exists on each section of an open cover,
+but these might not glue into a _global_ section. Is there a similar 
+interpretation (maybe involving subsequences?) for $\mathca{T}$?
+
+TODO: in the section on bonus axioms, mention the Escardó paper 
+that $\mathcal{T}$ thinks that 
+"all functions $\mathbb{N}^\mathbb{N} \to \mathbb{N}$ are continuous"
+is true when interpreted as propositions, but _not_ when interpreted as types!
 
 I've been thinking a lot about the internal logic of topoi again, and I 
 want to have more examples of topoi that I understand well enough to 
