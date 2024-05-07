@@ -411,43 +411,7 @@ $$
 
 <br>
 
-TODO: talk about the left adjoints to each of these embeddings. Mention that
-they both preserve finite products... While we're at it, mention that the 
-inclusions preserve certain colimits (in particular, those involved in 
-making CW complexes).
-
-TODO: remember to describe the left adjoints explicitly. The reflector to 
-Kur just forgets that there are multiple proofs, and only remembers 
-_that_ a sequence converges, rather than _how_. The reflector to Seq 
-then builds a topology based on these convergent sequences.
-
-Mention that Kur is a [quasitopos][12]? This gives us some nice results 
-for free. Cf.... somewhere in the elephant.
-
-TODO: since products are preserved, these form an [exponential ideal][11],
-and the inclusions preserve the cartesian closed structure too!
-Note this also tells us that if $Y$ is a sequential space, and $X$ is 
-_any_ object of $\mathcal{T}$, then the function space $Y^X$ is already 
-a sequential space!
-
-TODO: summarize this with the picture Martin always draws with Seq 
-(with $\times,+,\to$) sitting inside Kur (with $\prod, \sum$) sitting 
-inside $\mathcal{T}$ (with $\Omega$).
-
-TODO: mention, probably in a footnote, that while MANY spaces are sequential 
-(for instance, all first countable spaces, thus all metric spaces, 
-CW complexes, etc), this doesn't cover EVERY space you might be interested in.
-For instance, the [Stone–Čech Compactification][13] of the natural,
-$\beta \mathbb{N}$, is equivalently the space of [ultrafilters][14] on 
-$\mathbb{N}$. This space is extremely important in various subfields of 
-logic and combinatorics. See, for instance, 
-Hindman and Strauss's 
-_Algebra in the Stone-Čech Compactification: Theory and Applications_. 
-In particular, the applications to [Ramsey Theory][15].
-
-If you can, maybe compute the sequential reflection of $\beta \mathbb{N}$?
-
-TODO: if you want to read more about how to actually compute (co)limits 
+If you want to read more about how to actually compute (co)limits 
 and exponentials in $\mathsf{Seq}$ and $\mathsf{Kur}$, I highly recommend 
 Menni and Simpson's 
 _Topological and limit-space subcategories of countably-based equilogical spaces_
@@ -478,19 +442,6 @@ This is equivalent to $\mathbb{N} \to 2$, where everything in sight
 already lives in the CCC $\mathsf{Seq}$. So this space 
 
 Maybe the type of decreasing binary sequences?
-
----
-
-What do locales look like in $\mathcal{T}$?
-
-Well, for any $T_1$ locale (footnote with the definition), then... 
-something something this is homming into the version of that locale 
-externally. See, for instance, the first section of 
-Moerdijk and Reyes 
-_Smooth spaces versus continuous spaces in models for synthetic differential geometry_
-
-TODO: It's worth figuring out exactly what this means. 
-We need to compare it to a locale object internal to $\mathcal{T}$...
 
 ---
 
