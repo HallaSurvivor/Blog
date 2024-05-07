@@ -8,19 +8,10 @@ tags:
 TODO: Mention the stuff in section 9 of Johnstone's paper relating 
 $\mathsf{Sh}(X)$ to $\mathcal{T} / X$.
 
-TODO: say somewhere that it's also interesting to ask how Johnstone's 
-topos relates to the gros topoi described in ML&M... Maybe try to 
-work this out?
-
 TODO: What do "mere existentials" look like in $\mathcal{T}$? In a 
 sheaf topos it means something exists on each section of an open cover,
 but these might not glue into a _global_ section. Is there a similar 
 interpretation (maybe involving subsequences?) for $\mathcal{T}$?
-
-TODO: in the section on bonus axioms, mention the Escardó paper 
-that $\mathcal{T}$ thinks that 
-"all functions $\mathbb{N}^\mathbb{N} \to \mathbb{N}$ are continuous"
-is true when interpreted as propositions, but _not_ when interpreted as types!
 
 I've been thinking a lot about the internal logic of topoi again, and I 
 want to have more examples of topoi that I understand well enough to 
@@ -204,7 +195,7 @@ natural spaces of interest are sequential. Just to name a few:
 - all metric spaces 
 - more generally, all [first countable][36] spaces
 - every [CW-complex][37]
-- every [ring spectrum][38]
+- every noetherian [ring spectrum][38]
 
 We'll say more about this later, but for now just know that for a _huge_
 class of spaces, we can work with them in $\mathcal{T}$ just as well as 
@@ -269,9 +260,6 @@ induced by the inclusion is an equivalence.
 
 In particular, the two common definitions really _do_ agree!
 <span style="float:right">$\lrcorner$</span>
-
-
-<br><br>
 
 ---
 
@@ -357,7 +345,7 @@ map on points.
 
 That's a _lot_, so let's go more in depth into what all of this means, haha.
 
-We'll start with the definition of a [kuratowski limit space][10] 
+We'll start with the definition of a [Kuratowski Limit Space][10] 
 (also called a subsequential space): 
 
 <div class=boxed markdown=1>
@@ -370,6 +358,12 @@ subject to the following axioms:
 $x$ too
 3. If, for some $x$, every subsequence of $(x_n)$ contains a further subsequence 
 converging to $x$, then the whole sequence $(x_n)$ already converges to $x$.
+
+We moreover call $X$ <span class=defn>Sequentially Hausdorff</span> if it 
+satisfies the bonus axiom
+
+{:start="4"}
+4. If $(x_n)$ converges to $x$ and $(x_n)$ converges to $y$, then $x=y$.
 
 <br>
 
@@ -394,31 +388,44 @@ $$
 \mathsf{Seq} \hookrightarrow \mathsf{Kur} \hookrightarrow \mathcal{T}
 $$
 
+In fact, Johnstone's original paper shows that $\mathsf{Kur}$ is the 
+quasitopos of $\lnot \lnot$-separated sheaves in $\mathcal{T}$! Thus 
+the embedding $\mathsf{Kur} \hookrightarrow \mathcal{T}$ admits a 
+finite product preserving left adjoint, and the locally cartesian closed 
+structure of $\mathsf{Kur}$ agrees with that of $\mathcal{T}$. 
 
-<br>
+Concretely, this left adjoint takes an object of $\mathcal{T}$ and 
+fogets _how_ a sequence converges, only remembering _which_ sequences 
+converge! Said another way, it identifies any proofs $p$ and $q$ with 
+$p_n = q_n$ for all $$n \in \mathbb{N}_\infty$$.
 
-If you want to read more about how to actually compute (co)limits 
-and exponentials in $\mathsf{Seq}$ and $\mathsf{Kur}$, I highly recommend 
+Moreover, one can show that the embedding 
+$\mathsf{Seq} \hookrightarrow \mathsf{Kur}$ _also_ admits a finite product 
+preserving left adjoint! This takes a limit space $X$ and gives it a 
+topology whose open sets are sets $U$ so that every sequence converging to 
+a point in $U$ is eventually in $U$. It's not obvious that this reflector 
+preserves finite products, but you can find a proof as proposition 3.1 in 
 Menni and Simpson's 
-_Topological and limit-space subcategories of countably-based equilogical spaces_
+[_Topological and limit-space subcategories of countably-based equilogical spaces_][57][^18].
 
-TODO: add a link to that, and summarize some important stuff in a footnote.
-See pdf pg 10
+Thus, given any object $X \in \mathcal{T}$, we get an honest-to-goodness 
+topological space by reflecting it into $\mathsf{Seq}$! This space has 
+$X(1)$ as its set of points, and a subset of $X(1)$ is open exactly when 
+it's "sequentially open" (as in the last paragraph).
+
+The fact that the reflectors preserve finite products tells us that the 
+$\mathsf{Seq}$ and $\mathsf{Kur}$ are [exponential ideals][58] in $\mathcal{T}$.
+Thus they're both cartesian closed, and the embeddings preserve the cartesian 
+closed structure!
+It's not hard to see the embeddings $\mathsf{Seq} \hookrightarrow \mathsf{Kur}$ 
+and $\mathsf{Kur} \hookrightarrow \mathcal{T}$ preserve coproducts, so that 
+we get the promised embeddings of bicartesian closed categories.
 
 ---
 
-So now we see how to get an honest topological space from an object in 
-$\mathcal{T}$! 
-
-Reflecting $X$ into $\mathsf{Kur}$ takes the underlying set $X(1)$ and 
-just remembers which sequences converge. Then reflecting _this_ into 
-$\text{Seq}$ builds an honest to goodness topological space by saying 
-$U \subseteq X(1)$ is open iff .... 
-
-TODO: something!
-
-TODO: also maybe mention that under a mild separation condition 
-(sequential hausdorffness?) $\mathsf{Seq} \simeq \mathsf{Kur}$?
+This is great and all, but the only way to _really_ get some intuition for 
+how computations in $\mathcal{T}$ relate to computations in $\mathsf{Top}$ 
+is to actually _do some computation and check_! So let's do that!
 
 TODO: put a few computations here. Define some simple types and figure out what 
 the topology on them should be. 
@@ -497,6 +504,9 @@ TODO: say something about $\Omega$
 [54]: https://en.wikipedia.org/wiki/Markov%27s_principle
 [55]: https://en.wikipedia.org/wiki/Apartness_relation
 [56]: https://ncatlab.org/nlab/show/De+Morgan+topos
+[57]: https://doi.org/10.1017/S0960129502003699
+[58]: https://ncatlab.org/nlab/show/exponential+ideal
+[59]: /2021/12/16/topological-categories.html
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -677,3 +687,17 @@ TODO: say something about $\Omega$
 [^17]:
     This realization has probably been made by many people, but it was 
     added to the nlab by Mike Shulman.
+
+[^18]:
+    If you want to understand how to compute (co)limits in $\mathsf{Seq}$ 
+    or $\mathsf{Kur}$, I highly recommend reading Section 3 of this paper.
+    It's really great, and has a lot of information!
+
+    Particularly helpful is the observation that $\mathsf{Kur}$ is 
+    <span class=defn>Topologically Concrete</span>. See my old blog 
+    post [here][59], and especially Adámek, Herrlich, and Strecker's 
+    _The Joy of Cats_. This book writes $\mathbf{Conv}$ where we write 
+    $\mathsf{Kur}$, and shows that it's topologically concrete and 
+    concretely cartesian closed! This tells us very explicitly how 
+    we can compute (co)limits and exponentials in $\mathsf{Kur}$, 
+    on top of the great description in Section 3 of Menni and Simpson.

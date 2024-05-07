@@ -20,6 +20,11 @@ indiscrete topology (maybe this is worth checking explicitly?) Then
 is an isomorphism, and it isn't. They're both supported on $\{0,1\}$, but 
 the topologies are different!
 
+TODO: in the section on bonus axioms, mention the Escardó paper 
+that $\mathcal{T}$ thinks that 
+"all functions $\mathbb{N}^\mathbb{N} \to \mathbb{N}$ are continuous"
+is true when interpreted as propositions, but _not_ when interpreted as types!
+
 
 ## Bonus Axioms Validated by $\mathcal{T}$
 
