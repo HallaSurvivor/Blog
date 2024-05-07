@@ -427,24 +427,44 @@ This is great and all, but the only way to _really_ get some intuition for
 how computations in $\mathcal{T}$ relate to computations in $\mathsf{Top}$ 
 is to actually _do some computation and check_! So let's do that!
 
-TODO: put a few computations here. Define some simple types and figure out what 
-the topology on them should be. 
+## $\mathbb{R}$
 
-For instance, $\prod_{n : \mathbb{N}} 2$. 
-This is equivalent to $\mathbb{N} \to 2$, where everything in sight 
-already lives in the CCC $\mathsf{Seq}$. So this space 
+More generally, can we see (spatial) locales as being represented by 
+yoneda in $\mathcal{T}$?
 
-Maybe the type of decreasing binary sequences?
+<br>
+## $2^\mathbb{N}$
+
+Since $2$ and $\mathbb{N}$ are both sequential, their exponential in 
+$\mathcal{T}$ agrees with their exponential in $\mathsf{Seq}$. Since 
+$2$ and $\mathbb{N}$ are moreover second countable, $2^\mathbb{N}$ gets 
+the compact open topology. 
+
+Now, in the realm of classical topology, since $\mathbb{N}$ is discrete 
+the compact open topology on $2^\mathbb{N}$ is just the product topology, 
+so we get cantor space (as expected!)
+
+<br>
+## $$\mathbb{R} \cong (-\infty,0] +_{\{0\}} [0,\infty)$$
+
+This is proposition 6.2 in Johnstone's paper. In $\mathsf{Seq}$ we know 
+we can write $\mathbb{R}$ as a union of the (finite family of) closed 
+subsets $(-\infty,0]$ and $[0,\infty)$. Then Proposition 6.2 says this 
+colimit is preserved in $\mathcal{T}$.
+
+This is interesting, because it tells us that LLPO holds in $\mathcal{T}$:
+
+$$\forall x : \mathbb{R} . (x \leq 0) \lor (x \geq 0)$$
 
 
+<br>
+## $$\sum_{\alpha : 2^\mathbb{N}} \prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$$
 
+<br>
+##  $\Omega$
 
----
-
-TODO: don't forget to say something about universes
-
-TODO: say something about $\Omega$
-
+<br>
+## $\mathcal{U}$
 
 ---
 
