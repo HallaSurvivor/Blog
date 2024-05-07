@@ -2,12 +2,8 @@
 layout: post
 title: Life in Johnstone's Topological Topos
 tags:
-  - 
+  - life-in-the-topological-topos
 ---
-
-TODO: mention somewhere that if you want a detailed description of 
-some pointset topological properties of sequential spaces, you can 
-read Dan Ma's excellent [series of blog posts][16]
 
 TODO: Mention the stuff in section 9 of Johnstone's paper relating 
 $\mathsf{Sh}(X)$ to $\mathcal{T} / X$.
