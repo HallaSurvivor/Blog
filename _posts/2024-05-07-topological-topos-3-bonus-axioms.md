@@ -275,275 +275,161 @@ If you're not super familiar with externalizing formulas, you
 might want to read my [old blog post][39] with a bunch of simpler 
 examples before trying to tackle this one!
 
-We'll be doing this computation using the site with two objects, 
-$$\{1, \mathbb{N}_\infty\}$$.
+We'll be doing this computation using the site with one object $$\mathbb{N}_\infty$$.
 
-$\ulcorner$
-We want to show that
-
+<div class=boxed markdown=1>
+Let $X$ and $Y$ be (external) metric spaces, with $X$ locally compact. 
+Then $\mathcal{T}$ models 
 $$
-\mathcal{T} \models 
-\ulcorner 
-\text{every function $f : \mathbb{R} \to \mathbb{R}$ is continuous}
+\ulcorner
+\text{every function $X \to Y$ is $\epsilon$-$\delta$ continuous}
 \urcorner
 $$
 
-Which happens if and only if the terminal object $1$ _forces_ it. 
-Switching to the forcing notation and writing down the definition 
-of continuity explicitly[^11], we get
+Precisely[^11]:
 
 $$
-1 \Vdash
-\forall f : \mathbb{R}^\mathbb{R} . 
-\forall \epsilon : \mathbb{R}_{\gt 0} .
-\forall x : \mathbb{R} .
-\exists \delta : \mathbb{R}_{\gt 0} .
-\forall y : \mathbb{R} . 
-|x-y| \lt \delta \to |fx - fy| \lt \epsilon 
+\mathcal{T} \vDash
+\forall f : Y^X . \ 
+\forall \epsilon : \mathbb{R}_{\gt 0} . \ 
+\forall a : X . \ 
+\exists \delta : \mathbb{R}_{\gt 0} . \ 
+\forall b : X . \ 
+d(a,b) \lt \delta \to d(fa,fb) \lt \epsilon
 $$
-
-But now we can start cashing out what _this_ is equivalent to, 
-until we're left with a statement purely about "the real world".
-Then we'll check directly that this "real world" statement is true 
-to prove the claim!
-
-Well, to cash out some universal quantifiers, we need to know that 
-for every arrow $U \to 1$ in the site and for every 
-
-- $f \in \mathbb{R}^\mathbb{R}(U)$
-- $\epsilon \in \mathbb{R}_{\gt 0}(U)$
-- $x \in \mathbb{R}(U)$
-
-that 
-
-
-$$
-U \Vdash 
-\exists \delta : \mathbb{R}_{\gt 0} . 
-\forall y : \mathbb{R} . 
-|x-y| \lt \delta \to |fx - fy| \lt \epsilon 
-$$
-
-Thankfully, there's only two maps $U \to 1$ in our site! 
-The unique maps $1 \to 1$ and $\mathbb{N}_\infty \to 1$.
-
-<br>
-
-Let's check $1 \to 1$ first, since that's easier. Remembering 
-that $\mathbb{R}$ in $\mathcal{T}$ is represented by 
-$よ\mathbb{R} = \text{Hom}_\mathsf{Top}(-,\mathbb{R})$, we see
-
-$$
-\begin{align}
-\mathbb{R}^\mathbb{R}(1)
-&= よ1 \to よ\mathbb{R}^{よ\mathbb{R}} \\
-&= よ1 \times よ\mathbb{R} \to よ\mathbb{R} \\
-&= よ(1 \times \mathbb{R}) \to よ\mathbb{R} \\
-&= よ\mathbb{R} \to よ\mathbb{R} \\
-&= \Big \{ \text{continuous functions $\mathbb{R} \to \mathbb{R}$} \Big \}
-\end{align}
-$$
-
-Here the first step is yoneda, then the fact that product is left adjoint 
-to exponential. Then the fact that yoneda preserves limits, and 
-finally yoneda again.
-
-This means that if $f \in \mathbb{R}^\mathbb{R}(1)$, then $f$ is just 
-a continuous function $\mathbb{R} \to \mathbb{R}$ in "the real world",
-and similar computations show that $\epsilon$ and $x$ are honest real 
-numbers (with $\epsilon \gt 0$, of course).
-
-Now to show that 
-
-$$
-1 \Vdash 
-\exists \delta : \mathbb{R}_{\gt 0} . 
-\forall y : \mathbb{R} . 
-|x-y| \lt \delta \to |fx - fy| \lt \epsilon 
-$$
-
-we need to find a cover $V \twoheadrightarrow 1$ and a 
-$\delta \in \mathbb{R}_{\gt 0}(V)$ so that 
-$V \Vdash \forall y : \mathbb{R} . |x-y| \lt \delta \to |fx - fy| \lt \epsilon$.
-Thankfully, this is surprisingly easy!
-
-We'll choose the (rather silly) cover $1 \to 1$. Then we need a 
-$\delta \in \mathbb{R}_{\gt 0}(1)$, which we'll take to be the 
-$\delta$ (in the real world!) promised by the fact that $f$ is 
-continuous at $x$.
-
-For our last universal quantifier, we have to show that for any map 
-$W \to 1$ in our site (again, there's only two options) and any 
-$y \in \mathbb{R}(W)$ that
-
-$$
-|x-y| \lt \delta \to |fx - fy| \lt \epsilon 
-$$
-
-where this implication is in the real world!
-
-In case $W = 1$, $y \in \mathbb{R}(1)$ is just a real number. 
-So the claim is immediate from our choice of $\delta$ 
-(the external witness to continuity of $f$).
-
-In case $$W = \mathbb{N}_\infty$$, then $$y \in \mathbb{R}(\mathbb{N}_\infty)$$
-is a convergent sequence $$y_n : \mathbb{N}_\infty \to \mathbb{R}$$. Then 
-we need to show that whenever $|x - y_n| \lt \delta$ for all $n$ 
-(including $n=\infty$) that $|fx - f y_n| \lt \epsilon$ for all $n$ 
-as well. But, of course, this follows immediately from continuity on 
-each $y_n$ separately.
-
-<br>
-
-Whew! Halfway done!
-Unfortunately that was the easier case, haha.
-Now let's see what happens when $U \to 1$ is $$\mathbb{N}_\infty \to 1$$.
-
-Then a similar argument from before shows that 
-$$f \in \mathbb{R}^\mathbb{R}(\mathbb{N}_\infty)$$ means exactly that 
-(externally)
-$$f : \mathbb{N}_\infty \times \mathbb{R} \to \mathbb{R}$$ is continuous.
-
-Similarly, we get continuous functions (read: convergent sequences)
-$$\epsilon : \mathbb{N}_\infty \to \mathbb{R}_{\gt 0}$$ and 
-$$x : \mathbb{N}_\infty \to \mathbb{R}$$.
-
-Now we need to find a cover $$V \twoheadrightarrow \mathbb{N}_\infty$$, 
-which we'll again take to be the identity 
-$$\mathbb{N}_\infty \to \mathbb{N}_\infty$$, and a choice of 
-$$\delta \in \mathbb{R}_{\gt 0}(V) = \mathbb{R}_{\gt 0}(\mathbb{N}_\infty)$$
-so that for every $$g : W \to \mathbb{N}_\infty$$ and every $y : \mathbb{R}(W)$, 
-we have (pointwise)
-
-$$
-|x \circ g - y| \lt \delta \circ g \to |f \circ x \circ g - f \circ y| \lt \epsilon \circ g
-$$
-
-
-Now, what should $\delta$ be? Once we have that in hand, we can 
-just check the above inequality and finally be done with this proof!
-
-Morally, the question is this: If we treat 
-$$f : \mathbb{N}_\infty \times \mathbb{R} \to \mathbb{R}$$ 
-as a convergent sequence of functions $f_n : \mathbb{R} \to \mathbb{R}$,
-and we're given a convergent sequence $\epsilon_n$, can we choose our 
-witnesses $\delta_n$ to continuity of $f_n$ at $x_n$ so that the 
-$\delta_n$ themselves are a convergent sequence?
-
-This would probably be easy for an actual analyst, but I found the 
-construction a bit delicate. I'm particularly happy to have it 
-written down somewhere!
-
-We'll first notice that 
-$$\epsilon_* = \inf \{ \epsilon_1, \epsilon_2, \ldots, \epsilon_\infty \}$$
-is bounded away from $0$. After all, for $n \gg 1$, 
-$\epsilon_n \gt \frac{\epsilon_\infty}{2}$. So this infimum is taken over 
-the first finitely many $\epsilon_n$s (which are all $\gt 0$) and an 
-infinite tail of $\epsilon_n$s which are uniformly 
-$\gt \frac{\epsilon_\infty}{2} \gt 0$.
-Now, since $$f : \mathbb{N}_\infty \times \mathbb{R} \to \mathbb{R}$$ 
-is continuous, it's _uniformly_ continuous on a compact subset. For instance, 
-on the compact subset 
-$$\mathbb{N}_\infty \times \left [x_\infty - \frac{1}{10}, x_\infty + \frac{1}{10} \right ].$$
-
-Thus, we can find a $$\delta_* (\lt \frac{1}{10})$$ so that whenever two inputs 
-$(n_1,x_1)$ and $(n_2,x_2)$ are are $$\delta_*$$-close to each other, 
-(and $x_1,x_2$ are within $\pm \frac{1}{10}$ of $x_\infty$)
-the outputs are $$\frac{\epsilon_*}{4}$$-close to each other!
-
-We'll take $m$ large enough so that 
-- $\frac{1}{m} \lt \delta_*$
-- for all $n \gt m$ we have $$\lvert x_n - x_\infty \rvert \lt \delta_*$$
-
-For $n \leq m$, we'll let $\delta_n$ be whatever reals we like so that 
-whenever $|x_n - y| \lt \delta_n$, we know $|f(n,x_n) - f(n,y)| \lt \epsilon_n$.
-There's no difficulty in doing this since each function $f(n,-)$ is 
-continuous.
-
-Of course, we want these $\delta_n$s to assemble into a convergent sequence, 
-so we'll need to be more careful when $n \gt m$ is "large".
-For these, we'll let $$\delta_n = \delta_* - |x_\infty - x_n|$$. 
-Note that, as $n \to \infty$, the $\delta_n$s really do converge to 
-$$\delta_\infty = \delta_*$$.
-
-<br>
-
-Now that we know what our $$\delta : \mathbb{N}_\infty \to \mathbb{R}_{\gt 0}$$ 
-is, we need to verify those inequalities!
-
-For every arrow $$g : W \to \mathbb{N}_\infty$$, we need to show that 
-(pointwise in $W$)
-
-$$
-|x \circ g - y| \lt \delta \circ g \to |f \circ x \circ g - f \circ y| \lt \epsilon \circ g
-$$
-
-First let's let $W = 1$. Then $g$ is naming an element $n$ of $$\mathbb{N}_\infty$$
-(we allow $n=\infty$).
-
-Then $x \circ g : 1 \to \mathbb{R}$ is just $x_n$, and similarly for everything 
-else in sight. So our inequality becomes 
-
-$$
-|x_n - y| \lt \delta_n \to |f(n,x_n) - f(n,y)| \lt \epsilon_n 
-$$
-
-In case $n \leq m$, we literally chose $\delta_n$ to make this true, so we're good!.
-In case $n \gt m$, then we need a small computation[^12]:
-
-$$
-\begin{align}
-|f(n,x_n) - f(n,y)| 
-&\leq |f(n,x_n) - f(\infty,x_n)| \\
-&+ |f(\infty,x_n) - f(\infty,x_\infty)| \\
-&+ |f(\infty,x_\infty) - f(\infty,y)| \\
-&+ |f(\infty,y) - f(n,y)|
-\end{align}
-$$
-
-Since $$\frac{1}{n} \lt \delta_*$$, the first summand is 
-$$\lt \frac{\epsilon_*}{4}$$. Since $$|x_n - x_\infty| \lt \delta_*$$,
-the second summand is $$\lt \frac{\epsilon_*}{4}$$ too. 
-Since $$|x_n - y| \lt \delta_n = \delta_* - |x_\infty - x_n|$$,
-we learn that 
-
-$$
-|x_\infty - y| \leq |x_\infty - x_n| + |x_n - y| \lt \delta_*
-$$
-
-so that the third summand is $$\lt \frac{\epsilon_*}{4}$$. Lastly, 
-since $$\frac{1}{n} \lt \delta_*$$, the final summand is also 
-$$\lt \frac{\epsilon_*}{4}$$.
-
-Thus (since $$\epsilon_*$$ is the infimum of the $\epsilon_n$s)
-$$|f(n,x_n) - f(n,y)| \lt \epsilon_* \leq \epsilon_n$$,
-as desired!
-
-<br>
-
-And to finish things off, what happens if $$W = \mathbb{N}_\infty$$? 
-
-Then $$g : \mathbb{N}_\infty \to \mathbb{N}_\infty$$ is continuous, 
-and our inequality amounts to verifying that 
-for every $$y : \mathbb{N}_\infty \to \mathbb{R}$$ and 
-for every $n$ (including possibly $n=\infty$),
-
-$$
-|x_{gn} - y_n| \lt \delta_{gn} \to |f(gn,x_{gn}) - f(gn,y_n)| \lt \epsilon_{gn}
-$$
-
-Of course, blessedly, we _just_ proved that if an input $y_n$ is $\delta_{gn}$ 
-close to $x_{gn}$, then its output $f(gn,y_n)$ must be 
-$\epsilon_{gn}$ close to $f(gn,x_n)$! 
-
-So finally, we're done ^_^
-
-<span style="float:right">$\lrcorner$</span>
-
-<div class=boxed markdown=1>
-TODO: put an image here of someone sighing with relief 
 </div>
 
+$\ulcorner$
+We want to show that 
+
+$$
+\mathbb{N}_\infty \Vdash 
+\ulcorner
+\text{every function $X \to Y$ is $\epsilon$-$\delta$ continuous}
+\urcorner
+$$
+
+Cashing out the universal quantifiers, we want to show that 
+for any continuous functions 
+$$f : \mathbb{N}_\infty \times X \to Y$$, 
+$$\epsilon : \mathbb{N}_\infty \to \mathbb{R}_{\gt 0}$$, 
+and 
+$$a : \mathbb{N}_\infty \to X$$ in "the real world" we have 
+
+$$
+\mathbb{N}_\infty \Vdash
+\exists \delta : \mathbb{R}_{\gt 0} . \ 
+\forall b : X . \ 
+d(a,b) \lt \delta \to d(fa,fb) \lt \epsilon
+$$
+
+To witness the existential quantifier, we need to find a cover 
+of $$\mathbb{N}_\infty$$, and produce a real-world $\delta$ defined on 
+each member of the cover.
+
+Finding a cover basically amounts to finding a cofinite subset of 
+$\mathbb{N}$, and passing to a tail of all the sequences in sight.
+With this in mind, we choose a compact neighborhood $K$ of $a_\infty$ 
+(using local compactness of $X$), and choose $$\delta^*$$ so that 
+$$B(a_\infty, \delta^*)$$ is contained in $K$ and for every 
+$x \in B(a_\infty, \delta^*)$ we have 
+$d(f_\infty a_\infty, f_\infty x) \lt \frac{\epsilon_\infty}{6}$
+(using continuity of $f_\infty$).
+
+Then, let $N$ be large enough that for all $n \gt N$:
+
+1. $\epsilon_n \gt \frac{\epsilon_\infty}{2}$
+2. $d(f_n a_n, f_\infty a_\infty) \lt \frac{\epsilon_\infty}{6}$
+3. For all $x \in K$, we have $d(f_\infty x, f_n x) \lt \frac{\epsilon_\infty}{6}$
+4. $d(a_n, a_\infty) \lt \delta^*$
+
+In condition (3) we've used the fact that $f_n$ converges to $f_\infty$ 
+_uniformly_ on the compact set $K$.
+
+Now we take as our covering familiy 
+
+- the constant functions $$k : \mathbb{N}_\infty \to \mathbb{N}_\infty$$
+- $$i_S : \mathbb{N}_\infty \to \mathbb{N}_\infty$$ for any infinite subset 
+$$S \subseteq \{ n \gt N \} \subseteq \mathbb{N}$$.
+
+As a reminder, the function $i_S$ is the unique monotone function 
+$$\mathbb{N}_\infty \to \mathbb{N}_\infty$$ whose image is $$S \cup \{\infty\}$$.
+
+
+Now on each member $g$ of this family, we need to produce a function
+$$\delta : \mathbb{N}_\infty \to \mathbb{R}_{\gt 0}$$ which witnesses 
+
+$$
+\mathbb{N}_\infty \Vdash 
+\forall b : X . \ 
+d(a_{g(-)}, b) \lt \delta \to d(f_{g(-)}(a_{g(-)}), f_{g(-)}(b)) \lt \epsilon_{g(-)}
+$$
+
+Cashing out the last universal quantifier, we need to know that for all 
+$$h : \mathbb{N}_\infty \to \mathbb{N}_\infty$$ and for all 
+continuous $$b : \mathbb{N}_\infty \to X$$, 
+
+If $$\mathbb{N}_\infty \Vdash d(a_{gh(-)},b) \lt \delta_{h(-)}$$
+then we must have 
+$$\mathbb{N}_\infty \Vdash d(f_{gh(-)}(a_{gh(-)}), f_{gh(-)}(b)) \lt \epsilon_{gh(-)}.$$
+
+So let's build such a $\delta$ for the two cases in our cover!
+
+<br>
+
+First, if $g$ is the constant $k$ function. Then we need a convergent sequence 
+$\delta_n$ so that for any function $$h : \mathbb{N}_\infty \to \mathbb{N}_\infty$$
+and any convergent sequence $b_n$ in $X$, 
+
+If $d(a_k,b_n) \lt \delta_{hn}$ for all $n$, 
+then $d(f_k(a_k), f_k(b_n)) \lt \epsilon_k$ for all $n$ too.
+
+Of course, this is easy to arrange by taking $\delta_n$ to be the 
+constant sequence witnessing continuity of $f_k$ at $a_k$.
+
+<br>
+
+Second, if $g = i_S$ is the unique monotone function whose image is 
+$$S \cup \{ \infty \}$$. Recall also that every member of $S$ is at least $N$.
+
+Then we define $\delta_n$ to be $$\delta^* - d(a_{i_S n}, a_\infty)$$. 
+Note this _is_ convergent, with limit $$\delta^*$$. Now we must show
+for any function $$h : \mathbb{N}_\infty \to \mathbb{N}_\infty$$ and 
+for any convergent sequence $$b_n$$ in $X$ that
+
+If $d(a_{i_S h n}, b_n) \lt \delta_{hn}$ for all $n$,
+then $d(f_{i_S h n}(a_{i_S h n}), f_{i_S h n}(b_n)) \lt \epsilon_{i_S h n}$.
+
+But since $i_S h n \gt N$ and 
+$$d(b_n, a_\infty) \leq d(b_n, a_{i_S h n}) + d(a_{i_S h n}, a_\infty) \lt \delta^*$$
+we see that 
+
+1. $\epsilon_{i_S h n} \gt \frac{\epsilon_\infty}{2}$
+2. $d(f_{i_S h n}(a_{i_S h n}), f_{\infty}(a_\infty)) \lt \frac{\epsilon_\infty}{6}$
+3. $d(f_\infty b_n, f_{i_S h n} b_n) \lt \frac{\epsilon_\infty}{6}$
+
+so that we can compute 
+
+$$
+\begin{aligned}
+d(f_{i_S h n}(a_{i_S h n}), f_{i_S h n}(b(n))) 
+&\leq 
+d(f_{i_S h n}(a_{i_S h n}), f_\infty(a_\infty)) +
+d(f_\infty(a_\infty), f_\infty(b_n)) +
+d(f_\infty(b_n), f_{i_S h n}(b_n)) \\
+&\leq 
+\frac{\epsilon_\infty}{6} + 
+\frac{\epsilon_\infty}{6} + 
+\frac{\epsilon_\infty}{6} \\
+&=
+\frac{\epsilon_\infty}{2} \\
+&\lt 
+\epsilon_{i_S h n}
+\end{aligned}
+$$
+
+As desired.
+<span style="float:right">$\lrcorner$</span>
 
 ---
 
