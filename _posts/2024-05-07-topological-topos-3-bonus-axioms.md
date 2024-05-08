@@ -5,34 +5,35 @@ tags:
   - 
 ---
 
-TODO: use the relationship between monos/epis in Seq and in T to show $\mathcal{T}$ is not 
-de morgan. Indeed, from the [nlab page][56] deMorgan-ness is equivalent 
-to $1+1$ being injective. But it _isn't_, since in Seq there's a map
-$(0,1) + (2,3) \to 1+1$ which doesn't extend to a map $(0,3) \to 1+1$ 
-(which has to be constant). Since monos in Seq are still monos in $\mathcal{T}$,
-we're done. If you really want to be careful, we know a mono in Top reflects 
-to a mono in Seq, which gives us a mono in $\mathcal{T}$.
-
-TODO: Of course, another way to do this 
-is to note that the double negation topos is $\mathsf{Set}$ with the 
-indiscrete topology (maybe this is worth checking explicitly?) Then 
-(also following that nlab page) we want to know if $1+1 \to \Omega_{\lnot \lnot}$ 
-is an isomorphism, and it isn't. They're both supported on $\{0,1\}$, but 
-the topologies are different!
-
 TODO: in the section on bonus axioms, mention the Escardó paper 
 that $\mathcal{T}$ thinks that 
 "all functions $\mathbb{N}^\mathbb{N} \to \mathbb{N}$ are continuous"
 is true when interpreted as propositions, but _not_ when interpreted as types!
 
 
-## Bonus Axioms Validated by $\mathcal{T}$
+In the first post of the series, we talked about what the topological 
+topos is, and how we can think about its objects (and, importantly, 
+how we can relate computations in the topos $\mathcal{T}$ to 
+computations with topological spaces in "the real world"). In part two, 
+we talked about algebraic structures, and how (for example) 
+groups in $\mathcal{T}$ are related to topological groups!
 
-Speaking of proving theorems in $\mathcal{T}$, we actually don't have to 
-be _totally_ constructive! The topological topos satisfies certain nice 
-~bonus axioms~ that make it a particularly nice place to work.
+In that post we alluded to the presence of ~bonus axioms~ that allow us 
+to reason in $\mathcal{T}$ more freely than in many other topoi. For instance, 
+we have access to a certain amount of choice. We also have access to a 
+powerful principle saying that every function between metric spaces is 
+$\delta$-$\epsilon$ continuous!
 
-For instance, $\mathcal{T}$ models [Dependent Choice][20][^3]. 
+In this post we'll spend some time talking about these bonus axioms, and 
+proving that they're true (since a lot of these facts are basically folklore).
+
+Let's get to it!
+
+---
+
+## Dependent Choice
+
+To start, $\mathcal{T}$ models [Dependent Choice][20][^3]. 
 
 Say you have a relation $R \subseteq X \times X$ which is 
 <span class=defn>total</span> in the sense that 
@@ -42,18 +43,21 @@ Then DC says for each $x_0 : X$, there's a function
 $f : \mathbb{N} \to X$ so that $f(0) = x_0$ and for each $n$,
 $R(f(n), f(n+1))$.
 
-If we think of $$\{ y \mid R(x_n,y) \}$$ as being 
-"allowable values for $x_{n+1}$", then totality of $R$ says that 
-we can always take one more step. However, we might have to _choose_ 
-the next step from inhabited set of allowable options, and these choices 
-_depend_ on the choices that came before (since if we'd chosen a different 
-$x_1$, we might have different allowable choices for $x_2$, and so on).
+This is intuitively obvious. After all, we start with $x_0$, then 
+by totality the set $$\{ y \mid R(x_0,y) \}$$ is inhabited. So we 
+can choose an element $x_1$ from this set. Similarly we can choose 
+an $x_2$, and so on. Notice that the _choices_ we make are allowed to 
+_depend_ on the choices that came before. After all, it's possible that 
+for two different choices $$x_1,x_1' \in \{ y \mid R(x_0,y) \}$$ the 
+sets $$\{ y \mid R(x_1,y) \}$$ and $$\{ y \mid R(x_1',y) \}$$ might be different, 
+leading to different allowable choices of $x_2$!
 
 Thus, DC basically tells us that recursive definitions work, even if we 
-don't have a canonical way to _choose_ one of many options at each 
+don't have a canonical way to choose one of many options at each 
 recursive stage. Indeed, most recursive definitions work by first choosing 
 an $x_0$, and then arguing that the set of "allowable" next steps is 
-always inhabited[^16].
+always inhabited[^16]. For more information about DC and how to think 
+about it, I recommend Karagila's excellent [paper][57] on the subject.
 
 Here's an idiomatic example of dependent choice in action: The 
 [Baire Category Theorem][45] for complete metric spaces.
@@ -65,34 +69,44 @@ Let $(X,d)$ be a (cauchy) complete metric space[^14] with inhabited
 Then the countable intersection $\bigcap_n U_n$ is still (strongly) dense.
 </div>
 
-The usual proof doesn't use LEM, so it goes through unchanged. 
+The usual proof (say, from Karagila's notes) doesn't use LEM, 
+so it goes through unchanged. 
 We'll present it here, though, paying special attention to the 
 use of DC.
 
-TODO: are we using DC? or $\mathsf{DC}$? I think we should do the former
-
 $\ulcorner$
-
 Let $V$ be open in $X$. We need to show that $V \cap \bigcap_n U_n$ is 
-inhabited. We proceed recursively:
+inhabited. 
 
-Since $U_1$ is strongly dense, we know that $U_1 \cap V$ is inhabited, 
-say by $x_1$. Now since $U_1 \cap V$ is open, we can find a neighborhood of 
-$x_1$, say $B
+Since $U_1$ is strongly dense, we know that $V \cap U_1$ is inhabited, 
+say by $x_1$. Now since $U_1 \cap V$ is open, we can find a radius 
+$r_1$ so that 
 
+1. $0 \lt r_1 \lt 2^{-1}$
+2. the (strongly closed) ball 
+$$\overline{B(x_1,r_1)} = \{ y \mid d(x_1,y) \leq r_1 \}$$ is contained in $V \cap U_1$
+
+By dependent choice (and strong density of each $U_k$), 
+we may recursively build a sequence of pairs $(x_n,r_n)$ so that 
+
+1. $0 \lt r_{n+1} \lt 2^{-(n+1)}$
+2. the (strongly closed) ball $\overline{B(x_{n+1},r_{n+1})}$ 
+is contained in $B(x_n,r_n) \cap U_{n+1}$.
+
+By construction, then, the $x_n$s assemble into a cauchy sequence whose 
+limit $x_\infty$ lies in each $B(x_n,r_n)$. Therefore 
+$x_\infty \in \bigcap_n B(x_n,r_n) \subseteq V \cap \bigcap_n U_n$, 
+so that $\bigcap_n U_n$ is dense, as desired.
 <span style="float:right">$\lrcorner$</span>
 
-TODO: ok so here's some facts you might want later:
+<div class=boxed markdown=1>
+Can you build a relation $R$ on 
+$(X \times \mathbb{R}_{\gt 0} \times \mathbb{N})$ so that 
+$R \big ( (x,r,n), \ (y,s,m) \big )$ holds exactly when 
+$m=n+1$ and $(y,s)$ satisfy the above conditions compared to $(x,r)$?
 
-$C \subseteq X$ is _weakly closed_ if it contains all its limit points. 
-It's _strongly closed_ if it's the complement of an open set. 
-
-Strongly closed always implies weakly closed, and I think we can use 
-regularity of a metric space to show that $x \in C \subseteq U$ 
-with $C$ strongly closed and $U$ any neighborhood of $x$ 
-(which will be enough to make the BCT proof go through)
-
-<br>
+This will let you see _precisely_ how dependent choice is used above.
+</div>
 
 Dependent Choice implies [Countable Choice][41], which itself implies 
 [Weak Countable Choice][42]. But WCC implies that the 
@@ -102,12 +116,15 @@ are given by $よ\mathbb{R}$.
 
 <br>
 
-Moreover, $\mathcal{T}$ models Brouwer's Continuity Principle that 
+## Brouwer's Principle
+
+The next ~bonus axiom~ we'll talk about is 
+Brouwer's Continuity Principle that 
 "Every function $f : \mathbb{R} \to \mathbb{R}$ is continuous"!
 
 It's shockingly hard to find this written down anywhere, but it's 
 cited in lots of places! It's definitely part of the folklore, 
-but for completeness I'll include a proof in an "appendix" 
+and for completeness I'll include a proof in an "appendix" 
 at the bottom of this post. If you know of a reference, or of a 
 slicker proof than the one I found, I would REALLY love to hear 
 about it[^13]!
@@ -221,19 +238,32 @@ So $s$ is the desired section of $\pi$, and $\mathcal{T}$ models LLPO.
 Aaaand last but not least, let's check [Markov's Principle][54]:
 
 We'll show that 
-$\mathcal{T} \models \forall x : \mathbb{R} . (x \neq 0) \to (x \# 0)$.
-Here $\#$ means that $x$ is [apart][55] from $0$. That is, 
+$$\mathcal{T} \models \forall x : \mathbb{R} . (x \neq 0) \to (x \# 0)$$.
+Here $$\#$$ means that $x$ is [apart][55] from $0$. That is, 
 $\exists q : \mathbb{Q} . (x \lt q \lt 0) \lor (0 \lt q \lt x)$.
 
 This is actually a bit stronger than what we need. We leave it as a 
-nice exercise to show that $(x \neq 0) \to (x \# 0)$ implies the 
+nice exercise to show that $$(x \neq 0) \to (x \# 0)$$ implies the 
 usual statement of (analytic) MP: $\lnot (x \leq 0) \to (x \gt 0)$.
 
 TODO: this proof
 
-TODO: mention $\lnot (x \# 0) \to (x = 0)$.
+TODO: mention $$\lnot (x \# 0) \to (x = 0)$$.
 
-TODO: does $\mathcal{T}$ model de morgan's laws?
+TODO: use the relationship between monos/epis in Seq and in T to show $\mathcal{T}$ is not 
+de morgan. Indeed, from the [nlab page][56] deMorgan-ness is equivalent 
+to $1+1$ being injective. But it _isn't_, since in Seq there's a map
+$(0,1) + (2,3) \to 1+1$ which doesn't extend to a map $(0,3) \to 1+1$ 
+(which has to be constant). Since monos in Seq are still monos in $\mathcal{T}$,
+we're done. If you really want to be careful, we know a mono in Top reflects 
+to a mono in Seq, which gives us a mono in $\mathcal{T}$.
+
+TODO: Of course, another way to do this 
+is to note that the double negation topos is $\mathsf{Set}$ with the 
+indiscrete topology (maybe this is worth checking explicitly?) Then 
+(also following that nlab page) we want to know if $1+1 \to \Omega_{\lnot \lnot}$ 
+is an isomorphism, and it isn't. They're both supported on $\{0,1\}$, but 
+the topologies are different!
 
 
 ---
@@ -573,6 +603,7 @@ TODO: put an image here of someone sighing with relief
 [54]: https://en.wikipedia.org/wiki/Markov%27s_principle
 [55]: https://en.wikipedia.org/wiki/Apartness_relation
 [56]: https://ncatlab.org/nlab/show/De+Morgan+topos
+[57]: https://arxiv.org/pdf/2010.15632
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
