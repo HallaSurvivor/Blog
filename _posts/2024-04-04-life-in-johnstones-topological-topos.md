@@ -5,6 +5,24 @@ tags:
   - life-in-the-topological-topos
 ---
 
+TODO: define "internally sequentially hausdorff" by 
+
+$$
+\forall f,g : \mathbb{N}_\infty \to X . 
+(\forall n : \mathbb{N} . fn = gn) \to (f \infty = g \infty)
+$$
+
+and show that "internally sequentially hausdorff" iff
+"externally sequentially hausdorff".
+
+Then mention that "$\lnot \lnot$-separated" is the same thing as 
+"in $\mathsf{Kur}$" externally.
+
+So we can characterize the "nice spaces" internally as those sets 
+satisfying these two axioms!
+
+<br>
+
 TODO: Mention the stuff in section 9 of Johnstone's paper relating 
 $\mathsf{Sh}(X)$ to $\mathcal{T} / X$.
 
