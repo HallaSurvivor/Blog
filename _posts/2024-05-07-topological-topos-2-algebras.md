@@ -17,8 +17,6 @@ In this post, we'll talk about how that works in the special case of
 algebraic gadgets, like groups, rings, etc., and use this to prove some 
 interesting theorems about topological groups!
 
-TODO: is this, roughly, the approach of condensed mathematics?
-
 ---
 
 Recall Lawvere's notion of [Functorial Semantics][1]. 
