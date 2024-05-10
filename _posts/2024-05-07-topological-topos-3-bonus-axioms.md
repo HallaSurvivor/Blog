@@ -5,12 +5,6 @@ tags:
   - 
 ---
 
-TODO: in the section on bonus axioms, mention the Escardó paper 
-that $\mathcal{T}$ thinks that 
-"all functions $\mathbb{N}^\mathbb{N} \to \mathbb{N}$ are continuous"
-is true when interpreted as propositions, but _not_ when interpreted as types!
-
-
 In the first post of the series, we talked about what the topological 
 topos is, and how we can think about its objects (and, importantly, 
 how we can relate computations in the topos $\mathcal{T}$ to 
