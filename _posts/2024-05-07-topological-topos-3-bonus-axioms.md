@@ -31,6 +31,12 @@ Let's get to it!
 
 ---
 
+TODO: first, let's remember what the topology $J$ on $\mathcal{T}$ is. 
+We're going to be externalizing a lot of theorems, and it'll be good to 
+have the open cover condition on-hand.
+
+---
+
 ## Dependent Choice
 
 To start, $\mathcal{T}$ models [Dependent Choice][20][^3]. 
@@ -122,10 +128,37 @@ The next ~bonus axiom~ we'll talk about is
 Brouwer's Continuity Principle that 
 "Every function $f : \mathbb{R} \to \mathbb{R}$ is continuous"!
 
-It's shockingly hard to find this written down anywhere, but it's 
+Precisely[^11]:
+
+<div class=boxed markdown=1>
+$$
+\mathcal{T} \vDash
+\forall f : \mathbb{R}^\mathbb{R} . \ 
+\forall \epsilon : \mathbb{R}_{\gt 0} . \ 
+\forall a : \mathbb{R} . \ 
+\exists \delta : \mathbb{R}_{\gt 0} . \ 
+\forall b : \mathbb{R} . \ 
+d(a,b) \lt \delta \to d(fa,fb) \lt \epsilon
+$$
+</div>
+
+In fact, this is true for any (external) metric spaces $X$ and $Y$ 
+where $X$ is (externally) locally compact! In particular, it's also 
+true that every function $\mathbb{N}^\mathbb{N} \to \mathbb{N}$ is 
+$\epsilon$-$\delta$ continuous. 
+
+Note that it's crucial here that we use the truncated $\exists$ 
+rather than the untruncated $\Sigma$ in the statement of this theorem.
+Martín Escardó and Chuangjie Xu have [shown][59] that the untruncated 
+version of this theorem isn't just false in $\mathcal{T}$, it's 
+_provably false_ in every topos!
+
+Regardless, it's shockingly hard to find this continuity principle 
+written down anywhere, but it's 
 cited in lots of places! It's definitely part of the folklore, 
-and for completeness I'll include a proof in an "appendix" 
-at the bottom of this post. If you know of a reference, or of a 
+and I'm happy to share a full proof with everyone! The proof 
+is a bit long, though, so I'm leaving it as an "appendix" at 
+the bottom of this post. If you know of a reference, or of a 
 slicker proof than the one I found, I would REALLY love to hear 
 about it[^13]!
 
@@ -139,17 +172,42 @@ In $\mathcal{T}$, we have $\mathsf{DC}$ and the stronger
 we pay is LEM.
 
 <br>
-
+## Omniscience Principles
 
 We can ask about other nonconstructive principles too. For instance, 
-the [(Lesser) Limited Principle of Omniscience][49]!
+Bishop's [Principles of Omniscience][49]!
 
-LPO says that every sequence of bits is either $0^\omega$ or 
+First, let's look at the Limited Principle of Omniscience (LPO):
+
+<div class=boxed markdown=1>
+The <span class=defn>Limited Principle of Omniscience</span>:
+says that every sequence of bits is either $0^\omega$ or 
 contains a $1$. That is:
 
 $$\forall s : 2^\mathbb{N} . (\forall n . s(n) = 0) \lor (\exists n . s(n) = 1)$$
 
-This is false in $\mathcal{T}$:
+In the presence of countable choice (which we have in $\mathcal{T}$), 
+this is equivalent to the _analytic_ LPO, which says:
+
+$$\forall x : \mathbb{R} . (x \lt 0) \lor (x = 0) \lor (x \gt 0)$$
+
+and is further equivalent to the type-theoretic condition that 
+the obvious embedding
+
+$$\mathbb{N} + \{ \infty \} \hookrightarrow \mathbb{N}_\infty$$
+
+is an isomorphism.
+</div>
+
+It's clear from the last condition that LPO is false in $\mathcal{T}$. 
+Since both $$\mathbb{N} + \{ \infty \}$$ and $$\mathbb{N}_\infty$$ are 
+sequential, these internal types correspond to the expected spaces externally,
+where this is obviously not an isomorphism. After all, one space is 
+discrete and the other isn't.
+
+That said, it can be hard to find example computations of people 
+statements internal to a topos to statements in the real world, 
+so just for fun let's prove this again in a more complicated way:
 
 $\ulcorner$
 If it were true, then we would know $1 \Vdash \text{LPO}$. Now 
@@ -172,8 +230,6 @@ We would have an open cover of $$\mathbb{N}_\infty$$ where each element of
 that cover thinks that one of these disjuncts is true. But every covering 
 seive of $$\mathbb{N}_\infty$$ contains a function $f_U$ for $U$ an infinite 
 subset of $\mathbb{N}$.
-
-TODO: say what this means? 
 
 Now restricting $s$ to this member of the cover amounts to restricting $s$ 
 to a subsequence, $s_{r_k}$.
@@ -198,13 +254,36 @@ by $\mathcal{T}$.
 
 <br>
 
-What about LLPO? This turns out to be true[^17]! In fact, we'll prove 
-something a priori stronger: _Analytic_ LLPO. This is well known 
-to imply LLPO, and the converse is true under weak countable choice.
-Since $\mathcal{T}$ models DC, it certainly models WCC, so this is 
-equivalent to checking LLPO directly.
+Next, let's look at the _Lesser_ Limited Principle of Omniscience (LLPO):
 
-Analytic LLPO says that $$\forall x : \mathbb{R} . (x \geq 0) \lor (x \leq 0)$$.
+<div class=boxed markdown=1>
+The <span class=defn>Lesser Limited Principle of Omniscience</span> 
+says that 
+
+$$
+\forall s : 2^\mathbb{N} . \exists ! n . s(n) = 1 . 
+(\forall k . s(2k) = 0) \lor (\forall k . s(2k+1) = 0)
+$$
+
+This is equivalent to a kind of de Morgan's law
+
+$$
+\forall s, t : 2^\mathbb{N} . 
+\lnot (\exists n . s(n) = 1 \land \exists m . t(m) = 1) \to 
+(\forall n . s(n) = 0 \lor \forall m . t(m) = 0)
+$$
+
+and, as before, under countable choice this is equivalent to the _analytic_ LLPO,
+
+$$
+\forall x : \mathbb{R}. (x \geq 0) \lor (x \leq 0)
+$$
+</div>
+
+This turns out to be true[^17]! Just to show more ways to reason about the 
+internal logic of topoi, we'll prove this one by working with the category 
+$\mathcal{T}$ directly. Since type theoretic functions externalize to 
+arrows in $\mathcal{T}$, though, we'll use type theory to label our arrows. 
 
 $\ulcorner$
 Proposition 6.2 in Johnstone's original paper implies that $\mathbb{R}$ 
@@ -233,22 +312,97 @@ square commute, they must be equal by uniqueness in the universal property.
 So $s$ is the desired section of $\pi$, and $\mathcal{T}$ models LLPO.
 <span style="float:right">$\lrcorner$</span>
 
+<div class=boxed markdown=1>
+As a nice exercise, check that internal to $\mathcal{T}$ the type 
+$\mathbb{R}$ is equivalent to the quotient type 
+
+$$
+\mathbb{R}_{\geq 0} + \mathbb{R}_{\leq 0} \big / \mathtt{inl}(0) \sim \mathtt{inr}(0)
+$$
+
+and use this fact to give a purely type theoretic proof of that LLPO 
+holds in $\mathcal{T}$.
+</div>
+
 <br><br>
 
-Aaaand last but not least, let's check [Markov's Principle][54]:
+Next on this list is Markov's Principle (MP):
 
-We'll show that 
-$$\mathcal{T} \models \forall x : \mathbb{R} . (x \neq 0) \to (x \# 0)$$.
+<div class=boxed markdown=1>
+<span class=defn>Markov's Principle</span> says that 
+
+$$
+\forall s : 2^\mathbb{N} . 
+(\lnot \forall n . s(n) = 0) \to (\exists n . s(n) = 1)
+$$
+
+Again, there's an _analytic_ version, which says 
+
+$$
+\forall x : \mathbb{R}. \lnot (x=0) \to x \# 0 
+$$
+
 Here $$\#$$ means that $x$ is [apart][55] from $0$. That is, 
 $\exists q : \mathbb{Q} . (x \lt q \lt 0) \lor (0 \lt q \lt x)$.
+</div>
 
-This is actually a bit stronger than what we need. We leave it as a 
-nice exercise to show that $$(x \neq 0) \to (x \# 0)$$ implies the 
-usual statement of (analytic) MP: $\lnot (x \leq 0) \to (x \gt 0)$.
+Again, MP is true in $\mathcal{T}$, and this is not so hard to show:
 
+$\ulcorner$
 TODO: this proof
+<span style="float:right">$\lrcorner$</span>
 
-TODO: mention $$\lnot (x \# 0) \to (x = 0)$$.
+<br><br>
+
+Now WLPO is easy:
+
+<div class=boxed markdown=1>
+TODO: state WLPO
+</div>
+
+
+
+
+<br><br>
+
+As an aside, in all of these statements we're using the "truncated" 
+$\lor$ and $\exists$, and it's natural to ask what happens if we change 
+these to their "untruncated" versions $+$ and $\Sigma$. 
+
+It's a theorem of Martín Escardó that 
+
+- truncated and untruncated LPO are equivalent
+- truncated and untruncated WLPO are equivalent, and are equivalent to untruncated LLPO 
+- truncated LLPO is weaker than untruncated LLPO 
+
+In fact, in his [agda files][58], Martín wonders if there's a place in the 
+literature where untruncated LLPO and WLPO are shown to be inequivalent. 
+
+He mentions that $\mathcal{T}$ should be an example, and here 
+we've shown that in fact it is! After all, $\mathcal{T} \models \text{LLPO}$
+but $\mathcal{T} \lnot \models \text{WLPO}$!
+
+
+---
+
+## Bar and Fan Theorems
+
+TODO: write this. Mention that it lets us separate $\mathcal{T}$ 
+from the "topological topoi" of Moerdijk and Reyes, since they all 
+model the fan theorem, while $\mathcal{T}$ doesn't. 
+
+This also tells us that the locale of reals in $\mathcal{T}$ equaling 
+the space $\mathbb{R}$ is kind of an accident. There are lots of locales 
+which are _not_ represented by their (external) space!
+
+
+---
+
+## De Morgan and LEM
+
+Obviously LEM fails, since $\Omega \not \cong 1+1$. But what about 
+De Morgan's laws?
+
 
 TODO: use the relationship between monos/epis in Seq and in T to show $\mathcal{T}$ is not 
 de morgan. Indeed, from the [nlab page][56] deMorgan-ness is equivalent 
@@ -266,6 +420,8 @@ is an isomorphism, and it isn't. They're both supported on $\{0,1\}$, but
 the topologies are different!
 
 
+
+
 ---
 ---
 
@@ -278,15 +434,18 @@ examples before trying to tackle this one!
 We'll be doing this computation using the site with one object $$\mathbb{N}_\infty$$.
 
 <div class=boxed markdown=1>
-Let $X$ and $Y$ be (external) metric spaces, with $X$ locally compact. 
-Then $\mathcal{T}$ models 
+We'll prove a kind of "theorem schema". Every metric space is sequential, 
+so for any metric spaces $X$ and $Y$ in "the real world" we can think of 
+$X$ and $Y$ as objects of $\mathcal{T}$. Now if $X$ is moreover locally 
+compact, we'll prove that $\mathcal{T}$ models
+
 $$
 \ulcorner
 \text{every function $X \to Y$ is $\epsilon$-$\delta$ continuous}
 \urcorner
 $$
 
-Precisely[^11]:
+Precisely:
 
 $$
 \mathcal{T} \vDash
@@ -490,6 +649,9 @@ As desired.
 [55]: https://en.wikipedia.org/wiki/Apartness_relation
 [56]: https://ncatlab.org/nlab/show/De+Morgan+topos
 [57]: https://arxiv.org/pdf/2010.15632
+[58]: https://www.cs.bham.ac.uk/~mhe/agda/Taboos.LLPO.html
+[59]: https://doi.org/10.4230/LIPIcs.TLCA.2015.153
+[60]: http://arxiv.org/abs/2104.10399
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -601,19 +763,26 @@ As desired.
     Making this computation work is the crux of the whole proof.
 
 [^13]:
-    I would _also_ be super interested in hearing if $\mathcal{T}$ validates
-    something like "for any spaces $X$ and $Y$, every $f : Y^X$ is continuous".
-    
-    My guess is that this is also true, but it sounds kind of annoying to 
-    prove, especially in the absence of the metric space structure that we 
-    used on $\mathbb{R}$.
+    Here we have to refer to external metric spaces, and we prove a 
+    kind of "theorem schema". I suspect something like this is true 
+    purely internally, if we can find the right definition of a 
+    "metric space" in $\mathcal{T}$. Obviously we want a distance 
+    function $d : X \times X \to \mathbb{R}_{\geq 0}$ satsifying the 
+    usual axioms. But we also need to know that the topology $d$ 
+    puts in $X$ agrees with the _intrinsic_ topology on $X$!
 
-    Or, maybe it's easier to work topologically than metrically, 
-    and we can do this synthetically by using the 
-    set of opens $\Sigma^X$ 
-    (where $\Sigma$, as usual, is the [sierpinski space][40]). I'm kind 
-    of tempted to try, but this blog post is already super long and I've 
-    _gotta_ finish it.
+    Since $d$ is externally continuous we know that metric-open balls will 
+    always be open in $X$, so I think the condition is something like 
+    "every open of $X$ contains an open ball" or maybe 
+    "every open of $X$ is the union of the open balls inside it".
+
+    This should be expressible in the internal logic since the opens of 
+    $X$ are exactly the inhabitants of $\Sigma^X$ where $\Sigma$ is the 
+    sierpinski space.
+
+    I know that Davorin Lešnik has [thought about this][60], but 
+    I really want to get this post out (and ideally turn it into a paper)
+    so unfortunately I won't be pursuing this any further... for now!
 
 [^14]:
     I don't know if there are constructive subtleties with the notion of 
