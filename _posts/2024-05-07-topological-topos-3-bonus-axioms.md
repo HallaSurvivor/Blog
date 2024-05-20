@@ -370,7 +370,7 @@ $$
 (\lnot \forall n . s(n) = 0) \to (\exists n . s(n) = 1)
 $$
 
-Again, there's an _analytic_ version, which says 
+Again this is equivalent (under CC) to an _analytic_ version
 
 $$
 \forall x : \mathbb{R}. \lnot (x=0) \to x \# 0 
@@ -380,10 +380,41 @@ Here $$\#$$ means that $x$ is [apart][55] from $0$. That is,
 $\exists q : \mathbb{Q} . (x \lt q \lt 0) \lor (0 \lt q \lt x)$.
 </div>
 
-Again, MP is true in $\mathcal{T}$, and this is not so hard to show:
+MP is true in $\mathcal{T}$, and this is not so hard to show. 
+We'll write this proof in a slightly more conversational style, but we 
+encourage the reader interested in learning topos theory to check all 
+the details with the forcing language.
 
 $\ulcorner$
-TODO: this proof
+We want to show 
+
+$$
+1 \Vdash 
+\forall s : 2^\mathbb{N} . 
+(\lnot \forall n . s(n) = 0) \to (\exists n . s(n) = 1)
+$$
+
+so we fix a convergent sequence $$s_k : \mathbb{N}_\infty \to 2^\mathbb{N}$$.
+We want to show that if, for all 
+$$f : \mathbb{N}_\infty \to \mathbb{N}_\infty$$
+
+$$
+\mathbb{N}_\infty \not \Vdash \forall n . s_{fk}(n) = 0 \quad \quad (\star)
+$$
+
+then we must have 
+
+$$
+\mathbb{N}_\infty \Vdash \exists n . s_k(n) = 1.
+$$
+
+To show this existential claim, we need to provide a conergent sequence 
+$n_k$ so that each $s_k(n_k) = 1$. But taking $f$ to be a constant function 
+in $(\star)$, we learn that such an $n_k$ exists for each $k$. Moreover, 
+since $$s_k \to s_\infty$$, there is a $k \gg 1$ so that $s_k$ and 
+$s_\infty$ agree on the first $n_\infty + 1$ many bits, so that we may take 
+$n_k = n_\infty$ when $k$ is large enough. Thus the sequence converges, 
+as desired.
 <span style="float:right">$\lrcorner$</span>
 
 <br><br>
@@ -391,11 +422,35 @@ TODO: this proof
 Now WLPO is easy:
 
 <div class=boxed markdown=1>
-TODO: state WLPO
+The <span class=defn>Weak Limited Principle of Omniscience</span> says that 
+
+$$
+\forall s : 2^\mathbb{N}. (\forall n . s(n) = 0) \lor (\lnot \forall n . s(n) = 0)
+$$
+
+This is equivalent to a kind of excluded middle, and as expected there's an 
+analytic version (equivalent in the presence of CC):
+
+$$
+\forall x : \mathbb{R} . (x = 0) \lor \lnot (x=0)
+$$
 </div>
 
+Now, it's easy to see that MP + WLPO $\implies$ LPO 
+(look at the analytic versions). So we learn indirectly that 
+$\mathcal{T}$ cannot satisfy WLPO. Of course, here's a more direct proof 
+that the analytic version can't work:
 
+$\ulcorner$
+Consider the sequence $x_n = \frac{1}{n}$, converging to $0$.
 
+If $\mathcal{T}$ were to model WLPO, it would mean (among other things) 
+that some subsequence of $x_n$ would be either everywhere $0$ or everywhere 
+nonzero. But of course, no subsequence has this property, since for any 
+finite $n$, $x_n$ is nonzero, but for $n=\infty$, $x_n$ is zero.
+
+So $\mathcal{T}$ does not model WLPO.
+<span style="float:right">$\lrcorner$</span>
 
 <br><br>
 
@@ -435,26 +490,29 @@ which are _not_ represented by their (external) space!
 ## De Morgan and LEM
 
 Obviously LEM fails, since $\Omega \not \cong 1+1$. But what about 
-De Morgan's laws?
+De Morgan's Laws?
 
+It turns out that $\mathcal{T}$ is not de Morgan. In another paper 
+(the aptly named _Conditions Related to de Morgan's Law_) Johnstone gives a 
+slew of conditions equivalent to a topos being de Morgan. In particular, 
+de Morgan-ness is equivalent to 
 
-TODO: use the relationship between monos/epis in Seq and in T to show $\mathcal{T}$ is not 
-de morgan. Indeed, from the [nlab page][56] deMorgan-ness is equivalent 
-to $1+1$ being injective. But it _isn't_, since in Seq there's a map
-$(0,1) + (2,3) \to 1+1$ which doesn't extend to a map $(0,3) \to 1+1$ 
-(which has to be constant). Since monos in Seq are still monos in $\mathcal{T}$,
-we're done. If you really want to be careful, we know a mono in Top reflects 
-to a mono in Seq, which gives us a mono in $\mathcal{T}$.
+1. $[\top,\bot] : 1+1 \to \Omega_{\lnot \lnot}$ being an isomorphism
+2. $1+1$ being [injective][62]
 
-TODO: Of course, another way to do this 
-is to note that the double negation topos is $\mathsf{Set}$ with the 
-indiscrete topology (maybe this is worth checking explicitly?) Then 
-(also following that nlab page) we want to know if $1+1 \to \Omega_{\lnot \lnot}$ 
-is an isomorphism, and it isn't. They're both supported on $\{0,1\}$, but 
-the topologies are different!
+But we can show both of these are false 
+(thus giving two proofs that $\mathcal{T}$ is not de Morgan).
 
+For $1$, we can compute that $\mathcal{T}_{\lnot \lnot}$ is equivalent to 
+$\mathsf{Set}$, where the equivalence sends a set $X$ the space $X$ equipped 
+with the indiscrete topology. This is stated at the end of Section 3 of 
+Johnstone's original paper. In particular, $1+1$, which has the discrete 
+topology, is _not_ isomorphic to $\Omega_{\lnot \lnot}$ (which is indiscrete).
 
-
+For $2$, we know that in $\mathsf{Seq}$ there's a map 
+$(0,1) + (2,3) \to 1+1$ which doesn't extend to a map $(0,3) \to 1+1$. 
+Since monos in $\mathsf{Seq}$ are still monos in $\mathcal{T}$ 
+(since the inclusion is a right adjoint), we're done. 
 
 ---
 ---
@@ -687,6 +745,7 @@ As desired.
 [59]: https://doi.org/10.4230/LIPIcs.TLCA.2015.153
 [60]: http://arxiv.org/abs/2104.10399
 [61]: https://en.wikipedia.org/wiki/Bar_induction
+[62]: https://ncatlab.org/nlab/show/injective+object
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
