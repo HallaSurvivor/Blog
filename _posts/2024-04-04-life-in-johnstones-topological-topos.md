@@ -5,28 +5,12 @@ tags:
   - life-in-the-topological-topos
 ---
 
-TODO: define "internally sequentially hausdorff" by 
-
-$$
-\forall f,g : \mathbb{N}_\infty \to X . 
-(\forall n : \mathbb{N} . fn = gn) \to (f \infty = g \infty)
-$$
-
-and show that "internally sequentially hausdorff" iff
-"externally sequentially hausdorff".
-
-Then mention that "$\lnot \lnot$-separated" is the same thing as 
-"in $\mathsf{Kur}$" externally.
-
-So we can characterize the "nice spaces" internally as those sets 
-satisfying these two axioms!
-
-<br>
-
 TODO: What do "mere existentials" look like in $\mathcal{T}$? In a 
 sheaf topos it means something exists on each section of an open cover,
 but these might not glue into a _global_ section. Is there a similar 
 interpretation (maybe involving subsequences?) for $\mathcal{T}$?
+
+<br><br>
 
 I've been thinking a lot about the internal logic of topoi again, and I 
 want to have more examples of topoi that I understand well enough to 
@@ -544,6 +528,55 @@ author is talking about.
 
 ---
 
+## Characterizing "Honest Spaces" Internally
+
+We saw earlier how every type we construct represents some space by 
+interpreting that type in $\mathcal{T}$ and then reflecting back into 
+$\mathsf{Seq}$. This remains true even if we use certain principles that 
+aren't always true in type theory, but happen to be true in $\mathcal{T}$ 
+(we'll discuss this in Part 3).
+
+From this point of view it's natural to ask when a type we've constructed 
+is _already_ a space, without needing to do any reflection. Is there a 
+way to internally characterize the "honest spaces" amongst all the objects 
+in $\mathcal{T}$?
+
+The first step in this process is to recognize $\mathsf{Kur}$ as the 
+$\lnot \lnot$-separated objects. That is, an object $X \in \mathcal{T}$ 
+is actually in $\mathsf{Kur}$ if and only if the internal logic thinks 
+
+$$
+\mathtt{is-}\lnot\lnot\mathtt{-Separated}(X) \triangleq 
+\prod_{x,y : X} \lnot \lnot(x=y) \to (x=y)
+$$
+
+This is implicit in Propositions 3.6 and 4.3 of Johnstone's original 
+paper.
+
+Then, we use the fact that the full subcategory of sequentially hausdorff 
+sequential spaces is equivalent to the full subcategory of sequentially 
+hausdorff limit spaces! With this in mind, we define
+
+$$
+\mathtt{isSeqHaus}(X) \triangleq 
+\prod_{f,g : \mathbb{N}_\infty \to X} 
+\left ( 
+    \Big ( \prod_{n : \mathbb{N}} f(n) = g(n) \Big ) \to f(\infty) = g(\infty)
+\right )
+$$
+
+and it's easy to show that $\mathcal{T}$ thinks, internally, that 
+$\mathtt{isSeqHaus}(X)$ if and only if $X$ is sequentially hausdorff 
+in the real world.
+
+In particular, this means that we can show an object of $\mathcal{T}$ 
+represents an honest topological space by internally showing that it's 
+$\lnot\lnot$-separated and sequentially hausdorff[^19]!
+
+
+
+---
+
 [1]: https://arxiv.org/abs/2404.01256
 [2]: https://ncatlab.org/nlab/show/realizability+topos
 [3]: https://ncatlab.org/nlab/show/Models+for+Smooth+Infinitesimal+Analysis
@@ -799,3 +832,16 @@ author is talking about.
     concretely cartesian closed! This tells us very explicitly how 
     we can compute (co)limits and exponentials in $\mathsf{Kur}$, 
     on top of the great description in Section 3 of Menni and Simpson.
+
+[^19]:
+    You might ask if there's a way to characterize the whole of 
+    $\mathsf{Seq}$ inside $\mathcal{T}$, rather than only the sequentially 
+    hausdorff spaces.
+
+    I suspect there's a way to do this, by defining the sequentially 
+    open subsets of $X$ and demanding that every sequence that converges 
+    with respect to this topology already converges...
+
+    But this sounds rather complicated, and I'm really looking to get this 
+    blog post done, haha. Especially since I still have to convert it 
+    into a paper!
