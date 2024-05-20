@@ -23,9 +23,6 @@ satisfying these two axioms!
 
 <br>
 
-TODO: Mention the stuff in section 9 of Johnstone's paper relating 
-$\mathsf{Sh}(X)$ to $\mathcal{T} / X$.
-
 TODO: What do "mere existentials" look like in $\mathcal{T}$? In a 
 sheaf topos it means something exists on each section of an open cover,
 but these might not glue into a _global_ section. Is there a similar 
@@ -344,23 +341,6 @@ the product in $\mathsf{Top}$.
 
 ---
 
-TODO: do these embeddings preserve/reflect monos/epis/isos? Say explicitly 
-that if $\mathcal{T}$ proves two spaces are isomorphic, then reflecting 
-isos (fully faithfulness) means that $\text{Seq}$ thinks they're isomorphic, 
-which means $\mathsf{Top}$ thinks they're homeomorphic 
-(since all functors preserve isomorphisms). I think fully faithful functors 
-_reflect_ monos/epis, so if we show something is mono/epi in $\mathcal{T}$ 
-that tells us that it's mono/epi in $\text{Seq}$... Does this mean it's 
-mono/epi in $\mathsf{Top}$? Conversely, if we have something that's 
-mono/epi/iso in $\mathsf{Top}$, does that mean it's mono/epi/iso in 
-$\mathsf{Seq}$/$\mathcal{T}$? This should be related to continuous functors 
-preserving monos?
-
-TODO: Actually, I bet Seq is topologically concrete. Or at least it has 
-discrete/codiscrete functors from $\mathsf{Set}$! This tells us that we 
-can check mono/epi-ness in Seq by checking injectivity/surjectivity of the 
-map on points.
-
 That's a _lot_, so let's go more in depth into what all of this means, haha.
 
 We'll start with the definition of a [Kuratowski Limit Space][10] 
@@ -438,6 +418,41 @@ closed structure!
 It's not hard to see the embeddings $\mathsf{Seq} \hookrightarrow \mathsf{Kur}$ 
 and $\mathsf{Kur} \hookrightarrow \mathcal{T}$ preserve coproducts, so that 
 we get the promised embeddings of bicartesian closed categories.
+
+<br><br>
+
+From this information, there's a few simple corollaries that I want to 
+mention explicitly, since they give more relationships between 
+$\mathsf{Top}$, $\mathsf{Seq}$, and $\mathcal{T}$.
+
+First, fully faithful functors reflect isomorphisms, so if we can prove 
+in $\mathcal{T}$ that two spaces are isomorphic, it means they must 
+be isomorphic in $\mathsf{Seq}$ too. But then _all_ functors preserve 
+isomorphics, so that we get an isomorphism in $\mathsf{Top}$ too! 
+Thus, we can show two sequential spaces are homeomorphic by working 
+entirely in $\mathcal{T}$!
+
+The converse argument (using the fully faithful embedding 
+$\mathsf{Seq} \hookrightarrow \mathsf{Top}$) shows that two homeomorphic 
+sequential spaces are also isomorphic in $\mathcal{T}$, so that we can 
+detect every homeomorphism just by working in $\mathcal{T}$.
+
+Similarly, if $A \hookrightarrow B$ is monic in $\mathsf{Top}$, 
+then it's also a mono in $\mathsf{Seq}$ (since faithful functors reflect monos).
+Then since right adjoints preserve monics, we get $A \hookrightarrow B$ 
+in $\mathcal{T}$, so that anything we "expect" to be a subobject in 
+$\mathcal{T}$ actually is. 
+
+Conversely, if $A \hookrightarrow B$ is monic in $\mathcal{T}$, then it's 
+also a mono in $\mathsf{Seq}$. But here we run into a subtle issue! It's 
+possible that the presence of nonsequential spaces will render a mono 
+in $\mathsf{Seq}$ no longer monic in $\mathsf{Top}$!
+
+Dually, if $A \to B$ is an epi in $\mathcal{T}$, then it's an epi in 
+$\mathsf{Seq}$, and thus an epi in $\mathsf{Top}$ 
+(since the inclusion $\mathsf{Seq} \to \mathsf{Top}$ is a left adjoint).
+But there's no reason to suspect an epi in $\mathsf{Top}$ to remain 
+an epi in $\mathcal{T}$.
 
 ---
 
