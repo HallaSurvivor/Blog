@@ -446,8 +446,8 @@ Consider the sequence $x_n = \frac{1}{n}$, converging to $0$.
 
 If $\mathcal{T}$ were to model WLPO, it would mean (among other things) 
 that some subsequence of $x_n$ would be either everywhere $0$ or everywhere 
-nonzero. But of course, no subsequence has this property, since for any 
-finite $n$, $x_n$ is nonzero, but for $n=\infty$, $x_n$ is zero.
+nonzero. But no subsequence has this property, since $x_n$ is nonzero 
+for each finite $n$, but zero at $n=\infty$.
 
 So $\mathcal{T}$ does not model WLPO.
 <span style="float:right">$\lrcorner$</span>
