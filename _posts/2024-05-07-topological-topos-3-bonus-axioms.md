@@ -25,9 +25,38 @@ Let's get to it!
 
 ---
 
-TODO: first, let's remember what the topology $J$ on $\mathcal{T}$ is. 
-We're going to be externalizing a lot of theorems, and it'll be good to 
-have the open cover condition on-hand.
+FIrst, let's take a second to recall the definition of the grothendieck 
+topology $J$ for $\mathcal{T}$. We're going to be externalizing a lot 
+of theorems, and it'll be good to have the open cover condition on hand.
+You can read more about this condition in Section 3 of Johnstone's original 
+paper. 
+
+For the site with two objects, $$\{1, \mathbb{N}_\infty\}$$, 
+every (nonempty) family of arrows $$\{X_\alpha \to 1 \}$$ is covering. 
+So the interesting question is what a covering family of $$\mathbb{N}_\infty$$ 
+looks like.
+
+If $S$ is an infinite subset of $\mathbb{N}$, we write $f_S$ for the unique 
+monotone map $$\mathbb{N}_\infty \to \mathbb{N}_\infty$$ whose image is 
+$$S \cup \{ \infty \}$$.
+
+<div class=boxed markdown=1>
+A family $$\{X_\alpha \to \mathbb{N}_\infty\}$$ is covering if and only if 
+both
+
+1. It contains every constant map $$1 \to \mathbb{N}_\infty$$
+2. For every infinite $T \subseteq \mathbb{N}$, there is a further 
+infinite subset $S \subseteq T$ with 
+$$f_S : \mathbb{N}_\infty \to \mathbb{N}_\infty$$ in the family
+
+In particular, if a family contains every constant map 
+$$1 \to \mathbb{N}_\infty$$ and a "tail of an infinite sequence" 
+$$f_{\{x \geq N\}}$$ for some $N$, then that family is covering.
+</div>
+
+So, roughly, to prove that something "merely exists" in $\mathcal{T}$, we 
+have to provide a witness for every $n$, and these witnesses should 
+converge to a the witness for $\infty$.
 
 ---
 
@@ -646,6 +675,7 @@ As desired.
 [58]: https://www.cs.bham.ac.uk/~mhe/agda/Taboos.LLPO.html
 [59]: https://doi.org/10.4230/LIPIcs.TLCA.2015.153
 [60]: http://arxiv.org/abs/2104.10399
+[61]: https://en.wikipedia.org/wiki/Bar_induction
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -833,3 +863,8 @@ As desired.
 [^17]:
     This realization has probably been made by many people, but it was 
     added to the nlab by Mike Shulman.
+
+[^18]:
+    Notably Moerdijk and Reyes, in 
+    _Smooth spaces versus continuous spaces in models 
+    for synthetic differential geometry_, for instance.

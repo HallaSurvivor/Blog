@@ -486,6 +486,49 @@ $$\forall x : \mathbb{R} . (x \leq 0) \lor (x \geq 0)$$
 
 ---
 
+## How does $\mathcal{T}$ relate to sheaf topoi $\mathsf{Sh}(X)$?
+
+Like we said in the introduction, the topological topos $\mathcal{T}$ 
+is a [gros topos][60] in the sense that it's _objects_ are productively 
+thought of as spaces. However, to any _individual_ topological space, we can 
+associate a "petit topos" $\mathsf{Sh}(X)$ which should be thought of as a 
+(generalized) space in its own right. Oftentimes, if $\mathcal{B}$ is a 
+gros topos and $X$ is a topological space which lives in $\mathcal{B}$,
+there is a close connection between $\mathsf{Sh}(X)$ and the 
+slice topos $\mathcal{B} \big / X$. 
+
+For instance some authors say that "a" topological topos is a category 
+of sheaves on a subcategory $\mathcal{C}$ of $\mathsf{Top}$ closed under 
+finite limits and open subspaces. The grothendieck topology is the natural one 
+where a covering family is an open cover in the usual sense. 
+Then if $X \in \mathcal{C}$, the usual sheaf topos $\mathsf{Sh}(X)$ is 
+"homotopy equivalent" to the slice topos $\mathsf{Sh}(\mathcal{C},J) \big / X$.
+This is made precise at the end of Mac Lane and Moerdijk, Chapter VI.10. 
+
+It's natural to ask for a similar relationship between $\mathsf{Sh}(X)$ 
+and $\mathcal{T} \big / X$ for a sequential space $X$. This is the subject of 
+Section 9 in Johnstone's original paper, where it's shown that there _is_ 
+a geometric morphism $\mathsf{Sh}(X) \to \mathcal{T} \bit / X$, but this 
+relationship is somewhat less compelling than in the case of a more 
+traditional gros topos. For instance, the pullback along this morphism 
+isn't exact, so that cohomology of $\mathcal{T} \big / X$ does not agree 
+with the cohomology of $\mathsf{Sh}(X)$. In particular, even for the (closed) 
+unit interval $I$ and a finite abelian group $A$ Johnstone shows that 
+$H^1(\mathcal{T} \big / I; A)$ is not trivial!
+
+Johnstone decides to not say anything more about the geometric morphisms
+$\mathsf{Sh}(X) \to \mathcal{T}$, and we'll follow suit.
+
+<div class=boxed markdown=1>
+From this discussion, though, we learn that "the" topological topos 
+$\mathcal{T}$ is _not_ "a" topological topos in the sense of 
+Moerdijk and Reyes (and other papers). In particular, we have to be careful 
+when reading the literature which version of "topological topoi" the 
+author is talking about. 
+</div>
+
+---
+
 [1]: https://arxiv.org/abs/2404.01256
 [2]: https://ncatlab.org/nlab/show/realizability+topos
 [3]: https://ncatlab.org/nlab/show/Models+for+Smooth+Infinitesimal+Analysis
@@ -545,6 +588,8 @@ $$\forall x : \mathbb{R} . (x \leq 0) \lor (x \geq 0)$$
 [57]: https://doi.org/10.1017/S0960129502003699
 [58]: https://ncatlab.org/nlab/show/exponential+ideal
 [59]: /2021/12/16/topological-categories.html
+
+[60]: https://ncatlab.org/nlab/show/big+and+little+toposes
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
