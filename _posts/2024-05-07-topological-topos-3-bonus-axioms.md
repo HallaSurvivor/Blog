@@ -58,6 +58,17 @@ So, roughly, to prove that something "merely exists" in $\mathcal{T}$, we
 have to provide a witness for every $n$, and these witnesses should 
 converge to a the witness for $\infty$.
 
+<br><br>
+
+If instead we want to use the site with one object $$\{ \mathbb{N}_\infty \}$$, 
+then a family of maps is covering if and only if both
+
+1. every constant map $$\mathbb{N}_\infty \to \mathbb{N}_\infty$$ is in the family
+2. For each infinite $T \subseteq \mathbb{N}$, there's a further infinite 
+$S \subseteq T$ so that $f_S$ is in the family.
+
+This, unsurprisingly, doesn't make too much difference.
+
 ---
 
 ## Dependent Choice
