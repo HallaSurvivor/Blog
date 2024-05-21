@@ -444,13 +444,13 @@ This is great and all, but the only way to _really_ get some intuition for
 how computations in $\mathcal{T}$ relate to computations in $\mathsf{Top}$ 
 is to actually _do some computation and check_! So let's do that!
 
-## $\mathbb{R}$
+$\mathbb{R}$
 
 More generally, can we see (spatial) locales as being represented by 
 yoneda in $\mathcal{T}$?
 
 <br>
-## $2^\mathbb{N}$
+$2^\mathbb{N}$
 
 Since $2$ and $\mathbb{N}$ are both sequential, their exponential in 
 $\mathcal{T}$ agrees with their exponential in $\mathsf{Seq}$. Since 
@@ -462,7 +462,7 @@ the compact open topology on $2^\mathbb{N}$ is just the product topology,
 so we get cantor space (as expected!)
 
 <br>
-## $$\mathbb{R} \cong (-\infty,0] +_{\{0\}} [0,\infty)$$
+$$\mathbb{R} \cong (-\infty,0] +_{\{0\}} [0,\infty)$$
 
 This is proposition 6.2 in Johnstone's paper. In $\mathsf{Seq}$ we know 
 we can write $\mathbb{R}$ as a union of the (finite family of) closed 
@@ -475,13 +475,86 @@ $$\forall x : \mathbb{R} . (x \leq 0) \lor (x \geq 0)$$
 
 
 <br>
-## $$\sum_{\alpha : 2^\mathbb{N}} \prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$$
+$$\sum_{\alpha : 2^\mathbb{N}} \prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$$
 
 <br>
-##  $\Omega$
+$\Omega$
+
+Johnstone shows that $\Omega$ has two points $\top$ and $\bot$, 
+and for any sequence $x_n$ of $\top$s and $\bot$s
+
+- there's exactly one proof that $x_n \to \bot$
+- there's one proof that $x_n \to \top$ for each 
+    "closed ideal of subsets of $\mathbb{N}$" whose "extent" is $$\{n \mid x_n = \top \}$$.
+
+Here a "closed ideal of subsets of $\mathbb{N}$" is a pair 
+$(E,I)$ where $E \subseteq \mathbb{N}$ is called the _extent_ of 
+the closed ideal of subsets.
+
+In the above, $I$ is a family of infinite subsets of $E$, so that 
+
+1. if $S$ is an infinite subset of $T$ and $T \in I$, then $S \in I$ too
+2. if every infinite subset of $T$ has a further infinite subset in $I$, 
+then $T \in I$ too.
+
+These correspond, basically, to axioms (2) and (3) for limit spaces. 
+This will make sense once we understand how this subobject classifier 
+actually classifies subobjects!
+
+Say that we have a subobject $A \hookrightarrow X$. That is, we remember 
+only some of the points of $X$, and we only remember some of the (proofs of)
+convergent sequences. This had better be classified by a unique map 
+(read: natural transformation) $\ulcorner A \urcorner : X \to \Omega$.
+
+On points, we have 
+$$\ulcorner A \urcorner(x) = \begin{cases} \top & x \in A \\ \bot & x \not \in A \end{cases}$$,
+but what do we do for a proof $p$ that $x_n \to x_\infty$?
+
+Well, to what _extent_ is $(x_n) \in A$? Each point of the 
+sequence is either in $A$ or isn't, so a sequence $x_n$ in $X$ produces a 
+sequence of $\top$s and $\bot$s given by $\omega_n = \ulcorner A \urcorner(x_n)$.
+
+If $x_\infty \not \in A$ (that is, if $\omega_\infty = \bot$), 
+then life is easy. We send $p$ to the unique proof that $\omega_n \to \bot$.
+If instead $x_\infty \in A$, then there are lots of proofs that 
+$\omega_n \to \top$, indexed by these closed ideals of subsets.
+So to decide where $p$ should go, we need a natural choice of 
+$(E,I)$ associated to our sequence $x_n$.
+
+We'll let $$E = \{ n \mid x_n \in A \}$$ be the _extent_ to which 
+$x_n \in A$. Next, we have to tell you which infinite subsets of $E$ 
+live in $I$. Given any infinite subset $T \subseteq E$, we can restrict 
+$x_n$ to a subsequence of indices in $T$. Since $E$ is exactly the 
+indices where $x_n \in A$, this restriction $x_n \upharpoonright T$ 
+is a sequence in $A$. Now we say that $T \in I$ if and only if 
+the restriction $p \upharpoonright T$ proving that 
+$x_n \upharpoonright T \to x_\infty$ in $X$ is one of the proofs we kept 
+in $A$.
+
+This shows where these conditions on "closed ideals of subsets" come from!
+If $T \in I$, that means that 
+$p \upharpoonright T : x_n \upharpoonright T \to x_\infty$ is a 
+convergence proof in $A$. So every subsequence of this 
+(read: every infinite subset of $T$) must also converge in $A$.
+Also, if every subsequence has a further convergent subsequence 
+(if every infinite subset of $T$ has a further infinite subset in $I$), 
+then $p \upharpoonright T$ must also be a convergence proof in $A$!
+
+As one last note, we see that $\Omega$ is not in $\mathsf{Kur}$, since it 
+has multiple proofs that any given $\omega_n \to \top$. Moreover, if we 
+reflect it into $\mathsf{Seq}$ to get an honest topological space, we see it 
+must be indiscrete. After all, every sequence converges to every point! 
+This seems to be a common feature of certain useful objects in $\mathcal{T}$,
+where "indiscrete" spaces (which usually carry no information at all) 
+are able to carry _extremely_ detailed information inside the multiple 
+proofs of convergence. But in order to access this detailed information, 
+we need to _remember_ the multiple proofs of convergence! This is true 
+for $\Omega$, we'll see next that it's true for a universe $\mathcal{U}$,
+and it's also extremely useful for keeping track of quotients of 
+topological algebras! We'll chat more about that in Part 2.
 
 <br>
-## $\mathcal{U}$
+$\mathcal{U}$
 
 ---
 
