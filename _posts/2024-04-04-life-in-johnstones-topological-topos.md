@@ -580,7 +580,7 @@ This is made precise at the end of Mac Lane and Moerdijk, Chapter VI.10.
 It's natural to ask for a similar relationship between $\mathsf{Sh}(X)$ 
 and $\mathcal{T} \big / X$ for a sequential space $X$. This is the subject of 
 Section 9 in Johnstone's original paper, where it's shown that there _is_ 
-a geometric morphism $\mathsf{Sh}(X) \to \mathcal{T} \bit / X$, but this 
+a geometric morphism $\mathsf{Sh}(X) \to \mathcal{T} \big / X$, but this 
 relationship is somewhat less compelling than in the case of a more 
 traditional gros topos. For instance, the pullback along this morphism 
 isn't exact, so that cohomology of $\mathcal{T} \big / X$ does not agree 
