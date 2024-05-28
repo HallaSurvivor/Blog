@@ -446,8 +446,17 @@ is to actually _do some computation and check_! So let's do that!
 
 $\mathbb{R}$
 
-More generally, can we see (spatial) locales as being represented by 
-yoneda in $\mathcal{T}$?
+There's an object $よ\mathbb{R} = \text{Hom}_\mathsf{Top}(-,\mathbb{R})$ 
+in $\mathcal{T}$ since $\mathbb{R}$ is a separable space. But usually when 
+people talk about a "real numbers object" in a topos, they mean the object 
+of dedekind reals (points of a certain locale).
+
+It turns out that in $\mathcal{T}$ this distinction doesn't matter! 
+Johnstone's original paper computes that the object of points of 
+the theory of dedekind reals is exactly the object $よ\mathbb{R}$!
+
+We won't show this here because we'll show something more general 
+in just a few bullets!
 
 <br>
 $2^\mathbb{N}$
@@ -460,6 +469,77 @@ the compact open topology.
 Now, in the realm of classical topology, since $\mathbb{N}$ is discrete 
 the compact open topology on $2^\mathbb{N}$ is just the product topology, 
 so we get cantor space (as expected!)
+
+Again, one can also ask about the points of the locale object 
+"cantor space". And again, we find that the points of this locale 
+are represented by $よ2^\mathbb{N}$, which is the same thing as 
+the internal $2^\mathbb{N}$ we just computed!
+
+<br>
+$T_1$ Locales
+
+More generally, we can ask about the models of any $T_1$ locale. 
+Recall that a locale $X$ is called $T_1$ if 
+"the specialization order is discrete" in a certain localic sense.
+Precisely, recall that the set of frame maps 
+$\mathcal{O}(X) \to \mathcal{O}(Y)$ is ordered by $f^* \leq g^*$ iff 
+for all $x$, $f^*(x) \leq g^*(x)$.
+
+Now we say that $X$ is $T_1$ if, for any pair of generalized
+elements $x_1,x_2: Y \to X$ with $x_1 \leq x_2$, we actually have 
+$x_1 = x_2$.
+
+Requiring this for generalized elements makes this condition slightly stronger 
+than the usual $T_1$ condition for (sober) spaces[^20], but every hausdorff 
+space is $T_1$ in this sense.
+
+Now, we prove an important claim: 
+
+<div class=boxed markdown=1>
+Let $X$ be a topological space which is $T_1$ as a locale. Then the 
+object of models of $X$ in $\mathcal{T}$ is represented by $よX$.
+</div>
+
+$\ulcorner$
+First, we'll show that the inclusion $\iota : \Sigma \hookrightarrow \Omega$ 
+admits a right adjoint $r$. Since $\Sigma$ and $\Omega$ are posets, it 
+suffices to check that $\iota$ preserves joins. Working in the site 
+whose only object is $$\mathbb{N}_\infty$$, we want to check this for 
+$$\Sigma(\mathbb{N}_\infty)$$ and $$\Omega(\mathbb{N}_\infty)$$.
+
+But for every sequence $x_n$ of $\top$s and $\bot$s, 
+$$\Sigma(\mathbb{N}_\infty)$$ has a unique proof that $x_n \to \bot$,
+and for every sequence which is eventually $\top$, there's a unique 
+proof that $x_n \to \top$. Moreover, we compute 
+$\bigvee_\alpha (x_n^\alpha \to x_\infty^\alpha)$ as 
+$(\bigvee_\alpha x_n^\alpha) \to (\bigvee_\alpha x_\infty^\alpha)$.
+
+And for every sequence $x_n$ of $\top$s and $\bot$s, 
+$$\Omega(\mathbb{N}_\infty)$$ has a unique proof that $x_n \to \bot$, 
+and the proofs that $x_n \to \top$ are indexed by the 
+"closed ideals of subsets" whose extent is $$\{n \mid x_n = \top \}$$.
+Here again a join of sequences is computed pointwise, but in case we converge 
+to $\top$ we choose the smallest closed ideal of subsets containing all the 
+ideals we're joining.
+
+Now a moment's thought shows that the inclusion $\iota : \Sigma \to \Omega$ 
+sends 
+
+- the unique proof in $\Sigma$ that $x_n \to \bot$ to the unique proof in 
+    $\Omega$ that $x_n \to \bot$
+- the unique proof in $\Sigma$ that $x_n \to \top$ (for $x_n$ eventually $\top$)
+    to the _maxmial_ proof in $\Omega$ that $x_n \to \top$. That is, 
+    the proof indexed by the ideal of _all_ infinite subsets of 
+    $$\{ n \mid x_n = \top \}$$
+
+So to show this embedding preserves joins we need to know that whenever 
+$x_n^\alpha$ are all eventually $\top$, the smallest ideal containing all 
+of the $$I_\alpha = \{ \text{infinite subsets of } \{n \mid x_n^\alpha = \top\} \}$$
+is the ideal of all infinite subsets of $$\bigcup \{n \mid x_n^\alpha = \top \}$$.
+
+
+<span style="float:right">$\lrcorner$</span>
+
 
 <br>
 $$\mathbb{R} \cong (-\infty,0] +_{\{0\}} [0,\infty)$$
@@ -476,6 +556,17 @@ $$\forall x : \mathbb{R} . (x \leq 0) \lor (x \geq 0)$$
 
 <br>
 $$\sum_{\alpha : 2^\mathbb{N}} \prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$$
+
+Type theoretically, we build a map
+
+$$
+\mathbb{N}_\infty 
+\to 
+\sum_{\alpha : 2^\mathbb{N}} \prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)
+$$
+
+TODO: finish this. Build the map, show it's an equivalence in the type theory. 
+That tells us it's an iso in the topos, thus an iso in Seq.
 
 <br>
 $\Omega$
@@ -556,6 +647,8 @@ topological algebras! We'll chat more about that in Part 2.
 <br>
 $\mathcal{U}$
 
+
+
 ---
 
 ## How does $\mathcal{T}$ relate to sheaf topoi $\mathsf{Sh}(X)$?
@@ -580,9 +673,9 @@ This is made precise at the end of Mac Lane and Moerdijk, Chapter VI.10.
 It's natural to ask for a similar relationship between $\mathsf{Sh}(X)$ 
 and $\mathcal{T} \big / X$ for a sequential space $X$. This is the subject of 
 Section 9 in Johnstone's original paper, where it's shown that there _is_ 
-a geometric morphism $\mathsf{Sh}(X) \to \mathcal{T} \big / X$, but this 
+a geometric morphism $\mathcal{T} \big / X \to \mathsf{Sh}(X)$, but this 
 relationship is somewhat less compelling than in the case of a more 
-traditional gros topos. For instance, the pullback along this morphism 
+traditional gros topos. For instance, the direct image half of this morphism 
 isn't exact, so that cohomology of $\mathcal{T} \big / X$ does not agree 
 with the cohomology of $\mathsf{Sh}(X)$. In particular, even for the (closed) 
 unit interval $I$ and a finite abelian group $A$ Johnstone shows that 
@@ -918,3 +1011,8 @@ $\lnot\lnot$-separated and sequentially hausdorff[^19]!
     But this sounds rather complicated, and I'm really looking to get this 
     blog post done, haha. Especially since I still have to convert it 
     into a paper!
+
+[^20]:
+    Basically because we have more probes $Y$. The usual $T_1$ condition 
+    for a sober space $X$ is equivalent to the localic $T_1$ condition 
+    restricted to domains $Y$ that are also sober spaces!
