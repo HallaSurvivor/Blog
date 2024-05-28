@@ -5,13 +5,6 @@ tags:
   - life-in-the-topological-topos
 ---
 
-TODO: What do "mere existentials" look like in $\mathcal{T}$? In a 
-sheaf topos it means something exists on each section of an open cover,
-but these might not glue into a _global_ section. Is there a similar 
-interpretation (maybe involving subsequences?) for $\mathcal{T}$?
-
-<br><br>
-
 I've been thinking a lot about the internal logic of topoi again, and I 
 want to have more examples of topoi that I understand well enough to 
 externalize some statements. There's more to life than just a localic 
@@ -475,98 +468,24 @@ Again, one can also ask about the points of the locale object
 are represented by $よ2^\mathbb{N}$, which is the same thing as 
 the internal $2^\mathbb{N}$ we just computed!
 
-<br>
-$T_1$ Locales
-
-More generally, we can ask about the models of any $T_1$ locale. 
-Recall that a locale $X$ is called $T_1$ if 
-"the specialization order is discrete" in a certain localic sense.
-Precisely, recall that the set of frame maps 
-$\mathcal{O}(X) \to \mathcal{O}(Y)$ is ordered by $f^* \leq g^*$ iff 
-for all $x$, $f^*(x) \leq g^*(x)$.
-
-Now we say that $X$ is $T_1$ if, for any pair of generalized
-elements $x_1,x_2: Y \to X$ with $x_1 \leq x_2$, we actually have 
-$x_1 = x_2$.
-
-Requiring this for generalized elements makes this condition slightly stronger 
-than the usual $T_1$ condition for (sober) spaces[^20], but every hausdorff 
-space is $T_1$ in this sense.
-
-Now, we prove an important claim: 
-
-<div class=boxed markdown=1>
-Let $X$ be a topological space which is $T_1$ as a locale. Then the 
-object of models of $X$ in $\mathcal{T}$ is represented by $よX$.
-</div>
-
-$\ulcorner$
-First, we'll show that the inclusion $\iota : \Sigma \hookrightarrow \Omega$ 
-admits a right adjoint $r$. Since $\Sigma$ and $\Omega$ are posets, it 
-suffices to check that $\iota$ preserves joins. Working in the site 
-whose only object is $$\mathbb{N}_\infty$$, we want to check this for 
-$$\Sigma(\mathbb{N}_\infty)$$ and $$\Omega(\mathbb{N}_\infty)$$.
-
-But for every sequence $x_n$ of $\top$s and $\bot$s, 
-$$\Sigma(\mathbb{N}_\infty)$$ has a unique proof that $x_n \to \bot$,
-and for every sequence which is eventually $\top$, there's a unique 
-proof that $x_n \to \top$. Moreover, we compute 
-$\bigvee_\alpha (x_n^\alpha \to x_\infty^\alpha)$ as 
-$(\bigvee_\alpha x_n^\alpha) \to (\bigvee_\alpha x_\infty^\alpha)$.
-
-And for every sequence $x_n$ of $\top$s and $\bot$s, 
-$$\Omega(\mathbb{N}_\infty)$$ has a unique proof that $x_n \to \bot$, 
-and the proofs that $x_n \to \top$ are indexed by the 
-"closed ideals of subsets" whose extent is $$\{n \mid x_n = \top \}$$.
-Here again a join of sequences is computed pointwise, but in case we converge 
-to $\top$ we choose the smallest closed ideal of subsets containing all the 
-ideals we're joining.
-
-Now a moment's thought shows that the inclusion $\iota : \Sigma \to \Omega$ 
-sends 
-
-- the unique proof in $\Sigma$ that $x_n \to \bot$ to the unique proof in 
-    $\Omega$ that $x_n \to \bot$
-- the unique proof in $\Sigma$ that $x_n \to \top$ (for $x_n$ eventually $\top$)
-    to the _maxmial_ proof in $\Omega$ that $x_n \to \top$. That is, 
-    the proof indexed by the ideal of _all_ infinite subsets of 
-    $$\{ n \mid x_n = \top \}$$
-
-So to show this embedding preserves joins we need to know that whenever 
-$x_n^\alpha$ are all eventually $\top$, the smallest ideal containing all 
-of the $$I_\alpha = \{ \text{infinite subsets of } \{n \mid x_n^\alpha = \top\} \}$$
-is the ideal of all infinite subsets of $$\bigcup \{n \mid x_n^\alpha = \top \}$$.
-
-
-<span style="float:right">$\lrcorner$</span>
-
-
-<br>
-$$\mathbb{R} \cong (-\infty,0] +_{\{0\}} [0,\infty)$$
-
-This is proposition 6.2 in Johnstone's paper. In $\mathsf{Seq}$ we know 
-we can write $\mathbb{R}$ as a union of the (finite family of) closed 
-subsets $(-\infty,0]$ and $[0,\infty)$. Then Proposition 6.2 says this 
-colimit is preserved in $\mathcal{T}$.
-
-This is interesting, because it tells us that LLPO holds in $\mathcal{T}$:
-
-$$\forall x : \mathbb{R} . (x \leq 0) \lor (x \geq 0)$$
-
 
 <br>
 $$\sum_{\alpha : 2^\mathbb{N}} \prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$$
 
-Type theoretically, we build a map
+Since $\prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$ is a proposition 
+for each $\alpha$, this $\Sigma$-type externalizes to the subobject of 
+$2^\mathbb{N}$ consisting of those $\alpha$s satisfying the proposition.
 
-$$
-\mathbb{N}_\infty 
-\to 
-\sum_{\alpha : 2^\mathbb{N}} \prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)
-$$
+After all, we can show the projection 
+$$\sum_{\alpha : 2^\mathbb{N}} \prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)
+\to 2^\mathbb{N}$$ is an embedding (in the type theoretic sense), 
+thus an injection (in the tyep theoretic sense), and thus externally a mono.
 
-TODO: finish this. Build the map, show it's an equivalence in the type theory. 
-That tells us it's an iso in the topos, thus an iso in Seq.
+TODO: why does this mono get the right topology?
+
+Classically we know that this space is homeomorphic to $$\mathbb{N}_\infty$$, 
+and thus, this is true in $\mathcal{T}$ too.
+
 
 <br>
 $\Omega$
@@ -646,6 +565,113 @@ topological algebras! We'll chat more about that in Part 2.
 
 <br>
 $\mathcal{U}$
+
+
+
+
+<br>
+$T_1$ Locales
+
+More generally, we can ask about the models of any $T_1$ locale. 
+Recall that a locale $X$ is called $T_1$ if 
+"the specialization order is discrete" in a certain localic sense.
+Precisely, recall that the set of frame maps 
+$\mathcal{O}(X) \to \mathcal{O}(Y)$ is ordered by $f^* \leq g^*$ iff 
+for all $x$, $f^*(x) \leq g^*(x)$.
+
+Now we say that $X$ is $T_1$ if, for any pair of generalized
+elements $x_1,x_2: Y \to X$ with $x_1 \leq x_2$, we actually have 
+$x_1 = x_2$.
+
+Requiring this for generalized elements makes this condition slightly stronger 
+than the usual $T_1$ condition for (sober) spaces[^20], but every hausdorff 
+space is $T_1$ in this sense.
+
+Now, we prove an important claim: 
+
+<div class=boxed markdown=1>
+Let $X$ be a topological space which is $T_1$ as a locale. Then the 
+object of models of $X$ in $\mathcal{T}$ is represented by $よX$.
+</div>
+
+$\ulcorner$
+First, we'll show that the inclusion $\iota : \Sigma \hookrightarrow \Omega$ 
+admits a right adjoint $r$. Since $\Sigma$ and $\Omega$ are posets, it 
+suffices to check that $\iota$ preserves joins. Working in the site 
+whose only object is $$\mathbb{N}_\infty$$, we want to check this for 
+$$\Sigma(\mathbb{N}_\infty)$$ and $$\Omega(\mathbb{N}_\infty)$$.
+
+But for every sequence $x_n$ of $\top$s and $\bot$s, 
+$$\Sigma(\mathbb{N}_\infty)$$ has a unique proof that $x_n \to \bot$,
+and for every sequence which is eventually $\top$, there's a unique 
+proof that $x_n \to \top$. Moreover, we compute 
+$\bigvee_\alpha (x_n^\alpha \to x_\infty^\alpha)$ as 
+$(\bigvee_\alpha x_n^\alpha) \to (\bigvee_\alpha x_\infty^\alpha)$.
+
+And for every sequence $x_n$ of $\top$s and $\bot$s, 
+$$\Omega(\mathbb{N}_\infty)$$ has a unique proof that $x_n \to \bot$, 
+and the proofs that $x_n \to \top$ are indexed by the 
+"closed ideals of subsets" whose extent is $$\{n \mid x_n = \top \}$$.
+Here again a join of sequences is computed pointwise, but in case we converge 
+to $\top$ we choose the smallest closed ideal of subsets containing all the 
+ideals we're joining.
+
+Now a moment's thought shows that the inclusion $\iota : \Sigma \to \Omega$ 
+sends 
+
+- the unique proof in $\Sigma$ that $x_n \to \bot$ to the unique proof in 
+    $\Omega$ that $x_n \to \bot$
+- the unique proof in $\Sigma$ that $x_n \to \top$ (for $x_n$ eventually $\top$)
+    to the _maxmial_ proof in $\Omega$ that $x_n \to \top$. That is, 
+    the proof indexed by the ideal of _all_ infinite subsets of 
+    $$\{ n \mid x_n = \top \}$$
+
+So to show this embedding preserves joins we need to know that whenever 
+$x_n^\alpha$ are all eventually $\top$, the smallest ideal containing all 
+of the $$I_\alpha = \{ \text{infinite subsets of } \{n \mid x_n^\alpha = \top\} \}$$
+is the ideal of all infinite subsets of $$\bigcup \{n \mid x_n^\alpha = \top \}$$.
+
+So let $S$ be an infinite subset of $$\bigcup \{n \mid x_n^\alpha = \top \}$$.
+If we can find a further infinite subset $T \subseteq S$ with $T$ in one 
+of the $I_\alpha$s, we'll be done. But for any fixed $\alpha_0$,
+$S \cap \{n \mid x_n^{\alpha_0} = \top \}$ is an infinite subset of $S$ 
+contained in $I_{\alpha_0}$ (since this is the intersection of an infinite 
+set $S$ with a cofinite set). As desired.
+
+So then the embedding $\iota : \Sigma \to \Omega$ preserves joins, 
+and has a right adjoint.
+
+<br>
+
+Now for a clever idea taken from Moerdijk and Reyes. The adjunction 
+$\iota \dashv r$
+between the frames $$\Sigma(\mathbb{N}_\infty)$$ and $$\Omega(\mathbb{N}_\infty)$$
+induces an adjunction $$\iota_* \dashv r_*$$ between 
+$$\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Sigma(\mathbb{N}_\infty))$$ and 
+$$\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Omega(\mathbb{N}_\infty))$$.
+
+Then the unit and counit of this adjunction give inequalities 
+$$\text{id} \leq r_* \iota_*$$ and $$\iota_* r_* \leq \text{id}$$,
+which must actually be _equalities_ since $X$ was assumed to be $T_1$!
+
+So $$\iota_*$$ and $$r_*$$ are an isomorphism
+
+$$
+\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Sigma(\mathbb{N}_\infty))
+\cong
+\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Omega(\mathbb{N}_\infty)).
+$$
+
+But one easily computes that 
+$$\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Sigma(\mathbb{N}_\infty)) 
+\cong よX(\mathbb{N}_\infty)$$ and if $X^\mathcal{T}$ is the object 
+of points of $X$ (as computed in $\mathcal{T}$) then 
+$$\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Omega(\mathbb{N}_\infty))
+\cong X^\mathcal{T}(\mathbb{N}_\infty)$$.
+
+So then $$\iota_*$$ and $$r_*$$ are the desired natural isomorphism 
+between $X^\mathcal{T}$ and $よX$.
+<span style="float:right">$\lrcorner$</span>
 
 
 
