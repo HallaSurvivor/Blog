@@ -476,14 +476,90 @@ but $\mathcal{T} \lnot \models \text{WLPO}$!
 
 ## Bar and Fan Theorems
 
-TODO: write this. Mention that it lets us separate $\mathcal{T}$ 
-from the "topological topoi" of Moerdijk and Reyes, since they all 
-model the fan theorem, while $\mathcal{T}$ doesn't. 
+The Bar and Fan theorems are closely related to the nice properties of 
+baire space and cantor space (respectively) as _spaces_ rather than as 
+locales. The locales are always well behaved, but in some topoi these 
+locales fail to have enough points, so that the baire space and cantor space 
+as sets of points may be lacking.
 
-This also tells us that the locale of reals in $\mathcal{T}$ equaling 
-the space $\mathbb{R}$ is kind of an accident. There are lots of locales 
-which are _not_ represented by their (external) space!
+Since we showed in Part 1 that spatial sequential $T_1$ locales always have 
+enough points in $\mathcal{T}$, we see that baire space and cantor space 
+both have enough points! By Propositions 3.12 and 3.13 in van den Berg and 
+Moerdijk's 
+[_Derived rules for predicative set theory: An application of sheaves_][63] 
+we see that the Monotone Bar Theorem and the Full Fan Theorem hold in 
+$\mathcal{T}$.
 
+This is also the _best we can do_. Since the Full Bar Theorem is known to 
+imply LPO, and $\mathcal{T} \not \models \mathsf{LPO}$ we know that 
+we can't improve the monotone bar theorem to the full bar theorem in $\mathcal{T}$.
+
+<div class=boxed markdown=1>
+As a not-so-hard exercise, verify the _decidable_ fan theorem by hand!
+That is, prove 
+
+$$
+\mathcal{T} \models 
+\forall (B : 2^{\lt \mathbb{N}} \to 2) . 
+\ulcorner B \text{ is a monotone bar} \urcorner 
+\to 
+\ulcorner B \text{ is uniform} \urcorner
+$$
+
+Or, entirely in symbols, prove
+
+$$ 
+\mathcal{T} \models 
+\forall (B : 2^{\lt \mathbb{N}} \to 2) . 
+\left ( 
+    \begin{array}{c}
+        \underbrace
+        {
+            \forall s : 2^{\lt \mathbb{N}} . s \in B \to (s0 \in B \land s1 \in B)
+        }_{\text{$B$ is monotone}} \\
+        \land \quad
+        \underbrace
+        {
+            \forall \alpha : 2^\mathbb{N} . \exists n : \mathbb{N} . 
+            \alpha \! \upharpoonright_n \in B
+        }_{\text{$B$ is a bar}}
+    \end{array}
+\right )
+\to
+\Big (
+    \underbrace
+    {
+        \exists N : \mathbb{N} . \forall \alpha : 2^\mathbb{N} . 
+        \alpha \! \upharpoonright_N \in B
+    }_{\text{$B$ is a uniform bar}}
+\Big )
+$$
+
+Note that $B : 2^{\lt \mathbb{N}} \to 2$ is a _decidable_ subset of 
+$2^{\lt \mathbb{N}}$. To prove the _full_ bar theorem you would want to 
+prove the same theorem for all subsets of $2^{\lt \mathbb{N}}$. That is, 
+for $B : 2^{\lt \mathbb{N}} \to \Omega$.
+
+As a ~bonus exercise~, use what you know about 
+discrete topological spaces and subobjects in $\mathcal{T}$ to argue that a 
+semantic proof of this theorem is easily modified to give a proof of 
+the full bar theorem.
+</div>
+
+<details>
+<summary>discussion of the ~bonus exercise~</summary>
+
+The idea here is that a general subobject of a sequential space X is a 
+subset of the points of X equipped with some topology making the inclusion 
+continuous.
+
+A decidable subobject is a clopen subset of the points of $X$ equipped with the 
+induced topology (do you see why?).
+
+Of course, since $2^{\lt \mathbb{N}}$ is discrete, it's not hard to see that
+_every_ subobject is decidable! This means in proving the theorem for 
+decidable subobjects you've actually proven the theorem for _all_ subobjects!
+</details>
 
 ---
 
@@ -746,6 +822,7 @@ As desired.
 [60]: http://arxiv.org/abs/2104.10399
 [61]: https://en.wikipedia.org/wiki/Bar_induction
 [62]: https://ncatlab.org/nlab/show/injective+object
+[63]: https://www.sciencedirect.com/science/article/pii/S0168007212000292
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
