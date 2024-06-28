@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 
+title: Topological Topos 3 -- Bonus Axioms
 tags:
-  - 
+  - life-in-the-topological-topos
 ---
 
 In the first post of the series, we talked about what the topological 
@@ -25,49 +25,50 @@ Let's get to it!
 
 ---
 
-FIrst, let's take a second to recall the definition of the grothendieck 
+First, let's take a second to recall the definition of the grothendieck 
 topology $J$ for $\mathcal{T}$. We're going to be externalizing a lot 
 of theorems, and it'll be good to have the open cover condition on hand.
-You can read more about this condition in Section 3 of Johnstone's original 
-paper. 
+Here's what we wrote back in [the first post][64], but you can of course 
+read more in Section 3 of Johnstone's original paper.
 
-For the site with two objects, $$\{1, \mathbb{N}_\infty\}$$, 
-every (nonempty) family of arrows $$\{X_\alpha \to 1 \}$$ is covering. 
-So the interesting question is what a covering family of $$\mathbb{N}_\infty$$ 
-looks like.
-
-If $S$ is an infinite subset of $\mathbb{N}$, we write $f_S$ for the unique 
-monotone map $$\mathbb{N}_\infty \to \mathbb{N}_\infty$$ whose image is 
-$$S \cup \{ \infty \}$$.
-
-<div class=boxed markdown=1>
-A family $$\{X_\alpha \to \mathbb{N}_\infty\}$$ is covering if and only if 
-both
-
-1. It contains every constant map $$1 \to \mathbb{N}_\infty$$
-2. For every infinite $T \subseteq \mathbb{N}$, there is a further 
-infinite subset $S \subseteq T$ with 
-$$f_S : \mathbb{N}_\infty \to \mathbb{N}_\infty$$ in the family
-
-In particular, if a family contains every constant map 
-$$1 \to \mathbb{N}_\infty$$ and a "tail of an infinite sequence" 
-$$f_{\{x \geq N\}}$$ for some $N$, then that family is covering.
-</div>
-
-So, roughly, to prove that something "merely exists" in $\mathcal{T}$, we 
-have to provide a witness for every $n$, and these witnesses should 
-converge to a the witness for $\infty$.
-
-<br><br>
-
-If instead we want to use the site with one object $$\{ \mathbb{N}_\infty \}$$, 
-then a family of maps is covering if and only if both
-
-1. every constant map $$\mathbb{N}_\infty \to \mathbb{N}_\infty$$ is in the family
-2. For each infinite $T \subseteq \mathbb{N}$, there's a further infinite 
-$S \subseteq T$ so that $f_S$ is in the family.
-
-This, unsurprisingly, doesn't make too much difference.
+> For the site with two objects, $$\{1, \mathbb{N}_\infty\}$$, 
+> every (nonempty) family of arrows $$\{X_\alpha \to 1 \}$$ is covering. 
+> So the interesting question is what a covering family of $$\mathbb{N}_\infty$$ 
+> looks like.
+> 
+> If $S$ is an infinite subset of $\mathbb{N}$, we write $f_S$ for the unique 
+> monotone map $$\mathbb{N}_\infty \to \mathbb{N}_\infty$$ whose image is 
+> $$S \cup \{ \infty \}$$.
+> 
+> <div class=boxed markdown=1>
+> A family $$\{X_\alpha \to \mathbb{N}_\infty\}$$ is covering if and only if 
+> both
+> 
+> 1. It contains every constant map $$1 \to \mathbb{N}_\infty$$
+> 2. For every infinite $T \subseteq \mathbb{N}$, there is a further 
+> infinite subset $S \subseteq T$ with 
+> $$f_S : \mathbb{N}_\infty \to \mathbb{N}_\infty$$ in the family
+> 
+> In particular, if a family contains every constant map 
+> $$1 \to \mathbb{N}_\infty$$ and a "tail of an infinite sequence" 
+> $$f_{\{x \geq N\}}$$ for some $N$, then that family is covering.
+> </div>
+> 
+> So, roughly, to prove that something "merely exists" in $\mathcal{T}$, we 
+> have to provide a witness for every finite $n$, and these witnesses should 
+> converge to the witness for $\infty$.
+> 
+> <br><br>
+> 
+> If we want to use the site with one object $$\{ \mathbb{N}_\infty \}$$, 
+> the condition is almost exactly the same. A family of maps is covering 
+> if and only if both
+> 
+> 1. every constant map $$\mathbb{N}_\infty \to \mathbb{N}_\infty$$ is in the family
+> 2. For each infinite $T \subseteq \mathbb{N}$, there's a further infinite 
+> $S \subseteq T$ so that $f_S$ is in the family.
+> 
+> This, unsurprisingly, doesn't make too much difference.
 
 ---
 
@@ -823,6 +824,7 @@ As desired.
 [61]: https://en.wikipedia.org/wiki/Bar_induction
 [62]: https://ncatlab.org/nlab/show/injective+object
 [63]: https://www.sciencedirect.com/science/article/pii/S0168007212000292
+[64]: /2024/04/04/life-in-johnstones-topological-topos.html
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)

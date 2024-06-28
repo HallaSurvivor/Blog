@@ -29,12 +29,12 @@ is a set $X$ equipped with some ~bonus structure~. This structure can take a
 lot of forms, but one ubiquitous example is that of a _topology_ 
 $\tau \subseteq \mathcal{P}(X)$.
 
-Then if you want to work with spaces, you have to constantly say explicitly 
-what topology you're working with. After all, there's _lots_ of topologies 
+Then if you want to work with spaces, you have to constantly keep track of 
+what topology you're working with. For example, there's _lots_ of topologies 
 you can put on $X \times Y$, and we need to make sure we choose the 
 _right one_ to act like the product of the _spaces_ $(X,\tau)$ and $(Y,\sigma)$.
 
-Nowadays the "right" topology is usually obvious[^4], but this is only because 
+Nowadays the "right" topology is usually "obvious[^4]", but this is only because 
 we're able to stand on the shoulders of countless 20th century mathematicians!
 I think most people would be hard-pressed to come up with, say, the 
 [compact-open topology][28] if they hadn't seen it before!
@@ -42,40 +42,42 @@ I think most people would be hard-pressed to come up with, say, the
 Of course, carrying around this ~bonus structure~ becomes most pronounced 
 when working with continuous maps! Now, instead of just defining a function 
 and moving on with your life, we're constantly burdened to check that our 
-function $X \to Y$ actually respects the topologies involved to be a 
-_continuous_ function $(X,\tau) \to (Y, \sigma)$! There are some friends 
+function $X \to Y$ actually respects the topologies involved! Otherwise it 
+isn't a _continuous_ function $(X,\tau) \to (Y, \sigma)$! There are some friends 
 of mine who are constantly complaining that algebraic topologists never check 
 that things are continuous, and honestly I'm sympathetic. But it can be 
 a real hassle to check these things all the time... 
 
-Of course... There's a better way!
+But there's a better way!
 
-As we said before, objects in $\mathcal{T}$ are _intrinsically_ spaces! 
+Every set in $\mathcal{T}$ is, by its very nature, a space!
 There's no need to choose the "right" topology, or to check that your 
 function is "continuous". Inside $\mathcal{T}$, it's _literally impossible_ 
 to write down a function that isn't continuous, because there's no 
-~bonus structure~ to respect! 
+~bonus structure~ to respect! This is what we mean when we say the 
+topology is _intrinsic_.
 
-<div class=boxed markdown=1>
-TODO: put a picture here of someone saying like "it's impossible" 
-or something. I think that'll help break up the wall of text
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/life-in-johnstones-topological-topos/dont-try.gif" width="50%">
+</p>
 
-This is great for a couple reasons. First, it tells us that anything we 
-construct using type theory can be thought of as being, automatically, 
-some kind of "space". Understanding this relationship between types and 
+This is great for a couple reasons. First, say you build a type $X$ in 
+[MLTT][61]. We know how to interpret MLTT in any topos, so by interpreting 
+$X$ in $\mathcal{T}$ we learn that our type $X$ is automatically a space!
+Understanding this relationship between types and 
 topology has been a staple in many people's careers, but I want to single 
 out [Martín Escardó][5] as someone whose papers I've been reading lately 
 (and who I talk to fairly often on [mastodon][6]). These conversations were 
-part of the reason I decided to spend some time trying to understand $\mathcal{T}$.
+a big part of the reason I decided to spend some time trying to understand $\mathcal{T}$.
 
-Second, this tells us that any theorem we're able to prove [constructively][7]
-is automatically true "continuously", and gives us a theorem for 
+Second, by the same logic, any theorem we're able to prove [constructively][7]
+is automatically true in $\mathcal{T}$. That is, any constructive theorem 
+is automatically true "continuously", giving us a theorem for 
 _topological_ structures! Of course, in order to _use_ these theorems, we 
 need to understand how objects inside the topological topos $\mathcal{T}$ 
-externalize to give honest topological spaces in "the real world"[^6]. 
+relate to honest topological spaces in "the real world"[^6]. 
 
-Of course, in the process of trying to understand $\mathcal{T}$, I had to 
+In the process of learning about $\mathcal{T}$, I had to 
 work out a bunch of examples, which I'd love to share! Even though all of this 
 is probably "well known to experts", I found a lot of it pretty hard to find, 
 so hopefully this blog post is still useful for people ^_^.
@@ -102,7 +104,7 @@ $$\{1, \mathbb{N}_\infty \}$$. This becomes a site if we give it the
 $\mathcal{T}$ to be sheaves on this site.
 </div>
 
-We'll motivate this definition in a 
+We'll say more about this definition in a 
 minute, but first let's see how we can picture objects of $\mathcal{T}$.
 
 A presheaf on this site is a pair of sets $X(1)$ and $X(\mathbb{N}_\infty)$ 
@@ -167,13 +169,13 @@ two sheaves?
 
 <br>
 
-Of course, every topological space $X$ gives an object 
-$よX = \mathsf{Top}(-,X)$ in the topos[^10], where of course 
+Now every topological space $X$ gives an object 
+$よX = \mathsf{Top}(-,X)$ in the topos[^10], where 
 $よX(1) = X$ and 
 $$よX(\mathbb{N}_\infty) = 
 \{ \text{continuous functions } f : \mathbb{N}_\infty \to X \}$$. 
-That is, underlying set of $よX$ is exactly the underlying set of $X$,
-and for every convergent sequence in $X$ we add a unique proof that that 
+That is, the underlying set of $よX$ is exactly the underlying set of $X$,
+and for every convergent sequence in $X$ there is a unique proof that that 
 sequence converges (represented by the sequence itself).
 
 If we restrict attention to the full subcategory of [sequential spaces][9],
@@ -181,7 +183,7 @@ then $よ$ is a fully faithful embedding into $\mathcal{T}$. This shouldn't be
 too surprising, since the sequential spaces are exactly those spaces whose 
 topologies are determined by a knowledge of which sequences converge!
 
-You should think of this is a _super_ mild condition, since lots of 
+Importantly, you should think of this is a _super_ mild condition, since lots of 
 natural spaces of interest are sequential. Just to name a few:
 
 - all metric spaces 
@@ -189,9 +191,10 @@ natural spaces of interest are sequential. Just to name a few:
 - every [CW-complex][37]
 - every noetherian [ring spectrum][38]
 
-We'll say more about this later, but for now just know that for a _huge_
-class of spaces, we can work with them in $\mathcal{T}$ just as well as 
-in $\mathsf{Top}$.
+This tells us that a _huge_ subcategory of topological spaces embeds fully 
+faithfully into $\mathcal{T}$! Later we'll say more about how computations in 
+$\mathcal{T}$ translate to computations in the real world, but this is a good 
+first indication that they should be closely related!
 
 <br><br>
 
@@ -229,19 +232,19 @@ same sequence!
 
 <br>
 
-Of course, how do we _know_ that these two definitions agree? I wasn't 
+But how do we _know_ that these two definitions agree? I wasn't 
 able to find this written down anywhere, but it's easy to check
 for ourselves!
 
 The key observation is that $$\{ \mathbb{N}_\infty \}$$ is a 
-[dense subsite][8] of $$\{ \mathbb{N}_\infty, 1 \}$$. Here, of course, 
+[dense subsite][8] of $$\{ \mathbb{N}_\infty, 1 \}$$. Here
 I'm using set-builder notation to mean a full subcategory of $\mathsf{Top}$ equipped 
 with the canonical topology.
 
 $\ulcorner$
 Indeed, to check this, we only need to show that every object in 
 $$\{ \mathbb{N}_\infty, 1 \}$$ is covered by maps with domain in 
-$$\{ \mathbb{N}_\infty \}$$. But, of course, the identity function 
+$$\{ \mathbb{N}_\infty \}$$. But the identity function 
 $$\mathbb{N}_\infty \to \mathbb{N}_\infty$$ covers, and the unique map 
 $$\mathbb{N}_\infty \to 1$$ covers too. 
 
@@ -252,6 +255,47 @@ induced by the inclusion is an equivalence.
 
 In particular, the two common definitions really _do_ agree!
 <span style="float:right">$\lrcorner$</span>
+
+Lastly, what _is_ the <span class=defn>Canonical Topology</span>?
+
+For the site with two objects, $$\{1, \mathbb{N}_\infty\}$$, 
+every (nonempty) family of arrows $$\{X_\alpha \to 1 \}$$ is covering. 
+So the interesting question is what a covering family of $$\mathbb{N}_\infty$$ 
+looks like.
+
+If $S$ is an infinite subset of $\mathbb{N}$, we write $f_S$ for the unique 
+monotone map $$\mathbb{N}_\infty \to \mathbb{N}_\infty$$ whose image is 
+$$S \cup \{ \infty \}$$.
+
+<div class=boxed markdown=1>
+A family $$\{X_\alpha \to \mathbb{N}_\infty\}$$ is covering if and only if 
+both
+
+1. It contains every constant map $$1 \to \mathbb{N}_\infty$$
+2. For every infinite $T \subseteq \mathbb{N}$, there is a further 
+infinite subset $S \subseteq T$ with 
+$$f_S : \mathbb{N}_\infty \to \mathbb{N}_\infty$$ in the family
+
+In particular, if a family contains every constant map 
+$$1 \to \mathbb{N}_\infty$$ and a "tail of an infinite sequence" 
+$$f_{\{x \geq N\}}$$ for some $N$, then that family is covering.
+</div>
+
+So, roughly, to prove that something "merely exists" in $\mathcal{T}$, we 
+have to provide a witness for every finite $n$, and these witnesses should 
+converge to the witness for $\infty$.
+
+<br><br>
+
+If we want to use the site with one object $$\{ \mathbb{N}_\infty \}$$, 
+the condition is almost exactly the same. A family of maps is covering 
+if and only if both
+
+1. every constant map $$\mathbb{N}_\infty \to \mathbb{N}_\infty$$ is in the family
+2. For each infinite $T \subseteq \mathbb{N}$, there's a further infinite 
+$S \subseteq T$ so that $f_S$ is in the family.
+
+This, unsurprisingly, doesn't make too much difference.
 
 ---
 
@@ -350,12 +394,16 @@ we have $fx_n \to fx$.
 Every sequential topological space is automatically a limit space, where we 
 just let the convergent sequences be the (topologically) convergent sequences.
 Moreover, there's a fully faithful embedding of limit spaces into $\mathcal{T}$ 
-where we let $X(1) = X$ and $$X(\mathbb{N}_\infty)$$ be the set of converget 
+where we let $X(1) = X$ and $$X(\mathbb{N}_\infty)$$ be the set of convergent 
 sequences in $X$. 
 
-TODO: decide if you want to include the definition of the coverings, 
-and verify (or leave as an exercise) that this embedding really gives us 
-a _sheaf_... Cf also footnote[^8].
+<div class=boxed markdown=1>
+As a (not so tricky) exercise, you might want to verify that this 
+map from $\mathsf{Kur}$ to presheaves is actually always a _sheaf_.
+
+This basically amounts to comparing axiom (3) for limit spaces to 
+the definition of a cover of $$\mathbb{N}_\infty$$.
+</div>
 
 Taken together, we have fully faithful embeddings 
 
@@ -367,26 +415,53 @@ In fact, Johnstone's original paper shows that $\mathsf{Kur}$ is the
 quasitopos of $\lnot \lnot$-separated sheaves in $\mathcal{T}$! Thus 
 the embedding $\mathsf{Kur} \hookrightarrow \mathcal{T}$ admits a 
 finite product preserving left adjoint, and the locally cartesian closed 
-structure of $\mathsf{Kur}$ agrees with that of $\mathcal{T}$. 
+structure of $\mathsf{Kur}$ agrees with that of $\mathcal{T}$ 
+(see A1.5.9 in the elephant).
 
 Concretely, this left adjoint takes an object of $\mathcal{T}$ and 
-fogets _how_ a sequence converges, only remembering _which_ sequences 
-converge! Said another way, it identifies any proofs $p$ and $q$ with 
+fogets _how_ a sequence converges, only remembering _that_ it converges!
+Said another way, it identifies any proofs $p$ and $q$ with 
 $p_n = q_n$ for all $$n \in \mathbb{N}_\infty$$.
 
-Moreover, one can show that the embedding 
+Moreover, the embedding 
 $\mathsf{Seq} \hookrightarrow \mathsf{Kur}$ _also_ admits a finite product 
-preserving left adjoint! This takes a limit space $X$ and gives it a 
-topology whose open sets are sets $U$ so that every sequence converging to 
-a point in $U$ is eventually in $U$. It's not obvious that this reflector 
-preserves finite products, but you can find a proof as proposition 3.1 in 
-Menni and Simpson's 
+preserving left adjoint! 
+
+We say a subset $U \subseteq X$ is 
+<span class=defn>Sequentially Open</span> if whenever $x_n \to a \in U$,
+some tail of $x_n$ is entirely contained in $U$. It's easy to see that the 
+set of sequential open subsets forms a topology on $X$, and indeed our 
+reflector sends a limit space $$(X,\{\text{convergent sequences}\})$$ to 
+the sequential space $$(X,\{\text{sequential opens}\})$.
+This functor moreover preserves finite products[^21], which is 
+Proposition 3.1 in Menni and Simpson's 
 [_Topological and limit-space subcategories of countably-based equilogical spaces_][57][^18].
 
-Thus, given any object $X \in \mathcal{T}$, we get an honest-to-goodness 
-topological space by reflecting it into $\mathsf{Seq}$! This space has 
-$X(1)$ as its set of points, and a subset of $X(1)$ is open exactly when 
-it's "sequentially open" (as in the last paragraph).
+Also, notice that this reflection possibly adds new convergent sequences.
+Maybe our limit space $X$ knows about some convergent sequences, but once 
+we actually build a topology to make these sequences converge in the 
+usual sense, there might accidentally be _more_ convergent sequences 
+than we started with! 
+
+Conversely, the subobjects of a space $X \in \mathcal{T}$ come from taking 
+a subset of the points and a subset of the convergent sequences. So we 
+see this is exactly what the kuratowski limit spaces _are_! They're the 
+subobjects of sequential spaces, where we may have forgotten about 
+certain sequences that "would converge" if we still had our open sets.
+
+In general, we can think of objects in $\mathsf{Seq}$ as honest spaces, 
+with points and all the convergent sequences that should exist. Objects in 
+$\mathsf{Kur}$ are almost honest spaces, we just might have forgotten 
+about a few convergent sequences that "should" be there if we remembered 
+the whole topology. But there's still only "one way" for any given sequence 
+to converge. Objects in $\mathcal{T}$ are like spaces which might have 
+forgotten some convergent sequences, _and_ which have ~bonus data~ attached 
+to them giving multiple inequivalent proofs that these sequences converge!
+
+But this intuitive picture tells us how to get an honest space from your 
+favorite object $X \in \mathcal{T}$! We take $X(1)$ as our set of points, 
+and a subset of $X(1)$ is open exactly when it's sequentially open, forgetting 
+the data of the multiple proofs of convergence.
 
 The fact that the reflectors preserve finite products tells us that the 
 $\mathsf{Seq}$ and $\mathsf{Kur}$ are [exponential ideals][58] in $\mathcal{T}$.
@@ -395,6 +470,11 @@ closed structure!
 It's not hard to see the embeddings $\mathsf{Seq} \hookrightarrow \mathsf{Kur}$ 
 and $\mathsf{Kur} \hookrightarrow \mathcal{T}$ preserve coproducts, so that 
 we get the promised embeddings of bicartesian closed categories.
+
+Lastly, the cartesian closed structure on $\mathsf{Seq}$ is the one you 
+would expect from viewing it as a "convenient category of spaces". The 
+exponential is (usually) the compact-open topology! We'll say more about 
+the subtleties later.
 
 <br><br>
 
@@ -405,7 +485,7 @@ $\mathsf{Top}$, $\mathsf{Seq}$, and $\mathcal{T}$.
 First, fully faithful functors reflect isomorphisms, so if we can prove 
 in $\mathcal{T}$ that two spaces are isomorphic, it means they must 
 be isomorphic in $\mathsf{Seq}$ too. But then _all_ functors preserve 
-isomorphics, so that we get an isomorphism in $\mathsf{Top}$ too! 
+isomorphisms, so that we get an isomorphism in $\mathsf{Top}$ too! 
 Thus, we can show two sequential spaces are homeomorphic by working 
 entirely in $\mathcal{T}$!
 
@@ -416,7 +496,7 @@ detect every homeomorphism just by working in $\mathcal{T}$.
 
 Similarly, if $A \hookrightarrow B$ is monic in $\mathsf{Top}$, 
 then it's also a mono in $\mathsf{Seq}$ (since faithful functors reflect monos).
-Then since right adjoints preserve monics, we get $A \hookrightarrow B$ 
+Since right adjoints preserve monics, we get $A \hookrightarrow B$ 
 in $\mathcal{T}$, so that anything we "expect" to be a subobject in 
 $\mathcal{T}$ actually is. 
 
@@ -437,58 +517,147 @@ This is great and all, but the only way to _really_ get some intuition for
 how computations in $\mathcal{T}$ relate to computations in $\mathsf{Top}$ 
 is to actually _do some computation and check_! So let's do that!
 
-$\mathbb{R}$
-
-There's an object $よ\mathbb{R} = \text{Hom}_\mathsf{Top}(-,\mathbb{R})$ 
-in $\mathcal{T}$ since $\mathbb{R}$ is a separable space. But usually when 
-people talk about a "real numbers object" in a topos, they mean the object 
-of dedekind reals (points of a certain locale).
-
-It turns out that in $\mathcal{T}$ this distinction doesn't matter! 
-Johnstone's original paper computes that the object of points of 
-the theory of dedekind reals is exactly the object $よ\mathbb{R}$!
-
-We won't show this here because we'll show something more general 
-in just a few bullets!
+Let's start with a few important types representing various kinds of 
+proposition! These will be important for building new types later, and 
+for understanding how to externalize them.
 
 <br>
-$2^\mathbb{N}$
+$2$
 
-Since $2$ and $\mathbb{N}$ are both sequential, their exponential in 
-$\mathcal{T}$ agrees with their exponential in $\mathsf{Seq}$. Since 
-$2$ and $\mathbb{N}$ are moreover second countable, $2^\mathbb{N}$ gets 
-the compact open topology. 
+This is the discrete space with two points $$\{\top,\bot\}$$. This is 
+sequential (every finite space is), so behaves exactly as you would expect. 
+Note that the convergent sequences are all eventually constant!
 
-Now, in the realm of classical topology, since $\mathbb{N}$ is discrete 
-the compact open topology on $2^\mathbb{N}$ is just the product topology, 
-so we get cantor space (as expected!)
+We think of maps $X \to 2$ as being <span class=defn>Decidable Propositions</span>.
+These classify the clopen subsets of $X$, and thus are quite rare. Notice 
+that in $\mathcal{T}$, $2$ doesn't form a complete lattice! It has finite 
+joins and meets, of course, we can can build the continuous functions 
+$\land, \lor : 2 \times 2 \to 2$ quite easiliy. Thinking of $2$ as classifying 
+clopen subobjects, this corresponds to the fact that a finite union/intersection
+of clopen sets is clopen. Indeed, if $A,B \subset X$ are clopen, classified 
+by maps $\chi_A, \chi_B : X \to 2$, then the map 
+$\lambda (x:X). \chi_A(x) \land \chi_B(x) \ : X \to 2$ classifies exactly 
+$A \cap B$.
 
-Again, one can also ask about the points of the locale object 
-"cantor space". And again, we find that the points of this locale 
-are represented by $よ2^\mathbb{N}$, which is the same thing as 
-the internal $2^\mathbb{N}$ we just computed!
+This tells us immediately that $2$ cannot have countable joins/meets. We can 
+see this via continuity, since the map $\bigwedge : 2^\mathbb{N} \to 2$ with 
+$\bigvee \alpha = 
+\begin{cases} 
+\top & \forall n . \alpha(n) = \top \\ 
+\bot & \text{otherwise} \end{cases}$ 
+is not continuous! (and neither is $\bigvee$. In both cases, do you see why?)
+
+We can instead see this by thinking of $2$ as classifying clopen subsets, 
+since if $\bigwedge$ or $\bigvee$ existed, we could use them with 
+classfiying maps to show the countable intersection/union of clopen sets is 
+clopen. But of course we know this is false!
+
+As a last aside, it's not hard to see that $2$ being countably complete 
+corresponds exactly to the _Weak Limited Principle of Omniscience_ (WLPO),
+so that this shows $\mathcal{T} \not \models \text{WLPO}$. We'll talk more 
+about omniscience principles in [part 3][62], but it's nice to mention.
+
+<br>
+$\Sigma$
+
+This is the sierpinski space, which also has two points $$\{\top,\bot\}$$, 
+but with the topology $$\{\emptyset, \{\top\}, \Sigma \}$$. This is 
+sequential (every finite space is), where _every_ sequence converges to 
+$\bot$ and the sequences converging to $\top$ are only the eventually 
+constantly $\top$ ones.
+
+We think of $\Sigma$ as the space of <span class=defn>Open Propositions</span>,
+since maps $X \to \Sigma$ classify the open subspaces of $X$. By the same 
+logic as before, it's easy to show that $\Sigma$ is a lattice with 
+finite meets and joins (indeed, we can build the maps $\lor$ and $\land$ 
+using the yoneda lemma in $\mathsf{Seq}$ knowing that open subspaces 
+are closed under finite unions and intersections).
+
+A similar yoneda argument shows that $\Sigma$ is a complete lattice, 
+since homs into $\Sigma$ are open subspaces, and arbitrary unions of 
+opens are open, so these operations must be represented by joins $\bigvee$ 
+on $\Sigma$. But it's kind of fun to show directly that
+$\bigvee : \Sigma^\mathbb{N} \to \Sigma$ is continuous 
+(and more generaly from $\Sigma^\kappa \to \Sigma$ for any cardinal $\kappa$).
+
+As a cute aside, this tells us that $\Sigma$ must be closed under arbitrary 
+meets as well... But of course, the arbitrary intersection of open subspaces 
+isn't open. What's going on there?
 
 
 <br>
-$$\sum_{\alpha : 2^\mathbb{N}} \prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$$
+$\Sigma^c$
 
-Since $\prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$ is a proposition 
-for each $\alpha$, this $\Sigma$-type externalizes to the subobject of 
-$2^\mathbb{N}$ consisting of those $\alpha$s satisfying the proposition.
+This is the "co-sierpinski space". It has two points $$\{\top, \bot\}$$ but 
+the topology is $$\{\emptyset, \{\bot\}, \Sigma^c\}$$. Again it's sequential, 
+but now we see that every sequence converges to $\top$, while only the 
+eventually constant $\bot$ sequences converge to $\bot$.
 
-After all, we can show the projection 
-$$\sum_{\alpha : 2^\mathbb{N}} \prod_{n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)
-\to 2^\mathbb{N}$$ is an embedding (in the type theoretic sense), 
-thus an injection (in the tyep theoretic sense), and thus externally a mono.
+Unsurprisingly, this is the space of <span class=defn>Closed Proposition</span>,
+and maps into $\Sigma^c$ classify closed subspaces of $X$. The same logic as 
+before shows $\Sigma^c$ is a complete lattice, but now we have direct access 
+to $\bigwedge$, since closed subspaces are closed under arbitrary intersection!
 
-TODO: why does this mono get the right topology?
 
-Classically we know that this space is homeomorphic to $$\mathbb{N}_\infty$$, 
-and thus, this is true in $\mathcal{T}$ too.
+<br>
+$\nabla 2 = \Omega_{\lnot \lnot}$
 
+At this point you know what's going on. This space has two points, 
+$$\{\top, \bot\}$$ with the indiscrete topology (the only opens are 
+$\emptyset$ and $\nabla 2$), so here every sequence coverges to both 
+$\top$ and $\bot$.
+We think of this as the space of all "classical" propositions, since a 
+map $X \to \nabla 2$ is exactly the same thing as a "classical" subspace 
+of $X$. That is, a subset of the points equipped with the induced topology.
+
+This interpretation also makes it more believable that it should correspond 
+to $\Omega_{\lnot \lnot}$, the double-negation closed propositions, as this 
+does represent the "classical" propositions, where we really care about 
+subsets of points (which are complemented, so satisfy LEM), and then take 
+whatever topology makes the universal propety work (which happens to be the 
+subspace topology).
+
+Notice that this is again a complete lattice. We can see this either 
+because $\nabla 2$ is indiscrete, so every function into it is continuous 
+(in particular, the arbitrary join/meet functions are continuous), or by 
+using yoneda again (since arbitrary unions/intersection of subsets of points 
+are again subsets of points).
 
 <br>
 $\Omega$
+
+This is the subobject classifier, or the space of _all_ propositions!
+Maps $X \to \Omega$ classify _all_ subspaces, even the possibly 
+nonclassical ones. That is, this is the first time we're able to build 
+a limit space, rather than an "honest" sequential space!
+
+Notice that, for $2$ (resp. for $\Sigma$, $\Sigma^c$, and $\nabla 2$) if we start with 
+a sequential space $X$ and a decidable (resp. open or closed or classical) proposition 
+$\varphi : X \to 2$ (resp. $\Sigma$, $\Sigma^c$, $\nabla 2$), then the pullback 
+
+<p style="text-align:center;">
+<img src="/assets/images/life-in-johnstones-topological-topos/decidable-classifier.png" width="25%">
+</p>
+
+exists in $\mathsf{Seq}$, and is an honest clopen (resp. open, closed, classical) 
+subspace of $X$. 
+
+<div class=boxed markdown=1>
+Note that this $A_\varphi$ is an object above $X$, so 
+if we want to access it in the type theory we have to compose with 
+the map from $X \to 1$. That is, in the type theory $A_\varphi$ 
+(the subspace classified by $\varphi$) is represented by 
+$\Sigma_{x:X} \varphi$, as we would expect.
+</div>
+
+Now, what does the space of _all_ propositions look like in $\mathcal{T}$?
+Well, we know that $2$, $\Sigma$, $\Sigma^c$, and $\nabla 2$ are all 
+sequential spaces. So there's a unique convergence proof for each sequence. 
+It turns out the ability to "remember" only some convergent sequences 
+(which puts is into the world of kuratowski limit spaces) can be coded up 
+by more interesting proofs of convergence! Let's see how!
+
+<br>
 
 Johnstone shows that $\Omega$ has two points $\top$ and $\bot$, 
 and for any sequence $x_n$ of $\top$s and $\bot$s
@@ -532,7 +701,7 @@ So to decide where $p$ should go, we need a natural choice of
 $(E,I)$ associated to our sequence $x_n$.
 
 We'll let $$E = \{ n \mid x_n \in A \}$$ be the _extent_ to which 
-$x_n \in A$. Next, we have to tell you which infinite subsets of $E$ 
+$x_n \in A$. Next, we have to say which infinite subsets of $E$ 
 live in $I$. Given any infinite subset $T \subseteq E$, we can restrict 
 $x_n$ to a subsequence of indices in $T$. Since $E$ is exactly the 
 indices where $x_n \in A$, this restriction $x_n \upharpoonright T$ 
@@ -550,23 +719,77 @@ Also, if every subsequence has a further convergent subsequence
 (if every infinite subset of $T$ has a further infinite subset in $I$), 
 then $p \upharpoonright T$ must also be a convergence proof in $A$!
 
-As one last note, we see that $\Omega$ is not in $\mathsf{Kur}$, since it 
-has multiple proofs that any given $\omega_n \to \top$. Moreover, if we 
-reflect it into $\mathsf{Seq}$ to get an honest topological space, we see it 
-must be indiscrete. After all, every sequence converges to every point! 
-This seems to be a common feature of certain useful objects in $\mathcal{T}$,
-where "indiscrete" spaces (which usually carry no information at all) 
-are able to carry _extremely_ detailed information inside the multiple 
-proofs of convergence. But in order to access this detailed information, 
-we need to _remember_ the multiple proofs of convergence! This is true 
-for $\Omega$, we'll see next that it's true for a universe $\mathcal{U}$,
-and it's also extremely useful for keeping track of quotients of 
-topological algebras! We'll chat more about that in Part 2.
+<br>
+
+For example, say $X = \mathbb{R}$ with the usual topology, and 
+$A = \mathbb{R}$ with the discrete topology. Then the identity 
+$A \hookrightarrow X$ is monic, so should be a subobject, but 
+in order to classify this we need to only remember _some_ convergent 
+sequences (the eventually constant ones). Note that _every_ sequence 
+in $X$ gets sent to the constant $\top$ sequence in $\Omega$, since $A$ 
+and $X$ agree on points. But thankfully now there's multiple proofs 
+available that the constant $\top$ sequence converges to $\top$! We send a 
+sequence $(x_n)$ to the proof indexed by $(\mathbb{N},I)$ where a subset 
+$S$ is in $I$ if and only if $S$ is the set of indices of an eventually 
+constant subsequence of $(x_n)$.
+
+Lastly, note that if we reflect $\Omega$ into $\mathsf{Seq}$, it becomes 
+the humble indiscrete space $\nabla 2$. All of its power comes from the 
+ability to carry _extremely_ detailed information inside its multiple 
+proofs of convergence. Storing "extra information" in the convergence 
+proofs will come up again in [part 2][63] when we look at quotients 
+of topological algebras.
+
 
 <br>
-$\mathcal{U}$
+$\mathbb{R}$
+
+There's an object $よ\mathbb{R} = \text{Hom}_\mathsf{Top}(-,\mathbb{R})$ 
+in $\mathcal{T}$ since $\mathbb{R}$ is a separable space. But usually when 
+people talk about a "real numbers object" in a topos, they mean the object 
+of dedekind reals (points of a certain locale).
+
+It turns out that in $\mathcal{T}$ this distinction doesn't matter! 
+Johnstone's original paper computes that the object of points of 
+the theory of dedekind reals is exactly the object $よ\mathbb{R}$!
+
+We won't show this here because we'll show something more general 
+in just a few bullets!
+
+<br>
+$2^\mathbb{N}$
+
+Since $2$ and $\mathbb{N}$ are both sequential, their exponential in 
+$\mathcal{T}$ agrees with their exponential in $\mathsf{Seq}$. Since 
+$2$ and $\mathbb{N}$ are moreover second countable, $2^\mathbb{N}$ gets 
+the compact open topology. 
+
+Now, in the realm of classical topology, since $\mathbb{N}$ is discrete 
+the compact open topology on $2^\mathbb{N}$ is just the product topology, 
+and we get cantor space (as expected!)
+
+Again, one can also ask about the points of the locale object 
+"cantor space". And again, we find that the points of this locale 
+are represented by $よ2^\mathbb{N}$, which is the same thing as 
+the internal $2^\mathbb{N}$ we just computed!
 
 
+<br>
+$$\sum_{\alpha : 2^\mathbb{N}} \forall {n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$$
+
+For each $n$, the proposition $\alpha(n+1) \leq \alpha(n)$ is decidable 
+(said another way, the subset 
+$$A_n = \{ \alpha \mid \alpha(n+1) \leq \alpha(n) \} \subseteq 2^\mathbb{N}$$ 
+is clopen for each $n$), but once we ask for this quantifier 
+(which we interpret as an infinite meet), we're forced to work in $\Sigma^c$.
+
+So "$\forall n : \mathbb{N} . \alpha(n+1) \leq \alpha(n)$" is a closed proposition,
+and $$\sum_{\alpha : 2^\mathbb{N}} \forall {n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$$
+is just the closed subspace it classifies.
+
+So this space, externally, is the closed subspace of cantor space corresponding 
+to the decreasing binary sequences. This space is homeomorphic to $$\mathbb{N}_\infty$$, 
+so we see these spaces are also isomorphic in $\mathcal{T}$.
 
 
 <br>
@@ -830,6 +1053,9 @@ $\lnot\lnot$-separated and sequentially hausdorff[^19]!
 [59]: /2021/12/16/topological-categories.html
 
 [60]: https://ncatlab.org/nlab/show/big+and+little+toposes
+[61]: https://en.wikipedia.org/wiki/Intuitionistic_type_theory
+[62]: /2024/05/07/topological-topos-3-bonus-axioms.html
+[63]: /2024/05/07/topological-topos-2-algebras.html
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -1042,3 +1268,15 @@ $\lnot\lnot$-separated and sequentially hausdorff[^19]!
     Basically because we have more probes $Y$. The usual $T_1$ condition 
     for a sober space $X$ is equivalent to the localic $T_1$ condition 
     restricted to domains $Y$ that are also sober spaces!
+
+[^21]:
+    But we must remember that products in $\mathsf{Seq}$ are _not_ 
+    products in $\mathsf{Top}$ in general! Indeed, for _most_ 
+    "convenient categories of spaces" the product is not the product in 
+    $\mathsf{Top}$. We can get the product in $\mathsf{Seq}$ by taking 
+    the product in $\mathsf{Top}$ and coreflecting back into $\mathsf{Seq}$, 
+    but there's also a convenient description:
+
+    A sequence of pairs $(a_n,b_n)$ in $A \times B$ converges to 
+    $(a_\infty, b_\infty)$ if and only if separately $a_n \to a_\infty$ in 
+    $A$ and $b_n \to b_\infty$ in $B$.
