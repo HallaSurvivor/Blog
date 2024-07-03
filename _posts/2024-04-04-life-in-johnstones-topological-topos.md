@@ -295,7 +295,18 @@ if and only if both
 2. For each infinite $T \subseteq \mathbb{N}$, there's a further infinite 
 $S \subseteq T$ so that $f_S$ is in the family.
 
-This, unsurprisingly, doesn't make too much difference.
+This, unsurprisingly, doesn't make too much difference. But note that 
+the site with two objects is obviously [local][64] in the sense of 
+_The Elephant_ (C3.6.3(d)). So we learn that the global sections functor 
+$\Gamma : \mathcal{T} \to \mathsf{Set}$ which takes an object $X$ to its 
+set of points $X(1)$ admits the usual left adjoint characteristic of 
+geometric morphisms (giving a set $X$ the discrete topology) but also 
+a further right adjoint (giving a set $X$ the indiscrete topology).
+
+<p style="text-align:center;">
+<img src="/assets/images/life-in-johnstones-topological-topos/local-morphism.png" width="50%">
+</p>
+
 
 ---
 
@@ -793,109 +804,107 @@ so we see these spaces are also isomorphic in $\mathcal{T}$.
 
 
 <br>
-$T_1$ Locales
-
-More generally, we can ask about the models of any $T_1$ locale. 
-Recall that a locale $X$ is called $T_1$ if 
-"the specialization order is discrete" in a certain localic sense.
-Precisely, recall that the set of frame maps 
-$\mathcal{O}(X) \to \mathcal{O}(Y)$ is ordered by $f^* \leq g^*$ iff 
-for all $x$, $f^*(x) \leq g^*(x)$.
-
-Now we say that $X$ is $T_1$ if, for any pair of generalized
-elements $x_1,x_2: Y \to X$ with $x_1 \leq x_2$, we actually have 
-$x_1 = x_2$.
-
-Requiring this for generalized elements makes this condition slightly stronger 
-than the usual $T_1$ condition for (sober) spaces[^20], but every hausdorff 
-space is $T_1$ in this sense.
-
-Now, we prove an important claim: 
+Regular Locales
 
 <div class=boxed markdown=1>
-Let $X$ be a topological space which is $T_1$ as a locale. Then the 
-object of models of $X$ in $\mathcal{T}$ is represented by $よX$.
+Let $X$ be a [regular locale][65]. Then the object of $X$ models in 
+$\mathcal{T}$ is represented by $\text{pt}(X)$, the topological space of 
+models of $X$ in $\mathsf{Set}$.
+
+In particular, if $X$ is a regular topological space, then the object of 
+$X$-models in $\mathcal{T}$ is just $よX$, as we might hope!
+
+In particular again, the dedekind reals object is 
+$よ\mathbb{R}$, the cantor space object is $よ2^\mathbb{N}$, and 
+any regular locale with enough points classically has enough points 
+in $\mathcal{T}$.
 </div>
 
 $\ulcorner$
-First, we'll show that the inclusion $\iota : \Sigma \hookrightarrow \Omega$ 
-admits a right adjoint $r$. Since $\Sigma$ and $\Omega$ are posets, it 
-suffices to check that $\iota$ preserves joins. Working in the site 
-whose only object is $$\mathbb{N}_\infty$$, we want to check this for 
-$$\Sigma(\mathbb{N}_\infty)$$ and $$\Omega(\mathbb{N}_\infty)$$.
+Write $X^\mathcal{E}$ for the object of $X$-models in some topos $\mathcal{E}$. 
+The points of $X^\mathcal{E}$ are in bijection with the geometric maps 
+$\mathcal{E} \to \mathsf{Sh}(X)$, and from here it's a nice exercise to 
+check that the $A$ valued points of $X^\mathcal{E}$ are in bijection with 
+geometric maps $\mathcal{E} \big / A \to \mathsf{Sh}(X)$ for any object 
+$A \in \mathcal{E}$. Moreover, since $X$ is a locale, the geometric maps 
+$\mathcal{E} \to \mathsf{Sh}(X)$ are in bijection with continuous maps 
+from the [localic reflection][66] of $\mathcal{E}$ to $X$.
 
-But for every sequence $x_n$ of $\top$s and $\bot$s, 
-$$\Sigma(\mathbb{N}_\infty)$$ has a unique proof that $x_n \to \bot$,
-and for every sequence which is eventually $\top$, there's a unique 
-proof that $x_n \to \top$. Moreover, we compute 
-$\bigvee_\alpha (x_n^\alpha \to x_\infty^\alpha)$ as 
-$(\bigvee_\alpha x_n^\alpha) \to (\bigvee_\alpha x_\infty^\alpha)$.
+Putting these facts together (in the special case of $\mathcal{T}$), we 
+see that $X^\mathcal{T}(1) = \mathsf{Locale}(\Omega(1), X)$ and 
+$$X^\mathcal{T}(\mathbb{N}_\infty) = \mathsf{Locale}(\Omega(\mathbb{N}_\infty), X)$$.
 
-And for every sequence $x_n$ of $\top$s and $\bot$s, 
-$$\Omega(\mathbb{N}_\infty)$$ has a unique proof that $x_n \to \bot$, 
-and the proofs that $x_n \to \top$ are indexed by the 
-"closed ideals of subsets" whose extent is $$\{n \mid x_n = \top \}$$.
-Here again a join of sequences is computed pointwise, but in case we converge 
-to $\top$ we choose the smallest closed ideal of subsets containing all the 
-ideals we're joining.
+We know that $$\Omega(1) = \{ \top, \bot \}$$, so locale maps from 
+$\Omega(1)$ to $X$ are just the ordinary set valued points of $X$. That is, 
+$X^\mathcal{T}(1) = X^\mathsf{Set} = \text{pt}(X)$.
 
-Now a moment's thought shows that the inclusion $\iota : \Sigma \to \Omega$ 
-sends 
+Now let's look at $$\mathsf{Locale}(\Omega(\mathbb{N}_\infty), X)$$, 
+that is, frame homomorphisms $X$ to $$\Omega(\mathbb{N}_\infty)$$.
+Since $X$ is regular, we know that every $a \in X$ satisfies 
 
-- the unique proof in $\Sigma$ that $x_n \to \bot$ to the unique proof in 
-    $\Omega$ that $x_n \to \bot$
-- the unique proof in $\Sigma$ that $x_n \to \top$ (for $x_n$ eventually $\top$)
-    to the _maxmial_ proof in $\Omega$ that $x_n \to \top$. That is, 
-    the proof indexed by the ideal of _all_ infinite subsets of 
-    $$\{ n \mid x_n = \top \}$$
+$$
+a = \bigvee \{x \mid x \ll a \}
+$$
 
-So to show this embedding preserves joins we need to know that whenever 
-$x_n^\alpha$ are all eventually $\top$, the smallest ideal containing all 
-of the $$I_\alpha = \{ \text{infinite subsets of } \{n \mid x_n^\alpha = \top\} \}$$
-is the ideal of all infinite subsets of $$\bigcup \{n \mid x_n^\alpha = \top \}$$.
+where $x \ll a$ (read as "$x$ is well below $a$") means that $\lnot x \lor a = \top$.
 
-So let $S$ be an infinite subset of $$\bigcup \{n \mid x_n^\alpha = \top \}$$.
-If we can find a further infinite subset $T \subseteq S$ with $T$ in one 
-of the $I_\alpha$s, we'll be done. But for any fixed $\alpha_0$,
-$S \cap \{n \mid x_n^{\alpha_0} = \top \}$ is an infinite subset of $S$ 
-contained in $I_{\alpha_0}$ (since this is the intersection of an infinite 
-set $S$ with a cofinite set). As desired.
+Then if $$f : X \to \Omega(\mathbb{N}_\infty)$$ is a frame hom we see that 
+each $fa$ satisfies this same property. Indeed
 
-So then the embedding $\iota : \Sigma \to \Omega$ preserves joins, 
-and has a right adjoint.
+$$
+\begin{align}
+fa 
+&= f \left ( \bigvee \{ x \mid x \ll a \} \right ) \\
+&= \bigvee \{ fx \mid fx \ll fa \} \\
+&\leq \bigvee \{ y \mid y \ll fa \} \\
+&\leq fa
+\end{align}
+$$
+
+But it's not hard to see the only elements in $$\Omega(\mathbb{N}_\infty)$$ 
+that satisfy this property are the proofs $(\omega_n) \to \bot$ and the 
+proofs $(\omega_n) \to \top$ indexed by $(E,I)$ where $E$ is cofinite and 
+$I$ is the maximal ideal of all infinite subsets of $E$[^23]. Since these 
+are precisely the open subspaces of $$\mathbb{N}_\infty$$ 
+(respectively, they're any subset of $\mathbb{N}$ and any cofinite subset of 
+$\mathbb{N}$ including $$\{\infty\}$$), we see that every frame map 
+$$X \to \Omega(\mathbb{N}_\infty)$$ factors through the inclusion of the frame 
+of opens of $$\mathbb{N}_\infty$$. Of course, frame maps 
+$X$ to the opens of $$\mathbb{N}_\infty$$ are exactly locale maps 
+$$\mathbb{N}_\infty \to X$$. Since $$\mathbb{N}_\infty$$ is spatial, these 
+are exactly the same thing as maps of topological spaces from 
+$$\mathbb{N}_\infty$$ to $\text{pt}(X)$.
+
+So where did we start, and where did we end? We see that 
+$X^\mathcal{T}(1) \cong \text{pt}(X) \cong \mathsf{Top}(1,\text{pt}(X))$ and 
+$$X^\mathcal{T}(\mathbb{N}_\infty) \cong \mathsf{Top}(\mathbb{N}_\infty, \text{pt}(X))$$ 
+so that $X^\mathcal{T} \cong よ\text{pt}(X)$, as claimed.
+<span style="float:right">$\lrcorner$</span>
 
 <br>
 
-Now for a clever idea taken from Moerdijk and Reyes. The adjunction 
-$\iota \dashv r$
-between the frames $$\Sigma(\mathbb{N}_\infty)$$ and $$\Omega(\mathbb{N}_\infty)$$
-induces an adjunction $$\iota_* \dashv r_*$$ between 
-$$\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Sigma(\mathbb{N}_\infty))$$ and 
-$$\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Omega(\mathbb{N}_\infty))$$.
+Note that in this proof regularity was only used to check that the 
+convergent sequences in $X^\mathcal{T}$ are what we expected. Showing 
+that global points of $X^\mathcal{T}$ agree with the points of $X$ in 
+$\mathsf{Set}$ is easy, and true for _every_ locale $X$! In particular, 
+if $X$ has enough points in $\mathsf{Set}$, it also has enough points in 
+$\mathcal{T}$! 
 
-Then the unit and counit of this adjunction give inequalities 
-$$\text{id} \leq r_* \iota_*$$ and $$\iota_* r_* \leq \text{id}$$,
-which must actually be _equalities_ since $X$ was assumed to be $T_1$!
+<div class=boxed markdown=1>
+This result tells us that [coherent locales][67] (as defined in $\mathsf{Set}$) 
+have enough points in $\mathcal{T}$, which I'm _pretty sure_ is equivalent to 
+the [prime ideal theorem][68]... But I would expect this to be false in 
+$\mathcal{T}$ since it's quite close to full AC, so we should be able to 
+use it to build a discontinuous function (but I don't know how).
 
-So $$\iota_*$$ and $$r_*$$ are an isomorphism
+Is there a flaw in this proof? Maybe we get out of this problem if the 
+prime ideal theorem in $\mathcal{T}$ is actually equivalent to all coherent 
+locales _internal to $\mathcal{T}$_ having enough points? There are locales 
+internal to $\mathcal{T}$ which don't exist in $\mathsf{Set}$ at all, so 
+maybe that's a stronger statement than what this theorem gets us...
 
-$$
-\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Sigma(\mathbb{N}_\infty))
-\cong
-\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Omega(\mathbb{N}_\infty)).
-$$
-
-But one easily computes that 
-$$\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Sigma(\mathbb{N}_\infty)) 
-\cong よX(\mathbb{N}_\infty)$$ and if $X^\mathcal{T}$ is the object 
-of points of $X$ (as computed in $\mathcal{T}$) then 
-$$\text{Hom}_\mathsf{Frm}(\mathcal{O}X, \Omega(\mathbb{N}_\infty))
-\cong X^\mathcal{T}(\mathbb{N}_\infty)$$.
-
-So then $$\iota_*$$ and $$r_*$$ are the desired natural isomorphism 
-between $X^\mathcal{T}$ and $よX$.
-<span style="float:right">$\lrcorner$</span>
-
+I would be SUPER grateful if some experts chimed in!
+</div>
 
 
 ---
@@ -1056,6 +1065,11 @@ $\lnot\lnot$-separated and sequentially hausdorff[^19]!
 [61]: https://en.wikipedia.org/wiki/Intuitionistic_type_theory
 [62]: /2024/05/07/topological-topos-3-bonus-axioms.html
 [63]: /2024/05/07/topological-topos-2-algebras.html
+[64]: https://ncatlab.org/nlab/show/local+site
+[65]: https://ncatlab.org/nlab/show/regular+space
+[66]: https://ncatlab.org/nlab/show/locale#RelationToToposes
+[67]: https://ncatlab.org/nlab/show/coherent+space
+[68]: https://en.wikipedia.org/wiki/Boolean_prime_ideal_theorem
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -1280,3 +1294,38 @@ $\lnot\lnot$-separated and sequentially hausdorff[^19]!
     A sequence of pairs $(a_n,b_n)$ in $A \times B$ converges to 
     $(a_\infty, b_\infty)$ if and only if separately $a_n \to a_\infty$ in 
     $A$ and $b_n \to b_\infty$ in $B$.
+
+[^22]:
+    An earlier draft of this post wrote 
+    $$\mathcal{O}\mathbb{N}_\infty$$ for $$\text{Open}(\mathbb{N}_\infty)$$ 
+    and 
+    $$\mathcal{O} \Omega \mathbb{N}_\infty$$ for $$\text{Sub}(\mathbb{N}_\infty)$$,
+    but hopefully this notation is clearer.
+
+[^23]:
+    First, say we have a proof $$(\omega_n) \to \bot$$. That is a subset $A$ of
+    $\mathbb{N}$. Then to have $x \ll A$ means that 
+    $\lnot x \lor A = \top$, which is the proof $$(\omega_n) \to \top$$ indexed by 
+    $$(\mathbb{N}, \text{max}_\mathbb{N})$$, the ideal indexed by all infinite 
+    subsets of $\mathbb{N}$. Since $x \leq A$, it's also just a subset of 
+    $\mathbb{N}$ (indeed, a subset of $A$), and its pseudocomplement $\lnot x$ 
+    is indexed by $$(x^c, \text{max}_{x^c})$$, the ideal of all infinite subsets of 
+    $$x^c$$. So asking $\lnot x \lor A = \top$ means asking for the closure of 
+    $$(\mathbb{N},\text{max}_{x^c})$$ to equal 
+    $$(\mathbb{N}, \text{max}_\mathbb{N})$$. Expanding this out 
+    via the axioms for one of these "closed ideals of subsets" means that 
+    every subset of $\mathbb{N}$ should have a further subset inside 
+    $$\text{max}_{x^c}$$. But this happens exactly when $$x^c$$ is cofinite! 
+    So asking for $$A = \bigvee \{ x \ll A \}$$ means asking for $A$ to be 
+    the union of the finite subsets of $A$, which is always true.
+
+    Now let's look at the more complicated case of a proof $$(\omega_n) \to \top$$. 
+    We see $x \ll (E,I)$ if and only if 
+    $$\lnot x \lor (E,I) = \top = (\mathbb{N}, \text{max}_\mathbb{N})$$, so that 
+    if $x = (F,J)$ we must have $F \subseteq E$ and the closure of $I$ should be 
+    $$\text{max}_\mathbb{N}$$ so that $E$ must be cofinite! Since it's not possible 
+    for a join of proofs $$(\omega_n) \to \bot$$ to equal a proof $(E,I)$ that 
+    $$(\omega_n) \to \top$$, this tells us that the only proofs with this property 
+    are those indexed by $$(E, \text{max}_E)$$ with $E$ cofinite! And, of course, 
+    it's easy to see that $$(E, \text{max}_E) \ll (E, \text{max}_E)$$ when $E$ is 
+    cofinite, so that moreover every maximal cofinite ideal is possible.
