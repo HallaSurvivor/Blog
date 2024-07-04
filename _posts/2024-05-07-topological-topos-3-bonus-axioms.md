@@ -87,11 +87,12 @@ $R(f(n), f(n+1))$.
 This is intuitively obvious. After all, we start with $x_0$, then 
 by totality the set $$\{ y \mid R(x_0,y) \}$$ is inhabited. So we 
 can choose an element $x_1$ from this set. Similarly we can choose 
-an $x_2$, and so on. Notice that the _choices_ we make are allowed to 
-_depend_ on the choices that came before. After all, it's possible that 
-for two different choices $$x_1,x_1' \in \{ y \mid R(x_0,y) \}$$ the 
-sets $$\{ y \mid R(x_1,y) \}$$ and $$\{ y \mid R(x_1',y) \}$$ might be different, 
-leading to different allowable choices of $x_2$!
+an $x_2$ from $$\{y \mid R(x_1,y) \}$$, and so on. Notice that the 
+_choices_ we make are allowed to _depend_ on the choices that came before. 
+After all, it's possible that for two different choices 
+$$x_1,x_1' \in \{ y \mid R(x_0,y) \}$$ the sets $$\{ y \mid R(x_1,y) \}$$ and 
+$$\{ y \mid R(x_1',y) \}$$ might be different, leading to different 
+allowable choices of $x_2$!
 
 Thus, DC basically tells us that recursive definitions work, even if we 
 don't have a canonical way to choose one of many options at each 
@@ -99,6 +100,32 @@ recursive stage. Indeed, most recursive definitions work by first choosing
 an $x_0$, and then arguing that the set of "allowable" next steps is 
 always inhabited[^16]. For more information about DC and how to think 
 about it, I recommend Karagila's excellent [paper][57] on the subject.
+
+<div class=boxed markdown=1>
+For those who like type theory, 
+DC says that for every binary relation $R$ on a type $X$,
+
+$$
+\displaystyle
+\mathtt{dc} : 
+\left ( 
+    \prod_{x:X} \left \lVert \sum_{y:X} R(x,y) \right \rVert
+\right )
+\to
+\prod_{x_0 : X}
+\left \lVert 
+\sum_{f : \mathbb{N} \to X} (f(0) = x_0) \times \left ( \prod_{n:\mathbb{N}} R(f(n), f(n+1)) \right )
+\right \rVert
+$$
+
+or, cashing out these $$\lVert \Sigma \rVert$$s for $$\exists$$s, 
+
+$$
+\left ( \forall (x:X) . \exists (y:X) . R(x,y) \right ) 
+\to 
+\forall (x_0 : X) . \exists (f : \mathbb{N} \to X) . f(0) = x_0 \land \forall n . R(f(n), f(n+1))
+$$
+</div>
 
 Here's an idiomatic example of dependent choice in action: The 
 [Baire Category Theorem][45] for complete metric spaces.
@@ -112,7 +139,7 @@ Then the countable intersection $\bigcap_n U_n$ is still (strongly) dense.
 
 The usual proof (say, from Karagila's notes) doesn't use LEM, 
 so it goes through unchanged. 
-We'll present it here, though, paying special attention to the 
+We'll present it here paying special attention to the 
 use of DC.
 
 $\ulcorner$
@@ -191,8 +218,8 @@ _provably false_ in every topos!
 Regardless, it's shockingly hard to find this continuity principle 
 written down anywhere, but it's 
 cited in lots of places! It's definitely part of the folklore, 
-and I'm happy to share a full proof with everyone! The proof 
-is a bit long, though, so I'm leaving it as an "appendix" at 
+and I'm happy to share a full proof! It's a bit long, though, so I'm leaving 
+it as an "appendix" at 
 the bottom of this post. If you know of a reference, or of a 
 slicker proof than the one I found, I would REALLY love to hear 
 about it[^13]!
@@ -287,6 +314,19 @@ So we see that LPO externalizes to a false claim, and thus is not validated
 by $\mathcal{T}$.
 <span style="float:right">$\lrcorner$</span>
 
+<div class=boxed markdown=1>
+As an easy exercise, can you use LPO to build a function 
+$\mathbb{R} \to \mathbb{R}$ which is _not_ $\epsilon$-$\delta$ 
+continuous? This provides _another_ proof that $\mathcal{T} \not \models \text{LPO}$,
+since it contradicts Brouwer's principle. 
+
+In fact, we don't even need Bouwer's principle to contradict! By yoneda, 
+$\text{Hom}(\mathbb{R}, \mathbb{R})$ is the set of continuous functions 
+on $\mathbb{R}$, but if you build a function in $\mathcal{T}$ you know what 
+that function does externally on points! In particular, you can contradict 
+with continuity "in the real world".
+</div>
+
 <br>
 
 Next, let's look at the _Lesser_ Limited Principle of Omniscience (LLPO):
@@ -336,7 +376,8 @@ of a coproduct.
 
 But by the universal property of the pushout, we get a map 
 $s : \mathbb{R} \to \sum_{x : \mathbb{R}} \lVert (x \geq 0) + (x \leq 0) \rVert$
-as below:
+as below. Note the truncation $$\lVert (x \geq 0) + (x \leq 0) \rVert$$ 
+is _crucial_ for making the middle square commute!
 
 <p style="text-align:center;">
 <img src="/assets/images/life-in-johnstones-topological-topos/llpo-universal-property.png" width="100%">
@@ -349,7 +390,7 @@ So $s$ is the desired section of $\pi$, and $\mathcal{T}$ models LLPO.
 
 <div class=boxed markdown=1>
 As a nice exercise, check that internal to $\mathcal{T}$ the type 
-$\mathbb{R}$ is equivalent to the quotient type 
+$\mathbb{R}$ is equivalent to the quotient type[^19]
 
 $$
 \mathbb{R}_{\geq 0} + \mathbb{R}_{\leq 0} \big / \mathtt{inl}(0) \sim \mathtt{inr}(0)
@@ -357,6 +398,12 @@ $$
 
 and use this fact to give a purely type theoretic proof of that LLPO 
 holds in $\mathcal{T}$.
+
+<br>
+
+As another nice (but quite tricky!) exercise, try externalizing 
+the statement of LLPO and proving it "directly" by seeing that it 
+externalizes to something true!
 </div>
 
 <br><br>
@@ -371,7 +418,7 @@ $$
 (\lnot \forall n . s(n) = 0) \to (\exists n . s(n) = 1)
 $$
 
-Again this is equivalent (under CC) to an _analytic_ version
+Again this is equivalent (under CC) to an _analytic_ version[^20]
 
 $$
 \forall x : \mathbb{R}. \lnot (x=0) \to x \# 0 
@@ -443,7 +490,8 @@ $\mathcal{T}$ cannot satisfy WLPO. Of course, here's a more direct proof
 that the analytic version can't work:
 
 $\ulcorner$
-Consider the sequence $x_n = \frac{1}{n}$, converging to $0$.
+Consider the sequence $x_n = \frac{1}{n}$, converging to $0$, as an 
+element of $$\mathbb{R}(\mathbb{N}_\infty)$$.
 
 If $\mathcal{T}$ were to model WLPO, it would mean (among other things) 
 that some subsequence of $x_n$ would be either everywhere $0$ or everywhere 
@@ -580,11 +628,11 @@ de Morgan-ness is equivalent to
 But we can show both of these are false 
 (thus giving two proofs that $\mathcal{T}$ is not de Morgan).
 
-For $1$, we can compute that $\mathcal{T}_{\lnot \lnot}$ is equivalent to 
+For $1$, we can compute that $$\mathcal{T}_{\lnot \lnot}$$ is equivalent to 
 $\mathsf{Set}$, where the equivalence sends a set $X$ the space $X$ equipped 
 with the indiscrete topology. This is stated at the end of Section 3 of 
 Johnstone's original paper. In particular, $1+1$, which has the discrete 
-topology, is _not_ isomorphic to $\Omega_{\lnot \lnot}$ (which is indiscrete).
+topology, is _not_ isomorphic to $$\Omega_{\lnot \lnot}$$ (which is indiscrete).
 
 For $2$, we know that in $\mathsf{Seq}$ there's a map 
 $(0,1) + (2,3) \to 1+1$ which doesn't extend to a map $(0,3) \to 1+1$. 
@@ -825,6 +873,7 @@ As desired.
 [62]: https://ncatlab.org/nlab/show/injective+object
 [63]: https://www.sciencedirect.com/science/article/pii/S0168007212000292
 [64]: /2024/04/04/life-in-johnstones-topological-topos.html
+[65]: https://core.ac.uk/download/33573841.pdf
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -1017,3 +1066,22 @@ As desired.
     Notably Moerdijk and Reyes, in 
     _Smooth spaces versus continuous spaces in models 
     for synthetic differential geometry_, for instance.
+
+[^19]:
+    This is the quotient type in the sense of Li's [PhD thesis][65], 
+    _not_ the (higher!) quotient type in the sense of HoTT... 
+    Though the quotient type I mean is almost certainly the $0$-truncation 
+    of the higher inductive quotient type.
+
+    I've been meaning to spend some time thinking about how you can prove 
+    theorems about a 1-topos by working in HoTT and truncating everything 
+    at the end, but I haven't had the time.
+
+[^20]:
+    Actually, I think I remember reading somewhere that the analytic 
+    omniscience principles are always statements about the cauchy reals. 
+    The reason countable choice makes them properties of the dedekind reals 
+    is because under CC the dedekind and cauchy reals agree.
+
+    If an expert sees this and happens to know offhand if that's true, 
+    I would love to know for sure!
