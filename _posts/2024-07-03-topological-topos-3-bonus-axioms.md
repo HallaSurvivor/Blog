@@ -1,16 +1,16 @@
 ---
 layout: post
-title: Topological Topos 3 -- Bonus Axioms
+title: Life in Johnstone's Topological Topos 3 -- Bonus Axioms
 tags:
   - life-in-the-topological-topos
 ---
 
-In the first post of the series, we talked about what the topological 
+In the [first post][64] of the series, we talked about what the topological 
 topos is, and how we can think about its objects (and, importantly, 
 how we can relate computations in the topos $\mathcal{T}$ to 
-computations with topological spaces in "the real world"). In part two, 
+computations with topological spaces in "the real world"). In [part two][66], 
 we talked about algebraic structures, and how (for example) 
-groups in $\mathcal{T}$ are related to topological groups!
+groups in $\mathcal{T}$ are related to topological groups.
 
 In that post we alluded to the presence of ~bonus axioms~ that allow us 
 to reason in $\mathcal{T}$ more freely than in many other topoi. For instance, 
@@ -74,7 +74,10 @@ read more in Section 3 of Johnstone's original paper.
 
 ## Dependent Choice
 
-To start, $\mathcal{T}$ models [Dependent Choice][20][^3]. 
+To start, $\mathcal{T}$ models [Dependent Choice][20]. 
+You can find a proof in Shulman and Simpson's aptly named note 
+[_Dependent Choice in Johnstone's Topological Topos_][21].
+
 
 Say you have a relation $R \subseteq X \times X$ which is 
 <span class=defn>total</span> in the sense that 
@@ -518,7 +521,7 @@ literature where untruncated LLPO and WLPO are shown to be inequivalent.
 
 He mentions that $\mathcal{T}$ should be an example, and here 
 we've shown that in fact it is! After all, $\mathcal{T} \models \text{LLPO}$
-but $\mathcal{T} \lnot \models \text{WLPO}$!
+but $\mathcal{T} \not \models \text{WLPO}$!
 
 
 ---
@@ -531,7 +534,7 @@ locales. The locales are always well behaved, but in some topoi these
 locales fail to have enough points, so that the baire space and cantor space 
 as sets of points may be lacking.
 
-Since we showed in Part 1 that spatial sequential $T_1$ locales always have 
+Since we showed in [part 1][64] that spatial sequential regular locales always have 
 enough points in $\mathcal{T}$, we see that baire space and cantor space 
 both have enough points! By Propositions 3.12 and 3.13 in van den Berg and 
 Moerdijk's 
@@ -640,6 +643,30 @@ Since monos in $\mathsf{Seq}$ are still monos in $\mathcal{T}$
 (since the inclusion is a right adjoint), we're done. 
 
 ---
+
+This was a _long one_! Multiple months in the making, and easily the most 
+research I've ever done for a blog post (both in terms of reading done 
+and original proofs). It was super rewarding, though, and I feel way better 
+about the topological topos and its internal logic, as well as about 
+topos theory more broadly ^_^.
+
+Hopefully I was able to explain it clearly enough to be useful to all 
+of you too! I know it's a TON of information, and in the process of revising 
+this I really struggled to tell if it's well exposited or not since it 
+kind of feels like this 
+
+<p style="text-align:center;">
+<img src="/assets/images/life-in-johnstones-topological-topos/fire-hose.gif" width="50%">
+</p>
+
+But even though it's a _ton_ of information, hopefully each section is 
+digestible!
+
+Thanks again for reading all. I have other posts planned, about my thesis work 
+for a change, but I think I'm going to take a break from writing after this, haha.
+
+Stay safe, and talk soon! 💖
+
 ---
 
 ## Appendix: A Proof that Johnstone's Topos Models Brouwer's Continuity Principle
@@ -872,8 +899,10 @@ As desired.
 [61]: https://en.wikipedia.org/wiki/Bar_induction
 [62]: https://ncatlab.org/nlab/show/injective+object
 [63]: https://www.sciencedirect.com/science/article/pii/S0168007212000292
-[64]: /2024/04/04/life-in-johnstones-topological-topos.html
+[64]: /2024/07/03/life-in-johnstones-topological-topos.html
 [65]: https://core.ac.uk/download/33573841.pdf
+[66]: /2024/07/03/topological-topos-2-algebras.html
+
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -898,10 +927,6 @@ As desired.
     and since right adjoints preserve all limits, again any model in 
     $\mathsf{Seq}$ is still a model when considered as an object in 
     $\mathcal{T}$.
-
-[^3]:
-    You can find a proof in Shulman and Simpson's aptly named note 
-    [_Dependent Choice in Johnstone's Topological Topos_][21]
 
 [^4]:
     And even then, it might not be obvious when you're learning! I remember 
@@ -975,7 +1000,7 @@ As desired.
     but it turns out to be. This is in Johnstone's [original paper][35].
 
 [^11]:
-    This is the first time I'm actually written down the definition of 
+    This is the first time in a while I've actually written down the definition of 
     (metric space) continuity in full! No wonder students struggle with 
     this, haha. I've forgotten what a mouthful it is!
 
@@ -989,7 +1014,7 @@ As desired.
     kind of "theorem schema". I suspect something like this is true 
     purely internally, if we can find the right definition of a 
     "metric space" in $\mathcal{T}$. Obviously we want a distance 
-    function $d : X \times X \to \mathbb{R}_{\geq 0}$ satsifying the 
+    function $$d : X \times X \to \mathbb{R}_{\geq 0}$$ satsifying the 
     usual axioms. But we also need to know that the topology $d$ 
     puts in $X$ agrees with the _intrinsic_ topology on $X$!
 
@@ -1019,7 +1044,7 @@ As desired.
 
 [^15]:
     A set $D \subseteq X$ is called <span class=defn>Strongly Dense</span>
-    if for any open set $V$ we know that $D \cap V$ is inhabited.
+    if for any inhabited open set $V$ we know that $D \cap V$ is inhabited.
 
 [^16]:
     You might wonder why we need a "nonconstructive" axiom to do this. Why 

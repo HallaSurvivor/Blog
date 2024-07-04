@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Life in Johnstone's Topological Topos
+title: Life in Johnstone's Topological Topos 1 -- Fundamentals
 tags:
   - life-in-the-topological-topos
 ---
@@ -48,7 +48,7 @@ of mine who are constantly complaining that algebraic topologists never check
 that things are continuous, and honestly I'm sympathetic. But it can be 
 a real hassle to check these things all the time... 
 
-But there's a better way!
+Thankfully there's a better way!
 
 Every set in $\mathcal{T}$ is, by its very nature, a space!
 There's no need to choose the "right" topology, or to check that your 
@@ -62,7 +62,8 @@ topology is _intrinsic_.
 </p>
 
 This is great for a couple reasons. First, say you build a type $X$ in 
-[MLTT][61]. We know how to interpret MLTT in any topos, so by interpreting 
+Martin-Löf Type Theory ([MLTT][61]). 
+We know how to interpret MLTT in any topos, so by interpreting 
 $X$ in $\mathcal{T}$ we learn that our type $X$ is automatically a space!
 Understanding this relationship between types and 
 topology has been a staple in many people's careers, but I want to single 
@@ -205,7 +206,7 @@ exposition and intuition, but it turns out to not change the topos if we
 work without it! Intuitively, we can recover the points from the constant maps 
 $$n : \mathbb{N}_\infty \to \mathbb{N}_\infty$$. 
 
-With this in mind, some authors define $\mathcal{T}$ to be the sheaves[^9]
+With this in mind, some authors define $\mathcal{T}$ to be the sheaves
 on _just_ the full subcategory of $\mathsf{Top}$ spanned by 
 $$\{ \mathbb{N}_\infty \}$$. That is, they define it to be sheaves on the 
 monoid of continuous endomorphisms of $$\mathbb{N}_\infty$$. See, for instance,
@@ -223,8 +224,7 @@ So, with this smaller site in hand, one way to think about objects in
 $\mathcal{T}$ is as copies of $$\mathbb{N}_\infty$$ that are 
 "glued together nicely". And one can show that the sequential spaces 
 are _exactly_ the quotients of disjoint unions of copies of $$\mathbb{N}_\infty$$!
-
-This tells us that, in some sense, the other objects of $\mathcal{T}$ are 
+This also tells us that, in some sense, the other objects of $\mathcal{T}$ are 
 just copies of $$\mathbb{N}_\infty$$ glued together in more exotic ways,
 for instance by gluing two copies of $$\mathbb{N}_\infty$$ literally on 
 top of each other to get multiple witnesses to the convergence of the 
@@ -253,10 +253,12 @@ $$\{ \mathbb{N}_\infty, 1 \}$$, the second condition of the
 [comparison lemma][8] is trivial, and we learn that the geometric map 
 induced by the inclusion is an equivalence.
 
-In particular, the two common definitions really _do_ agree!
+In particular, the two common definitions really _do_ give equivalent topoi!
 <span style="float:right">$\lrcorner$</span>
 
-Lastly, what _is_ the <span class=defn>Canonical Topology</span>?
+<br>
+
+So, finally, what _is_ the <span class=defn>Canonical Topology</span>?
 
 For the site with two objects, $$\{1, \mathbb{N}_\infty\}$$, 
 every (nonempty) family of arrows $$\{X_\alpha \to 1 \}$$ is covering. 
@@ -285,8 +287,6 @@ So, roughly, to prove that something "merely exists" in $\mathcal{T}$, we
 have to provide a witness for every finite $n$, and these witnesses should 
 converge to the witness for $\infty$.
 
-<br><br>
-
 If we want to use the site with one object $$\{ \mathbb{N}_\infty \}$$, 
 the condition is almost exactly the same. A family of maps is covering 
 if and only if both
@@ -307,6 +307,9 @@ a further right adjoint (giving a set $X$ the indiscrete topology).
 <img src="/assets/images/life-in-johnstones-topological-topos/local-morphism.png" width="50%">
 </p>
 
+In the original paper, Johnstone moreoever shows that the essential point 
+$\mathsf{Set} \to \mathcal{T}$ given by this indiscrete arrow is the unique 
+global point of $\mathcal{T}$.
 
 ---
 
@@ -317,7 +320,7 @@ a further right adjoint (giving a set $X$ the indiscrete topology).
 
 Here's the tl;dr for this section, for ease of reference. 
 
-We have a sequence of fully-faithful embeddings of cartesian closed categories, 
+We have a sequence of fully-faithful embeddings of bicartesian closed categories, 
 each of which admits a left adjoint, as shown below:
 
 <p style="text-align:center;">
@@ -328,10 +331,10 @@ The embeddings preserve all limits (as right adjoints) but moreover preserve
 the cartesian closed structure, as well 
 as certain "nice" colimits (in particular, all colimits involved in the 
 creation of CW-complexes). The exact definition of "nice" here is 
-explained below, but includes the coproduct. Additionally, the 
+explained in Johnstone's original paper, but includes the coproduct. Additionally, the 
 image of a map $X \to Y$ of sequential spaces (with $Y$ sequentially hausdorff)
 as computed in $\mathcal{T}$ is just the set theoretic image equipped with 
-the quotient topology.
+the quotient topology (Corollary 6.4 in the original paper).
 
 The left adjoints preserve all colimits, and moreover preserve finite products 
 (and thus, in particular, models of algebraic theories).
@@ -439,11 +442,11 @@ $\mathsf{Seq} \hookrightarrow \mathsf{Kur}$ _also_ admits a finite product
 preserving left adjoint! 
 
 We say a subset $U \subseteq X$ is 
-<span class=defn>Sequentially Open</span> if whenever $x_n \to a \in U$,
+<span class=defn>Sequentially Open</span> if whenever $$x_n \to a \in U$$,
 some tail of $x_n$ is entirely contained in $U$. It's easy to see that the 
 set of sequential open subsets forms a topology on $X$, and indeed our 
 reflector sends a limit space $$(X,\{\text{convergent sequences}\})$$ to 
-the sequential space $$(X,\{\text{sequential opens}\})$.
+the sequential space $$(X,\{\text{sequential opens}\})$$.
 This functor moreover preserves finite products[^21], which is 
 Proposition 3.1 in Menni and Simpson's 
 [_Topological and limit-space subcategories of countably-based equilogical spaces_][57][^18].
@@ -484,10 +487,13 @@ we get the promised embeddings of bicartesian closed categories.
 
 Lastly, the cartesian closed structure on $\mathsf{Seq}$ is the one you 
 would expect from viewing it as a "convenient category of spaces". The 
-exponential is (usually) the compact-open topology! We'll say more about 
-the subtleties later.
+exponential is (usually) the compact-open topology! You can read more 
+about the subtleties in Escardó, Lawson, and Simpson's 
+[_Comparing Cartesian closed categories of (core) compactly generated spaces_][69],
+but the gist is that you get the compact-open topology whenever you're 
+working with (quotients of) second countable spaces!
 
-<br><br>
+<br>
 
 From this information, there's a few simple corollaries that I want to 
 mention explicitly, since they give more relationships between 
@@ -499,7 +505,6 @@ be isomorphic in $\mathsf{Seq}$ too. But then _all_ functors preserve
 isomorphisms, so that we get an isomorphism in $\mathsf{Top}$ too! 
 Thus, we can show two sequential spaces are homeomorphic by working 
 entirely in $\mathcal{T}$!
-
 The converse argument (using the fully faithful embedding 
 $\mathsf{Seq} \hookrightarrow \mathsf{Top}$) shows that two homeomorphic 
 sequential spaces are also isomorphic in $\mathcal{T}$, so that we can 
@@ -510,7 +515,6 @@ then it's also a mono in $\mathsf{Seq}$ (since faithful functors reflect monos).
 Since right adjoints preserve monics, we get $A \hookrightarrow B$ 
 in $\mathcal{T}$, so that anything we "expect" to be a subobject in 
 $\mathcal{T}$ actually is. 
-
 Conversely, if $A \hookrightarrow B$ is monic in $\mathcal{T}$, then it's 
 also a mono in $\mathsf{Seq}$. But here we run into a subtle issue! It's 
 possible that the presence of nonsequential spaces will render a mono 
@@ -527,22 +531,22 @@ an epi in $\mathcal{T}$.
 This is great and all, but the only way to _really_ get some intuition for 
 how computations in $\mathcal{T}$ relate to computations in $\mathsf{Top}$ 
 is to actually _do some computation and check_! So let's do that!
-
 Let's start with a few important types representing various kinds of 
-proposition! These will be important for building new types later, and 
+proposition. These will be important for building new types later, and 
 for understanding how to externalize them.
 
 <br>
 $2$
 
 This is the discrete space with two points $$\{\top,\bot\}$$. This is 
-sequential (every finite space is), so behaves exactly as you would expect. 
+sequential (every finite space is, and so is every discrete space), so behaves 
+exactly as you would expect. 
 Note that the convergent sequences are all eventually constant!
 
 We think of maps $X \to 2$ as being <span class=defn>Decidable Propositions</span>.
 These classify the clopen subsets of $X$, and thus are quite rare. Notice 
-that in $\mathcal{T}$, $2$ doesn't form a complete lattice! It has finite 
-joins and meets, of course, we can can build the continuous functions 
+that, in $\mathcal{T}$, $2$ doesn't form a complete lattice! It has finite 
+joins and meets, of course, and we can can build the continuous functions 
 $\land, \lor : 2 \times 2 \to 2$ quite easiliy. Thinking of $2$ as classifying 
 clopen subobjects, this corresponds to the fact that a finite union/intersection
 of clopen sets is clopen. Indeed, if $A,B \subset X$ are clopen, classified 
@@ -552,10 +556,12 @@ $A \cap B$.
 
 This tells us immediately that $2$ cannot have countable joins/meets. We can 
 see this via continuity, since the map $\bigwedge : 2^\mathbb{N} \to 2$ with 
-$\bigvee \alpha = 
+$$
+\bigvee \alpha = 
 \begin{cases} 
 \top & \forall n . \alpha(n) = \top \\ 
-\bot & \text{otherwise} \end{cases}$ 
+\bot & \text{otherwise} \end{cases}
+$$ 
 is not continuous! (and neither is $\bigvee$. In both cases, do you see why?)
 
 We can instead see this by thinking of $2$ as classifying clopen subsets, 
@@ -589,11 +595,11 @@ since homs into $\Sigma$ are open subspaces, and arbitrary unions of
 opens are open, so these operations must be represented by joins $\bigvee$ 
 on $\Sigma$. But it's kind of fun to show directly that
 $\bigvee : \Sigma^\mathbb{N} \to \Sigma$ is continuous 
-(and more generaly from $\Sigma^\kappa \to \Sigma$ for any cardinal $\kappa$).
+(and more generally so is $\bigvee : \Sigma^\kappa \to \Sigma$ for any cardinal $\kappa$).
 
 As a cute aside, this tells us that $\Sigma$ must be closed under arbitrary 
 meets as well... But of course, the arbitrary intersection of open subspaces 
-isn't open. What's going on there?
+isn't open. Do you see what's going on there?
 
 
 <br>
@@ -604,7 +610,7 @@ the topology is $$\{\emptyset, \{\bot\}, \Sigma^c\}$$. Again it's sequential,
 but now we see that every sequence converges to $\top$, while only the 
 eventually constant $\bot$ sequences converge to $\bot$.
 
-Unsurprisingly, this is the space of <span class=defn>Closed Proposition</span>,
+Unsurprisingly, this is the space of <span class=defn>Closed Propositions</span>,
 and maps into $\Sigma^c$ classify closed subspaces of $X$. The same logic as 
 before shows $\Sigma^c$ is a complete lattice, but now we have direct access 
 to $\bigwedge$, since closed subspaces are closed under arbitrary intersection!
@@ -786,7 +792,7 @@ the internal $2^\mathbb{N}$ we just computed!
 
 
 <br>
-$$\sum_{\alpha : 2^\mathbb{N}} \forall {n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$$
+$$\sum_{\alpha : 2^\mathbb{N}} \forall {n : \mathbb{N}} \ \alpha(n+1) \leq \alpha(n)$$
 
 For each $n$, the proposition $\alpha(n+1) \leq \alpha(n)$ is decidable 
 (said another way, the subset 
@@ -795,7 +801,7 @@ is clopen for each $n$), but once we ask for this quantifier
 (which we interpret as an infinite meet), we're forced to work in $\Sigma^c$.
 
 So "$\forall n : \mathbb{N} . \alpha(n+1) \leq \alpha(n)$" is a closed proposition,
-and $$\sum_{\alpha : 2^\mathbb{N}} \forall {n : \mathbb{N}} \alpha(n+1) \leq \alpha(n)$$
+and $$\sum_{\alpha : 2^\mathbb{N}} \forall {n : \mathbb{N}} \ \alpha(n+1) \leq \alpha(n)$$
 is just the closed subspace it classifies.
 
 So this space, externally, is the closed subspace of cantor space corresponding 
@@ -903,7 +909,8 @@ locales _internal to $\mathcal{T}$_ having enough points? There are locales
 internal to $\mathcal{T}$ which don't exist in $\mathsf{Set}$ at all, so 
 maybe that's a stronger statement than what this theorem gets us...
 
-I would be SUPER grateful if some experts chimed in!
+I would be SUPER grateful if some experts chimed in! Feel free to 
+leave a comment on this post, email me, or say something on mastodon.
 </div>
 
 
@@ -920,7 +927,7 @@ gros topos and $X$ is a topological space which lives in $\mathcal{B}$,
 there is a close connection between $\mathsf{Sh}(X)$ and the 
 slice topos $\mathcal{B} \big / X$. 
 
-For instance some authors say that "a" topological topos is a category 
+For instance some authors[^24] say that "a" topological topos is a category 
 of sheaves on a subcategory $\mathcal{C}$ of $\mathsf{Top}$ closed under 
 finite limits and open subspaces. The grothendieck topology is the natural one 
 where a covering family is an open cover in the usual sense. 
@@ -943,10 +950,10 @@ Johnstone decides to not say anything more about the geometric morphisms
 $\mathsf{Sh}(X) \to \mathcal{T}$, and we'll follow suit.
 
 <div class=boxed markdown=1>
-From this discussion, though, we learn that "the" topological topos 
+⚠ From this discussion, though, we learn that "the" topological topos 
 $\mathcal{T}$ is _not_ "a" topological topos in the sense of 
 Moerdijk and Reyes (and other papers). In particular, we have to be careful 
-when reading the literature which version of "topological topoi" the 
+when reading the literature which version of "topological topos" the 
 author is talking about. 
 </div>
 
@@ -997,7 +1004,34 @@ In particular, this means that we can show an object of $\mathcal{T}$
 represents an honest topological space by internally showing that it's 
 $\lnot\lnot$-separated and sequentially hausdorff[^19]!
 
+---
 
+Ok! That's plenty for this post, where we've learned a lot of fundamentals 
+about what $\mathcal{T}$ is, how we can think about its objects, 
+how we can _build new objects_ using type theory and various proposition 
+classifiers, and most importantly we've learned how the things we build 
+in $\mathcal{T}$ relate to topological spaces in "the real world"!
+
+[Next up][63] we'll talk about topological algebras, and learn how 
+we can use the topological topos to reason smoothly about these things. 
+This is a shorter palate cleanser between this post (which is _quite_ long) 
+and the [third post][62] on ~bonus axioms~ validated by $\mathcal{T}$ 
+(which is slightly less long than this one, but with much heavier math).
+
+Thanks for hanging in there, and for all the encouragement while I 
+was writing this! It's been really exciting to know how many people 
+are interested in reading this series ^_^.
+
+As a last request, I'll be turning this series into a paper in the 
+very near future. If you have any suggestions for other examples to add, 
+or axioms to check, or if you notice any typos or outright mistakes, 
+definitely let me know! Also, experts, if you have any additional context 
+you think would fit well in what's shaping up to be quite a long survey 
+of the topological topos that you want to get into the literature, please 
+let me know that too! It'll be nice for future mathematicians to have this 
+all in one place!
+
+As always, thanks for reading all! Stay safe, and talk soon 💖
 
 ---
 
@@ -1063,13 +1097,15 @@ $\lnot\lnot$-separated and sequentially hausdorff[^19]!
 
 [60]: https://ncatlab.org/nlab/show/big+and+little+toposes
 [61]: https://en.wikipedia.org/wiki/Intuitionistic_type_theory
-[62]: /2024/05/07/topological-topos-3-bonus-axioms.html
-[63]: /2024/05/07/topological-topos-2-algebras.html
+[62]: /2024/07/03/topological-topos-3-bonus-axioms.html
+[63]: /2024/07/03/topological-topos-2-algebras.html
 [64]: https://ncatlab.org/nlab/show/local+site
 [65]: https://ncatlab.org/nlab/show/regular+space
 [66]: https://ncatlab.org/nlab/show/locale#RelationToToposes
 [67]: https://ncatlab.org/nlab/show/coherent+space
 [68]: https://en.wikipedia.org/wiki/Boolean_prime_ideal_theorem
+[69]: https://www.sciencedirect.com/science/article/pii/S0166864104000550
+[70]: https://www.sciencedirect.com/science/article/pii/0022404984900495
 
 [^1]:
     I spent some time a few years ago (Feb of 2022, according to my Zotero)
@@ -1151,12 +1187,7 @@ $\lnot\lnot$-separated and sequentially hausdorff[^19]!
     This is spelled out quite clearly in Johnstone's original paper 
     [_On a Topological Topos_][35]. Indeed, Johnstone computes the 
     covering sieves _very_ explicitly, and I highly recommend reading 
-    about it there.
-
-    I don't want to mention the grothendieck topology explicitly because 
-    I think it would take too much time for not much payoff. I'm happy to 
-    mainly summarize facts that are useful for working with 
-    $\mathcal{T}$, and point to the relevant references where necessary.
+    about it there. Of course, I'll say a few words about it in this post too!
 
 [^9]:
     Still with the canonical grothendieck topology.
@@ -1168,7 +1199,7 @@ $\lnot\lnot$-separated and sequentially hausdorff[^19]!
 
 [^10]:
     It's not _immediately_ obvious that this presheaf is actually a sheaf,
-    but it turns out to be. This is in Johnstone's [original paper][35].
+    but it turns out to be. This is a nice exercise.
 
 [^11]:
     This is the first time I'm actually written down the definition of 
@@ -1329,3 +1360,7 @@ $\lnot\lnot$-separated and sequentially hausdorff[^19]!
     are those indexed by $$(E, \text{max}_E)$$ with $E$ cofinite! And, of course, 
     it's easy to see that $$(E, \text{max}_E) \ll (E, \text{max}_E)$$ when $E$ is 
     cofinite, so that moreover every maximal cofinite ideal is possible.
+
+[^24]:
+    eg, Moerdijk and Reyes in their 
+    [_Smooth spaces versus continuous spaces in models for synthetic differential geometry_][70]

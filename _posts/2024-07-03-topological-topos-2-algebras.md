@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Topological Topos 2 -- Topological Algebras
+title: Life in Johnstone's Topological Topos 2 -- Topological Algebras
 tags:
   - life-in-the-topological-topos
 ---
 
-In the first post, we introduced Johnstone's topological topos $\mathcal{T}$ 
+In the [first post][5], we introduced Johnstone's topological topos $\mathcal{T}$ 
 and talked about what its objects look like. We showed how the interpretation 
 of type theory in $\mathcal{T}$ gives us an "intrinsic topology" on any 
 type we construct. We also alluded to the fact that, by working in $\mathcal{T}$ 
@@ -244,7 +244,7 @@ definitions, I know it's based on test maps from all compact hausdorff spaces
 instead of test maps from only $$\mathbb{N}_\infty$$. This probably 
 means it's closely related to compactly generated spaces in much the 
 way that $\mathcal{T}$ is related to sequential spaces. 
-I'm sure there's a reason to prefer this, but I don't know what it is.
+I'm sure there's a reason to prefer this, but I don't know what it is[^8].
 The moral to keep in mind is that the power of doing algebra in a topos 
 that handles the topology for you is currently being used to great effect 
 in applying homological algebra to analytic situations where it previously 
@@ -252,14 +252,21 @@ couldn't go!
 
 ---
 
-
+Alright, I told you this one was going to be more leisurely than the last one!
+Now that we've seen some applications of $\mathcal{T}$ to topological 
+algebra, and we've seen some basic externalization, let's move on to [part 3][7] 
+and _really_ get familiar with the internal logic and how it relates to 
+the real world!
 
 ---
 
-[1]: functorial semantics
-[2]: regular category
-[3]: predicative
-[4]: condensed math
+[1]: https://ncatlab.org/nlab/show/categorical+semantics
+[2]: https://ncatlab.org/nlab/show/regular+category
+[3]: https://ncatlab.org/nlab/show/predicative+mathematics
+[4]: https://en.wikipedia.org/wiki/Condensed_mathematics
+[5]: /2024/07/03/life-in-johnstones-topological-topos.html
+[6]: https://mathoverflow.net/questions/441610/properties-of-pyknotic-sets
+[7]: /2024/07/03/topological-topos-3-bonus-axioms.html
 
 
 [^1]:
@@ -302,3 +309,10 @@ couldn't go!
     of any such arrow has at most $|G|$ many elements, and there's only a 
     set worth of topologies we can put on one of these domains. So up to 
     isomorphism there's only a set worth of arrows, and we're good to go!
+
+[^8]:
+    Peter Scholze actually says a few words about why condensed sets 
+    are easier to work with than objects of $\mathcal{T}$ in a comment 
+    to his answer to [this MO question][6]. I still don't _really_ see it,
+    but that's probably because I haven't spent a lot of time (or any time)
+    working with condensed sets.
