@@ -544,11 +544,12 @@ sequential (every finite space is, and so is every discrete space), so behaves
 exactly as you would expect. 
 Note that the convergent sequences are all eventually constant!
 
-We think of maps $X \to 2$ as being <span class=defn>Decidable Propositions</span>.
-These classify the clopen subsets of $X$, and thus are quite rare. Notice 
+We think of $2$ as the space of <span class=defn>Decidable Propositions</span>,
+so that maps $X \to 2$ classify _decidable properties_ of $X$.
+These are the same as clopen subsets of $X$, and thus might be quite rare. Notice 
 that, in $\mathcal{T}$, $2$ doesn't form a complete lattice! It has finite 
 joins and meets, of course, and we can can build the continuous functions 
-$\land, \lor : 2 \times 2 \to 2$ quite easiliy. Thinking of $2$ as classifying 
+$\land, \lor : 2 \times 2 \to 2$ quite easily. Thinking of $2$ as classifying 
 clopen subobjects, this corresponds to the fact that a finite union/intersection
 of clopen sets is clopen. Indeed, if $A,B \subset X$ are clopen, classified 
 by maps $\chi_A, \chi_B : X \to 2$, then the map 
@@ -558,7 +559,7 @@ $A \cap B$.
 This tells us immediately that $2$ cannot have countable joins/meets. We can 
 see this via continuity, since the map $\bigwedge : 2^\mathbb{N} \to 2$ with 
 $$
-\bigvee \alpha = 
+\bigwedge \alpha = 
 \begin{cases} 
 \top & \forall n . \alpha(n) = \top \\ 
 \bot & \text{otherwise} \end{cases}
