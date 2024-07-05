@@ -180,7 +180,7 @@ This will let you see _precisely_ how dependent choice is used above.
 </div>
 
 Dependent Choice implies [Countable Choice][41], which itself implies 
-[Weak Countable Choice][42]. But WCC implies that the 
+[Weak Countable Choice][42]. But WCC[^21] implies that the 
 [dedekind reals][43] and the [cauchy reals][44] agree. And indeed one 
 can show directly that in $\mathcal{T}$ both the dedekind and cauchy reals 
 are given by $よ\mathbb{R}$.
@@ -877,7 +877,7 @@ As desired.
 [39]: /2022/12/13/internal-logic-examples.html
 [40]: https://en.wikipedia.org/wiki/Sierpi%C5%84ski_space
 [41]: https://ncatlab.org/nlab/show/countable+choice
-[42]: https://ncatlab.org/nlab/show/countable+choice#WCC
+[42]: https://ncatlab.org/nlab/show/countable+choice#ACN2
 [43]: https://ncatlab.org/nlab/show/Dedekind+cut
 [44]: https://ncatlab.org/nlab/show/Cauchy+real+number
 [45]: https://en.wikipedia.org/wiki/Baire_category_theorem
@@ -1110,3 +1110,15 @@ As desired.
 
     If an expert sees this and happens to know offhand if that's true, 
     I would love to know for sure!
+
+[^21]:
+    Thanks to Madeleine Birchfield for pointing out that I originally
+    linked the wrong "Weak Countable Choice" here. I didn't realize that 
+    there are _two_ things, both called "weak countable choice", and 
+    _both_ implied by either CC or LEM! 
+    The one that proves the 
+    dedekind and cauchy reals agree is unambiguously called 
+    $$\mathsf{AC}_{\mathbb{N},2}$$. At time of writing it's listed as 
+    "another weak countable choice" on nlab, and it means that every 
+    $\mathbb{N}$-indexed sequence of inhabited subsets of $$\{0,1\}$$ 
+    has a choice function.
