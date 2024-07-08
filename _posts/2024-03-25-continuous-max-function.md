@@ -161,7 +161,7 @@ $\mathcal{U}$ a family of open sets, the family $\mathcal{U}$ must be inhabited.
 Recall we say $A$ is _inhabited_ exactly when $\exists a \in A$ is true.
 In $\text{Sh}(X)$, this means that there's an open cover of $X$ so that $A$ 
 has a section on every element of the cover. That is, exactly when the 
-structure map $A \to X$ is surjective.
+structure map $A \to X$ is surjective[^13].
 
 ---
 
@@ -304,6 +304,8 @@ now I need to get ready to go to the airport! Stay safe ^_^.
 [27]: https://ncatlab.org/nlab/show/open+map
 [28]: http://www.paultaylor.eu/ASD/overtrn/overtrn.pdf
 [29]: https://tdejong.com/
+[30]: http://arxiv.org/abs/2304.06000
+[31]: https://arxiv.org/abs/2107.04417
 
 [^1]:
     Note that it's possible to have constant fibres, _without_ being the 
@@ -431,3 +433,41 @@ now I need to get ready to go to the airport! Stay safe ^_^.
     - Compactness of $K$ agrees with properness of $\pi$ is theorem C3.2.8
     - Overtness of $K$ agrees with openness of $\pi$ is lemma C3.1.17 
     - We've already talked about why positivity means $\pi$ is surjective
+
+[^13]:
+    **Edit: July 7, 2024:**
+
+    Graham and I talked about this on the CT Zuip back in March, since it's not 
+    100% obvious how this works. 
+
+    In Graham's [notes][30], theorem 3.15 is a constructive proof that 
+    $A$ is a positive locale if and only if the map 
+    $! : A \to 1$ is epic in the category of locales.
+
+    So this tells us that, $A$ is a positive locale internal to 
+    $\mathsf{Sh}(X)$ iff, in the internal category of locales in $\mathsf{Sh}(X)$,
+    the map $A \to 1$ is epic.
+
+    We would love to use the "well known" equivalence between 
+    the category of internal locales in $\mathsf{Sh}(X)$ and the category 
+    of external locales over $X$ here to say that $A \to 1$ is epic iff 
+    externally the structure map $A \to X$ is epic, as claimed... But it's 
+    actually slightly more subtle than that! After all, Graham's notes prove 
+    a claim about the _internal_ category of locales internal to $\mathsf{Sh}(X)$,
+    and I don't see an obvious way to relate this to the _external_ category 
+    of locales internal to $\mathsf{Sh}(X)$. Morally the external category 
+    should be a kind of "global section" of the internal category, but I'm 
+    not sure how to make this precise... I think it's something stacky.
+
+    That said, this particular situation is simple enough that we don't need 
+    to worry about such things! In his notes, Graham _actually_ proves that 
+    $!^* : \mathcal{O}(1) \to \mathcal{O}(A)$ is injective as a frame hom. 
+    Injectivity in the internal logic gives us injectivity on global sections, 
+    but we know the global sections of $\mathcal{O}(1)$ are just 
+    $\mathcal{O}(X)$ externally, and global sections of $\mathcal{O}(A)$ 
+    are just $\mathcal{O}(A)$ externally! So we get injectivity externally, 
+    thus the exeternal map $A \to X$ is epic, as desired.
+
+    There's almost certainly a cleaner approach using Caramello and 
+    Zanfra's recent machinery about relative topoi via stacks 
+    (see [here][31]), but I haven't had time to learn any of these results.
