@@ -465,8 +465,8 @@ now I need to get ready to go to the airport! Stay safe ^_^.
     Injectivity in the internal logic gives us injectivity on global sections, 
     but we know the global sections of $\mathcal{O}(1)$ are just 
     $\mathcal{O}(X)$ externally, and global sections of $\mathcal{O}(A)$ 
-    are just $\mathcal{O}(A)$ externally! So we get injectivity externally, 
-    thus the exeternal map $A \to X$ is epic, as desired.
+    are just $\mathcal{O}(\Gamma(A))$ externally! So we get injectivity externally, 
+    thus the exeternal map $\Gamma(A) \to X$ is epic, as desired.
 
     There's almost certainly a cleaner approach using Caramello and 
     Zanfra's recent machinery about relative topoi via stacks 
