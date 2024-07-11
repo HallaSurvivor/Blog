@@ -902,6 +902,7 @@ As desired.
 [64]: /2024/07/03/life-in-johnstones-topological-topos.html
 [65]: https://core.ac.uk/download/33573841.pdf
 [66]: /2024/07/03/topological-topos-2-algebras.html
+[67]: https://mathoverflow.net/questions/474578/equivalence-of-omniscience-principles-for-natural-numbers-and-analytic-omniscien
 
 
 [^1]:
@@ -1110,6 +1111,13 @@ As desired.
 
     If an expert sees this and happens to know offhand if that's true, 
     I would love to know for sure!
+
+    **Edit (July 10, 2024)**: Thanks again to Madeleine Birchfield for 
+    clarifying on zulip that the omniscience principles for $\mathbb{N}$ 
+    are probably equivalent to the analytic omniscience principles for the 
+    cauchy reals. I would still love a proper reference if someone has one, 
+    but at least there's now a [mathoverflow question][67] with a proof 
+    in the LPO case.
 
 [^21]:
     Thanks to Madeleine Birchfield for pointing out that I originally

@@ -511,19 +511,24 @@ $\mathsf{Seq} \hookrightarrow \mathsf{Top}$) shows that two homeomorphic
 sequential spaces are also isomorphic in $\mathcal{T}$, so that we can 
 detect every homeomorphism just by working in $\mathcal{T}$.
 
-Similarly, if $A \hookrightarrow B$ is monic in $\mathsf{Top}$, 
-then it's also a mono in $\mathsf{Seq}$ (since faithful functors reflect monos).
-Since right adjoints preserve monics, we get $A \hookrightarrow B$ 
-in $\mathcal{T}$, so that anything we "expect" to be a subobject in 
-$\mathcal{T}$ actually is. 
-Conversely, if $A \hookrightarrow B$ is monic in $\mathcal{T}$, then it's 
-also a mono in $\mathsf{Seq}$. But here we run into a subtle issue! It's 
-possible that the presence of nonsequential spaces will render a mono 
-in $\mathsf{Seq}$ no longer monic in $\mathsf{Top}$!
+Similarly, if $A$ and $B$ are both sequential, then 
+a map $A \to B$ is monic in $\mathsf{Top}$, 
+if and only if it's monic in $\mathsf{Seq}$ if and only if 
+it's monic in $\mathcal{T}$! In all cases, the monics are exactly 
+the continuous injections[^25]. This tells us that anything we "expect" 
+to be a subobject in $\mathcal{T}$ actually is. But note that in 
+$\mathsf{Top}$ we might have nonsequential subspaces of a sequential 
+space (any non-frechet sequential space will do. see [here][16]) and 
+similarly in $\mathcal{T}$ we might have nonsequential subspaces of a 
+sequential space (indeed, every kuratowski limit space is a subobject 
+in $\mathcal{T}$ of a sequential space). Nonetheless, open/closed 
+subspaces of a sequential space _will_ be sequential in both 
+$\mathsf{Top}$ and in $\mathcal{T}$. 
 
 Dually, if $A \to B$ is an epi in $\mathcal{T}$, then it's an epi in 
 $\mathsf{Seq}$, and thus an epi in $\mathsf{Top}$ 
-(since the inclusion $\mathsf{Seq} \to \mathsf{Top}$ is a left adjoint).
+(since the inclusion $\mathsf{Seq} \to \mathsf{Top}$ is a left adjoint, and 
+preserves epis).
 But there's no reason to suspect an epi in $\mathsf{Top}$ to remain 
 an epi in $\mathcal{T}$.
 
@@ -848,13 +853,13 @@ $X^\mathcal{T}(1) = X^\mathsf{Set} = \text{pt}(X)$.
 
 Now let's look at $$\mathsf{Locale}(\Omega(\mathbb{N}_\infty), X)$$, 
 that is, frame homomorphisms $X$ to $$\Omega(\mathbb{N}_\infty)$$.
-Since $X$ is regular, we know that every $a \in X$ satisfies 
+Since $X$ is regular, we know that every $a \in X$ satisfies[^26]
 
 $$
-a = \bigvee \{x \mid x \ll a \}
+a = \bigvee \{x \mid x \prec a \}
 $$
 
-where $x \ll a$ (read as "$x$ is well below $a$") means that $\lnot x \lor a = \top$.
+where $x \prec a$ (read as "$x$ is rather below $a$") means that $\lnot x \lor a = \top$.
 
 Then if $$f : X \to \Omega(\mathbb{N}_\infty)$$ is a frame hom we see that 
 each $fa$ satisfies this same property. Indeed
@@ -862,9 +867,9 @@ each $fa$ satisfies this same property. Indeed
 $$
 \begin{align}
 fa 
-&= f \left ( \bigvee \{ x \mid x \ll a \} \right ) \\
-&= \bigvee \{ fx \mid fx \ll fa \} \\
-&\leq \bigvee \{ y \mid y \ll fa \} \\
+&= f \left ( \bigvee \{ x \mid x \prec a \} \right ) \\
+&= \bigvee \{ fx \mid fx \prec fa \} \\
+&\leq \bigvee \{ y \mid y \prec fa \} \\
 &\leq fa
 \end{align}
 $$
@@ -1337,7 +1342,7 @@ As always, thanks for reading all! Stay safe, and talk soon 💖
 
 [^23]:
     First, say we have a proof $$(\omega_n) \to \bot$$. That is a subset $A$ of
-    $\mathbb{N}$. Then to have $x \ll A$ means that 
+    $\mathbb{N}$. Then to have $x \prec A$ means that 
     $\lnot x \lor A = \top$, which is the proof $$(\omega_n) \to \top$$ indexed by 
     $$(\mathbb{N}, \text{max}_\mathbb{N})$$, the ideal indexed by all infinite 
     subsets of $\mathbb{N}$. Since $x \leq A$, it's also just a subset of 
@@ -1349,20 +1354,29 @@ As always, thanks for reading all! Stay safe, and talk soon 💖
     via the axioms for one of these "closed ideals of subsets" means that 
     every subset of $\mathbb{N}$ should have a further subset inside 
     $$\text{max}_{x^c}$$. But this happens exactly when $$x^c$$ is cofinite! 
-    So asking for $$A = \bigvee \{ x \ll A \}$$ means asking for $A$ to be 
+    So asking for $$A = \bigvee \{ x \prec A \}$$ means asking for $A$ to be 
     the union of the finite subsets of $A$, which is always true.
 
     Now let's look at the more complicated case of a proof $$(\omega_n) \to \top$$. 
-    We see $x \ll (E,I)$ if and only if 
+    We see $x \prec (E,I)$ if and only if 
     $$\lnot x \lor (E,I) = \top = (\mathbb{N}, \text{max}_\mathbb{N})$$, so that 
     if $x = (F,J)$ we must have $F \subseteq E$ and the closure of $I$ should be 
     $$\text{max}_\mathbb{N}$$ so that $E$ must be cofinite! Since it's not possible 
     for a join of proofs $$(\omega_n) \to \bot$$ to equal a proof $(E,I)$ that 
     $$(\omega_n) \to \top$$, this tells us that the only proofs with this property 
     are those indexed by $$(E, \text{max}_E)$$ with $E$ cofinite! And, of course, 
-    it's easy to see that $$(E, \text{max}_E) \ll (E, \text{max}_E)$$ when $E$ is 
+    it's easy to see that $$(E, \text{max}_E) \prec (E, \text{max}_E)$$ when $E$ is 
     cofinite, so that moreover every maximal cofinite ideal is possible.
 
 [^24]:
     eg, Moerdijk and Reyes in their 
     [_Smooth spaces versus continuous spaces in models for synthetic differential geometry_][70]
+
+[^25]:
+    Thanks to Morgan Rogers for letting me know that monics actually 
+    agree in all cases, which simplies the exposition of this section quite a lot.
+
+[^26]:
+    Thanks to Graham Manuell for letting me know that there's standard 
+    notation for this (which the post now uses) besides what's shown in 
+    Johnstone's "Stone Spaces".
