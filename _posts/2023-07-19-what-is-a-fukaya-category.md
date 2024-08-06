@@ -92,7 +92,12 @@ TODO: But what should composition be? (draw a picture)
 
 TODO: is this associative? (no :/... but almost)
 
-TODO: Interlude: $A_\infty$ stuff
+TODO: say some words about $A_\infty$ stuff. We'll make a seperate blog 
+post _all_ about this.
+
+TODO: How do we _compute_ a fukaya category? Given a finite amount of 
+data defining a surface, can we compute (a presentation of) the fukaya 
+category? YES! There's also going to be a follow-up blog post about this.
 
 ---
 
