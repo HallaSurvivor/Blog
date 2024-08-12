@@ -38,7 +38,8 @@ With all that out of the way, let's get to it!
 
 TODO:
 
-A <span class=defn>Finite Cardinal</span> is a set ...
+A <span class=defn>Finite Cardinal</span> is a set 
+$$[n] = \{ x : \mathbb{N} \mid x \lt n \}$$. 
 
 A set $X$ is called <span class=defn>Bishop Finite</span> if it's (locally)
 isomorphic to a cardinal. That is, if for some $n$ we can prove 
@@ -69,7 +70,8 @@ propositions... What about kuratowski?
 ---
 
 TODO: picturing cardinals (constant covering spaces. Draw some pictures. 
-Relate this to the definition in the elephant)
+Relate this to the definition in the elephant). Note that you can have a 
+different number of fibres over a different component!
 
 
 TODO: picturing bishop finite sets 
