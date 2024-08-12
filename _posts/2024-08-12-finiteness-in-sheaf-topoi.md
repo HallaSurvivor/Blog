@@ -136,6 +136,15 @@ Blass's paper on the Pigeonhole Principle.
 
 TODO: link that.
 
+TODO: mention that cardinals are projective, so satisfy a version of choice. 
+Do any of the others? (k-finite definitely don't). Can you show this 
+with a picture?
+
+TODO: which of these are preserved by pullback along a geometric morphism?
+
+TODO: If you're interested in reading more, the last section (D5) of 
+Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos. 
+
 ---
 
 [1]: /2024/03/25/continuous-max-function.html
