@@ -36,36 +36,47 @@ With all that out of the way, let's get to it!
 
 ---
 
-TODO:
+First, let's just recall the notions of finiteness you're likely to 
+find in the literature[^2]:
 
-A <span class=defn>Finite Cardinal</span> is a set 
-$$[n] = \{ x : \mathbb{N} \mid x \lt n \}$$. 
+If $n : \mathbb{N}$, the <span class=defn>Finite Cardinal</span> of size $n$ 
+is the set $$[n] = \{ x : \mathbb{N} \mid x \lt n \}$$. 
 
 A set $X$ is called <span class=defn>Bishop Finite</span> if it's (locally)
-isomorphic to a cardinal. That is, if for some $n$ we can prove 
+isomorphic to a cardinal. That is, if for some $n:\mathbb{N}$ we can prove 
 $$\exists f : X \cong [n]$$.
 
 A set $X$ is called <span class=defn>Kuratowski Finite</span> if it's 
-(locally) the image of a cardinal. That is, if for some $n$ we can prove
+(locally) the image of a cardinal. That is, if for some $n:\mathbb{N}$ we can prove
 $$\exists f : [n] \twoheadrightarrow X$$.
 
 A set $X$ is called <span class=defn>Subfinite</span> if it's (locally) a 
-subobject of a cardinal. That is, if for some $n$ we can prove 
+subobject of a cardinal. That is, if for some $n:\mathbb{N}$ we can prove 
 $$\exists f : X \hookrightarrow [n]$$.
 
 A set $X$ is called <span class=defn>Dedekind Finite</span> if every 
 mono $X \hookrightarrow X$ is actually an iso. That is, if we can prove 
 $$\forall f : X \hookrightarrow X . \exists g : X \to X . fg = 1_X \land gf = 1_X$$.
 
-TODO: dedekind finiteness is different from the others, and we'll broadly
-ignore it.
 
+It's pretty obvious from these definitions that dedekind finiteness is 
+a bit different from the others. This comes with pros and cons, but in my 
+experience it's rarely the thing to consider. I'm including its definition 
+more for cultural growth than anything, and I won't say anything more about 
+it in this post[^3].
 
-TODO: say a few words about type theory vs set theory. All these existentials 
-are _truncated_, so they need only exist locally. If we ask for global 
-definitions (with a $\Sigma$-type) then... what happens? Bishop ends up 
-agreeing with cardinals. I think subfinite ends up being disjoint unions of 
-propositions... What about kuratowski?
+Also, notice we're putting an existential quantifier in front of everything. 
+In the internal logic, this means that we're allowed to pass to an open cover 
+of our base space and use a different $f$ on each open. If you prefer 
+type theory[^4], you can replace every instance of $\exists$ by the 
+[propositional truncation][9] of a $\Sigma$-type.
+
+It's interesting to ask what the "untruncated" versions of these will be. 
+I think that untruncated bishop finite types are exactly the cardinals, 
+untruncated subfinite types are disjoint unions of propositions... But 
+it's not clear to me what the untruncated kuratowski finite types should be.
+Something like "kuratowski finite objects that aren't allowed to twist", 
+but I don't quickly see a characterization of them[^5].
 
 ---
 
@@ -156,7 +167,8 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
 [5]: /tags/analysis-qual-prep/
 [6]: /tags/life-in-the-topological-topos/
 [7]: https://sites.google.com/view/petersamuelson/home
-
+[8]: https://doi.org/10.1016/0022-4049(87)90130-7
+[9]: https://ncatlab.org/nlab/show/bracket+type
 
 
 [^1]:
@@ -168,3 +180,30 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
     lot of longer form posts lately (like the three part series on 
     the [topological topos][6], and I can tell the fukaya post is 
     going to be long too...)
+
+[^2]:
+    Here we're using the expected abbreviations. 
+
+    We write $f : X \cong Y$ to mean $f : X \to Y$ and 
+    $\exists g : Y \to X . gf = 1_X \land fg = 1_Y$.
+
+    We write $f : X \hookrightarrow Y$ to mean $f : X \to Y$ and 
+    $\forall x_1, x_2 : X . fx_1 = fx_2 \to x_1 = x_2$
+
+    We write $f : X \twoheadrightarrow Y$ to mean $f : X \to Y$ and 
+    $\forall y : Y . \exists x : X . fx = y$.
+
+[^3]:
+    If you want to learn more about it, I highly recommend 
+    Stout's [_Dedekind Finiteness in Topoi_][8]. I don't know of a 
+    good way to visualize the dedekind finite objects in $\mathsf{Sh}(X)$
+    (though I haven't tried at all -- I want this to be a fast post) which 
+    was another reason to exclude them.
+
+[^4]:
+    Which I often do, but not today.
+
+[^5]:
+    And again, I want this to be a quick post, finished within a day or 
+    two of starting it, so I don't have the time to think about it at all.
+    I would love for an enthusiastic reader to chime in, though!
