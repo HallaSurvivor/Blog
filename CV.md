@@ -20,6 +20,7 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Papers and Preprints
 
+- Life in Johnstone's Topological Topos (in preparation)
 - A Descent Theorem for Right Angled Artin Groups (Accepted to AGT. [preprint](https://arxiv.org/abs/2309.06614))
 - Extensions of Abelian Automata Groups ([preprint](https://arxiv.org/abs/1903.06997))
 
@@ -34,6 +35,7 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Seminar Talks In Department
 
+- Introduction to Quantum Groups (UCR, 2024)
 - Introduction to Symplectic Geometry (UCR, 2023)
 - Introduction to $A_\infty$ Categories and the Fukaya Category (UCR, 2023)
 - Introduction to $A_\infty$ Algebras (UCR, 2023)
@@ -62,6 +64,13 @@ B.S. in Discrete Math and Logic (May 2019)
  - [BB2P Mentor][7] (2024)
 
  - Artistic Expression of Original Research participant (2024)
+     - The Artistic Expression of Original Research art exhibition 
+     exemplifies the incredible work produced from blending the humanities 
+     and sciences. Graduate students translate science into art to communicate 
+     science in a new way and how it might be meaningful to our communities. 
+     Part of the national Being Human Festival, supported by the National 
+     Humanities Center, Center for Ideas and Society, and the Gluck Fellows 
+     Program of the Arts at UCR
 
  - President of UCR [AMS Chapter][6] (2024)
 
@@ -119,6 +128,10 @@ B.S. in Discrete Math and Logic (May 2019)
   - CS-011: Introduction to Discrete Structures (Winter 2023)
   - Math-6B: Introduction to College Math for the Sciences (Winter 2023)
   - Math-10A: Calculus in Several Variables (Spring 2023)
+  - Math-7B: Calculus for the Life Sciences (Fall 2023)
+  - Math-31: Applied Linear Algebra (Fall 2023)
+  - CS-011: Introduction to Discrete Structures (Winter 2024)
+  - Math-10B: Calculus in Several Variables (Spring 2024)
 </details>
 
 <details markdown=1>
