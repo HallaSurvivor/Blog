@@ -20,11 +20,13 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Papers and Preprints
 
-- A Descent Theorem for Right Angled Artin Groups ([preprint](https://arxiv.org/abs/2309.06614))
+- A Descent Theorem for Right Angled Artin Groups (Accepted to AGT. [preprint](https://arxiv.org/abs/2309.06614))
 - Extensions of Abelian Automata Groups ([preprint](https://arxiv.org/abs/1903.06997))
 
 
 ## Talks Outside UCR/CMU
+- Gluing is Hard: Skeins and Hall Algebras (Centre for Quantum Mathematics at Syddansk, 2024)
+- What is Factorization Homology? (AMS Special Session, 2024)
 - 2-Categorical Descent and (Essentially) Algebraic Theories (CT Octoberfest, 2023)
 - The Univalence Axiom (University of Florida, 2021)
 - Categories, Modalities, and Type Theories: Oh My! (HoTT Workshop, 2021)
@@ -56,6 +58,14 @@ B.S. in Discrete Math and Logic (May 2019)
 
 
 ## Outreach
+
+ - [BB2P Mentor][7] (2024)
+
+ - Artistic Expression of Original Research participant (2024)
+
+ - President of UCR [AMS Chapter][6] (2024)
+
+ - Category Theory Zulip Moderator (2024)
 
  - Founding member of UCR [Spectra][5] Chapter (2023)
 
@@ -191,6 +201,8 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Conferences Attended
 
+- [AMS Special Session: Category Theory and Homotopy Theory in Interaction](https://www.ams.org/meetings/sectional/2313_program_ss13.html) (Spring 2024)
+- [Higher Segal Spaces and their Applications](https://www.birs.ca/events/2024/5-day-workshops/24w5266/schedule) (Winter 2024)
 - [CT Octoberfest 2023](https://richardblute.ca/octoberfest-2023/) (Fall 2023)
 - [Representation Theory, Noncommutative Algebra, and Categorification](https://www.crmath.ca/en/activities/#/type/activity/id/3879) (Summer 2023)
 - [CT2023](https://sites.uclouvain.be/ct2023/) (Summer 2023)
@@ -208,6 +220,7 @@ B.S. in Discrete Math and Logic (May 2019)
 [4]: https://gradsubgroups.org/
 [5]: http://lgbtmath.org/
 [6]: http://www.ams.org/programs/studentchapters
+[7]: https://bb2p.ucr.edu/
 
 [matt durham website]: https://sites.google.com/view/mgdurham/
 [catherine cannizzo website]: https://sites.google.com/view/ccannizzo/about-me
