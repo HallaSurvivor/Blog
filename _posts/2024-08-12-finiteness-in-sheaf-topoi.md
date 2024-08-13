@@ -80,18 +80,196 @@ but I don't quickly see a characterization of them[^5].
 
 ---
 
-TODO: picturing cardinals (constant covering spaces. Draw some pictures. 
-Relate this to the definition in the elephant). Note that you can have a 
-different number of fibres over a different component!
+TODO: spend a bit of time relating this to the definition of cardinal 
+in the elephant... Draw a picture of the "generic cardinal"? Say explicitly 
+somewhere that these are the constant covering spaces with finite fibres.
+
+Now, how should we go about _visualizing_ these things? Every sheaf on $B$ 
+is also an [etale space][10] over $B$ (that is, a local homeomorphism $E \to B$).
+And by thinking of our favorite sheaf as some space over $B$[^6] 
+we can draw pictures of it!
+
+Let's start simple and let $B = [-1,1]$ be an interval. Then a cardinal 
+is a sheaf $$[n] = \{x : \mathbb{N} \mid x \lt n \}$$. In every sheaf 
+topos $\mathsf{Sh}(B)$ the natural number object is (the sheaf of sections of) 
+$B \times \mathbb{N}$ where $\mathbb{N}$ gets the discrete topology. 
+
+<div class=boxed markdown=1>
+TODO: put a picture of $[-1,1]$ with $\mathbb{N}$ many intervals covering it,
+labelled by naturals.
+</div>
+
+So if $n$ is a global section, it must be $$B \times \{ n \}$$ for some fixed $n$ 
+in "the real world". 
+
+<div class=boxed markdown=1>
+TODO: put a picture of $$B \times \{ n \}$$
+</div>
+
+So we see that $$[n] = \{ x : \mathbb{N} \mid x \lt n \}$$ is given by 
+
+<div class=boxed markdown=1>
+TODO: Put a picture of an $n$ sheeted cover (labelled $0$ to $n-1$) 
+</div>
+
+The situation is only slightly more complicated if $B$ has multiple 
+components[^7] (say $B = [-1,1] \sqcup S^1$). In this case, $\mathbb{N}$ 
+is still $B \times \mathbb{N}$, but now global sections can choose a different 
+natural over each component:
+
+<div class=boxed markdown=1>
+TODO: Put a picture of $\mathbb{N}$ over $[-1,1] \sqcup S^1$, 
+and also a picture of the global section $(n,m)$.
+</div>
+
+Because of this, we end up with more sets $[n]$! Indeed, now a global section 
+$n$ might be something like $(2,3)$ so that we get a cardinal $[(2,3)]$,
+shown below:
+
+<div class=boxed markdown=1>
+TODO: the cardinal $[(2,3)]$
+</div>
+
+So we se that cardinals are _really really_ easy to work with! This is what we 
+would expect, since they're subsheaves of a particularly simple sheaf. 
+For instance, we can _see_ the fact that cardinals always have 
+[decidable equality][12] by noticing that any two sections over $U$ are 
+either equal on all of $U$, or none of $U$!
+
+<div class=boxed markdown=1>
+TODO: a picture of each case
+</div>
+
+We also _see_ why a cardinal is either empty or inhabited! As soon as you 
+have a _piece_ of a section over $U$, it must extend to a section on all 
+of $U$[^8]
+
+<div class=boxed markdown=1>
+TODO: a picture of a piece of a section extending to a full section.
+</div>
+
+<br>
+
+Next up are the bishop finite sets! These satisfy $\exists f : X \cong [n]$,
+so that we can find an open cover $$\{U_\alpha \}$$ of $B$ and functions 
+$$f_\alpha : X \! \upharpoonright_\alpha \cong [n] \! \upharpoonright_\alpha$$.
+
+Since $[n]$ is a _constant_ family over $B$, this means we want $X$ to be 
+_locally constant_. This means that bishop finite sets have to basically 
+look like cardinals, but now we're allowed to "twist" the fibres around.
+
+<div class=boxed markdown=1>
+TODO: draw a picture of an open cover of $S^1$ by three opens. 
+Put a constant bundle with 2 fibres, and a twisted bundle. 
+Use colors to show the isomorphisms on each member of the open cover
+</div>
+
+So the bishop finite sets are exactly the [covering spaces][13] with 
+finite fibres. These inherit lots of nice properties from the cardinals, 
+since as far as the internal logic is concerned they're isomorphic to 
+cardinals!
+
+For instance, here's an internal proof that bishop finite sets have 
+decidable equality:
+
+$\ulcorner$
+We know $\exists f : X \cong [n]$. Fix such an $f$, and let $x,y : X$. 
+Since $f$ is an isomorphism we know $x=y$ if and only if $fx = fy$, 
+but we can decide this using decidable equality on $[n]$ 
+(which comes from decidable equality on $\mathbb{N}$, which we prove by 
+induction).
+<span style="float:right">$\lrcorner$</span>
+
+We can also _see_ this externally. As before, this is saying that two
+sections over $U$ either agree everywhere or nowhere 
+(and it's a cute exercise to see this for yourself).
+But there's another way to see this too! It says that the subsheaf 
+$$\{(x,y) : X \times X \mid x=y \}$$ is a clopen subset of $X \times X$!
+But we can compute $X \times X$ (the pullback of $X \to B$ along $X \to B$)
+
+<div class=boxed markdown=1>
+TODO: draw a picture of two double covers over the circle, labelled 
+$(00,11)$ and $(01,10)$.
+</div>
+
+Note that the subsheaf (really sub-etale space) where the fibres are the same 
+really is a clopen subset (read: a connected component) of the whole space 
+$X \times X$ over $B$. (If it's not obvious that this really _is_ the 
+pullback, it makes a fun exercise!)
+
+As a last remark, let's also notice that bishop finite sets can be 
+_inhabited_ without being _pointed_. That is, a bishop finite set $X$ can 
+satisfy $\exists x : X$ ($X$ is inhabited) without actually having $x:X$ for any $x$
+($X$ is not pointed)! This is because of the locality of the existential 
+quantifier again! If we pass to an open cover of $B$, we can find a local 
+section over each open. Unfortunately, these might not be compatible, so 
+won't glue to a _global_ section (a point $x:X$)!
+
+<div class=boxed markdown=1>
+TODO: a picture of two local sections of the twisted double cover of $S^1$, 
+checked on a cover with two opens. They aren't compatible.
+</div>
+
+<br>
+
+Ok, now let's get to the example that led me to make this post at all! 
+How should we visualize kuratowski finite sets? These are (locally) 
+_quotients_ of cardinals, so we start with a cardinal 
+(which we know how to visualize) and then we want to start gluing stuff 
+together.
+
+Remember that etale spaces come about by taking open subsets of $B$ and 
+gluing them together along their common open subsets. With this in mind, 
+let's start with a trivial double cover of $B = [-1,1]$ 
+(that is, with two copies of $B$), and glue them together along their 
+common open subset $[-1,0) \cup (0,1]$. This space is the 
+[line with two origins][14] (TODO: fix this link), and it's famously 
+_nonhausdorff_!
+
+<div class=boxed markdown=1>
+TODO: a picture of the line with two origins over $B = [-1,1]$
+</div>
+
+You can see that this space still deserves to be called "finite" 
+over $B$ (for instance, all the fibres are finite), but it's more 
+complicated than the bishop case. For instance, it doesn't have a 
+well defined "cardinality". In some places it has one element in the fibre, 
+and in others it has two. However, it's still possible to _list_ or 
+_enumerate_ all the sections. Indeed, this is basically what the quotient 
+map does:
+
+<div class=boxed markdown=1>
+TODO: the "0th" section and the "1st" section
+</div>
+
+The failure of hausdorffness and the failure of decidable equality are 
+closely related. For example, consider the two sections from the previous 
+picture. Decidable equality says that they should be either everywhere 
+equal or everywhere unequal... But of course they aren't! They're 
+equal in some places (over $1$, say) but unequal in others (over $0$)!
+
+Following [Richard Borcherds][15] (TODO: fix this link), hausdorffness is 
+also closely related to a kind of "analytic continuation". Indeed, say your 
+etale space $X$ is hausdorff and you pick a point $x_b$ over $b \in B$ 
+(in this context we think of $x_b$ as the germ of a function at $b$).
+Then for any small enough open $U \ni b$, there is a unique extension of 
+$x_b$ to an honest function on the neighborhood $U$! We are able to 
+_analytically continue_ $x_b$ from data at just a point to data defined in 
+some neighborhood!
+
+<div class=boxed markdown=1>
+Here's an easy exercise to see this for yourself
+</div>
+
+(mo: can one characterse those sheaves which have hausdorff etale spaces?)
+
+two local sections $f,g : U \to X$.
+Then as soon as $f_b = g_b$ at some point $b \in U$, we must have $f=g$ on 
+the whole of $U$! So 
 
 
-TODO: picturing bishop finite sets 
-(covering spaces with finite fibres. Draw some pictures.)
+TODO: say more about this. Also "unique path lifting"
 
-Bishop finite sets always have decidable equality. Show this 
-informally by showing two sections have an open neighborhood where they're 
-either totally the same or totally different. Then show this in the case 
-of the double cover of the circle to show the equality relation is clopen. 
 
 TODO: picturing k-finite sets 
 (etale spaces with finite fibres. Draw some pictures. Skyscraper sheaf)
@@ -110,8 +288,6 @@ These are decidable, but need not be a quotient of a b-finite set
 (since it doesn't have to be surjective onto the base space).
 
 
-TODO?: Can we picture dedekind finite sets? I might just... not bother, haha.
-
 ---
 
 Closure properties:
@@ -125,6 +301,9 @@ and make them obvious with some pictures.
 ---
 
 TODO: which finite set to use?
+
+TODO: say that different notions of "finite" give us different --
+bishop sets have a cardinality, k-sets can be listed (possibly with duplicates)
 
 Almost always, if you're just doing "regular math" you want to work with 
 kuratowski finite sets. These admit a surjection from $[n]$, and so can be 
@@ -169,6 +348,12 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
 [7]: https://sites.google.com/view/petersamuelson/home
 [8]: https://doi.org/10.1016/0022-4049(87)90130-7
 [9]: https://ncatlab.org/nlab/show/bracket+type
+[10]: https://ncatlab.org/nlab/show/%C3%A9tale+space
+[11]: https://en.wikipedia.org/wiki/Locally_connected_space
+[12]: https://ncatlab.org/nlab/show/decidable+equality
+[13]: https://en.wikipedia.org/wiki/Covering_space
+[14]: line with two origins
+[15]: richard borcherds video on etale spaces
 
 
 [^1]:
@@ -207,3 +392,22 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
     And again, I want this to be a quick post, finished within a day or 
     two of starting it, so I don't have the time to think about it at all.
     I would love for an enthusiastic reader to chime in, though!
+
+[^6]:
+    That is, a space built by gluing together opens of $B$ along common 
+    intersections
+
+[^7]:
+    We'll still assume that $B$ is [locally connected][11], though, 
+    since that makes them much easier to draw.
+
+    It's important to remember that our geometric intuition is likely to 
+    fail us if we start considering, say, sheaves on the cantor space!
+
+[^8]:
+    Strictly speaking this is only true if $U$ is connected. But if 
+    it isn't, open cover it by connected pieces. Since the disjunction 
+    $[n] = \emptyset \lor \exists x \in [n]$ can be checked locally, 
+    we just need to know that one of the disjuncts is true on each 
+    connected component of $U$, which follows from what we wrote in the 
+    main body.
