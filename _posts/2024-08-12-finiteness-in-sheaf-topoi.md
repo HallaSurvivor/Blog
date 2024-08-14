@@ -80,6 +80,8 @@ but I don't quickly see a characterization of them[^5].
 
 ---
 
+## Introducing Finiteness
+
 TODO: spend a bit of time relating this to the definition of cardinal 
 in the elephant... Draw a picture of the "generic cardinal"? Say explicitly 
 somewhere that these are the constant covering spaces with finite fibres.
@@ -223,7 +225,7 @@ gluing them together along their common open subsets. With this in mind,
 let's start with a trivial double cover of $B = [-1,1]$ 
 (that is, with two copies of $B$), and glue them together along their 
 common open subset $[-1,0) \cup (0,1]$. This space is the 
-[line with two origins][14] (TODO: fix this link), and it's famously 
+[line with two origins][14], and it's famously 
 _nonhausdorff_!
 
 <div class=boxed markdown=1>
@@ -248,38 +250,82 @@ picture. Decidable equality says that they should be either everywhere
 equal or everywhere unequal... But of course they aren't! They're 
 equal in some places (over $1$, say) but unequal in others (over $0$)!
 
-Following [Richard Borcherds][15] (TODO: fix this link), hausdorffness is 
+Following [Richard Borcherds][15], hausdorffness is 
 also closely related to a kind of "analytic continuation". Indeed, say your 
 etale space $X$ is hausdorff and you pick a point $x_b$ over $b \in B$ 
 (in this context we think of $x_b$ as the germ of a function at $b$).
 Then for any small enough open $U \ni b$, there is a unique extension of 
-$x_b$ to an honest function on the neighborhood $U$! We are able to 
+$x_b$ to a function on the whole neighborhood $U$! We are able to 
 _analytically continue_ $x_b$ from data at just a point to data defined in 
 some neighborhood!
 
 <div class=boxed markdown=1>
-Here's an easy exercise to see this for yourself
+Here's an easy exercise to see this for yourself and check your knowledge 
+of the topology on the etale space of a sheaf:
+
+Let $\mathcal{F}$ be a sheaf on $B$ whose etale space $X$ is hausdorff,
+and let $U$ be a connected open of $X$.
+Let $f,g \in \mathcal{F}(U)$ be local sections with $f(b_0) = g(b_0)$ 
+for some $b_0 \in U$. Then show $f=g$ on $U$.
+
+As a hint, consider the set $$\{ b \in U \mid f(b) = g(b) \}$$.
+Why is it open? Why is it closed?
+
+In fact, if $B$ is locally connected and hausdorff, then 
+the converse is also true, and our sheaf of sections $\mathcal{F}$
+has this analytic continuation property if and only if its etale 
+space is hausdorff[^9]! This also makes a nice exercise, and I'll 
+include a solution below a fold.
 </div>
 
-(mo: can one characterse those sheaves which have hausdorff etale spaces?)
+TODO: this proof
 
-two local sections $f,g : U \to X$.
-Then as soon as $f_b = g_b$ at some point $b \in U$, we must have $f=g$ on 
-the whole of $U$! So 
+<details>
+    <summary>solution</summary>
+</details>
+
+Going back to examples, we should ask if we recognize the sheaf of 
+sections for our favorite "line with two origins" picture from earlier.
+
+Away from $0$, we know there's exactly one section, but in any neighbordhood 
+of $0$ there's two sections. So we see this is the etale space for the 
+[skyscraper sheaf][17] with two points over $0$!
+
+Since our epi $[n] \twoheadrightarrow X$ only has to exist locally, 
+kuratowski-finite objects in $\mathsf{Sh}(B)$ can have the same twisting 
+behavior as bishop finite sets too!
+
+<div class=boxed markdown=1>
+TODO: a twisted double cover over the circle with skyscraper sheaves 
+in various places.
+</div>
+
+If you look up an example of a kuratowski finite set that isn't 
+bishop finite (for example, in Section 2.2.2 of Graham Manuell's 
+excellent [note][18]), you're likely to find the example 
+$$\{ \top, p \}$$ where $p$ is some truth value other than 
+$\top$ or $\bot$. That is, where $p$ is some open set of the base 
+space $B$.
+
+Away from $p$, this set has two elements, $\top$ and $p$ 
+(since away from $p$ we know $p = \bot$). But inside of $p$, this 
+set has a single element (since in $p$ we know $p = \top$). We find its 
+etale space is nonhausdorff as before, but now the nonhausdorffness is 
+"spread out" over a larger set:
+
+<div class=boxed markdown=1>
+TODO: a picture of $p$, a large open set on the circle, and a nonhausdorff cover
+</div>
 
 
-TODO: say more about this. Also "unique path lifting"
 
+TODO: show a k-finite set with decidable equality is b-finite. Both 
+"syntactically" and "semantically".
 
-TODO: picturing k-finite sets 
-(etale spaces with finite fibres. Draw some pictures. Skyscraper sheaf)
+TODO: a k-finite object might have infinitely many global sections! 
+(See notebook. put a skyscraper sheaf at every integer in $\mathbb{R}$)
 
-Say a few words about nonhausdorffness, and how this took you a while to 
-appreciate. Discuss the connection to decidable equality, especially 
-for the "circle with two origins". Show that a k-finite set with decidable 
-equality is b-finite. Show how this is the quotient of a b-finite set. 
-
-Also talk about $\{T,p\}$. Draw a picture. 
+<br>
 
 TODO: picturing subfinite sets 
 (non-surjective covering spaces with finite fibres. Draw some pictures.)
@@ -290,13 +336,83 @@ These are decidable, but need not be a quotient of a b-finite set
 
 ---
 
-Closure properties:
+## Closure properties
 
 TODO: cardinals are closed under LOTS of stuff. Bishop finite are closed under 
 some stuff. Kuratowski finite is closed under more stuff again...
 
+Also K-finite is stable under base change. Is b-finite?
+
 Write these all out (it's on the nlab and in the back of the elephant) 
 and make them obvious with some pictures.
+
+<br>
+
+Another important fact is that decidable kuratowski-finite sets are 
+bishop finite. I think it's fun to see this fact both _syntactically_ 
+(reasoning in the internal logic) and _semantically_ 
+(reasoning about bundles), especially given our earlier discussion about 
+hausdorffness and analytic continuation. First, an 
+
+---
+
+## An aside on decidable equality
+
+I originally put this with the closure properties, but I think it's 
+important enough (and general enough!) to get its own section.
+
+If you're really paying attention, you'll notice the "easy exercise" 
+about analytic continuation didn't actually use any aspects of finiteness. 
+Indeed, we can prove the following (very general) theorem:
+
+<div class=boxed markdown=1>
+Let $B$ be locally connected and hausdorff. Then the following 
+are equivalent for a sheaf $\mathcal{F}$ on $B$:
+
+1. The etale space of $\mathcal{F}$ is hausdorff 
+2. Sections of $\mathcal{F}$ satisfy "analytic continuation", in the 
+sense that two sections agreeing on a stalk[^10] must agree everywhere 
+they're defined 
+3. $\mathcal{F}$ has decidable equality in the internal logic of $\mathsf{Sh}(B)$
+
+This comes from a [mathoverflow answer][16] by Elías Guisado Villalgordo
+</div>
+
+$\ulcorner$
+The equivalence of $1$ and $2$ was the earlier exercise, and you can find 
+a proof in the summary below it.
+
+To check the equivalence of $2$ and $3$, we look at "decidable equality",
+that $\forall f,g : \mathcal{F} . (f=g) \lor (f \neq g)$.
+
+Externally, this says that for every $U$, for every pair of local sections 
+$f,g \in \mathcal{F}(U)$, there's an open cover $$\{U_\alpha\}$$ so that 
+on each member of the cover 
+$$f \! \upharpoonright_{U_\alpha}$$ and $$g \! \upharpoonright_{U_\alpha}$$ 
+are either everywhere equal or everywhere unequal.
+
+Clearly if $\mathcal{F}$ has analytic continuation then $\mathcal{F}$ has 
+decidable equality. Indeed using local connectedness of $B$ we can cover 
+$U$ by connected opens. By analytic continuation we know that on each 
+connected piece either $f=g$ everywhere or nowhere, as desired.
+
+Conversely, say $\mathcal{F}$ has decidable equality. Fix a connected $U$ 
+and sections $f,g \in \mathcal{F}(U)$ which have the same stalk at some point 
+$b \in U$. By decidable equality, there's an open cover $$\{ U_\alpha \}$$ 
+of $U$ where on each member of the cover $f=g$ holds everywhere or nowhere.
+[Recall][20] that since $U$ is connected, for any two opens in the cover 
+$U_\alpha$ and $U_\beta$ we can find a finite chain 
+$U_\alpha = U_0, U_1, U_2, \ldots, U_n = U_\beta$ of opens in our cover where 
+each $U_i$ intersects $U_{i+1}$.
+
+Then for any $U_\beta$ in the cover, fix such a chain from $U_0 \ni b$ to 
+$U_\beta$. By decidable equality we know $f=g$ on $U_0$. So for the point 
+in $U_0 \cap U_1$ we know $f=g$, and by decidable equality again we learn 
+$f=g$ on $U_1$. Proceeding in this way we learn $f=g$ on the whole of $U_\beta$.
+
+Thus $f=g$ on every member of the cover, so on the whole of $U$, and so 
+$\mathcal{F}$ satisfies analytic continuation.
+<span style="float:right">$\lrcorner$</span>
 
 ---
 
@@ -324,15 +440,11 @@ doesn't have much to say about combinatorics and algebra. Most arguments
 are _already_ constructive for decidable finite sets (which is what you're 
 picturing when you picture a finite set). Sometimes you can push 
 things a bit farther though, and this can be interesting. See, for instance, 
-Blass's paper on the Pigeonhole Principle. 
-
-TODO: link that.
+Andreas Blass's paper on the [Constructive Pigeonhole Principle][19]. 
 
 TODO: mention that cardinals are projective, so satisfy a version of choice. 
 Do any of the others? (k-finite definitely don't). Can you show this 
 with a picture?
-
-TODO: which of these are preserved by pullback along a geometric morphism?
 
 TODO: If you're interested in reading more, the last section (D5) of 
 Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos. 
@@ -352,9 +464,13 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
 [11]: https://en.wikipedia.org/wiki/Locally_connected_space
 [12]: https://ncatlab.org/nlab/show/decidable+equality
 [13]: https://en.wikipedia.org/wiki/Covering_space
-[14]: line with two origins
-[15]: richard borcherds video on etale spaces
-
+[14]: https://ncatlab.org/nlab/show/line+with+two+origins
+[15]: https://www.youtube.com/watch?v=aYzQJvIchjg
+[16]: https://mathoverflow.net/a/440985/145247
+[17]: https://ncatlab.org/nlab/show/skyscraper+sheaf
+[18]: http://arxiv.org/abs/2304.06000
+[19]: https://doi.org/10.2307/2275881
+[20]: https://math.stackexchange.com/questions/1480639/connected-space-and-open-coverings
 
 [^1]:
     And, of course, I still really want to finish the blog post on 
@@ -411,3 +527,15 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
     we just need to know that one of the disjuncts is true on each 
     connected component of $U$, which follows from what we wrote in the 
     main body.
+
+[^9]:
+    I stole this whole exercise from [this mathoverflow answer][16] by 
+    Elías Guisado Villalgordo
+
+[^10]:
+    Saying that $f$ and $g$ agree on the stalk at $b$ is saying that 
+    there's an open neighborhood of $b$ where $f=g$ on that neighborhood.
+
+    So this is another way of saying that as soon as two sections agree 
+    on an arbitrarily small neighborhood, they must agree on their whole 
+    (connected) domain!
