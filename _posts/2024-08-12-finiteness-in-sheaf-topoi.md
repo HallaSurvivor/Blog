@@ -278,11 +278,42 @@ space is hausdorff[^9]! This also makes a nice exercise, and I'll
 include a solution below a fold.
 </div>
 
-TODO: this proof
-
 <details>
     <summary>solution</summary>
+    $\ulcorner$
+    <p>
+    First assume $\mathcal{F}$ has a hausdorff etale space $X$. 
+    Then for sections $f,g : U \to X$ we see that the set 
+    $\{b \in U \mid f(b) = g(b) \}$ is closed, as the preimage 
+    of the closed diagonal in $X$. This set is also open since if 
+    $f(b) = g(b)$, the definition of stalk says that $f=g$ on a 
+    neighborhood of $b$. Since $U$ is connected, we learn this subset 
+    is the whole of $U$ and $\mathcal{F}$ has analytic continuation.
+    </p>
+
+    <p>
+    Conversely, assume $\mathcal{F}$ has analytic continuation, and 
+    let $x,y \in X$ be two points. If $x$ and $y$ are in different fibres 
+    (say $x$ is over $b_x$ and $y$ is over $b_y$) then we can separate 
+    $b_x$ and $b_y$ using hausdorfness of $B$, and any representatives
+    of $x$ and $y$ defined on these separating sets will separate $x$ and $y$ 
+    in $X$. So we're left with the case of $x$ and $y$ both living in the same
+    fibre over $b$.
+    </p>
+
+    <p>
+    Say that every neighborhood of $x$ intersects every neighborhood of $y$.
+    Using local connectedness of $B$, we can find a connected neighborhood $U$ 
+    of $b$, and representatives $(f,U)$ and $(g,U)$ of $x$ and $y$. These 
+    define open sets in the topology of $X$, and since neighborhoods of $x$ 
+    and $y$ always intersect, we know there's a $b' \in U$ with $f(b') = g(b')$.
+    Then analytic continuation says $f=g$ on $U$ so that $x = f(b) = g(b) = y$,
+    and $X$ is hausdorff, as desired.
+    </p>
+    <span style="float:right">$\lrcorner$</span>
 </details>
+
+<br>
 
 Going back to examples, we should ask if we recognize the sheaf of 
 sections for our favorite "line with two origins" picture from earlier.
@@ -539,3 +570,4 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
     So this is another way of saying that as soon as two sections agree 
     on an arbitrarily small neighborhood, they must agree on their whole 
     (connected) domain!
+
