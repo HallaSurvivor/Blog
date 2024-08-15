@@ -43,21 +43,20 @@ If $n : \mathbb{N}$, the <span class=defn>Finite Cardinal</span> of size $n$
 is the set $$[n] = \{ x : \mathbb{N} \mid x \lt n \}$$. 
 
 A set $X$ is called <span class=defn>Bishop Finite</span> if it's (locally)
-isomorphic to a cardinal. That is, if for some $n:\mathbb{N}$ we can prove 
-$$\exists f : X \cong [n]$$.
+isomorphic to a cardinal. That is, if 
+$$\exists n : \mathbb{N} . \exists f : X \cong [n]$$
 
 A set $X$ is called <span class=defn>Kuratowski Finite</span> if it's 
-(locally) the image of a cardinal. That is, if for some $n:\mathbb{N}$ we can prove
-$$\exists f : [n] \twoheadrightarrow X$$.
+(locally) the image of a cardinal. That is, if 
+$$\exists n : \mathbb{N} . \exists f : [n] \twoheadrightarrow X$$.
 
 A set $X$ is called <span class=defn>Subfinite</span> if it's (locally) a 
-subobject of a cardinal. That is, if for some $n:\mathbb{N}$ we can prove 
-$$\exists f : X \hookrightarrow [n]$$.
+subobject of a cardinal. That is, if 
+$$\exists n : \mathbb{N} . \exists f : X \hookrightarrow [n]$$.
 
 A set $X$ is called <span class=defn>Dedekind Finite</span> if every 
 mono $X \hookrightarrow X$ is actually an iso. That is, if we can prove 
 $$\forall f : X \hookrightarrow X . \exists g : X \to X . fg = 1_X \land gf = 1_X$$.
-
 
 It's pretty obvious from these definitions that dedekind finiteness is 
 a bit different from the others. This comes with pros and cons, but in my 
@@ -67,9 +66,9 @@ it in this post[^3].
 
 Also, notice we're putting an existential quantifier in front of everything. 
 In the internal logic, this means that we're allowed to pass to an open cover 
-of our base space and use a different $f$ on each open. If you prefer 
-type theory[^4], you can replace every instance of $\exists$ by the 
-[propositional truncation][9] of a $\Sigma$-type.
+of our base space and use a different $f$ (or indeed, a different $n$!) 
+on each open. If you prefer type theory[^4], you can replace every instance of 
+$\exists$ by the [propositional truncation][9] of a $\Sigma$-type.
 
 It's interesting to ask what the "untruncated" versions of these will be. 
 I think that untruncated bishop finite types are exactly the cardinals, 
@@ -349,10 +348,6 @@ TODO: a picture of $p$, a large open set on the circle, and a nonhausdorff cover
 </div>
 
 
-
-TODO: show a k-finite set with decidable equality is b-finite. Both 
-"syntactically" and "semantically".
-
 TODO: a k-finite object might have infinitely many global sections! 
 (See notebook. put a skyscraper sheaf at every integer in $\mathbb{R}$)
 
@@ -379,11 +374,23 @@ and make them obvious with some pictures.
 
 <br>
 
-Another important fact is that decidable kuratowski-finite sets are 
+Another important fact is that decidable kuratowski finite sets are 
 bishop finite. I think it's fun to see this fact both _syntactically_ 
 (reasoning in the internal logic) and _semantically_ 
 (reasoning about bundles), especially given our earlier discussion about 
-hausdorffness and analytic continuation. First, an 
+hausdorffness and analytic continuation. 
+
+First, a syntactic proof:
+
+$\ulcorner$
+Say $f : [n] \twoheadrightarrow X$. Then for each $k \leq n$ we 
+<span style="float:right">$\lrcorner$</span>
+
+And now a semantic proof:
+
+$\ulcorner$
+
+<span style="float:right">$\lrcorner$</span>
 
 ---
 
