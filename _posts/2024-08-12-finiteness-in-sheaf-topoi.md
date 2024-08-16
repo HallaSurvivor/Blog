@@ -486,7 +486,7 @@ $\mathcal{F}$ satisfies analytic continuation.
 
 ---
 
-TODO: which finite set to use?
+## Which Finite to Use?
 
 TODO: say that different notions of "finite" give us different --
 bishop sets have a cardinality, k-sets can be listed (possibly with duplicates)
