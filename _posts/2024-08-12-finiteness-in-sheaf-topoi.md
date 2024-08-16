@@ -380,17 +380,49 @@ bishop finite. I think it's fun to see this fact both _syntactically_
 (reasoning about bundles), especially given our earlier discussion about 
 hausdorffness and analytic continuation. 
 
-First, a syntactic proof:
+First, a <span class=defn>syntactic proof</span>:
 
 $\ulcorner$
-Say $f : [n] \twoheadrightarrow X$. Then for each $k \leq n$ we 
+Say $f : [n] \twoheadrightarrow X$. Then we note for each $x:X$ the 
+predicate $\varphi(k) \triangleq f(k) = x$ on $[n]$ is decidable 
+since $X$ has decidable equality. Thus it gives an inhabited decidable subset 
+of $[n]$, which has a least element (Lemma D5.2.9(iii) in the elephant).
+Call such an element $g(x)$.
+
+Note the image of $g$ is a complemented subset of $[n]$, since we can decide 
+$k \in \text{im}(g)$ by checking if $k = g(f(k))$ using decidability of $[n]$.
+Then $\text{im}(g)$ is isomorphic to a cardinal (D5.2.3), $[m]$, and it's easy 
+to see that composing $g$ and $f$ with this isomorphism gives a bijection 
+between $X$ and $[m]$.
 <span style="float:right">$\lrcorner$</span>
 
-And now a semantic proof:
+
+And now a <span class=defn>semantic proof</span>:
 
 $\ulcorner$
+Say $\pi : E \twoheadrightarrow B$ is the etale space of a kuratowski-finite 
+object in $\mathsf{Sh}(B)$. So, locally, $E$ is the quotient of some 
+$\coprod_n B$. Say also that $E$ is has decidable equality so that, locally, 
+two sections of $E$ that agree somewhere must agree everywhere. 
 
+By refining our covers, then, we may fix an open cover $$\{U_\alpha\}$$ of $B$
+and epimorphisms 
+$$\coprod_{n_\alpha} U_\alpha \to E \! \upharpoonright_{U_\alpha}$$ so that 
+two local sections on $U_\alpha$ either agree everywhere or nowhere. 
+In particular, the $n_\alpha$ many components 
+$f_i : U_\alpha \overset{i\text{th inclusion}}{\longrightarrow} \coprod_{n_\alpha} \to E$ 
+are pairwise either have the same image or disjoint images. Choosing exactly 
+one $f_i$ for each possible image (the least $i$ that works, say) we see that actually 
+$\pi^{-1}(U_\alpha)$ is homeomorphic to the disjoint union of copies of 
+$U_\alpha$ so that $E$ is actually a covering space, and thus represents a 
+bishop finite object.
 <span style="float:right">$\lrcorner$</span>
+
+<div class=boxed markdown=1>
+It's worth meditating on why these are actually the same proof! 
+In both cases we use decidability to "remove duplicates" from our 
+enumeration.
+</div>
 
 ---
 
@@ -577,4 +609,3 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
     So this is another way of saying that as soon as two sections agree 
     on an arbitrarily small neighborhood, they must agree on their whole 
     (connected) domain!
-
