@@ -81,16 +81,16 @@ but I don't quickly see a characterization of them[^5].
 
 ## Introducing Finiteness
 
-TODO: spend a bit of time relating this to the definition of cardinal 
-in the elephant... Draw a picture of the "generic cardinal"? Say explicitly 
-somewhere that these are the constant covering spaces with finite fibres.
-
 Now, how should we go about _visualizing_ these things? Every sheaf on $B$ 
 is also an [etale space][10] over $B$ (that is, a local homeomorphism $E \to B$).
 And by thinking of our favorite sheaf as some space over $B$[^6] 
 we can draw pictures of it!
 
-Let's start simple and let $B = [-1,1]$ be an interval. Then a cardinal 
+<br>
+
+TODO: finish the generic cardinal doodle in this footnote
+
+Let's start simple and let $B = [-1,1]$ be an interval. Then a cardinal[^12] 
 is a sheaf $$[n] = \{x : \mathbb{N} \mid x \lt n \}$$. In every sheaf 
 topos $\mathsf{Sh}(B)$ the natural number object is (the sheaf of sections of) 
 $B \times \mathbb{N}$ where $\mathbb{N}$ gets the discrete topology. 
@@ -381,12 +381,48 @@ TODO: a picture
 
 <br>
 
-TODO: picturing subfinite sets 
-(non-surjective covering spaces with finite fibres. Draw some pictures.)
+Finally, let's talk about subfinite sets. These are locally subobjects of 
+cardinals, so are much easier to visualize again!
 
-These are decidable, but need not be a quotient of a b-finite set 
-(since it doesn't have to be surjective onto the base space).
+A subobject of a cardinal is just a disjoint union of open subsets of $B$:
 
+<div class=boxed markdown=1>
+TODO: a circle with some arcs, possibly overlapping, at various heights,
+shown with a hookrightarrow and a disjoint union of circles
+</div>
+
+So a subfinite set has to locally look like these. Keep in mind, though,
+that like kuratowski finite sets, the choice of $[n]$ is made locally. So 
+we can have something like this:
+
+<div class=boxed markdown=1>
+A neighborhood that looks like a subset of $[n]$ sitting around $n$ 
+in $\mathbb{R}$
+</div>
+
+In particular, we see that the fibres of a subfinite set don't need to be 
+globally bounded! So, perhaps surprisingly, a subfinite set does _not_ need to be 
+a subobject of a bishop finite set! 
+
+The locality also tells us that the twisting behavior we recognize from 
+bishop and kuratowski finiteness happens here too:
+
+<div class=boxed markdown=1>
+TODO: a cover of $S^1 \vee S^1$ which is twisted over one circle and 
+partially defined over the other.
+</div>
+
+As subobjects of decidable objects, we see these inherit decidable 
+equality. However, while bishop and kuratowski finite objects are all either 
+empty or inhabited, subfinite sets don't need to be! For an easy example, 
+consider 
+
+<div class=boxed markdown=1>
+TODO: two arcs, intersecting, viewed as a subobject of $2 \times S^1$.
+</div>
+
+Here the truth value of $\exists x : X$ is $U \cup V$, and the truth value 
+of $X = \empty$ is $\text{int}(U^c \cap V^c)$. (Do you see why?)
 
 ---
 
@@ -643,3 +679,13 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
 [^11]:
     Concretely you can build this space by gluing two copies of $\mathbb{R}$ 
     together along their common open subset $\mathbb{R} \setminus \mathbb{Z}$.
+
+[^12]:
+    Johnstone's Elephant defines a cardinal to be a pullback of the 
+    "universal cardinal". In $\mathsf{Sh}(B)$ this is an object in 
+    $\mathsf{Sh}(B) \big / \mathbb{N} \simeq \mathsf{Sh}(B \times \mathbb{N})$ 
+    and is shown in the following picture:
+
+    <div class=boxed markdown=1>
+    TODO: doodle
+    </div>
