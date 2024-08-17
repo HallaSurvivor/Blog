@@ -65,17 +65,17 @@ more for cultural growth than anything, and I won't say anything more about
 it in this post[^3].
 
 Also, notice we're putting an existential quantifier in front of everything. 
-In the internal logic, this means that we're allowed to pass to an open cover 
+Externally, this means that we're allowed to pass to an open cover 
 of our base space and use a different $f$ (or indeed, a different $n$!) 
 on each open. If you prefer type theory[^4], you can replace every instance of 
 $\exists$ by the [propositional truncation][9] of a $\Sigma$-type.
 
 It's interesting to ask what the "untruncated" versions of these will be. 
 I think that untruncated bishop finite types are exactly the cardinals, 
-untruncated subfinite types are disjoint unions of propositions... But 
-it's not clear to me what the untruncated kuratowski finite types should be.
-Something like "kuratowski finite objects that aren't allowed to twist", 
-but I don't quickly see a characterization of them[^5].
+untruncated subfinite types are disjoint unions of finitely many propositions... 
+But it's not clear to me what the untruncated kuratowski finite types should be.
+Something like "finitely many copies of $B$, glued together along open 
+sets"... But I don't see a snappy characterization of these[^5].
 
 ---
 
@@ -219,9 +219,7 @@ _quotients_ of cardinals, so we start with a cardinal
 (which we know how to visualize) and then we want to start gluing stuff 
 together.
 
-Remember that etale spaces come about by taking open subsets of $B$ and 
-gluing them together along their common open subsets. With this in mind, 
-let's start with a trivial double cover of $B = [-1,1]$ 
+Let's start with a trivial double cover of $B = [-1,1]$ 
 (that is, with two copies of $B$), and glue them together along their 
 common open subset $[-1,0) \cup (0,1]$. This space is the 
 [line with two origins][14], and it's famously 
@@ -404,8 +402,8 @@ In particular, we see that the fibres of a subfinite set don't need to be
 globally bounded! So, perhaps surprisingly, a subfinite set does _not_ need to be 
 a subobject of a bishop finite set! 
 
-The locality also tells us that the twisting behavior we recognize from 
-bishop and kuratowski finiteness happens here too:
+As we've come to expect, the existential quantifier gives us the ability 
+to twist.
 
 <div class=boxed markdown=1>
 TODO: a cover of $S^1 \vee S^1$ which is twisted over one circle and 
@@ -433,17 +431,44 @@ finite sets are closed under _tons_ of operations! It's interesting to ask
 what happens as we apply those operations constructively, and with our 
 newfound ability to _picture_ the various notions of finiteness, hopefully 
 these [constructive stones][23] will become obvious! Or, at least they'll 
-become less weird[^13].
+become less weird[^13]. Everything I say in this section is in The Elephant 
+D5.x (probably D5.2 or D5.4). Let's start with cardinal finiteness. 
+These sets are decidable, so behave 
+_very_ classically. 
 
 TODO: that constructive stone link
 
-TODO: cardinals are closed under LOTS of stuff. Bishop finite are closed under 
-some stuff. Kuratowski finite is closed under more stuff again...
+For one, it's not hard to see that $[m+n] \cong [m] + [n]$, 
+$[mn] = [m] \times [n]$, and $[m^n] \cong [m]^{[n]}$. So 
+the cardinals are closed under sums, product, and exponentials. 
+More strongly, given two arrows $f,g : [m] \rightrightarrows [n]$, 
+the equalizer and coequalizers are both cardinals! 
 
+Equalizers are easy to see because a _complemented_ 
+(read: clopen, detachable, etc) subobject 
+of a cardinal is again a cardinal[^15] (can you see this geometrically?). 
+Coequalizers are harder, but I think you can still convince yourself that 
+you can see it! The insight is that the $B$-data we're carrying around isn't 
+_really_ being used anywhere. Over each component of $B$ we just have $[n]$
+copies of $B$, and since everything in sight is constant it works just like it 
+does for a single natural number!
+
+So we see that, as long as we put the "decidable" assumption everywhere, 
+finite cardinals behave as they do classically! They're closed under 
+products, sums, and exponents, and moreover under _decidable_ subsets 
+and quotients[^16]. 
+
+<br>
+
+What about bishop finite? In many books, these are just called 
+"finite", since they admit an isomorphism with $[n]$ for some $n$.
+
+
+TODO: Write these all out (it's on the nlab and in the back of the elephant) 
+and make them obvious with some pictures.
 Also K-finite is stable under base change. Is b-finite?
 
-Write these all out (it's on the nlab and in the back of the elephant) 
-and make them obvious with some pictures.
+
 
 <br>
 
@@ -714,3 +739,14 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
     "to what extent" there exists an element of $X$. That is, 
     its truth value is the _support_ of $X$ over $B$ -- 
     $$\text{int} \big ( \{b \in B \mid \exists x \in X_b \} \big )$$
+
+[^15]:
+    To make this easier on people new to this stuff, note the equalizer 
+    of $f,g : [m] \rightrightarrows [n]$ is given by 
+    $$\{x : [m] \mid f(x) = g(x) \}$$. Since equality in $[n]$ is decidable, 
+    $f(x) = g(x)$ is a decidable proposition on $[m]$, so the subset it 
+    classifies is complemented.
+
+[^16]:
+    Either in the sense that the quotient object itself is decidable, or that 
+    the defining equivalence relation is decidable as a subset of $[n] \times [n]$.
