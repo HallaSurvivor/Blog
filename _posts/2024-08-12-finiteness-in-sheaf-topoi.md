@@ -200,7 +200,7 @@ pullback, it makes a fun exercise!)
 
 As a last remark, let's also notice that bishop finite sets can be 
 _inhabited_ without being _pointed_. That is, a bishop finite set $X$ can 
-satisfy $\exists x : X$ ($X$ is inhabited) without actually having $x:X$ for any $x$
+satisfy $\exists x : X$ ($X$ is inhabited[^14]) without actually having $x:X$ for any $x$
 ($X$ is not pointed)! This is because of the locality of the existential 
 quantifier again! If we pass to an open cover of $B$, we can find a local 
 section over each open. Unfortunately, these might not be compatible, so 
@@ -428,6 +428,15 @@ of $X = \empty$ is $\text{int}(U^c \cap V^c)$. (Do you see why?)
 
 ## Closure properties
 
+In a classical world, where all these notions of finiteness agree, 
+finite sets are closed under _tons_ of operations! It's interesting to ask 
+what happens as we apply those operations constructively, and with our 
+newfound ability to _picture_ the various notions of finiteness, hopefully 
+these [constructive stones][23] will become obvious! Or, at least they'll 
+become less weird[^13].
+
+TODO: that constructive stone link
+
 TODO: cardinals are closed under LOTS of stuff. Bishop finite are closed under 
 some stuff. Kuratowski finite is closed under more stuff again...
 
@@ -607,6 +616,7 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
 [20]: https://math.stackexchange.com/questions/1480639/connected-space-and-open-coverings
 [21]: https://sunny.garden/@hallasurvivor/112961631080132543
 [22]: https://sunny.garden/@hallasurvivor/112972328466131542
+[23]: Andrej Constructive Stones Finiteness
 
 [^1]:
     And, of course, I still really want to finish the blog post on 
@@ -689,3 +699,18 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
     <div class=boxed markdown=1>
     TODO: doodle
     </div>
+
+[^13]:
+    Once again the seemingly bizarre behavior of constructive math is 
+    explained by its _vastly_ greater generality! When you first learn 
+    that a subset of a finite set need not be finite, it sounds so 
+    strange as to be unusable! But once you learn that this is an aspect of 
+    "everywhere definedness" in a space of parameters (read: the base space)
+    it becomes much more palatable.
+
+[^14]:
+    Here we use the common abuse of notation of abbreviating 
+    $\exists x:X . \top$ by just $\exists x:X$. It measures 
+    "to what extent" there exists an element of $X$. That is, 
+    its truth value is the _support_ of $X$ over $B$ -- 
+    $$\text{int} \big ( \{b \in B \mid \exists x \in X_b \} \big )$$
