@@ -347,9 +347,37 @@ etale space is nonhausdorff as before, but now the nonhausdorffness is
 TODO: a picture of $p$, a large open set on the circle, and a nonhausdorff cover
 </div>
 
+Be warned, though! Kuratwoski finite sets can be much more complicated than 
+you might initially think! Especially in contrast to the relatively tame 
+bishop finite sets. For example, consider $B = \mathbb{R}$ with a skyscraper 
+sheaf at every integer[^11]:
 
-TODO: a k-finite object might have infinitely many global sections! 
-(See notebook. put a skyscraper sheaf at every integer in $\mathbb{R}$)
+<div class=boxed markdown=1>
+TODO: draw this
+</div>
+
+This space is kuratowski finite in $\mathsf{Sh}(\mathbb{R})$ 
+(since it's locally a quotient of $\mathbb{R} \sqcup \mathbb{R}$), 
+but it has continuum many global sections! Indeed, we can choose either the 
+top or the bottom point at every integer.
+
+Since even the choice of $[n]$ is local, we can change the size of the 
+fibres as long as they're all finite!
+
+<div class=boxed markdown=1>
+TODO: Put an $n$ skyscraper sheaf above $n$
+</div>
+
+In fact, on mastodon ([here][21] and [here][22]), Antoine Chambert-Loir and 
+Oscar Cunningham pointed out that you can do even weirder things. For instance,
+the set $$\{\frac{1}{n} \mid n \in \mathbb{N} \} \cup \{ 0 \}$$ is closed 
+in $[0,1]$. So its complement is open, and we can glue two copies of $[0,1]$ 
+together along it! This gives us a kuratowski finite object which nonetheless 
+has uncountably many sections in _every neighborhood of $0$_!
+
+<div class=boxed markdown=1>
+TODO: a picture
+</div>
 
 <br>
 
@@ -541,6 +569,8 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
 [18]: http://arxiv.org/abs/2304.06000
 [19]: https://doi.org/10.2307/2275881
 [20]: https://math.stackexchange.com/questions/1480639/connected-space-and-open-coverings
+[21]: https://sunny.garden/@hallasurvivor/112961631080132543
+[22]: https://sunny.garden/@hallasurvivor/112972328466131542
 
 [^1]:
     And, of course, I still really want to finish the blog post on 
@@ -609,3 +639,7 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
     So this is another way of saying that as soon as two sections agree 
     on an arbitrarily small neighborhood, they must agree on their whole 
     (connected) domain!
+
+[^11]:
+    Concretely you can build this space by gluing two copies of $\mathbb{R}$ 
+    together along their common open subset $\mathbb{R} \setminus \mathbb{Z}$.
