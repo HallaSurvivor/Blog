@@ -94,82 +94,73 @@ we can draw pictures of it!
 
 <br>
 
-TODO: finish the generic cardinal doodle in this footnote
-
 Let's start simple and let $B = [-1,1]$ be an interval. Then a cardinal[^12] 
 is a sheaf $$[n] = \{x : \mathbb{N} \mid x \lt n \}$$. In every sheaf 
 topos $\mathsf{Sh}(B)$ the natural number object is (the sheaf of sections of) 
 $B \times \mathbb{N}$ where $\mathbb{N}$ gets the discrete topology. 
 
-<div class=boxed markdown=1>
-TODO: put a picture of $[-1,1]$ with $\mathbb{N}$ many intervals covering it,
-labelled by naturals.
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/N-covering-interval.png" width="j0%">
+</p>
 
 So if $n$ is a global section, it must be $$B \times \{ n \}$$ for some fixed $n$ 
-in "the real world". 
+in "the real world". This also tells us that 
+$$[n] = \{ x : \mathbb{N} \mid x \lt n \}$$ is given by 
 
-<div class=boxed markdown=1>
-TODO: put a picture of $$B \times \{ n \}$$
-</div>
-
-So we see that $$[n] = \{ x : \mathbb{N} \mid x \lt n \}$$ is given by 
-
-<div class=boxed markdown=1>
-TODO: Put a picture of an $n$ sheeted cover (labelled $0$ to $n-1$) 
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/interval-n.png" width="50%">
+</p>
 
 The situation is only slightly more complicated if $B$ has multiple 
 components[^7] (say $B = [-1,1] \sqcup S^1$). In this case, $\mathbb{N}$ 
 is still $B \times \mathbb{N}$, but now global sections can choose a different 
 natural over each component:
 
-<div class=boxed markdown=1>
-TODO: Put a picture of $\mathbb{N}$ over $[-1,1] \sqcup S^1$, 
-and also a picture of the global section $(n,m)$.
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/2-3-interval-and-circle.png" width="50%">
+</p>
 
 Because of this, we end up with more sets $[n]$! Indeed, now a global section 
-$n$ might be something like $(2,3)$ so that we get a cardinal $[(2,3)]$,
-shown below:
+$n$ might be something like $(2,3)$ (shown in pink above) 
+so that we get a cardinal $[(2,3)]$, shown below:
 
-<div class=boxed markdown=1>
-TODO: the cardinal $[(2,3)]$
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/cardinal-2-3.png" width="50%">
+</p>
 
 So cardinals are _really really_ easy to work with! This is what we 
-would expect, since they're subsheaves of a particularly simple sheaf. 
+would expect, since they're subsheaves of a particularly simple sheaf ($\mathbb{N}$). 
 For instance, we can _see_ the fact that cardinals always have 
 [decidable equality][12] by noticing that any two sections over $U$ are 
-either equal on all of $U$, or none of $U$!
+either equal on all of $U$, or none of $U$! Contrast this with a doodle 
+of what other sheaves might look like, where the pink and blue sections are 
+different, but nonetheless intersect. Then the truth value of 
+$(\text{pink} = \text{blue}) \lor (\text{pink} \neq \text{blue})$ 
+as computed in $\mathsf{Sh}([-1,1]) \big / U$ will not be all of $U$[^19]!
 
-<div class=boxed markdown=1>
-TODO: a picture of each case
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/intersecting-or-not-intersecting-over-interval.png" width="75%">
+</p>
 
 We also _see_ why a cardinal is either empty or inhabited! As soon as you 
 have a _piece_ of a section over $U$, it must extend to a section on all 
-of $U$[^8]
-
-<div class=boxed markdown=1>
-TODO: a picture of a piece of a section extending to a full section.
-</div>
+of $U$.
 
 <br>
 
-Next up are the bishop finite sets! These satisfy $\exists f : X \cong [n]$,
+Next up are the bishop finite sets[^20]! These satisfy $\exists f : X \cong [n]$,
 so that we can find an open cover $$\{U_\alpha \}$$ of $B$ and functions 
 $$f_\alpha : X \! \upharpoonright_\alpha \cong [n] \! \upharpoonright_\alpha$$.
 
 Since $[n]$ is a _constant_ family over $B$, this means we want $X$ to be 
 _locally constant_. So bishop finite sets have to basically 
 look like cardinals, but now we're allowed to "twist" the fibres around.
+See how on each element of our cover we have something that looks like $\[2]$,
+but globally we get something that is _not_ isomorphic to $\[2]$!
 
-<div class=boxed markdown=1>
-TODO: draw a picture of an open cover of $S^1$ by three opens. 
-Put a constant bundle with 2 fibres, and a twisted bundle. 
-Use colors to show the isomorphisms on each member of the open cover
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/double-cover-locally-constant.png" width="50%">
+</p>
 
 In fact, the bishop finite sets are exactly the [covering spaces][13] with 
 finite fibres. These inherit lots of nice properties from the cardinals, 
@@ -195,16 +186,15 @@ $$\{(x,y) : X \times X \mid x=y \}$$ is a clopen subset of $X \times X$!
 But we can compute $X \times X$ (the pullback of $X \to B$ along $X \to B$)
 and check this. 
 
-<div class=boxed markdown=1>
-TODO: draw a picture of two double covers over the circle, labelled 
-$(00,11)$ and $(01,10)$.
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/double-cover-double-pullback.png" width="75%">
+</p>
 
 Note that the subsheaf (really sub-etale space) where the fibres are the same 
 really is a clopen subset (read: a connected component) of the whole space 
 $X \times X$ over $B$. If it's not obvious that this really _is_ the 
-pullback, it makes a fun exercise! Actually it's a cute exercise to check 
-this in general, if you haven't seen it before.
+pullback, it makes a fun exercise! Actually, it's a fun exercise to check 
+this is true in general! 
 
 As a last remark, let's also notice that bishop finite sets can be 
 _inhabited_ without being _pointed_. That is, a bishop finite set $X$ can 
@@ -214,14 +204,13 @@ quantifier again! If we pass to an open cover of $B$, we can find a local
 section over each open. Unfortunately, these might not be compatible, so 
 won't glue to a _global_ section (a point $x:X$)!
 
-<div class=boxed markdown=1>
-TODO: a picture of two local sections of the twisted double cover of $S^1$, 
-checked on a cover with two opens. They aren't compatible.
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/double-cover-not-pointed.png" width="50%">
+</p>
 
 <br>
 
-Ok, now let's get to the example that led me to make this post at all! 
+Ok, now let's get to the example that led me to write this post!
 How should we visualize kuratowski finite sets? These are (locally) 
 _quotients_ of cardinals, so we start with a cardinal 
 (which we know how to visualize) and then we want to start gluing stuff 
@@ -233,36 +222,33 @@ common open subset $[-1,0) \cup (0,1]$. This space is the
 [line with two origins][14], and it's famously 
 _nonhausdorff_!
 
-<div class=boxed markdown=1>
-TODO: a picture of the line with two origins over $B = [-1,1]$
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/two-origins.png" width="75%">
+</p>
 
 You can see that this space still deserves to be called "finite" 
 over $B$ (for instance, all the fibres are finite), but it's more 
 complicated than the bishop case. For instance, it doesn't have a 
 well defined "cardinality". In some places it has one element in the fibre, 
 and in others it has two. However, it's still possible to _list_ or 
-_enumerate_ all the sections. Indeed, this is basically what the quotient 
-map does:
-
-<div class=boxed markdown=1>
-TODO: the "0th" section and the "1st" section
-</div>
+_enumerate_ all the sections. In the above picture, there's the gold 
+section and the blue section. It just happens that sometimes this list
+has duplicates, since away from $0$ they're the same section!
 
 The failure of hausdorffness and the failure of decidable equality are 
 closely related. For example, consider the two sections from the previous 
 picture. Decidable equality says that they should be either everywhere 
-equal or everywhere unequal... But of course they aren't! They're 
+equal or everywhere unequal[^21]. But of course they aren't! They're 
 equal in some places (over $1$, say) but unequal in others (over $0$)!
 
 Following [Richard Borcherds][15], hausdorffness is 
 also closely related to a kind of "analytic continuation". Indeed, say your 
 etale space $X$ is hausdorff and you pick a point $x_b$ over $b \in B$ 
 (in this context we think of $x_b$ as the germ of a function at $b$).
-Then for any small enough open $U \ni b$, there is a unique extension of 
+Then for any small enough open $U \ni b$, there is a _unique_ extension of 
 $x_b$ to a function on the whole neighborhood $U$! We are able to 
 _analytically continue_ $x_b$ from data at just a point to data defined in 
-some neighborhood!
+some neighborhood! 
 
 <div class=boxed markdown=1>
 Here's an easy exercise to see this for yourself and check your knowledge 
@@ -271,7 +257,7 @@ of the topology on the etale space of a sheaf:
 Let $\mathcal{F}$ be a sheaf on $B$ whose etale space $X$ is hausdorff,
 and let $U$ be a connected open of $X$.
 Let $f,g \in \mathcal{F}(U)$ be local sections with $f(b_0) = g(b_0)$ 
-for some $b_0 \in U$. Then show $f=g$ on $U$.
+for some $b_0 \in U$. Then show $f=g$ identically on $U$.
 
 As a hint, consider the set $$\{ b \in U \mid f(b) = g(b) \}$$.
 Why is it open? Why is it closed?
@@ -291,7 +277,9 @@ space is hausdorff[^9]! This also makes a nice exercise
     Then for sections $f,g : U \to X$ we see that the set 
     $\{b \in U \mid f(b) = g(b) \}$ is closed, as the preimage 
     of the closed diagonal in $X$. This set is also open since if 
-    $f(b) = g(b)$ is the stalk at $b$, the definition of stalk says 
+    $f(b) = g(b)$ is the stalk at $b$, the 
+    <a href="https://stacks.math.columbia.edu/tag/0078">definition of stalk</a>
+    says 
     that $f=g$ on a neighborhood of $b$. Since $U$ is connected, we 
     learn this subset is the whole of $U$ and $\mathcal{F}$ has 
     analytic continuation.
@@ -342,10 +330,9 @@ Since our epi $[n] \twoheadrightarrow X$ only has to exist locally,
 kuratowski-finite objects in $\mathsf{Sh}(B)$ can have the same twisting 
 behavior as bishop finite sets too!
 
-<div class=boxed markdown=1>
-TODO: a twisted double cover over the circle with skyscraper sheaves 
-in various places.
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/twisted-cover-with-skyscrapers.png" width="50%">
+</p>
 
 If you look up an example of a kuratowski finite set that isn't 
 bishop finite (for example, in Section 2.2.2 of Graham Manuell's 
@@ -358,20 +345,23 @@ Away from $p$, this set has two elements, $\top$ and $p$
 (since away from $p$ we know $p = \bot$). But inside of $p$, this 
 set has a single element (since in $p$ we know $p = \top$). We find its 
 etale space is nonhausdorff as before, but now the nonhausdorffness is 
-"spread out" over a larger set:
+"spread out" over a larger set. It's a good exercise to figure out what's 
+happening at the boundary of $p$. What are the basic opens of this space? 
+Does the fibre at $p$ have one point, or two?
 
-<div class=boxed markdown=1>
-TODO: a picture of $p$, a large open set on the circle, and a nonhausdorff cover
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/true-and-p.png" width="75%">
+</p>
 
-Be warned, though! Kuratwoski finite sets can be much more complicated than 
-you might initially think! Especially in contrast to the relatively tame 
+
+Kuratwoski finite sets can be shockingly complicated! 
+Especially in contrast to the relatively tame 
 bishop finite sets. For example, consider $B = \mathbb{R}$ with a skyscraper 
 sheaf at every integer[^11]:
 
-<div class=boxed markdown=1>
-TODO: draw this
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/skyscrapers-at-integers.png" width="75%">
+</p>
 
 This space is kuratowski finite in $\mathsf{Sh}(\mathbb{R})$ 
 (since it's locally a quotient of $\mathbb{R} \sqcup \mathbb{R}$), 
@@ -381,20 +371,20 @@ top or the bottom point at every integer.
 Since even the choice of $[n]$ is local, we can change the size of the 
 fibres as long as they're all finite!
 
-<div class=boxed markdown=1>
-TODO: Put an $n$ skyscraper sheaf above $n$
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/increasing-skyscrapers.png" width="75%">
+</p>
 
 In fact, on mastodon ([here][21] and [here][22]), Antoine Chambert-Loir and 
 Oscar Cunningham pointed out that you can do even weirder things. For instance,
 the set $$\{\frac{1}{n} \mid n \in \mathbb{N} \} \cup \{ 0 \}$$ is closed 
 in $[0,1]$. So its complement is open, and we can glue two copies of $[0,1]$ 
-together along it[^18]! This gives us a kuratowski finite object which nonetheless 
-has infinitely many sections in _every neighborhood of $0$_!
+together along it! This gives us a kuratowski finite object which nonetheless 
+has infinitely many sections in _every neighborhood of $0$_[^18]!
 
-<div class=boxed markdown=1>
-TODO: a picture
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/convergent-seq-of-skyscrapers.png" width="75%">
+</p>
 
 <br>
 
@@ -403,19 +393,17 @@ cardinals, so are much easier to visualize again!
 
 A subobject of a cardinal is just a disjoint union of open subsets of $B$:
 
-<div class=boxed markdown=1>
-TODO: a circle with some arcs, possibly overlapping, at various heights,
-shown with a hookrightarrow and a disjoint union of circles
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/subfinite-simple.png" width="75%">
+</p>
 
 So a subfinite set has to locally look like these. Keep in mind, though,
 that like kuratowski finite sets, the choice of $[n]$ is made locally. So 
 we can have something like this:
 
-<div class=boxed markdown=1>
-A neighborhood that looks like a subset of $[n]$ sitting around $n$ 
-in $\mathbb{R}$
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/increasing-subfinite.png" width="75%">
+</p>
 
 In particular, we see that the fibres of a subfinite set don't need to be 
 globally bounded! So, perhaps surprisingly, a subfinite set does _not_ need to be 
@@ -424,19 +412,18 @@ a subobject of a bishop finite set!
 As we've come to expect, the existential quantifier gives us the ability 
 to twist.
 
-<div class=boxed markdown=1>
-TODO: a cover of $S^1 \vee S^1$ which is twisted over one circle and 
-partially defined over the other.
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/twisted-subfinite.png" width="50%">
+</p>
 
 As subobjects of decidable objects, we see these inherit decidable 
 equality. However, while bishop and kuratowski finite objects are all either 
 empty or inhabited, subfinite sets don't need to be! For an easy example, 
 consider 
 
-<div class=boxed markdown=1>
-TODO: two arcs, intersecting, viewed as a subobject of $2 \times S^1$.
-</div>
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/undecidable-inhabitance.png" width="50%">
+</p>
 
 Here the truth value of $\exists x : X$ is $U \cup V$, and the truth value 
 of $X = \emptyset$ is $\text{int}(U^c \cap V^c)$. (Do you see why?)
@@ -707,14 +694,6 @@ and I'll see you all soon ^_^.
     It's important to remember that our geometric intuition is likely to 
     fail us if we start considering, say, sheaves on the cantor space!
 
-[^8]:
-    Strictly speaking this is only true if $U$ is connected. But if 
-    it isn't, open cover it by connected pieces. Since the disjunction 
-    $[n] = \emptyset \lor \exists x \in [n]$ can be checked locally, 
-    we just need to know that one of the disjuncts is true on each 
-    connected component of $U$, which follows from what we wrote in the 
-    main body.
-
 [^9]:
     I stole this whole exercise from [this mathoverflow answer][16] by 
     Elías Guisado Villalgordo
@@ -737,9 +716,9 @@ and I'll see you all soon ^_^.
     $\mathsf{Sh}(B) \big / \mathbb{N} \simeq \mathsf{Sh}(B \times \mathbb{N})$ 
     and is shown in the following picture:
 
-    <div class=boxed markdown=1>
-    TODO: doodle
-    </div>
+    <p style="text-align:center;">
+    <img src="/assets/images/finiteness-in-sheaf-topoi/generic-cardinal.png" width="60%">
+    </p>
 
 [^14]:
     Here we use the common abuse of notation of abbreviating 
@@ -762,8 +741,8 @@ and I'll see you all soon ^_^.
 [^17]:
     In that same [Richard Borcherds video][15], for instance, which I 
     know I watched when it came out. In fact, lots of references on etale 
-    spaces, in hindsight, put at least a bit of emphasis on the fact that 
-    etale spaces can be highly nonhausdorff. I think I'm not the first person
+    spaces, in hindsight, emphasize the fact that etale spaces can be 
+    highly nonhausdorff. My guess is that I'm not the first person
     to have made this mistake, haha, and I know that when I teach etale 
     spaces going forwards I'm going to be sure to emphasize this too!
 
@@ -775,3 +754,17 @@ and I'll see you all soon ^_^.
     This is a fun example to think about. Why does it have only _countably_ 
     many sections at $0$, rather than _uncountably_ many? Can you picture 
     its topology at all? See the linked mastodon posts for more discussion.
+
+[^19]:
+    Remember truth values are open sets in the base space, so the truth 
+    value of $(\text{pink} = \text{blue}) \lor (\text{pink} \neq \text{blue})$ 
+    will be $$\text{int}(\{ \text{pink} = \text{blue} \}) \cup 
+    \text{int}( \{ \text{pink} \neq \text{blue} \} )$$
+
+[^20]:
+    I'm like... at least 90% sure it's an accident these are both named 
+    after positions of authority in catholicism.
+
+[^21]:
+    Well, it says this should be true locally. But it's easy to see 
+    we'll have a problem in any neighborhood of $0$.
