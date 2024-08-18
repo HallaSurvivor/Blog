@@ -17,15 +17,15 @@ bundles and etale spaces! In this post, we'll talk about that misconception,
 and spend some time discussing constructive finiteness in its most important 
 forms.
 
-As a short life update before we get started, I'm going to Denmark with 
+As a short life update before we get started, I'm currently in Denmark with 
 [my advisor][7] to hang out with [Fabian Haiden][3]. We're going to be talking 
 about all sorts of fun things related to my thesis work, mainly about 
-[Fukaya Categories][4]. These fukaya categories can be _really_ scary when 
+[Fukaya Categories][4]. These can be _really_ scary when 
 you first start reading about them, but in the special case of surfaces 
 they're really not that bad! In the process of prepping for meeting Fabian, 
 I've been writing a blog post that explicitly details what fukaya categories 
 are, why you should care, and (for surfaces) how to compute them. I know I 
-would have loved an article like this, and I'm excited to have one to share!
+would have loved an article like this, and I'm excited to share one soon!
 I'm also _finally_ going to finish my [qual prep series][5] from 
 _three years ago_! Way back then I promised a post on fourier theory
 that I never got around to, but I recently found a draft of that post! 
@@ -41,7 +41,7 @@ find in the literature[^2]. Keep in mind that, depending on the reference
 you're reading, each of these is liable to be called just "finite" 
 without disambiguation. Sometimes you even get more confusing conventions, 
 (such as writing "subfinite" to mean what we call "kuratowski finite"!)
-so make sure you read the literature carefully to know exactly what the 
+so make sure you read carefully to know exactly what each particular 
 author means! For this post, though, we'll write:
 
 If $n : \mathbb{N}$, the <span class=defn>Finite Cardinal</span> of size $n$ 
@@ -87,8 +87,9 @@ sets"... But I don't see a snappy characterization of these[^5].
 ## Introducing Finiteness
 
 Now, how should we go about _visualizing_ these things? Every sheaf on $B$ 
-is also an [etale space][10] over $B$ (that is, a local homeomorphism $E \to B$).
-And by thinking of our favorite sheaf as some space over $B$[^6] 
+is also an [etale space][10] over $B$ 
+(that is, a local homeomorphism[^6] $E \to B$).
+And by thinking of our favorite sheaf as some space over $B$
 we can draw pictures of it!
 
 <br>
@@ -136,7 +137,7 @@ shown below:
 TODO: the cardinal $[(2,3)]$
 </div>
 
-So we se that cardinals are _really really_ easy to work with! This is what we 
+So cardinals are _really really_ easy to work with! This is what we 
 would expect, since they're subsheaves of a particularly simple sheaf. 
 For instance, we can _see_ the fact that cardinals always have 
 [decidable equality][12] by noticing that any two sections over $U$ are 
@@ -161,7 +162,7 @@ so that we can find an open cover $$\{U_\alpha \}$$ of $B$ and functions
 $$f_\alpha : X \! \upharpoonright_\alpha \cong [n] \! \upharpoonright_\alpha$$.
 
 Since $[n]$ is a _constant_ family over $B$, this means we want $X$ to be 
-_locally constant_. This means that bishop finite sets have to basically 
+_locally constant_. So bishop finite sets have to basically 
 look like cardinals, but now we're allowed to "twist" the fibres around.
 
 <div class=boxed markdown=1>
@@ -170,7 +171,7 @@ Put a constant bundle with 2 fibres, and a twisted bundle.
 Use colors to show the isomorphisms on each member of the open cover
 </div>
 
-So the bishop finite sets are exactly the [covering spaces][13] with 
+In fact, the bishop finite sets are exactly the [covering spaces][13] with 
 finite fibres. These inherit lots of nice properties from the cardinals, 
 since as far as the internal logic is concerned they're isomorphic to 
 cardinals!
@@ -189,9 +190,10 @@ induction).
 We can also _see_ this externally. As before, this is saying that two
 sections over $U$ either agree everywhere or nowhere 
 (and it's a cute exercise to see this for yourself).
-But there's another way to see this too! It says that the subsheaf 
+But we can even see this in a _third way_! It says that the subsheaf 
 $$\{(x,y) : X \times X \mid x=y \}$$ is a clopen subset of $X \times X$!
 But we can compute $X \times X$ (the pullback of $X \to B$ along $X \to B$)
+and check this. 
 
 <div class=boxed markdown=1>
 TODO: draw a picture of two double covers over the circle, labelled 
@@ -200,8 +202,9 @@ $(00,11)$ and $(01,10)$.
 
 Note that the subsheaf (really sub-etale space) where the fibres are the same 
 really is a clopen subset (read: a connected component) of the whole space 
-$X \times X$ over $B$. (If it's not obvious that this really _is_ the 
-pullback, it makes a fun exercise!)
+$X \times X$ over $B$. If it's not obvious that this really _is_ the 
+pullback, it makes a fun exercise! Actually it's a cute exercise to check 
+this in general, if you haven't seen it before.
 
 As a last remark, let's also notice that bishop finite sets can be 
 _inhabited_ without being _pointed_. That is, a bishop finite set $X$ can 
@@ -276,8 +279,8 @@ Why is it open? Why is it closed?
 In fact, if $B$ is locally connected and hausdorff, then 
 the converse is also true, and our sheaf of sections $\mathcal{F}$
 has this analytic continuation property if and only if its etale 
-space is hausdorff[^9]! This also makes a nice exercise, and I'll 
-include a solution below a fold.
+space is hausdorff[^9]! This also makes a nice exercise 
+(though it's less easy), and I'll include a solution below a fold.
 </div>
 
 <details>
@@ -288,9 +291,10 @@ include a solution below a fold.
     Then for sections $f,g : U \to X$ we see that the set 
     $\{b \in U \mid f(b) = g(b) \}$ is closed, as the preimage 
     of the closed diagonal in $X$. This set is also open since if 
-    $f(b) = g(b)$, the definition of stalk says that $f=g$ on a 
-    neighborhood of $b$. Since $U$ is connected, we learn this subset 
-    is the whole of $U$ and $\mathcal{F}$ has analytic continuation.
+    $f(b) = g(b)$ is the stalk at $b$, the definition of stalk says 
+    that $f=g$ on a neighborhood of $b$. Since $U$ is connected, we 
+    learn this subset is the whole of $U$ and $\mathcal{F}$ has 
+    analytic continuation.
     </p>
 
     <p>
@@ -317,9 +321,19 @@ include a solution below a fold.
 
 <br>
 
+When I was trying to picture kuratowski finite objects inside $\mathsf{Sh}(B)$,
+I'd somehow convinced myself that a local homeomorphism over a hausdorff 
+space has to itself be hausdorff. This is, obviously, not true! So I was 
+trying to picture kuratowski finite sets and struggling, because I was only 
+ever picturing hausdorff covering spaces. And we'll see later that all 
+hausdorff kuratowski finite sheaves (over spaces I was picturing) are 
+actually bishop finite! So it's no wonder I was confused! I didn't realize 
+the complexity (especially the nonhausdorff complexity) that etale spaces 
+are allowed to have, even though in hindsight I'd been warned about this 
+before[^17].
+
 Going back to examples, we should ask if we recognize the sheaf of 
 sections for our favorite "line with two origins" picture from earlier.
-
 Away from $0$, we know there's exactly one section, but in any neighbordhood 
 of $0$ there's two sections. So we see this is the etale space for the 
 [skyscraper sheaf][17] with two points over $0$!
@@ -375,8 +389,8 @@ In fact, on mastodon ([here][21] and [here][22]), Antoine Chambert-Loir and
 Oscar Cunningham pointed out that you can do even weirder things. For instance,
 the set $$\{\frac{1}{n} \mid n \in \mathbb{N} \} \cup \{ 0 \}$$ is closed 
 in $[0,1]$. So its complement is open, and we can glue two copies of $[0,1]$ 
-together along it! This gives us a kuratowski finite object which nonetheless 
-has uncountably many sections in _every neighborhood of $0$_!
+together along it[^18]! This gives us a kuratowski finite object which nonetheless 
+has infinitely many sections in _every neighborhood of $0$_!
 
 <div class=boxed markdown=1>
 TODO: a picture
@@ -553,8 +567,8 @@ all the elements of a kuratowski finite set.
 
 Of course, knowing how to biject a set $X$ with a set $[n]$ always tells 
 you how to enumerate $X$. But constructively knowing how to enumerate $X$ 
-doesn't tell you how to biject it with some $[n]$! As we saw in the previous 
-section, the problem lies with removing duplicates. It's worth taking a second 
+doesn't tell you how to biject it with some $[n]$! As we saw earlier,
+the problem lies with removing duplicates. It's worth taking a second 
 to visualize a kuratowski finite set that isn't bishop finite, and convince 
 yourself that the question "is this a duplicate element" can have more 
 subtle answers than just "yes" or "no". This makes it impossible to remove 
@@ -595,6 +609,23 @@ See, for instance, Andreas Blass's paper on the
 
 ---
 
+Another blog post done! I'm writing this on a train to Odense right now, 
+and once I get to my room I'll draw all the pictures and post it.
+
+Hopefully this helps demystify the ways in which constructive math might 
+look strange at first. Once again the seemingly bizarre behavior is explained 
+by its _vastly_ greater generality! When you 
+first learn that a subset of a (bishop) finite set need not be (bishop) finite, 
+it sounds so strange as to be unusable! But once you learn that this is an 
+aspect of "everywhere definedness" in a space of parameters 
+(read: the base space) it becomes much more palatable.
+
+Thanks, as always, for hanging out. Try to keep cool during this summer 
+heat (though it's actually _really_ pleasant in Denmark right now), 
+and I'll see you all soon ^_^.
+
+---
+
 [1]: /2024/03/25/continuous-max-function.html
 [2]: /2022/12/13/internal-logic-examples
 [3]: https://semistability.wordpress.com/
@@ -620,6 +651,7 @@ See, for instance, Andreas Blass's paper on the
 [23]: https://en.wikipedia.org/wiki/Cardinal_number
 [24]: https://en.wikipedia.org/wiki/Ordinal_number
 [25]: https://ncatlab.org/nlab/show/complemented+subobject
+[26]: https://www.youtube.com/watch?v=vmcbm5FxRJE
 
 [^1]:
     And, of course, I still really want to finish the blog post on 
@@ -654,9 +686,15 @@ See, for instance, Andreas Blass's paper on the
     Which I often do, but not today.
 
 [^5]:
-    And again, I want this to be a quick post, finished within a day or 
-    two of starting it, so I don't have the time to think about it at all.
-    I would love for an enthusiastic reader to chime in, though!
+    And I want this to be a quick post, finished within a day or two 
+    of starting. So I don't have time to think if there's something 
+    slicker (and intuitively I don't expeect there to be).
+
+    **Edit:** I got about as close to "within a day or two" 
+    as is possible for me, haha.
+    I started writing this on August 12, and it looks like I'll 
+    get it posted on August 18. Given I went a few days without 
+    working on it, that's not too bad!
 
 [^6]:
     That is, a space built by gluing together opens of $B$ along common 
@@ -703,17 +741,9 @@ See, for instance, Andreas Blass's paper on the
     TODO: doodle
     </div>
 
-[^13]:
-    Once again the seemingly bizarre behavior of constructive math is 
-    explained by its _vastly_ greater generality! When you first learn 
-    that a subset of a finite set need not be finite, it sounds so 
-    strange as to be unusable! But once you learn that this is an aspect of 
-    "everywhere definedness" in a space of parameters (read: the base space)
-    it becomes much more palatable.
-
 [^14]:
     Here we use the common abuse of notation of abbreviating 
-    $\exists x:X . \top$ by just $\exists x:X$. It measures 
+    "$\exists x:X . \top$" by just "$\exists x:X$". It measures 
     "to what extent" there exists an element of $X$. That is, 
     its truth value is the _support_ of $X$ over $B$ -- 
     $$\text{int} \big ( \{b \in B \mid \exists x \in X_b \} \big )$$
@@ -728,3 +758,20 @@ See, for instance, Andreas Blass's paper on the
 [^16]:
     Either in the sense that the quotient object itself is decidable, or that 
     the defining equivalence relation is decidable as a subset of $[n] \times [n]$.
+
+[^17]:
+    In that same [Richard Borcherds video][15], for instance, which I 
+    know I watched when it came out. In fact, lots of references on etale 
+    spaces, in hindsight, put at least a bit of emphasis on the fact that 
+    etale spaces can be highly nonhausdorff. I think I'm not the first person
+    to have made this mistake, haha, and I know that when I teach etale 
+    spaces going forwards I'm going to be sure to emphasize this too!
+
+    In his talk [_Nonetheless One Should Learn the Language of Topos_][26],
+    Colin McLarty compares etale spaces to a piece of mica 
+    (around the 1h04m mark), and I think I'm starting to see what he means.
+
+[^18]:
+    This is a fun example to think about. Why does it have only _countably_ 
+    many sections at $0$, rather than _uncountably_ many? Can you picture 
+    its topology at all? See the linked mastodon posts for more discussion.
