@@ -100,7 +100,7 @@ topos $\mathsf{Sh}(B)$ the natural number object is (the sheaf of sections of)
 $B \times \mathbb{N}$ where $\mathbb{N}$ gets the discrete topology. 
 
 <p style="text-align:center;">
-<img src="/assets/images/finiteness-in-sheaf-topoi/N-covering-interval.png" width="j0%">
+<img src="/assets/images/finiteness-in-sheaf-topoi/N-covering-interval.png" width="50%">
 </p>
 
 So if $n$ is a global section, it must be $$B \times \{ n \}$$ for some fixed $n$ 
@@ -327,7 +327,7 @@ of $0$ there's two sections. So we see this is the etale space for the
 [skyscraper sheaf][17] with two points over $0$!
 
 Since our epi $[n] \twoheadrightarrow X$ only has to exist locally, 
-kuratowski-finite objects in $\mathsf{Sh}(B)$ can have the same twisting 
+kuratowski finite objects in $\mathsf{Sh}(B)$ can have the same twisting 
 behavior as bishop finite sets too!
 
 <p style="text-align:center;">
@@ -433,8 +433,9 @@ of $X = \emptyset$ is $\text{int}(U^c \cap V^c)$. (Do you see why?)
 
 ## An aside on decidable equality
 
-I originally put this with the closure properties, but I think it's 
-important enough (and general enough!) to get its own section.
+This isn't _technically_ about visualizing etale spaces, but I was thinking 
+about it while writing this post, and I think it fits well enough to 
+include. If nothing else, it's _deifnitely_ interesting enough to include!
 
 If you're really paying attention, you'll notice the "easy exercise" 
 about analytic continuation didn't actually use any aspects of finiteness. 
@@ -455,7 +456,7 @@ This comes from a [mathoverflow answer][16] by Elías Guisado Villalgordo
 
 $\ulcorner$
 The equivalence of $1$ and $2$ was the earlier exercise, and you can find 
-a proof in the summary below it.
+a proof below it under a fold/
 
 To check the equivalence of $2$ and $3$, we look at "decidable equality",
 that $\forall f,g : \mathcal{F} . (f=g) \lor (f \neq g)$.
@@ -492,7 +493,7 @@ $\mathcal{F}$ satisfies analytic continuation.
 <br>
 
 If you've internalized this, it makes it geometrically believable that a 
-decidable kuratowski-finite set is actually bishop finite! 
+decidable kuratowski finite set is actually bishop finite! 
 I think it's fun to see this fact both _syntactically_ 
 (reasoning in the internal logic) and _semantically_ 
 (reasoning about bundles), so let's see two proofs!
@@ -517,7 +518,7 @@ between $X$ and $[m]$.
 And now a <span class=defn>semantic proof</span>:
 
 $\ulcorner$
-Say $\pi : E \twoheadrightarrow B$ is the etale space of a kuratowski-finite 
+Say $\pi : E \twoheadrightarrow B$ is the etale space of a kuratowski finite 
 object in $\mathsf{Sh}(B)$. So, locally, $E$ is the quotient of some 
 $\coprod_n B$. Say also that $E$ is has decidable equality so that, locally, 
 two sections of $E$ that agree somewhere must agree everywhere. 
@@ -549,7 +550,7 @@ Constructively, bishop and kuratowski finiteness encode two aspects of
 finiteness which are conflated in the classical finite world. Bishop finite 
 sets are those which admit a cardinality. They're in bijection with some 
 $[n]$, and so have a well defined notion of _size_. Kuratowski finite sets, 
-in contrast, are those equipped with a notion of _enumeration_. You can list 
+in contrast, are those equipped with an _enumeration_. You can list 
 all the elements of a kuratowski finite set.
 
 Of course, knowing how to biject a set $X$ with a set $[n]$ always tells 
@@ -566,7 +567,7 @@ happens classically too once you start working with _infinite_ sets.
 Indeed in set theory the notion of finiteness bifurcates into 
 [cardinals][23], which have a defined notion of "size", and 
 [ordinals][24], which have a defined notion of "order" 
-(kind of like a choice of enumeration... if you squint).
+(kind of like an enumeration... if you squint).
 
 So when you're working constructively, ask why you're using finiteness. 
 Do you _really_ need to know that something literally has $n$ elements 
@@ -610,6 +611,12 @@ aspect of "everywhere definedness" in a space of parameters
 Thanks, as always, for hanging out. Try to keep cool during this summer 
 heat (though it's actually _really_ pleasant in Denmark right now), 
 and I'll see you all soon ^_^.
+
+Here's a picture of me and Peter right after we got off the train:
+
+<p style="text-align:center;">
+<img src="/assets/images/finiteness-in-sheaf-topoi/me-and-peter.jpg" width="75%">
+</p>
 
 ---
 
@@ -666,7 +673,7 @@ and I'll see you all soon ^_^.
     If you want to learn more about it, I highly recommend 
     Stout's [_Dedekind Finiteness in Topoi_][8]. I don't know of a 
     good way to visualize the dedekind finite objects in $\mathsf{Sh}(X)$
-    (though I haven't tried at all -- I want this to be a fast post) which 
+    (though I haven't tried at all -- I want this to be a quick post) which 
     was another reason to exclude them.
 
 [^4]:
