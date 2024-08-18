@@ -37,7 +37,11 @@ With all that out of the way, let's get to it!
 ---
 
 First, let's just recall the notions of finiteness you're likely to 
-find in the literature[^2]:
+find in the literature[^2]. Keep in mind that, depending on the reference 
+you're reading, each of these is liable to be called just "finite" 
+without disambiguation. Sometimes you even get more confusing conventions, 
+so make sure you read the literature carefully to know exactly what the 
+author means! For this post, though, we'll write:
 
 If $n : \mathbb{N}$, the <span class=defn>Finite Cardinal</span> of size $n$ 
 is the set $$[n] = \{ x : \mathbb{N} \mid x \lt n \}$$. 
@@ -424,105 +428,6 @@ of $X = \empty$ is $\text{int}(U^c \cap V^c)$. (Do you see why?)
 
 ---
 
-## Closure properties
-
-In a classical world, where all these notions of finiteness agree, 
-finite sets are closed under _tons_ of operations! It's interesting to ask 
-what happens as we apply those operations constructively, and with our 
-newfound ability to _picture_ the various notions of finiteness, hopefully 
-these [constructive stones][23] will become obvious! Or, at least they'll 
-become less weird[^13]. Everything I say in this section is in The Elephant 
-D5.x (probably D5.2 or D5.4). Let's start with cardinal finiteness. 
-These sets are decidable, so behave 
-_very_ classically. 
-
-TODO: that constructive stone link
-
-For one, it's not hard to see that $[m+n] \cong [m] + [n]$, 
-$[mn] = [m] \times [n]$, and $[m^n] \cong [m]^{[n]}$. So 
-the cardinals are closed under sums, product, and exponentials. 
-More strongly, given two arrows $f,g : [m] \rightrightarrows [n]$, 
-the equalizer and coequalizers are both cardinals! 
-
-Equalizers are easy to see because a _complemented_ 
-(read: clopen, detachable, etc) subobject 
-of a cardinal is again a cardinal[^15] (can you see this geometrically?). 
-Coequalizers are harder, but I think you can still convince yourself that 
-you can see it! The insight is that the $B$-data we're carrying around isn't 
-_really_ being used anywhere. Over each component of $B$ we just have $[n]$
-copies of $B$, and since everything in sight is constant it works just like it 
-does for a single natural number!
-
-So we see that, as long as we put the "decidable" assumption everywhere, 
-finite cardinals behave as they do classically! They're closed under 
-products, sums, and exponents, and moreover under _decidable_ subsets 
-and quotients[^16]. 
-
-<br>
-
-What about bishop finite? In many books, these are just called 
-"finite", since they admit an isomorphism with $[n]$ for some $n$.
-
-
-TODO: Write these all out (it's on the nlab and in the back of the elephant) 
-and make them obvious with some pictures.
-Also K-finite is stable under base change. Is b-finite?
-
-
-
-<br>
-
-Another important fact is that decidable kuratowski finite sets are 
-bishop finite. I think it's fun to see this fact both _syntactically_ 
-(reasoning in the internal logic) and _semantically_ 
-(reasoning about bundles), especially given our earlier discussion about 
-hausdorffness and analytic continuation. 
-
-First, a <span class=defn>syntactic proof</span>:
-
-$\ulcorner$
-Say $f : [n] \twoheadrightarrow X$. Then we note for each $x:X$ the 
-predicate $\varphi(k) \triangleq f(k) = x$ on $[n]$ is decidable 
-since $X$ has decidable equality. Thus it gives an inhabited decidable subset 
-of $[n]$, which has a least element (Lemma D5.2.9(iii) in the elephant).
-Call such an element $g(x)$.
-
-Note the image of $g$ is a complemented subset of $[n]$, since we can decide 
-$k \in \text{im}(g)$ by checking if $k = g(f(k))$ using decidability of $[n]$.
-Then $\text{im}(g)$ is isomorphic to a cardinal (D5.2.3), $[m]$, and it's easy 
-to see that composing $g$ and $f$ with this isomorphism gives a bijection 
-between $X$ and $[m]$.
-<span style="float:right">$\lrcorner$</span>
-
-
-And now a <span class=defn>semantic proof</span>:
-
-$\ulcorner$
-Say $\pi : E \twoheadrightarrow B$ is the etale space of a kuratowski-finite 
-object in $\mathsf{Sh}(B)$. So, locally, $E$ is the quotient of some 
-$\coprod_n B$. Say also that $E$ is has decidable equality so that, locally, 
-two sections of $E$ that agree somewhere must agree everywhere. 
-
-By refining our covers, then, we may fix an open cover $$\{U_\alpha\}$$ of $B$
-and epimorphisms 
-$$\coprod_{n_\alpha} U_\alpha \to E \! \upharpoonright_{U_\alpha}$$ so that 
-two local sections on $U_\alpha$ either agree everywhere or nowhere. 
-In particular, the $n_\alpha$ many components 
-$f_i : U_\alpha \overset{i\text{th inclusion}}{\longrightarrow} \coprod_{n_\alpha} \to E$ 
-are pairwise either have the same image or disjoint images. Choosing exactly 
-one $f_i$ for each possible image (the least $i$ that works, say) we see that actually 
-$\pi^{-1}(U_\alpha)$ is homeomorphic to the disjoint union of copies of 
-$U_\alpha$ so that $E$ is actually a covering space, and thus represents a 
-bishop finite object.
-<span style="float:right">$\lrcorner$</span>
-
-<div class=boxed markdown=1>
-It's worth meditating on why these are actually the same proof! 
-In both cases we use decidability to "remove duplicates" from our 
-enumeration.
-</div>
-
----
 
 ## An aside on decidable equality
 
@@ -581,6 +486,58 @@ $f=g$ on $U_1$. Proceeding in this way we learn $f=g$ on the whole of $U_\beta$.
 Thus $f=g$ on every member of the cover, so on the whole of $U$, and so 
 $\mathcal{F}$ satisfies analytic continuation.
 <span style="float:right">$\lrcorner$</span>
+
+<br>
+
+If you've internalized this, it makes it geometrically believable that a 
+decidable kuratowski-finite set is actually bishop finite! 
+I think it's fun to see this fact both _syntactically_ 
+(reasoning in the internal logic) and _semantically_ 
+(reasoning about bundles), so let's see two proofs!
+
+First, a <span class=defn>syntactic proof</span>:
+
+$\ulcorner$
+Say $f : [n] \twoheadrightarrow X$. Then we note for each $x:X$ the 
+predicate $\varphi(k) \triangleq f(k) = x$ on $[n]$ is decidable 
+since $X$ has decidable equality. Thus it gives an inhabited decidable subset 
+of $[n]$, which has a least element (Lemma D5.2.9(iii) in the elephant).
+Call such an element $g(x)$.
+
+Note the image of $g$ is a complemented subset of $[n]$, since we can decide 
+$k \in \text{im}(g)$ by checking if $k = g(f(k))$ using decidability of $[n]$.
+Then $\text{im}(g)$ is isomorphic to a cardinal (D5.2.3), $[m]$, and it's easy 
+to see that composing $g$ and $f$ with this isomorphism gives a bijection 
+between $X$ and $[m]$.
+<span style="float:right">$\lrcorner$</span>
+
+
+And now a <span class=defn>semantic proof</span>:
+
+$\ulcorner$
+Say $\pi : E \twoheadrightarrow B$ is the etale space of a kuratowski-finite 
+object in $\mathsf{Sh}(B)$. So, locally, $E$ is the quotient of some 
+$\coprod_n B$. Say also that $E$ is has decidable equality so that, locally, 
+two sections of $E$ that agree somewhere must agree everywhere. 
+
+By refining our covers, then, we may fix an open cover $$\{U_\alpha\}$$ of $B$
+and epimorphisms 
+$$\coprod_{n_\alpha} U_\alpha \to E \! \upharpoonright_{U_\alpha}$$ so that 
+two local sections on $U_\alpha$ either agree everywhere or nowhere. 
+In particular, the $n_\alpha$ many components 
+$f_i : U_\alpha \overset{i\text{th inclusion}}{\longrightarrow} \coprod_{n_\alpha} \to E$ 
+are pairwise either have the same image or disjoint images. Choosing exactly 
+one $f_i$ for each possible image (the least $i$ that works, say) we see that actually 
+$\pi^{-1}(U_\alpha)$ is homeomorphic to the disjoint union of copies of 
+$U_\alpha$ so that $E$ is actually a covering space, and thus represents a 
+bishop finite object.
+<span style="float:right">$\lrcorner$</span>
+
+<div class=boxed markdown=1>
+It's worth meditating on why these are actually the same proof! 
+In both cases we use decidability to "remove duplicates" from our 
+enumeration.
+</div>
 
 ---
 
