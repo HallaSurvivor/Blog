@@ -40,6 +40,7 @@ First, let's just recall the notions of finiteness you're likely to
 find in the literature[^2]. Keep in mind that, depending on the reference 
 you're reading, each of these is liable to be called just "finite" 
 without disambiguation. Sometimes you even get more confusing conventions, 
+(such as writing "subfinite" to mean what we call "kuratowski finite"!)
 so make sure you read the literature carefully to know exactly what the 
 author means! For this post, though, we'll write:
 
@@ -424,7 +425,7 @@ TODO: two arcs, intersecting, viewed as a subobject of $2 \times S^1$.
 </div>
 
 Here the truth value of $\exists x : X$ is $U \cup V$, and the truth value 
-of $X = \empty$ is $\text{int}(U^c \cap V^c)$. (Do you see why?)
+of $X = \emptyset$ is $\text{int}(U^c \cap V^c)$. (Do you see why?)
 
 ---
 
@@ -504,7 +505,7 @@ since $X$ has decidable equality. Thus it gives an inhabited decidable subset
 of $[n]$, which has a least element (Lemma D5.2.9(iii) in the elephant).
 Call such an element $g(x)$.
 
-Note the image of $g$ is a complemented subset of $[n]$, since we can decide 
+Note the image of $g$ is a [complemented subset][25] of $[n]$, since we can decide 
 $k \in \text{im}(g)$ by checking if $k = g(f(k))$ using decidability of $[n]$.
 Then $\text{im}(g)$ is isomorphic to a cardinal (D5.2.3), $[m]$, and it's easy 
 to see that composing $g$ and $f$ with this isomorphism gives a bijection 
@@ -543,36 +544,54 @@ enumeration.
 
 ## Which Finite to Use?
 
-TODO: say that different notions of "finite" give us different --
-bishop sets have a cardinality, k-sets can be listed (possibly with duplicates)
+Constructively, bishop and kuratowski finiteness encode two aspects of 
+finiteness which are conflated in the classical finite world. Bishop finite 
+sets are those which admit a cardinality. They're in bijection with some 
+$[n]$, and so have a well defined notion of _size_. Kuratowski finite sets, 
+in contrast, are those equipped with a notion of _enumeration_. You can list 
+all the elements of a kuratowski finite set.
 
-Almost always, if you're just doing "regular math" you want to work with 
-kuratowski finite sets. These admit a surjection from $[n]$, and so can be 
-thought of as sets whose elements can be "listed" (possibly with repeats).
+Of course, knowing how to biject a set $X$ with a set $[n]$ always tells 
+you how to enumerate $X$. But constructively knowing how to enumerate $X$ 
+doesn't tell you how to biject it with some $[n]$! As we saw in the previous 
+section, the problem lies with removing duplicates. It's worth taking a second 
+to visualize a kuratowski finite set that isn't bishop finite, and convince 
+yourself that the question "is this a duplicate element" can have more 
+subtle answers than just "yes" or "no". This makes it impossible to remove 
+the duplicates.
 
-Note that we can't remove the repeats! For instance, in the circle 
-with two origins, there's an epi from $\[2]$ which usually has duplicates,
-but doesn't have duplicates at the doubled point!
+This bifurcation might feel strange at first, but in some squishy sense it 
+happens classically too once you start working with _infinite_ sets. 
+Indeed in set theory the notion of finiteness bifurcates into 
+[cardinals][23], which have a defined notion of "size", and 
+[ordinals][24], which have a defined notion of "order" 
+(kind of like a choice of enumeration... if you squint).
 
-The feature of finiteness we usually need is the ability to list stuff, 
-and it normally doesn't matter if our list happens to have duplicates. So 
-this gets the job done. Sometimes, though, especially in combinatorics, 
-we need to be able to _distinguish_ between the objects we've listed. 
+So when you're working constructively, ask why you're using finiteness. 
+Do you _really_ need to know that something literally has $n$ elements 
+for some $n$? Or is it enough to know that you can put the elements 
+in a finite list? Does it matter if your list has duplicates? 
+These questions will tell you whether bishop finiteness or kuratowski 
+finiteness is right for your purposes.
 
-As long as we work with _decidable_ finite sets, we can do this and then 
-everything is exactly as you would expect. This is part of why constructive math 
+Subfiniteness, which amounts to being contained in some $[n]$, I find 
+to be less useful "in its own right". Instead, if you're able to prove 
+a result for bishop finite objects, it's worth asking if you can strengthen 
+that to a proof for subfinite ones!
+
+In any case, as long as we work with _decidable_ things, these notions 
+all coincide. As we saw earlier, a decidable quotient of a bishop finite 
+set (that is, a decidable kuratowski finite set) is again bishop finite.
+Similarly, a complemented subset of a bishop finite set is finite 
+(this is lemma D5.2.3 in the elephant, but it's not hard to see yourself).
+So if you're working in a context where everything is decidable, finite sets 
+work exactly as you would expect! This is part of why constructive math 
 doesn't have much to say about combinatorics and algebra. Most arguments 
 are _already_ constructive for decidable finite sets (which is what you're 
-picturing when you picture a finite set). Sometimes you can push 
-things a bit farther though, and this can be interesting. See, for instance, 
-Andreas Blass's paper on the [Constructive Pigeonhole Principle][19]. 
-
-TODO: mention that cardinals are projective, so satisfy a version of choice. 
-Do any of the others? (k-finite definitely don't). Can you show this 
-with a picture?
-
-TODO: If you're interested in reading more, the last section (D5) of 
-Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos. 
+picturing when you picture a finite set and do combinatorics to it). 
+Sometimes you can push things a bit farther though, and this can be interesting. 
+See, for instance, Andreas Blass's paper on the 
+[Constructive Pigeonhole Principle][19]. 
 
 ---
 
@@ -598,7 +617,9 @@ Johnstone's Elephant is a _fantastic_ resource on finite objects in a topos.
 [20]: https://math.stackexchange.com/questions/1480639/connected-space-and-open-coverings
 [21]: https://sunny.garden/@hallasurvivor/112961631080132543
 [22]: https://sunny.garden/@hallasurvivor/112972328466131542
-[23]: Andrej Constructive Stones Finiteness
+[23]: https://en.wikipedia.org/wiki/Cardinal_number
+[24]: https://en.wikipedia.org/wiki/Ordinal_number
+[25]: https://ncatlab.org/nlab/show/complemented+subobject
 
 [^1]:
     And, of course, I still really want to finish the blog post on 
