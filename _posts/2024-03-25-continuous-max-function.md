@@ -2,7 +2,7 @@
 layout: post
 title: Proving Another "Real Theorem" with Topos Theory
 tags:
-  - 
+  - topos-theory
 ---
 
 Another day, another post that starts with "So I was on mse...", lol. 

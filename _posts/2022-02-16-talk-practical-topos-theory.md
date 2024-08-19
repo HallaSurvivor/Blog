@@ -4,6 +4,7 @@ title: Talk -- Let's Solve a Simple Analysis Problem. Together.
 tags:
   - my-talks
   - featured
+  - topos-theory
 ---
 
 Last Friday I gave a talk in GSS where I tried to give a super concrete

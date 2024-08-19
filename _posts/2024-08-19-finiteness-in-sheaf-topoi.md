@@ -2,7 +2,7 @@
 layout: post
 title: Finiteness in Sheaf Topoi
 tags:
-  - 
+  - topos-theory
 ---
 
 The notion of "finiteness" is constructively subtle in ways that can be 

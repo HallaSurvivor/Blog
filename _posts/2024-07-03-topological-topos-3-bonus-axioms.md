@@ -3,6 +3,7 @@ layout: post
 title: Life in Johnstone's Topological Topos 3 -- Bonus Axioms
 tags:
   - life-in-the-topological-topos
+  - topos-theory
 ---
 
 In the [first post][64] of the series, we talked about what the topological 

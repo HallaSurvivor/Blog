@@ -3,6 +3,7 @@ layout: post
 title: Life in Johnstone's Topological Topos 2 -- Topological Algebras
 tags:
   - life-in-the-topological-topos
+  - topos-theory
 ---
 
 In the [first post][5], we introduced Johnstone's topological topos $\mathcal{T}$ 

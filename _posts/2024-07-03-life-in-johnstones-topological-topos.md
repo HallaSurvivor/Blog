@@ -4,6 +4,7 @@ title: Life in Johnstone's Topological Topos 1 -- Fundamentals
 tags:
   - life-in-the-topological-topos
   - featured
+  - topos-theory
 ---
 
 I've been thinking a lot about the internal logic of topoi again, and I 
