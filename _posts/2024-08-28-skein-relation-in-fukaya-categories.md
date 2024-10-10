@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The Skein Relation In the Hall Algebra of a Fukaya Category
+title: The Skein Relation in the Hall Algebra of a Fukaya Category
 tags:
   - 
 ---
@@ -71,8 +71,8 @@ TODO: The Skein Relation
 
 This gives the <span class=defn>Skein Module</span> $\text{Sk}(M)$. In case 
 $M = \mathbb{R}^3$ then $\text{Sk}(M)$ is one dimensional, spanned by the 
-unknot $\circle$. Then if $L$ is a link in $\mathbb{R}^3$ its class in 
-$\text{Sk}(\mathbb{R}^3)$ is just the jones polynomial times $\circle$.
+unknot $\bigcirc$. Then if $L$ is a link in $\mathbb{R}^3$ its class in 
+$\text{Sk}(\mathbb{R}^3)$ is just the jones polynomial times $\bigcirc$.
 
 In this way, a link in $M$ gets sent to some class in $\text{Sk}(M)$ 
 and this vector (read: the coefficients in some nice basis) are generalizations 
