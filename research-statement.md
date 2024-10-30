@@ -35,7 +35,7 @@ that language too.
 
 ## First Paper: Right Angled Artin Groups
 
-A _right angled artin group_ (raag) is a way to interpolate between free groups 
+A **right angled artin group** (raag) is a way to interpolate between free groups 
 and free abelian groups by adding relations forcing only some of the 
 generators to commute. These relations are encoded in a graph whose vertices 
 are generators, and where an edge indicates that two generators should 
@@ -93,7 +93,63 @@ going forwards.
 
 ## Second Paper: The Topological Topos
 
+A **topos** is many things -- a generalized topological space, a category 
+of sheaves, a classifying space for models of a theory, etc. -- but in this 
+project we consider a topos as an "alternate universe" in which one can do math. 
+Mathematical logic tells us that everything in math can be compiled down 
+to a statement about sets, and to draw an analogy with programming, we can 
+think of a topos as an alternative implementation of the same set theoretic 
+interface. By interpreting old theorems in these new worlds, we can often get 
+interesting theorems without much work, and more excitingly still, we can 
+build new topoi that are tailor made for studying some class of problems! 
+This is the main idea behind the recent surge of interest in **Homotopy 
+Type Theory**, which is a topos tailor made for doing homotopy theory. There's 
+similar topoi for differential geometry, probability, computability, and 
+many more.
 
+Johnstone's Topological Topos is world tailor made for studying sequential 
+topological spaces. It can be considered a historic precursor to 
+**Clausen and Scholze's Condensed Topos**, which is tailor made for studying 
+compact hausdorff spaces, and is better behaved in many respects.
+
+These topoi, in addition to being of considerable theoretic interest, have 
+concrete ties to programming languages and computer science. They give a 
+compelling connection between the _computable_ and the _continuous_, and 
+indeed there's a large research programme in programming language theory 
+based on this connection. Originally Dana Scott used domain theory in order 
+to meaningfully interpret the (untyped) lambda calculus, and ever since people 
+have been giving topological interpretations of programming languages 
+in order to prove properties of interest to computer scientists (such as 
+_strong normalization_, which tells you that every program written in a 
+language halts with a meaningful output). 
+
+Johnstone's topological topos gives one popular way to interpret programming 
+languages topologically, and my project was mainly motivated by the large 
+amount of folklore surrounding this topos. Computer scientists interested in 
+studying programming languages shouldn't be forced to learn the 
+(fairly difficult) language of topos theory in order to do their research! 
+But since there were so many results that hadn't been written down anywhere, 
+many would be forced to. 
+
+In this paper, I do all of the topos theory up front, in as explicit a way 
+as possible, in order to give working computer scientists direct access to the 
+folklore results from this field. Moreover, I prove a new result relating 
+locales (a different notion of topological space) to objects in the 
+topological topos. As corollaries of this new result, we get for free 
+classical facts like the bar and fan theorems, as well as a very general 
+strengthening of Brouwer's axiom that (inside the topos) all functions 
+between metric spaces are continuous.
+
+Going forward, I would love to prove similar results in the 
+closely related Clausen-Scholze condensed topos. 
+I suspect it can play a similar role to Johnstone's topological topos, which 
+will allow programming language theory to make direct contact with 
+functional analysis. This is surely known to experts in the 
+condensed topos, but might not yet be appreciated by experts in 
+programming language theory and more classical functional analysis.
+
+
+## Third Paper (in progress): Algebraic Theories
 
 ---
 
