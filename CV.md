@@ -25,7 +25,7 @@ B.S. in Discrete Math and Logic (May 2019)
 - Extensions of Abelian Automata Groups ([preprint](https://arxiv.org/abs/1903.06997))
 
 
-## Talks Outside My Department
+## Talks Outside Of Department
 - Life in Johnstone's Topological Topos (CT Octoberfest, 2024)
 - Gluing is Hard: Skeins and Hall Algebras (Centre for Quantum Mathematics at Syddansk, 2024)
 - What is Factorization Homology? (AMS Special Session, 2024)
