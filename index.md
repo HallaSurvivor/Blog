@@ -5,7 +5,7 @@ title: Home
 
 # Welcome!
 
-I'm Chris Grossack, a mathematician and musician. My research interests 
+I'm Chris Grossack, a queer mathematician and musician. My research interests 
 lie in the intersection of algebra, geometry, and logic. An intersection 
 often made clearer with the language of category theory.
 
