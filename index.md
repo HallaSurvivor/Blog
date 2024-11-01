@@ -14,6 +14,10 @@ Field Theories (particularly their relationship to Low Dimensional Topology and
 Quantum Algebra) and in Topos Theory (particularly in its application to 
 various notions of _synthetic mathematics_ such as Homotopy Type Theory).
 
+In addition to my research, I'm committed to fostering diversity in 
+mathematics, and have mentored several undergraduates and early graduate 
+students.
+
 You might be interested in [my CV](/cv) or [my blog](/blog). You can read 
 more about me [here](/about).
 
