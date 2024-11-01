@@ -2,6 +2,10 @@
 layout: default
 ---
 
+This is a (very!) rough draft of my teaching statement 
+
+---
+
 With almost ten years of university level teaching behind me, I've developed 
 a deep sense of what works to help students with _assignments and with 
 learning the course material_ [6].

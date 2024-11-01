@@ -2,6 +2,10 @@
 layout: default
 ---
 
+This is a (very!) rough draft of my research statement
+
+---
+
 ## Introduction 
 
 My research interests lie in the intersection between algebra, geometry, 
