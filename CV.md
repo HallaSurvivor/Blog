@@ -25,7 +25,8 @@ B.S. in Discrete Math and Logic (May 2019)
 - Extensions of Abelian Automata Groups ([preprint](https://arxiv.org/abs/1903.06997))
 
 
-## Talks Outside UCR/CMU
+## Talks Outside My Department
+- Life in Johnstone's Topological Topos (CT Octoberfest, 2024)
 - Gluing is Hard: Skeins and Hall Algebras (Centre for Quantum Mathematics at Syddansk, 2024)
 - What is Factorization Homology? (AMS Special Session, 2024)
 - 2-Categorical Descent and (Essentially) Algebraic Theories (CT Octoberfest, 2023)
@@ -35,6 +36,8 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Seminar Talks In Department
 
+- Categories and Harmonic Analysis: Tannaka and 
+    Pontryagin Dualities (UCR, 2024)
 - Introduction to Quantum Groups (UCR, 2024)
 - Introduction to Symplectic Geometry (UCR, 2023)
 - Introduction to $A_\infty$ Categories and the Fukaya Category (UCR, 2023)
