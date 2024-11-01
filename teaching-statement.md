@@ -10,27 +10,28 @@ With almost ten years of university level teaching behind me, I've developed
 a deep sense of what works to help students with _assignments and with 
 learning the course material_ [6].
 My focus is always on being _incredibly kind, approachable, and friendly_ [17], 
-which makes students feel _comfortable [asking] questions_ [12] so that 
-_anyone [can] mention their problems_ [20]. I believe students learn better 
+which makes students feel _comfortable asking questions_ [12] so that 
+_anyone can mention their problems_ [20]. I believe students learn better 
 when they engage with the material and participate in class, and I do 
-everything I can to _[provide] a safe and comfortable learning environment that 
-[allows students] to ask questions and take part in discussion_ [19] 
-and to _[make] everyone feel involved_ [8].
+everything I can to _provide a safe and comfortable learning environment that 
+allows students to ask questions and take part in discussion_ [19] 
+and to _make everyone feel involved_ [8].
 I also believe that students learn better when they care about the material, so I 
 like to provide _helpful analogies_ and _connect material to the real world_ [13]
-while showing the _"bigger picture" of each [topic]_ [7] to help students
-understand _where things come from and why [they] should care_ [9].
+while showing the _"bigger picture" of each topic_ [7] to help students
+understand _where things come from and why they should care_ [9].
 More than anything, I try to make math _fun and interesting_ [3].
 
 It helps that I personally find basically every branch of math 
 "fun and interesting", and my _enthusiasm for the math_ [19] shines 
 through in everything I teach. Direct quotes from student evaluations
-(shown in _italics_ throughout) are taken from staple classes such as 
-precalculus through multivariable calculus and linear algebra, as well 
-as upper division classes like number theory, geometry, 
-discrete math, and complex analysis. Students say it's 
-_pretty amazing that [I] can help [them] with any question 
-right off the bat, which really shows how much [I] know_ [5]
+(shown in _italics_ throughout, with small modifications for grammar) are 
+taken from staple classes such as precalculus through multivariable calculus and 
+linear algebra, as well as upper division classes like number theory, geometry, 
+discrete math, and complex analysis. A complete list of the direct quotes 
+are included at the end of this document. Students say it's 
+_pretty amazing that I can help them with any question 
+right off the bat, which really shows how much I know_ [5]
 about all of these subjects, and this comfort is part of what makes me 
 good at teaching to all skill levels.
 
@@ -38,42 +39,42 @@ In addition to making class _very welcoming and fun_ [18], my emphasis on
 participation and examples leads to better understanding of both 
 _conceptual ideas_ [21] and _homework problems_ [10].
 Since students are constantly asking clarifying questions, they feel like 
-I'm teaching them _what [they] want to know_ [14], which afterwards helps them 
-_[feel] like [they understand] the topics_ [14]. Of course, this understanding 
+I'm teaching them _what they want to know_ [14], which afterwards helps them 
+_feel like they understand the topics_ [14]. Of course, this understanding 
 has the side effect of helping students 
-_pass [midterms] and do well on quizzes_ [15], which is also important.
+_pass midterms and do well on quizzes_ [15], which is also important.
 
 As part of my dedication to providing _spectacular supplemental examples_ 
 [16], whenever possible I 
-_draw pictures and describe every detail of [a] problem_ [22]. I believe that 
+_draw pictures and describe every detail of a problem_ [22]. I believe that 
 geometric intuition is crucial to a deep understanding of mathematics, 
 and as a teacher I place a lot of emphasis on translating fluently between 
 the "syntax" of algebraic calculations and the "semantics" of geometric 
 meaning behind those calculations. These geometric arguments often take the 
 form of an _informal proof to begin with, and then afterwards a proper proof_ [5]
 which helps students _fully understand the concept_ [5]. This 
-_[makes] math much more interesting (and sometimes fun)... which makes 
+_makes math much more interesting (and sometimes fun)... which makes 
 learning the content more valuable_ [5].
 
-I care deeply about my students, so I go _out of [my] way to provide_ resources 
+I care deeply about my students, so I go _out of my way to provide_ resources 
 for the class [6], and I provide _ample flexibility and encouragement with 
 assignments, quizzes, and exams_ [6], since this is crucial for students to 
 feel comfortable both in the course and with the material. I am 
 _willing to do a ton of office hours throughout the week_ [2], which helps 
 show students that their _education is important_ [2] to me. I always 
-_make sure that everyone [understands] the material before moving on, and 
-[I take] the time to explain whatever it is that [they] didn't understand_ [1].
-This is yet another facet of my _[patience] with the million questions 
-people [have]_ [11], and my commitment to showing students that they 
+_make sure that everyone understands the material before moving on, and 
+I take the time to explain whatever it is that they didn't understand_ [1].
+This is yet another facet of my _patience with the million questions 
+people have_ [11], and my commitment to showing students that they 
 _can ask any questions, no matter how dumb they may be!_ [4], and I will 
 always help them.
 
-In all, I _just [want] the best for [my students], and [I] will do as much as 
-[I] can to make sure [they] succeed_ [17]. 
+In all, I _just want the best for my students, and I will do as much as 
+I can to make sure they succeed_ [17]. 
 
 ----
 
-[1] (Fall 2021, 131-002 "Linear Algebra I")
+[1] (Fall 2021, 131-002 "Linear Algebra I", proof based)
 
 Chris was an amazing TA with excellent teaching skills. They made sure 
 that everyone was understanding the material before moving on, and they took 
@@ -82,7 +83,7 @@ approachable and that is what me feel comfortable enough to converse with
 them and ask questions.
 
 
-[2] (Fall 2021, 131-002 "Linear Algebra I")
+[2] (Fall 2021, 131-002 "Linear Algebra I", proof based)
 
 Chris was an amazing TA. Given that the material seemed very abstract, 
 they would always come with the best analogies of the content.
@@ -111,7 +112,7 @@ questions, no matter how dumb they may be! I would love to have Chris as a
 TA for another class in the future.
 
 
-[5] (Winter 2022, 136-002 "Introduction to the Theory of Numbers")
+[5] (Winter 2022, 136-002 "Introduction to the Theory of Numbers", proof based)
 
 I think it is pretty amazing that the TA can help us with any 
 question right off the bat, which really shows how much they know about the
@@ -124,7 +125,7 @@ math much more interesting (and sometimes fun) than it feels like it
 is, which makes learning the content more valuable for me
 
 
-[6] (Winter 2022, 136-002 "Introduction to the Theory of Numbers")
+[6] (Winter 2022, 136-002 "Introduction to the Theory of Numbers", proof based)
 
 Chris is an excellent TA! Chris helped me tremendously with the 
 assignments and with learning the course material. Chris went out of their
@@ -178,7 +179,7 @@ problems and structured the class in a way where it was beneficial to
 cover all material while still answering all of our questions.
 
 
-[11] (Fall 2022, 133-02 "Geometry")
+[11] (Fall 2022, 133-02 "Geometry", proof based)
 
 As always is nice and patient with the million questions 
 people including myself have
@@ -189,7 +190,7 @@ people including myself have
 They were a good TA, made it easy to understand and comfortable to ask questions.
 
 
-[13] (Winter 2023, 11-006 "Discrete Math")
+[13] (Winter 2023, 11-006 "Discrete Math", proof based)
 
 Chris has been an extremely good TA, and they helped me learn the material 
 in a far better way than in even the lecture or the homework
@@ -255,7 +256,7 @@ only thing I’d say is the GradeScope process can be inconvenient sometimes
 since it never works properly, but that is out of their control
 
 
-[19] (Winter 2024, 11-003 "Discrete Math")
+[19] (Winter 2024, 11-003 "Discrete Math", proof based)
 
 Chris was a great TA. They helped clarify material by the professor and 
 showed helpful examples to supplement it as well. They provided a
