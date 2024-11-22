@@ -218,6 +218,8 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Conferences Attended
 
+- [Symplectothon on Global Kuranishi Charts](https://kylersiegel.xyz/symplectothon2024) (Fall 2024)
+- [CT Octoberfext 2024](https://richardblute.ca/octoberfest-2024/) (Fall 2024)
 - [AMS Special Session: Category Theory and Homotopy Theory in Interaction](https://www.ams.org/meetings/sectional/2313_program_ss13.html) (Spring 2024)
 - [Higher Segal Spaces and their Applications](https://www.birs.ca/events/2024/5-day-workshops/24w5266/schedule) (Winter 2024)
 - [CT Octoberfest 2023](https://richardblute.ca/octoberfest-2023/) (Fall 2023)
