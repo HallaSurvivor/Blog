@@ -6,7 +6,7 @@ title: Home
 # Welcome!
 
 I'm Chris Grossack, a queer mathematician and musician. My research interests 
-lie in the intersection of algebra, geometry, and logic. An intersection 
+lie in the intersection of algebra, geometry, and logic -- an intersection 
 often made clearer with the language of category theory.
 
 Concretely, my two current active research areas are in Topological 

@@ -20,6 +20,7 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Papers and Preprints
 
+- Descent for 2-Rigs, With Application to the Recognition of Linear Theories (in preparation)
 - Life in Johnstone's Topological Topos (in preparation)
 - A Descent Theorem for Right Angled Artin Groups (Accepted to AGT. [preprint](https://arxiv.org/abs/2309.06614))
 - Extensions of Abelian Automata Groups ([preprint](https://arxiv.org/abs/1903.06997))
