@@ -307,6 +307,12 @@ stuff to share ^_^.
 As always, thanks for hanging out. Now more than ever 
 stay safe, stay warm, and take care of each other. Nobody else is going to.
 
+<p style="text-align:center;">
+<img src="/assets/images/BDiff-classifies-things/me-ben-lizz.jpg" width="50%">
+</p>
+
+Also... wow I'm tall.
+
 
 ---
 
