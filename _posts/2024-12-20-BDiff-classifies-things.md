@@ -58,10 +58,12 @@ and a map $\pi : E \to M$. Then for each point $m \in M$ we have the
 fibre $E_m = \pi^{-1}(m)$, and so we can view $\pi$ as a _family_ of spaces 
 $(E_m)$ indexed by points of $M$. We think of $E_m$ as being "vertical" 
 over $m \in M$, and we think of the topology on $E$ as telling us how these 
-fibres are glued to each other "horizontally":
+fibres are glued to each other "horizontally"[^13]:
 
-TODO: picture of a bundle, rectangle over a line with another vertical line 
-indicating the fibre
+<p style="text-align:center;">
+<img src="/assets/images/BDiff-classifies-things/bundle.png" width="50%">
+</p>
+
 
 We say that $\pi : E \to M$ is a 
 [fibre bundle][5] if it's "locally trivial" in the sense that (locally)
@@ -75,7 +77,9 @@ $M \times F$, that's asking too much. Instead we ask that for every point
 $m \in M$ there should be a neighborhood $U_m$ so that 
 $\pi^{-1}(U_m) \cong F \times U_m$[^3].
 
-TODO: picture of a trivial and a locally trivial bundle, moebius strip obviously
+<p style="text-align:center;">
+<img src="/assets/images/BDiff-classifies-things/locally-trivial.png" width="50%">
+</p>
 
 We say that such a bundle is a <span class=defn>Fibre Bundle with Fibre $F$</span>,
 and here's a completely natural question:
@@ -157,12 +161,10 @@ $U_\alpha \times F$, which is often easier to work with. But crucially
 we need to know that we'll get the same answer no matter which of these 
 "charts" $U_\alpha$ we work with. For instance, say our fibres are all 
 $\mathbb{R}$. Then a natural question might be 
-"is this element of the fibre $0$?". In the lefthand bundle we get a 
-consistent answer since we always glue $0$ to $0$, but in the righthand 
-bundle we can't answer this question since we glue $0$ to $1$, so the 
-answer depends on if we're working in $U_\alpha$ or $U_\beta$:
-
-TODO: draw this picture
+"is this element of the fibre $0$?". If we always glue $0$ to $0$ then 
+we get a consistent answer, but if at some point we glue $0$ in $U_\alpha$ 
+to $1$ in $U_\beta$ then the answer will depend on which chart we use to 
+do the computation!
 
 It turns out that more fundamental than the particular choice of 
 trivialization are the "transition maps" 
@@ -331,7 +333,8 @@ stay safe, stay warm, and take care of each other. Nobody else is going to.
     For political reasons at UCR, it seems like _none_ of the rising 6th 
     years will get TA positions next year. Which means that me and a 
     LOT of people in my cohort are having to graduate a year earlier than 
-    we planned. We found this out in _mid october_, crucially after the 
+    we planned, because like.... we need money to live, lol. 
+    We found this out in _mid october_, crucially after the 
     NSF grant deadline, and only a month and a half before most postdoc 
     applications were due.
 
@@ -414,3 +417,8 @@ stay safe, stay warm, and take care of each other. Nobody else is going to.
     So we have two bundles, one with a global right $G$-action and one with 
     a global left $G$-action. So we can take thier [tensor product][17] 
     to be left with a new bundle, not necessarily admitting a global $G$-action.
+
+[^13]:
+    I want this to be a quick low effort post, so I'm going to shamelessly 
+    steal all my graphics from Baez and Muniain's book _Gauge Fields, 
+    Knots, and Gravity_.
