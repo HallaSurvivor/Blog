@@ -44,7 +44,8 @@ examples:
 - local trivializations vs principal bundles
 - something in harmonic analysis?
 - something in undergrad level analysis?
-- presentation of a group/etc vs the group itself
+- presentation of a group/etc vs the group itself (and tietze moves)
+- knot projections vs the knot itself (and reidemeister moves)
 
 (TODO: a footnote, maybe, or longer if you need it, about 
 presentations and bases and how usually the former is 
