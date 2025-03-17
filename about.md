@@ -4,8 +4,8 @@ title: About
 
 <img src="/assets/images/headshot-cropped.jpg" alt="A photo of me" class="profile"/>
 
-Hello! I'm Chris, a [nonbinary](https://en.wikipedia.org/wiki/Non-binary_gender)
-math PhD student at UC Riverside. I got my
+Hello! I'm Chris, a [transfemme](https://en.wikipedia.org/wiki/Trans_woman)
+math PhD candidate at UC Riverside. I got my
 undergraduate degree (in Discrete Math & Logic) from Carnegie Mellon, where I
 also studied music and computer science.
 My mathematical interests lie in the intersection of algebra, geometry,
@@ -16,8 +16,8 @@ will write my email as: cgros007 AT ucr DOT edu.
 
 It's not healthy to spend all of your time on math, and I keep myself
 busy with other passions as well.
-I've been playing flute for almost 20 years now, and have been composing for
-almost 10. I am a huge proponent of the
+I've been playing flute for over 20 years now, and have been composing for
+over 10. I am a huge proponent of the
 [Dalcroze School](https://dalcrozeusa.org/about-dalcroze/what-is-dalcroze/)
 of music pedagogy, and I like to bring Dalcrozian ideas into my
 mathematics teaching. I also watch too much youtube.
