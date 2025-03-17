@@ -2,7 +2,7 @@
 title: CV
 ---
 
-## Chris Grossack (they/them)
+## Chris Grossack (she/they)
 
 ---
 
