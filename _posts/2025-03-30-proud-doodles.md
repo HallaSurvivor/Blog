@@ -66,6 +66,10 @@ repeat until everything in a disk, and you stop.
 
 The other day somebody on mse [asked][7] about this algorithm, 
 and I had a lot of fun drawing some pictures to show what's going on[^2]!
+This post basically exists because I was really proud of how these drawings 
+turned out, and wanted to share them somewhere more permanent, haha. 
+
+Anyways, on with the show!
 
 ---
 
