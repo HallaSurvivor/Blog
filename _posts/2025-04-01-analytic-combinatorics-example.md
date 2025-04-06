@@ -453,11 +453,18 @@ show(html("$\\gamma={}$".format(gamma)))
 
 If we run this code locally with $N=20$, we get the approximation
 
+$$
+\begin{align}
+r      &\approx 0.3551817478731632 \\
+s      &\approx 2.1174205967276225 \\
+\gamma &\approx -1.8358222405236164
+\end{align}
+$$
 
 so that we expect 
 
 $$
-t_n \approx \frac{()}{2 \sqrt{\pi}} \frac{()^{-n}}{n^{3/2}}
+t_n \approx \frac{(1.835\ldots)}{2 \sqrt{\pi}} \frac{(0.355\ldots)^{-n}}{n^{3/2}}
 $$
 
 and indeed this seems to work really well!
