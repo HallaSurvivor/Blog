@@ -340,9 +340,10 @@ $$
 T(z) = 1 + \frac{z}{6} \left ( T(z)^3 + 3 T(z) T(z^2) + 2 T(z^3) \right )
 $$
 
-but it's not obvious how we might do complex analysis to this. 
-Following Chapter VII.5 in Flajolet and Sedgewick, the trick is to 
-pretend that $T(z^2)$ and $T(z^3)$ are "known quantities". 
+TODO: I'm not sure how to get an exact solution here, but a numerical 
+solution is very possible. Explain $G(z,w)$ approach, use it to approximate 
+$r,s$, say that these agree with the values in F&S, then use them for 
+asymptotics. Make a graph like before
 
 
 ---
