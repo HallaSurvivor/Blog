@@ -1,9 +1,12 @@
 ---
 layout: post
-title: Automatic Asymptotics with Sage -- Redux
+title: Analytic Combinatorics -- A Worked Example 
 tags:
   - sage
 ---
+
+TODO: change the name of this file, as well as the name of the 
+associated folder, to match the new title.
 
 Another day, another blog post that starts with 
 "I was on mse the other day...". This time, someone asked 
@@ -143,64 +146,29 @@ def _(n=input_box(100, width=20, label="$n$"),
 </script>
 </div>
 
-This is extremely cool, but *where the hell did these asymptotics come from*?
+This is extremely cool, but *where the hell did this approximation come from*?
 
 The answer is called <span class=defn>Singularity Analysis</span>, and 
 can be found in Chapter 2 Section 3 of Melczer's excellent 
-[_An Invitation to Analytic Combinatorics_][7].
+[_An Invitation to Analytic Combinatorics_][7], or Chapters VI and VII 
+of Flajolet and Sedgewick's [tome][18]. See especially Theorem 
+VII.3 on pg 468.
 
-I won't go in depth into why it works[^1], but like every theorem in 
-complex analysis[^2] it comes down to [Cauchy's Integral Formula][11]:
+Like seemingly every theorem in complex analysis, 
+this is basically an application of the [Residue Theorem][11]. I won't say 
+too much about why it works, but I'll at least gesture at a proof. You 
+can read the above refrences if you want something more precise.
+
+First, we [recall][19]
 
 $$
 t_n = \frac{1}{2\pi i} \int_C \frac{T}{z^{n+1}} \ \mathrm{d}z
 $$
 
-Recall that a holomorphic function will converge until it has a good reason 
-not to -- that is, until we hit a singularity. See, for instance, [here][9]. 
-This tells us that if $\omega$ is the **dominant singularity** 
-(that is, the singularity of $T$ closest to the origin) then the radius 
-of convergence is $R = \frac{1}{|\omega|}$. 
-In fact, since all our coefficients are positive (they count things, after all),
-$\omega$ will already by positive real by the [Vivanti–Pringsheim theorem][10],
-so we don't need to write $|\omega|$.
+where $C$ is any contour containing the origin inside a region where $T$ 
+is holomorphic. 
 
-Now let's compute $t_n$ using a circle of radius $r \lt R$:
-
-$$
-\begin{align}
-t_n 
-&= 
-\left | 
-    \frac{1}{2 \pi i} 
-    \int_0^{2\pi} \frac{T(r e^{i \theta})}{(r e^{i \theta})^{n+1}} \ \mathrm{d} \theta
-\right | \\
-&\leq
-\frac{1}{2 \pi}
-\int_0^{2\pi} 
-\frac{|T(r e^{i \theta})|}{|r e^{i \theta}|^{n+1}} \ \mathrm{d} \theta \\
-&=
-\frac{1}{r^{n+1}2 \pi} \int_0^{2 \pi} |T(r e^{i \theta})| \ \mathrm{d} \theta \\
-&\overset{\star}{\leq}
-\frac{1}{r^{n+1}2 \pi} M 2 \pi r \\
-&= \frac{M}{r^n} = O(r^{-n})
-\end{align}
-$$
-
-now letting $r \to R = \omega$, we see that $t_n \approx \omega^{-n}$.
-
-In step $(\star)$ here, we've used compactness of the circle to argue that 
-$|T|$ attains a maximum value $M$ somewhere on the circle, then estimated 
-the integral by the circumference times this maximum value[^3].
-
-This already gets us partway to our goal, since we'll soon compute that 
-$\omega^{-1} \approx 3.6107\ldots$, explaining our first magic constant and 
-our dominant term!
-
-It also shows an obvious way to improve our estimate: We just need to 
-better understand $M$!
-
-To do this, let's draw the most important picture in complex analysis:
+Then we draw the most important picture in complex analysis:
 
 <p style="text-align:center;">
 <img src="/assets/images/automatic-analytic-combinatorics/contour.png" width="50%">
@@ -208,73 +176,174 @@ To do this, let's draw the most important picture in complex analysis:
 
 Here the obvious marked point is our singularity $\omega$, and we've 
 chosen a [branch cut][12] for $T$ (shown in blue[^4]) so that $T$ is 
-holomorphic in the region where the pink curve lives. The hope is that 
-integrating along this pink curve will give us better control over $M$.
+holomorphic in the region where the pink curve lives. We'll estimate 
+the value of this integral by estimating the contribution from the big 
+circle, the little circle, and the two horizontal pieces[^5]. 
 
-Indeed, by taking the pink curve to stay *really* close to the branch cut,
-we can approximate our integral by the sum of the integral over a big circle
-(centered at $0$) circle and the integral over a little cirlce (centered at $\omega$).
+It turns out that the two horizontal pieces basically contribute $O(1)$ 
+amount to our integral, so we ignore them. Since the big circle is compact,
+$T$ will attain a maximal value on it, say $M$. Then the integral along 
+the big circle is bounded by 
+$2 \pi (\omega + \epsilon) \frac{M}{(\omega + \epsilon)^{n+1}} = O((\omega+\epsilon)^{-n})$
 
-The same argument as before shows the integral over the big circle 
-(of radius $S \gt \omega$) is roughly $\frac{M}{S^n)$ for $M$ the maximum 
-value on the big circle... It seems like we're not getting anywhere, until 
-we remember that regardless of what $M$ is this is $o(\omega^{-n})$ 
-(since $S^{-n} \lt \omega^{-n}$), so asymptotically vanishes compared to 
-our dominant term, no matter *what* constant $M$ happens to be!
+To estimate the integral around the little circle, it would be really 
+helpful to have a series expansion at $\omega$ since we're staying 
+really close to it... Unfortunately, $\omega$ is a singular point so we 
+don't have a taylor series, but *fortunately* there's another tool 
+for exactly this job: a [Puiseux Series][13]! 
 
-This tells us that our estimate for $t_n$ has to be entirely based in our 
-estimate for the integral over the little circle[^5], which stays really 
-close to $\omega$. This means if we can get a good estimate of $T$ near 
-$\omega$ we would win, and thankfully, there's a tool for exactly this job:
-[Puiseux Series][13]! 
-
-I won't say much about what these are[^6], especially since 
+I won't say much about what these are, especially since 
 Richard Borcherds already put out such a [great video][14] on the topic.
-What matters is that we can expand $T$ into a kind of power series near 
-$\omega$, and use this to improve our estimate! For us, we'll have 
+What matters is is that Sage can compute this for us[^7], so we can actually 
+get our hands on the approximation!
 
-$$T \approx (0.65\ldots) - (0.8936\ldots) (1-z/\omega)^{1/2} \pm O(z/\omega)$$
-
-This shows where our second magic number came from -- it's the coefficient 
-of $(1-z/\omega)^{1/2}$ in the puisseux series expansion of $T$!
-But again... why?
-
-Well let's estimate our integral around the small contour -- (most of) a 
-circle of radius $r$ centered at $\omega$. We're going to be a bit 
-sloppy here, but it gets the point across:
+We compute the integral around the little circle to be roughly:
 
 $$
 \begin{align}
-t_n 
-&\approx 
-\frac{1}{2\pi} \int_\epsilon^{2 \pi - \epsilon} 
-\frac{|T(\omega + r e^{i \theta})|}{|\omega + r e^{i \theta}|^{n+1}} 
-\ \mathrm{d} \theta \\
-&\approx
-\frac{1}{2\pi}
-\int_{\epsilon}^{2 \pi - \epsilon}
-\frac
-{|c_0  + c_{1/2} \left ( \frac{r}{\omega} e^{i \theta} \right )^{1/2} \pm O(\frac{r}{\omega})|}
-{\omega^{n+1}} \ \mathrm{d} \theta \\
-&\leq
-\frac{1}{2\pi \omega^{n+1}}
-\left (
-\int_{\epsilon}^{2 \pi - \epsilon} |c_0| \ \mathrm{d} \theta
-+
-\int_{\epsilon}^{2 \pi - \epsilon} |c_{1/2}| (\frac{r}{\omega})^{1/2} \ \mathrm{d} \theta
-\pm
-O \left ( \int_\epsilon^{2 \pi - \epsilon} \frac{r}{\omega} \ \mathrm{d} \theta \right )
-\right ) \\
-&\approx 
-\frac{1}{2 \pi \omega^{n+1}}
-\left ( O(1) + |c_{1/2}| (\frac{r}{\omega})^{1/2} 2 \pi r \pm O(\frac{r^2}{\omega}) \\
-&\approx
-
+\frac{1}{2 \pi i} \int \frac{T}{z^{n+1}} 
+\ \mathrm{d}z 
+&\overset{(1)}{\approx}
+\frac{1}{2 \pi i} \int \frac{c_\alpha (1-\frac{z}{\omega})^\alpha}{z^{n+1}}
+\ \mathrm{d}z \\
+&\overset{(2)}{=}
+\frac{1}{2 \pi i} \int \frac{c_\alpha \sum_k \binom{\alpha}{k} (\frac{-z}{\omega})^k}{z^{n+1}}
+\ \mathrm{d}z \\
+&\overset{(3)}{=}
+c_\alpha \binom{\alpha}{n} \frac{(-1)^n}{\omega^n}
 \end{align}
 $$
 
-TODO: fix this. You need to use the general binomial theorem to expand 
-$(1 - z/\omega)^{1/2}$...
+In step $(1)$ we approximate $T$ by the first term of its puiseux series,
+in step $(2)$ we apply the generalized binomial theorem, so that in step 
+$(3)$ we can apply the residue theorem to realize this integral as the 
+coefficient of $z^{-1}$ in our laurent expansion.
+
+This gives us something which grows like $\widetilde{O}(\omega^{-n})$,
+dominating the contribution $O((\omega + \epsilon)^{-n})$ from the big circle,
+so that asymptotically this is the only term that matters. If we were
+more careful to keep track of the big-oh error for the puiseux series for $T$ 
+we could easily sharpen this bound to see
+
+$$
+t_n = 
+c_\alpha \binom{\alpha}{n} \frac{(-1)^n}{\omega^n} 
+\left ( 1 + O \left ( \frac{1}{n} \right ) \right )
+$$
+
+This looks a bit weird with the $(-1)^n$, but remember that $\binom{\alpha}{n}$ 
+also alternates sign. Indeed, asymptotics for $\binom{\alpha}{n}$ are 
+[well known][20] so that we can rewrite this as[^9] 
+
+TODO: finish footnote 9 by drawing a picture of a 2-keyhole contour
+
+$$
+t_n = 
+\frac{c_\alpha}{\Gamma(-\alpha)} \frac{\omega^{-n}}{n^{\alpha + 1}} 
+\left ( 1 + O \left ( \frac{1}{n} \right ) \right )
+$$
+
+Which finally shows us where our magic numbers came from! 
+Sage happily tells us that the dominant singularity for $T$ is at 
+$\omega = (0.2769\ldots)$ and that a puiseux expansion for $T$ at $\omega$ 
+is
+
+$$T \approx (0.65\ldots) - (0.8936\ldots) (1-z/\omega)^{1/2} + \ldots$$
+
+so that for us $\alpha = 1/2$, and $C_{1/2} = -(0.8936\ldots)$.
+
+Finally, since $\Gamma(-1/2) = -2 \sqrt{\pi}$ and 
+$(0.2769\ldots)^{-1} = (3.6107\ldots)$ we see
+
+$$
+t_n = 
+\frac{(0.8936\ldots)}{2 \sqrt{\pi}} \frac{(3.6107\ldots)^{n}}{n^{3/2}}
+\left ( 1 + O \left ( \frac{1}{n} \right ) \right )
+$$
+
+as promised!
+
+Indeed, here's how you could actually get sage to do all this for you!
+
+<div class="linked_auto">
+<script type="text/x-sage">
+import abelfunctions
+
+# to compute the discriminant we need P to be a polynomial whose 
+# coefficients are polynomials.
+R.<z> = QQbar[]
+S.<T> = R[]
+
+# our defining polynomial. We want to solve for T as a function of z
+P = z*T^3 + z*T^2 + (z-1)*T + z
+
+# following Example 2.12 in Melczer we compute the dominant singularity w. 
+w = min([r for (r,_) in P.discriminant().roots() if r != 0], key=lambda r: r.abs())
+
+# to work with abelfunctions we need P to be a polynomial in two variables
+R.<z,T> = QQbar[]
+P = R(P)
+
+# compute the puiseux expansion for T at w. 
+# I know from trial and error that the correct branch to pick is 
+# entry [1] in the list. You just need to check which one gives 
+# you positive real coefficients for T at 0.
+s = abelfunctions.puiseux(P,w)[1]
+c = -sqrt(-s.x0/s.xcoefficient)
+</script>
+</div>
+
+---
+
+Ok, now that we understand the warmup, let's get to the actual problem!
+
+<div class=boxed markdown=1>
+How many *unordered* rooted ternary trees are there, up to isomorphism?
+</div>
+
+Now we're counting up to graph isomorphism, so that our two trees 
+
+<p style="text-align:center;">
+<img src="/assets/images/automatic-analytic-combinatorics/two-trees.png" width="50%">
+</p>
+
+*are* now considered isomorphic. It's actually much less obvious how one 
+might pin down a generating function for something like this, but the 
+answer, serendipitously, comes from Pólya-Redfield counting! If this is 
+new to you, you might be interested in my recent [blog post][17] where 
+I talk a bit about it. Today, though, we'll be using it in a much more 
+sophisticated way.
+
+TODO: talk about plugging a generating function into a cycle-index polynomial
+
+TODO: mention that you were anxious about doing this yourself, but 
+serendipitously found literally *this* example worked out in F+S. 
+So we're using a slightly different version than the one we used 
+in the mse question proper... Maybe this goes in a footnote after this 
+next paragraph?
+
+
+For us, we realize an unordered rooted ternary tree is either empty, 
+or a root with 3 recursive children (themselves possibly empty).
+So by the previous discussion we learn that 
+
+$$
+T(z) = 1 + z P_{\mathfrak{S}_1}(T(z), T(z^2), T(z^3))
+$$
+
+where 
+$$P_{\mathfrak{S}_3}(x_1, x_2, x_3) = \frac{1}{6}(x_1^3 + 3x_1 x_2 + 2 x_3)$$
+is the cycle index polynomial for the symmetric group on three letters. 
+Plugging this in we see 
+
+$$
+T(z) = 1 + \frac{z}{6} \left ( T(z)^3 + 3 T(z) T(z^2) + 2 T(z^3) \right )
+$$
+
+but it's not obvious how we might do complex analysis to this. 
+Following Chapter VII.5 in Flajolet and Sedgewick, the trick is to 
+pretend that $T(z^2)$ and $T(z^3)$ are "known quantities". 
+
 
 ---
 
@@ -288,17 +357,17 @@ $(1 - z/\omega)^{1/2}$...
 [8]: https://math.stackexchange.com/q/5050941/655547
 [9]: https://en.wikipedia.org/wiki/Analyticity_of_holomorphic_functions
 [10]: https://en.wikipedia.org/wiki/Vivanti%E2%80%93Pringsheim_theorem
-[11]: https://en.wikipedia.org/wiki/Cauchy%27s_integral_formula
+[11]: https://en.wikipedia.org/wiki/Residue_theorem
 [12]: https://en.wikipedia.org/wiki/Branch_point#Branch_cuts
 [13]: https://en.wikipedia.org/wiki/Puiseux_series
 [14]: https://www.youtube.com/watch?v=paenRVq0vnc
+[15]: https://github.com/abelfunctions/abelfunctions/
+[16]: https://doc.sagemath.org/html/en/reference/power_series/sage/rings/puiseux_series_ring_element.html
+[17]: /2025/01/16/undergrad-divisibility-problems.html
+[18]: https://algo.inria.fr/flajolet/Publications/book.pdf
+[19]: https://en.wikipedia.org/wiki/Cauchy%27s_integral_formula
+[20]: https://en.wikipedia.org/wiki/Binomial_coefficient#Generalized_binomial_coefficients
 
-[^1]:
-    After all, I want this to be a fairly quick post like my other 
-    recent ones. Though it's already shaping up to be... less quick, haha.
-
-[^2]:
-    This is only a little bit of an exaggeration. 
 
 [^3]:
     I'm actually lying a bit here, since $M$ is really a function of $r$ 
@@ -311,9 +380,21 @@ $(1 - z/\omega)^{1/2}$...
     so too does $T$, a solution to $T = z + zT + zT^2 + zT^3$.
 
 [^5]:
-    Really a circle with a little hole cut out, say by integrating from 
-    $\epsion$ to $2 \pi - \epsilon$... But we'll end up taking 
+    Really these are circles with a little arc cut out, say by integrating from 
+    $\epsilon$ to $2 \pi - \epsilon$... But we'll end up taking 
     $\epsilon \to 0$ and we're all friends here, so let's not worry about it.
 
-[^6]:
-    This post isn't getting *quicker*, haha.
+[^7]:
+    Though at time of writing you need the [abelfunctions][15] package 
+    to do it. There *is* a [builtin implementation][16] of puiseux series, 
+    but it won't actually compute a series expansion for you.
+
+[^9]:
+    Of course, it's easy to see how to extend this technique to get better 
+    asypmtotics. The first approach is to just keep more terms of the 
+    puiseux series of $T$. Then apply the generalized binomial formula 
+    multiple times for each term you kept. 
+
+    You can also do better by keeping track of more of the singularities. 
+    Build a contour with multiple keyholes in order to get sharper lower 
+    order asymptotics.
