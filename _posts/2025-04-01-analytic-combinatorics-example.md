@@ -5,9 +5,6 @@ tags:
   - sage
 ---
 
-TODO: change the name of this file, as well as the name of the 
-associated folder, to match the new title.
-
 Another day, another blog post that starts with 
 "I was on mse the other day...". This time, someone asked 
 [an interesting question][8] amounting to "how many *unordered* rooted 
@@ -46,7 +43,7 @@ This means that the following two trees are distinct for our purposes, even
 though they're isomorphic as graphs:
 
 <p style="text-align:center;">
-<img src="/assets/images/automatic-analytic-combinatorics/two-trees.png" width="50%">
+<img src="/assets/images/analytic-combinatorics-example/two-trees.png" width="50%">
 </p>
 
 In a functional programming language, you might describe this datatype by 
@@ -171,7 +168,7 @@ is holomorphic.
 Then we draw the most important picture in complex analysis:
 
 <p style="text-align:center;">
-<img src="/assets/images/automatic-analytic-combinatorics/contour.png" width="50%">
+<img src="/assets/images/analytic-combinatorics-example/contour.png" width="50%">
 </p>
 
 Here the obvious marked point is our singularity $\omega$, and we've 
@@ -304,7 +301,7 @@ How many *unordered* rooted ternary trees are there, up to isomorphism?
 Now we're counting up to graph isomorphism, so that our two trees 
 
 <p style="text-align:center;">
-<img src="/assets/images/automatic-analytic-combinatorics/two-trees.png" width="50%">
+<img src="/assets/images/analytic-combinatorics-example/two-trees.png" width="50%">
 </p>
 
 *are* now considered isomorphic. It's actually much less obvious how one 
@@ -340,10 +337,213 @@ $$
 T(z) = 1 + \frac{z}{6} \left ( T(z)^3 + 3 T(z) T(z^2) + 2 T(z^3) \right )
 $$
 
-TODO: I'm not sure how to get an exact solution here, but a numerical 
-solution is very possible. Explain $G(z,w)$ approach, use it to approximate 
-$r,s$, say that these agree with the values in F&S, then use them for 
-asymptotics. Make a graph like before
+Now, how might we get asymptotics for $t_n$ using this functional equation?
+
+First let's think about how our solution to the warmup worked. We 
+wrote $F(z,T)=0$ for a polynomial $G$, used the implicit function 
+theorem to get a taylor series for $T$ at the origin, then got a 
+puiseux series near the dominant singularity $\omega$ which let us accurately 
+estimate the taylor coefficients $t_n$.
+
+We're going to play the same game here, except we'll assume that $F$ is 
+merely *holomorphic* rather than a polynomial. Because we're no longer 
+working with a polynomial, this really seems to require an infinite amount 
+of data, so I'm not sure how one might get an exact solution for the relevant
+constants... But following Section VII.5 in Flajolet and Sedgewick we can get 
+as precise a numerical solution as we like! 
+
+We'll assume that the functions $T(z^2)$ and $T(z^3)$ are already known 
+analytic functions, so that we can write
+$F(z,w) = 1 + \frac{z}{6} \left ( w^3 + 3 T(z^2) w + 2 T(z^3) \right ) - w$
+an analytic function satisfying $G(z,T)=0$.
+
+Now for a touch of magic. Say we can find a pair $(r,s)$ with
+$F(r,s)=0$ and $\left . \frac{\partial F}{\partial w} \right |_{(r,s)} = 0$.
+
+Then $F$ is singular in the $w$ direction at $(r,s)$ so that this is a branch 
+point for $T$. Since both $F$ and $F_w = \frac{\partial F}{\partial w}$ 
+vanish at $(r,s)$ the taylor series for $F$ starts
+
+$$
+F_z(r,s) (z-r) + \frac{1}{2} F_{ww}(r,s) (w-s)^2
+$$
+
+Since we know $F(z,T)$ vanishes, we estimate up to smaller order terms
+
+$$
+F_z(r,s) (z-r) + \frac{1}{2} F_{ww}(r,s) (T-s)^2 = 0 
+$$
+
+so that a puiseux series for $T$ at $(r,s)$ begins
+
+$$
+T = s \pm \sqrt{\frac{2r F_z(r,s)}{F_{ww}(r,s)}} \left ( 1 - \frac{z}{r} \right )^{1/2}
+$$
+
+now writing $\gamma = \sqrt{\frac{2r F_z(r,s)}{F_{ww}(r,s)}}$ and being 
+slightly more careful with our error terms, the same technique from the 
+warmup shows 
+
+$$
+t_n = \frac{\gamma}{\Gamma(-1/2)} \frac{r^{-n}}{n^{3/2}} 
+\left ( 1 + O \left ( \frac{1}{n} \right ) \right )
+$$
+
+See Flajolet and Sedgewick Theorem VII.3 on page 468 for a more careful 
+proof of this theorem.
+
+Now how do we *use* this? We can approximate $T$ by its taylor series 
+at the origin, then numerically solve for the unique[^10] positive real solution
+to the system $F(r,s) = F_w(r,s) = 0$ using this approximation:
+
+<div class="linked_auto">
+<script type="text/x-sage">
+# how far we taylor expand T. This controls the accuracy 
+# of our approximation of (s,r).
+# the sagecell times out if you make this too big, so you 
+# might want to run this locally.
+N = 5
+
+# get the first n taylor coefficients for T
+def approx(n):
+    B = PolynomialRing(QQ, 't', n+1)
+    t = B.gens()
+    R.<z> = B[[]]
+
+    # cycle index polynnomials
+    S.<x1,x2,x3> = QQ[]
+    P3 = (x1^3 + 3*x1*x2 + 2*x3)/6
+
+    # to start, the taylor coefficients of T are variables
+    T = sum([t[i] * z^i for i in range(n)]) + O(z^n)
+
+    lhs = T
+    rhs = 1 + z*P3.subs(x1=T(z), x2=T(z^2), x3=T(z^3))
+
+    # formally expand out the rhs and set the coefficients 
+    # equal to each other. This gives a recurrence relation 
+    # for t[n] in terms of the t[i] for i<n. 
+    # Then we solve this recurrence via groebner bases, 
+    # which is extremely fast.
+    I = B.ideal([lhs.coefficients()[i] - rhs.coefficients()[i] 
+                 for i in range(n)])
+
+    # add all our solved coefficients back together to 
+    # get an approximation for T
+    return sum([I.reduce(t[i])*z^i for i in range(n)]) + O(z^n)
+
+z,w = var('z,w')
+T = SR(approx(N).truncate())
+F = -w + 1 + (z/3)*T.subs(z=z^3) + (z/2)*T.subs(z=z^2)*w + (z/6)*w^3
+
+eqns = [diff(F,w)==0, F==0]
+solns = [[a.rhs(), b.rhs()] for [a,b] in solve(eqns,[z,w])]
+realSolns = [[a,b] for [a,b] in solns if a in RR and b in RR]
+[r,s] = realSolns[0]
+
+show(html("$r={}$".format(r)))
+show(html("$s={}$".format(s)))
+
+gamma = -sqrt(2*r*diff(F,z).subs(z=r,w=s)/diff(F,w,2).subs(z=r,w=s))
+
+show(html("$\\gamma={}$".format(gamma)))
+
+</script>
+</div>
+
+If we run this code locally with $N=20$, we get the approximation
+
+
+so that we expect 
+
+$$
+t_n \approx \frac{()}{2 \sqrt{\pi}} \frac{()^{-n}}{n^{3/2}}
+$$
+
+and indeed this seems to work really well!
+Our taylor expansion for $T$ agrees with [A000598][21], as we expected, 
+and comparing our approximation to our taylor expansion gives:
+
+<div class="linked_auto">
+<script type="text/x-sage">
+r = 0.3551817478731632
+s = 2.1174205967276225
+gamma = -1.8358222405236164
+
+def approx(n):
+    return (gamma / (-2 * sqrt(pi))) * (r^(-n) / n^(3/2))
+
+def approxList(n,N):
+    return [approx(k) for k in range(n,N)]
+
+def actualList(n,N):
+    B = PolynomialRing(QQ, 't', N+1)
+    t = B.gens()
+    R.<z> = B[[]]
+
+    S.<x1,x2,x3> = QQ[]
+    P3 = (x1^3 + 3*x1*x2 + 2*x3)/6
+
+    T = sum([t[i] * z^i for i in range(N)]) + O(z^N)
+
+    lhs = T
+    rhs = 1 + z*P3.subs(x1=T(z), x2=T(z^2), x3=T(z^3))
+
+    I = B.ideal([lhs.coefficients()[i] - rhs.coefficients()[i] 
+                 for i in range(N)])
+
+    return [I.reduce(t[i]) for i in range(n,N)]
+    
+show(html("Plot the error ratios in the range [n,N]"))
+show(html("This is likely to time out if you make N too large online,"))
+show(html("so you might want to play around with it locally instead!"))
+@interact
+def _(n=input_box(10, width=20, label="$n$"),
+      N=input_box(30, width=20, label="$N$"),
+      auto_update=False): 
+
+    actuals = actualList(n,N)
+    approxs = approxList(n,N)
+    ratios  = [actuals[i]/approxs[i] for i in range(N-n)]
+    show(html("ratio at n={}: {}".format(n, ratios[0].n())))
+    show(html("ratio at N={}: {}".format(N, ratios[-1].n())))
+
+    text_options = {'horizontal_alignment': 'right',
+                    'vertical_alignment': 'bottom', 
+                    'fontsize': 'large'}
+
+    G = Graphics()
+    G += scatter_plot([(n+i,r) for (i,r) in enumerate(ratios)])
+    G += plot(1, (x,n,N))
+    G += plot(1-1/x, (x,n,N))
+    G += text('$y = 1$', (N, 1), **text_options)
+    G += text('$y = 1-1/x$', (N, 1-1/N), **text_options)
+
+    G.show()
+
+</script>
+</div>
+
+This is, of course, a killer approximation! So let's go ahead and stop here ^_^.
+
+<div class=boxed markdown=1>
+As a cute exercise, can you write a program that outputs the number 
+of *cyclic* rooted ternary trees? For these we consider two trees the same 
+if they're related by cyclicly permuting their children. Compare your 
+solution to [A000625][22]
+
+For bonus points, can you check that the number of such trees is, 
+asymptotically, 
+
+$$
+t_n = (0.34630\ldots) \frac{(3.2871\ldots)^n}{n^{3/2}}
+$$
+
+</div>
+
+---
+
+TODO: epilogue
 
 
 ---
@@ -368,6 +568,8 @@ asymptotics. Make a graph like before
 [18]: https://algo.inria.fr/flajolet/Publications/book.pdf
 [19]: https://en.wikipedia.org/wiki/Cauchy%27s_integral_formula
 [20]: https://en.wikipedia.org/wiki/Binomial_coefficient#Generalized_binomial_coefficients
+[21]: https://oeis.org/A000598
+[22]: https://oeis.org/A000625
 
 
 [^3]:
@@ -399,3 +601,7 @@ asymptotics. Make a graph like before
     You can also do better by keeping track of more of the singularities. 
     Build a contour with multiple keyholes in order to get sharper lower 
     order asymptotics.
+
+[^10]:
+    Under mild technical conditions this pair $(r,s)$ is unique. See 
+    Flajolet and Sedgewick Theorem VII.3.
