@@ -12,9 +12,9 @@ ternary trees with $n$
 nodes are there, up to isomorphism?". I'm a sucker for these kinds of 
 combinatorial problems, and after finding a generating function solution 
 I wanted to push myself to get an asymptotic approximation using 
-Flajolet--Sedgewick style analytic combinatorics! I learned a lot, and 
-want to share some of the things I learned, especially how to do this 
-stuff in [sage][1]
+Flajolet--Sedgewick style analytic combinatorics! I've never actually 
+done this before, so I learned a lot, and I want to share some of the things 
+I learned -- especially how to do this stuff in [sage][1]!
 
 Now, you might be thinking -- didn't you write a very similar blog post 
 [three years ago][2]? Yes. Yes I did. Did I also *completely* forget what 
@@ -154,7 +154,7 @@ VII.3 on pg 468.
 Like seemingly every theorem in complex analysis, 
 this is basically an application of the [Residue Theorem][11]. I won't say 
 too much about why it works, but I'll at least gesture at a proof. You 
-can read the above refrences if you want something more precise.
+can read the above references if you want something more precise.
 
 First, we [recall][19]
 
@@ -180,18 +180,18 @@ circle, the little circle, and the two horizontal pieces[^5].
 It turns out that the two horizontal pieces basically contribute $O(1)$ 
 amount to our integral, so we ignore them. Since the big circle is compact,
 $T$ will attain a maximal value on it, say $M$. Then the integral along 
-the big circle is bounded by 
+the big circle (of radius $\omega + \epsilon$, say) is bounded by 
 $2 \pi (\omega + \epsilon) \frac{M}{(\omega + \epsilon)^{n+1}} = O((\omega+\epsilon)^{-n})$
 
 To estimate the integral around the little circle, it would be really 
 helpful to have a series expansion at $\omega$ since we're staying 
-really close to it... Unfortunately, $\omega$ is a singular point so we 
+really close to it... *Unfortunately*, $\omega$ is a singular point so we 
 don't have a taylor series, but *fortunately* there's another tool 
 for exactly this job: a [Puiseux Series][13]! 
 
 I won't say much about what these are, especially since 
 Richard Borcherds already put out such a [great video][14] on the topic.
-What matters is is that Sage can compute this for us[^7], so we can actually 
+What matters is is that Sage can compute them for us[^7], so we can actually 
 get our hands on the approximation!
 
 We compute the integral around the little circle to be roughly:
@@ -212,7 +212,7 @@ c_\alpha \binom{\alpha}{n} \frac{(-1)^n}{\omega^n}
 $$
 
 In step $(1)$ we approximate $T$ by the first term of its puiseux series,
-in step $(2)$ we apply the generalized binomial theorem, so that in step 
+in step $(2)$ we apply the [generalized binomial theorem][24], so that in step 
 $(3)$ we can apply the residue theorem to realize this integral as the 
 coefficient of $z^{-1}$ in our laurent expansion.
 
@@ -220,7 +220,7 @@ This gives us something which grows like $\widetilde{O}(\omega^{-n})$,
 dominating the contribution $O((\omega + \epsilon)^{-n})$ from the big circle,
 so that asymptotically this is the only term that matters. If we were
 more careful to keep track of the big-oh error for the puiseux series for $T$ 
-we could easily sharpen this bound to see
+we could easily sharpen this bound[^9] to see
 
 $$
 t_n = 
@@ -230,9 +230,7 @@ $$
 
 This looks a bit weird with the $(-1)^n$, but remember that $\binom{\alpha}{n}$ 
 also alternates sign. Indeed, asymptotics for $\binom{\alpha}{n}$ are 
-[well known][20] so that we can rewrite this as[^9] 
-
-TODO: finish footnote 9 by drawing a picture of a 2-keyhole contour
+[well known][20] so that we can rewrite this as
 
 $$
 t_n = 
@@ -264,27 +262,35 @@ Indeed, here's how you could actually get sage to do all this for you!
 
 <div class="linked_auto">
 <script type="text/x-sage">
+# at time of writing the abelfunctions package
+# isn't installed on sagecell, so you'll need to 
+# run this locally if you want to play with it
 import abelfunctions
 
-# to compute the discriminant we need P to be a polynomial whose 
-# coefficients are polynomials.
+# to compute the discriminant we need P to be a 
+# polynomial whose coefficients are polynomials.
 R.<z> = QQbar[]
 S.<T> = R[]
 
-# our defining polynomial. We want to solve for T as a function of z
+# our defining polynomial. 
+# we want to solve for T as a function of z
 P = z*T^3 + z*T^2 + (z-1)*T + z
 
-# following Example 2.12 in Melczer we compute the dominant singularity w. 
-w = min([r for (r,_) in P.discriminant().roots() if r != 0], key=lambda r: r.abs())
+# following Example 2.12 in Melczer,
+# we compute the dominant singularity w. 
+w = min([r for (r,_) in P.discriminant().roots() if r != 0], 
+        key=lambda r: r.abs())
 
-# to work with abelfunctions we need P to be a polynomial in two variables
+# to work with abelfunctions we need P 
+# to be a polynomial in two variables
 R.<z,T> = QQbar[]
 P = R(P)
 
 # compute the puiseux expansion for T at w. 
-# I know from trial and error that the correct branch to pick is 
-# entry [1] in the list. You just need to check which one gives 
-# you positive real coefficients for T at 0.
+# I know from trial and error that the correct 
+# branch to pick is entry [1] in the list. You 
+# just need to check which one gives you 
+# positive real coefficients for T at 0.
 s = abelfunctions.puiseux(P,w)[1]
 c = -sqrt(-s.x0/s.xcoefficient)
 </script>
@@ -308,24 +314,42 @@ Now we're counting up to graph isomorphism, so that our two trees
 might pin down a generating function for something like this, but the 
 answer, serendipitously, comes from Pólya-Redfield counting! If this is 
 new to you, you might be interested in my recent [blog post][17] where 
-I talk a bit about it. Today, though, we'll be using it in a much more 
-sophisticated way.
+I talk a bit about one of its corollaries. Today, though, we'll be using 
+it in a much more sophisticated way.
 
-TODO: talk about plugging a generating function into a cycle-index polynomial
+Say you have a structure $X$ acted on by a group $G$ and a collection $C$ 
+of "colors". How can we count the number of ways to give each $x \in X$ 
+a color from $C$, up to the action of $G$? 
 
-TODO: mention that you were anxious about doing this yourself, but 
-serendipitously found literally *this* example worked out in F+S. 
-So we're using a slightly different version than the one we used 
-in the mse question proper... Maybe this goes in a footnote after this 
-next paragraph?
+We start by building the [cycle index polynomial][23] of the action 
+$G \curvearrowright X$, which we call $P_G(x_1, \ldots, x_n)$. Then we can 
+plug all sorts of things into the variables $x_i$ in order to solve various 
+counting problems. For example, if $C$ is literally just a finite set of colors, 
+we can plug in $x_1 = x_2 = \ldots = x_n = |C|$ to recover the expression 
+from my recent blog post. But we can also do much more!
 
+Say that $C$ is a possibly infinite family of allowable "colors", each 
+of a fixed "weight". (For us, our "colors" will be trees, and the "weight" 
+will be the number of nodes). Then we can arrange them into a generating 
+function $F(t) = \sum c_i t^i$, where $c_i$ counts the number of colors 
+of weight $i$[^11]. Then an easy argument (given in full on the 
+[wikipedia page][25]) shows that $P_G(F(t), F(t^2), \ldots, F(t^n))$
+is a generating function counting the number of ways to color $X$ 
+by colors from $C$, counted up to the $G$ action, and sorted by 
+their total weight[^12]. Check out the wikipedia page for a bunch of 
+great examples!
+
+<p style="text-align:center;">
+<img src="/assets/images/analytic-combinatorics-example/michelle-rodriguez.gif" width="50%">
+</p>
 
 For us, we realize an unordered rooted ternary tree is either empty, 
-or a root with 3 recursive children (themselves possibly empty).
-So by the previous discussion we learn that 
+or a root with 3 recursive children[^13]. In the recursive case we 
+also want to count up to the obvious $\mathfrak{S}_3$ action permuting 
+the children, so by the previous discussion we learn that 
 
 $$
-T(z) = 1 + z P_{\mathfrak{S}_1}(T(z), T(z^2), T(z^3))
+T(z) = 1 + z P_{\mathfrak{S}_3}(T(z), T(z^2), T(z^3))
 $$
 
 where 
@@ -340,7 +364,7 @@ $$
 Now, how might we get asymptotics for $t_n$ using this functional equation?
 
 First let's think about how our solution to the warmup worked. We 
-wrote $F(z,T)=0$ for a polynomial $G$, used the implicit function 
+wrote $F(z,T)=0$ for a polynomial $F$, used the implicit function 
 theorem to get a taylor series for $T$ at the origin, then got a 
 puiseux series near the dominant singularity $\omega$ which let us accurately 
 estimate the taylor coefficients $t_n$.
@@ -354,15 +378,14 @@ as precise a numerical solution as we like!
 
 We'll assume that the functions $T(z^2)$ and $T(z^3)$ are already known 
 analytic functions, so that we can write
-$F(z,w) = 1 + \frac{z}{6} \left ( w^3 + 3 T(z^2) w + 2 T(z^3) \right ) - w$
-an analytic function satisfying $G(z,T)=0$.
+$F(z,w) = -w + 1 + \frac{z}{6} \left ( w^3 + 3 T(z^2) w + 2 T(z^3) \right )$.
+This is an analytic function satisfying $F(z,T) = 0$.
 
-Now for a touch of magic. Say we can find a pair $(r,s)$ with
-$F(r,s)=0$ and $\left . \frac{\partial F}{\partial w} \right |_{(r,s)} = 0$.
-
-Then $F$ is singular in the $w$ direction at $(r,s)$ so that this is a branch 
+Now for a touch of magic. Say we can find a pair $(r,s)$ with both
+$F(r,s)=0$ and $\left . \frac{\partial F}{\partial w} \right |_{(r,s)} = 0$...
+Then $F$ is singular in the $w$ direction at $(r,s)$ so this is a branch
 point for $T$. Since both $F$ and $F_w = \frac{\partial F}{\partial w}$ 
-vanish at $(r,s)$ the taylor series for $F$ starts
+vanish at $(r,s)$ the taylor series for $F$ at $(r,s)$ starts
 
 $$
 F_z(r,s) (z-r) + \frac{1}{2} F_{ww}(r,s) (w-s)^2
@@ -380,7 +403,7 @@ $$
 T = s \pm \sqrt{\frac{2r F_z(r,s)}{F_{ww}(r,s)}} \left ( 1 - \frac{z}{r} \right )^{1/2}
 $$
 
-now writing $\gamma = \sqrt{\frac{2r F_z(r,s)}{F_{ww}(r,s)}}$ and being 
+If we write $\gamma = \sqrt{\frac{2r F_z(r,s)}{F_{ww}(r,s)}}$ and are 
 slightly more careful with our error terms, the same technique from the 
 warmup shows 
 
@@ -531,7 +554,8 @@ def _(n=input_box(10, width=20, label="$n$"),
 </script>
 </div>
 
-This is, of course, a killer approximation! So let's go ahead and stop here ^_^.
+I'm pretty proud of this approximation, so I think this is a good 
+place to stop ^_^.
 
 <div class=boxed markdown=1>
 As a cute exercise, can you write a program that outputs the number 
@@ -550,8 +574,25 @@ $$
 
 ---
 
-TODO: epilogue
+Wow! It's been super nice to be writing up so many posts lately! Like 
+I said in one of my other recent posts, I've had a lot of time to think 
+about more bite sized problems and mse stuff while waiting for my DOI 
+generating code to run, so I've had more things that felt quick to write up 
+on my mind.
 
+My research is actually going quite well too! I have a few interesting 
+directions to explore, and at least one project that might be wrapping 
+up soon. Of course when that happens I'll be sure to talk about it here, 
+and I'm still planning out a series on fukaya categories, hall algebras, 
+skein algebras, and more! That's a pretty long one, though, so it's easy 
+for me to deprioritize, haha.
+
+It's already heating up in Riverside, consistently in the 80s (Fahrenheit), 
+so I can really feel the summer coming. I'm enjoying the sunny days, though,
+and it's been nice to spend time working outside and under trees.
+
+Thanks for hanging out, all! Take care of each other, and I can't wait 
+to chat soon ^_^.
 
 ---
 
@@ -577,6 +618,9 @@ TODO: epilogue
 [20]: https://en.wikipedia.org/wiki/Binomial_coefficient#Generalized_binomial_coefficients
 [21]: https://oeis.org/A000598
 [22]: https://oeis.org/A000625
+[23]: https://en.wikipedia.org/wiki/Cycle_index
+[24]: https://en.wikipedia.org/wiki/Binomial_theorem#Newton's_generalized_binomial_theorem
+[25]: https://en.wikipedia.org/wiki/P%C3%B3lya_enumeration_theorem
 
 
 [^3]:
@@ -602,13 +646,48 @@ TODO: epilogue
 [^9]:
     Of course, it's easy to see how to extend this technique to get better 
     asypmtotics. The first approach is to just keep more terms of the 
-    puiseux series of $T$. Then apply the generalized binomial formula 
-    multiple times for each term you kept. 
+    puiseux series of $T$ at $\omega$. Then apply the generalized binomial 
+    formula multiple times for each term you kept. 
 
     You can also do better by keeping track of more of the singularities. 
     Build a contour with multiple keyholes in order to get sharper lower 
-    order asymptotics.
+    order asymptotics:
+
+    <p style="text-align:center;">
+    <img src="/assets/images/analytic-combinatorics-example/multiple-keyholes.png" width="50%">
+    </p>
+
+    Of course, you can also combine these approaches to keep track of 
+    both more singularities *and* more puiseux coefficients at each 
+    singularity.
+
 
 [^10]:
     Under mild technical conditions this pair $(r,s)$ is unique. See 
     Flajolet and Sedgewick Theorem VII.3.
+
+[^11]:
+    In fact we can push things *even farther* and work with multivariate 
+    generating functions, but we won't need that here.
+
+[^12]:
+    This is why we plug $F(t^k)$ into $x_k$. Because $x_k$ is responsible 
+    for $k$-cycles, so we choose a *single* color for each $k$ cycle, but 
+    we have to count it $k$-many times towards our total weight. See the 
+    proof on the wikipedia page for more information!
+
+[^13]:
+    This actually isn't the version of the recurrence I used in my 
+    [mse answer][8]. There I used the convention that a rooted 
+    tree had to be nonempty, since... you know... it has a root.
+
+    But allowing possibly empty trees makes the recurrence much simpler,
+    which in turn allows for much easier to analyze asymptotics. Hilariously
+    this exact example is on the wikipedia page for the Pólya-Redfield theorem, 
+    which could have saved me a lot of time writing up that answer.
+
+    I was a bit worried at first about doing these asymptotics by myself, 
+    since this was my first serious attempt at using analytic combinatorics,
+    but serendipitously this exact example was *also* worked out in 
+    Flajolet and Sedgewick VII.5, though slightly more tersely than I 
+    would have liked, haha.
