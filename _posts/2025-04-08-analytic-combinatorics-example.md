@@ -194,7 +194,7 @@ Richard Borcherds already put out such a [great video][14] on the topic.
 What matters is is that Sage can compute them for us[^7], so we can actually 
 get our hands on the approximation!
 
-We compute the integral around the little circle to be roughly:
+We compute the integral[^15] around the little circle to be roughly:
 
 $$
 \begin{align}
@@ -632,6 +632,8 @@ to chat soon ^_^.
 [23]: https://en.wikipedia.org/wiki/Cycle_index
 [24]: https://en.wikipedia.org/wiki/Binomial_theorem#Newton's_generalized_binomial_theorem
 [25]: https://en.wikipedia.org/wiki/P%C3%B3lya_enumeration_theorem
+[26]: https://sites.google.com/view/shane-rankin
+[27]: https://rahulrajkumar.github.io/
 
 
 [^3]:
@@ -711,3 +713,6 @@ to chat soon ^_^.
     coefficients being positive reals. If you want to do this purely 
     analytically you need to solve a "connection problem". See figure 
     VII.9 in Flajolet and Sedgewick, as well as the surrounding text.
+
+[^15]:
+    Thanks to [Shane][26] and [Raj][27] for helping me work this out!
