@@ -296,6 +296,17 @@ c = -sqrt(-s.x0/s.xcoefficient)
 </script>
 </div>
 
+<div class=boxed markdown=1>
+As a fun exercise, you might modify this code (using `s.add_term()`) to 
+compute a longer puiseux series and get asymptotics valid up to a 
+multiplicative error of $O \left ( \frac{1}{n^2} \right )$ 
+for the number of rooted ternary trees.
+
+Try modifying the previous code block to see that our current approximation 
+is *not* accurate to $O \left ( \frac{1}{n^2} \right )$, and then 
+check that your approximation *is*!
+</div>
+
 ---
 
 Ok, now that we understand the warmup, let's get to the actual problem!
@@ -367,7 +378,7 @@ First let's think about how our solution to the warmup worked. We
 wrote $F(z,T)=0$ for a polynomial $F$, used the implicit function 
 theorem to get a taylor series for $T$ at the origin, then got a 
 puiseux series near the dominant singularity $\omega$ which let us accurately 
-estimate the taylor coefficients $t_n$.
+estimate the taylor coefficients $t_n$[^14].
 
 We're going to play the same game here, except we'll assume that $F$ is 
 merely *holomorphic* rather than a polynomial. Because we're no longer 
@@ -558,10 +569,10 @@ I'm pretty proud of this approximation, so I think this is a good
 place to stop ^_^.
 
 <div class=boxed markdown=1>
-As a cute exercise, can you write a program that outputs the number 
-of *cyclic* rooted ternary trees? For these we consider two trees the same 
-if they're related by cyclicly permuting their children. Compare your 
-solution to [A000625][22]
+As a fun exercise, can you write a program that outputs the number 
+of *cyclic* rooted ternary trees on $n$ vertices? For these we consider 
+two trees the same if they're related by cyclicly permuting their children. 
+Compare your solution to [A000625][22]
 
 For bonus points, can you check that the number of such trees is, 
 asymptotically, 
@@ -691,3 +702,12 @@ to chat soon ^_^.
     but serendipitously this exact example was *also* worked out in 
     Flajolet and Sedgewick VII.5, though slightly more tersely than I 
     would have liked, haha.
+
+[^14]:
+    Officially we have to check that the choice of puiseux series 
+    matches up with our choice of taylor series (since there's multiple 
+    branches to our function). But this is easy to arrange for us by 
+    choosing the branch of the puisuex series that leads to all our 
+    coefficients being positive reals. If you want to do this purely 
+    analytically you need to solve a "connection problem". See figure 
+    VII.9 in Flajolet and Sedgewick, as well as the surrounding text.
