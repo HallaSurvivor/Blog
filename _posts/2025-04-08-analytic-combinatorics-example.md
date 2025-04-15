@@ -262,9 +262,8 @@ Indeed, here's how you could actually get sage to do all this for you!
 
 <div class="linked_auto">
 <script type="text/x-sage">
-# at time of writing the abelfunctions package
-# isn't installed on sagecell, so you'll need to 
-# run this locally if you want to play with it
+# Many thanks to Andrey Novoseltsev for 
+# installing this package on sagecell!
 import abelfunctions
 
 # to compute the discriminant we need P to be a 
@@ -281,20 +280,72 @@ P = z*T^3 + z*T^2 + (z-1)*T + z
 w = min([r for (r,_) in P.discriminant().roots() if r != 0], 
         key=lambda r: r.abs())
 
+show(html("The dominant singularity is:"))
+show(html("$\\omega = $ " + str(w)))
+show("\n")
+
 # to work with abelfunctions we need P 
 # to be a polynomial in two variables
 R.<z,T> = QQbar[]
 P = R(P)
 
 # compute the puiseux expansion for T at w. 
-# I know from trial and error that the correct 
-# branch to pick is entry [1] in the list. You 
-# just need to check which one gives you 
+# This gives you a list of the possible branches,
+# and I know from trial and error that the correct 
+# branch to pick is entry [1] in the list. 
+# You just need to check which one gives you 
 # positive real coefficients for T at 0.
 s = abelfunctions.puiseux(P,w)[1]
+
+show(html("The puiseux series is:"))
+show(html("$z(t) = $ " + str(s.xpart)))
+show(html("$T(t) = $ " + str(s.ypart)))
+show("\n")
+
 c = -sqrt(-s.x0/s.xcoefficient)
+show(html("Which we rearrange to see:"))
+show(html("$C_{1/2} = $ " + str(c)))
+
+# we won't do it, but you can make the 
+# puiseux series more accurate by using 
+# either `s.add_term()` or `s.extend(nterms=5)`
+# which will add a single term of precision 
+# or extend until there are 5 total terms
+# (respectively)
+
 </script>
 </div>
+
+In the above block, our puiseux series $s$ is represented by a 
+pair $(z(t),T(t))$, which in our example is
+
+$$
+s = \Big ( z(t) = (0.276...) - (0.346...)t^2, \ T(t) = (0.657...) + t + O(t^3) \Big )
+$$
+
+we get the puiseux series by solving the first entry for $t(z)$ 
+and plugging into the second:
+
+$$
+t = 
+\pm \sqrt{\frac{(0.276...) - z}{(0.346...)}} = 
+\pm (0.893...) \left ( 1 - \frac{z}{(0.276...)} \right )^{1/2}
+$$
+
+so that
+
+$$
+T(t(z)) = 
+(0.657...) \pm (0.893...) \left ( 1 - \frac{z}{(0.276...)} \right )^{1/2} 
++ O \left ( \left ( 1 - \frac{z}{(0.276...)} \right )^{3/2} \right ) 
+$$
+
+as promised.
+
+Now it turns out we have to choose the negative square root 
+$C_{1/2} = -(0.8936...)$ in order for our asymptotic formula to 
+always give positive numbers. When solving problems of your own 
+you just have to try both ¯\\\_(ツ)\_/¯[^16].
 
 <div class=boxed markdown=1>
 As a fun exercise, you might modify this code (using `s.add_term()`) to 
@@ -302,9 +353,11 @@ compute a longer puiseux series and get asymptotics valid up to a
 multiplicative error of $O \left ( \frac{1}{n^2} \right )$ 
 for the number of rooted ternary trees.
 
-Try modifying the previous code block to see that our current approximation 
-is *not* accurate to $O \left ( \frac{1}{n^2} \right )$, and then 
-check that your approximation *is*!
+If you do this, you might want to go to the previous code block, 
+where we plotted the relative error. You can modify it to show 
+that our current aprpoximation is *not* accurate to 
+$O \left ( \frac{1}{n^2} \right )$, but that your new 
+better approximation *is*!
 </div>
 
 ---
@@ -716,3 +769,10 @@ to chat soon ^_^.
 
 [^15]:
     Thanks to [Shane][26] and [Raj][27] for helping me work this out!
+
+[^16]:
+    That's not *strictly* true, since you could instead solve the 
+    "connection problem" analytically. I'll say a bit more about this 
+    in a later footnote... But this looks delicate in general, so 
+    trying all the options is definitely the way I did it, haha.
+
