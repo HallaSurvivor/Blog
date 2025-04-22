@@ -60,7 +60,7 @@ to write down a function that isn't continuous, because there's no
 topology is _intrinsic_.
 
 <p style="text-align:center;">
-<img src="/assets/images/life-in-johnstones-topological-topos/dont-try.gif" width="50%">
+<img src="/assets/images/life-in-johnstones-topological-topos/dont-worry-about-it.gif" width="50%">
 </p>
 
 This is great for a couple reasons. First, say you build a type $X$ in 
