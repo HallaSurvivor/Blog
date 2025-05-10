@@ -3,6 +3,7 @@ layout: post
 title: Analytic Combinatorics Redux
 tags:
   - my-talks
+  - sage
 ---
 
 Earlier today I gave a talk in the graduate student seminar titled 
