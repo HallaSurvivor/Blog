@@ -127,6 +127,16 @@ becomes a module over $\text{Sk}(S \times \mathbb{R})$.
 
 ---
 
+TODO: a cute, anachronistic, reason -- arithmetic/geometric intersection 
+numbers of curves
+
+TODO: lagrange multipliers? This is in your zotero somewhere...
+maybe from a pascaleff talk?
+
+TODO: the big one -- mirror symmetry
+
+TODO: emphasize you're **not** an expert in fukaya categories
+
 Next up, let's look at fukaya categories. 
 The right way to tell this story is for general 
 [Symplectic Manifolds][9], but I'm going to focus on punctured 

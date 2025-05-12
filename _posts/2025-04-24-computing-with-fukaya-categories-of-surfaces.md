@@ -22,59 +22,142 @@ TOOD: the rest of the intro
 
 ---
 
-Let's start with a quick answer to a very reasonable question: 
-What are Fukaya Categories, and why might you care?
+Normally I would start by motivating fukaya categories and explaining 
+what kinds of problems they solve and why you might care, but to keep 
+this post short I'll link to a [sister post][8] where I go over what 
+my thesis is about. In that post I spend plenty of time talking about 
+why fukaya categories are interesting, and there's no sense repeating myself 
+here!
 
-TODO: a cute, anachronistic, reason -- arithmetic/geometric intersection 
-numbers of curves
+Instead, let's jump right into the main theorem that tells us we can 
+*really* compute with fukaya categories of surfaces!
 
-TODO: lagrange multipliers? This is in your zotero somewhere...
-maybe from a pascaleff talk?
+<div class=boxed markdown=1>
+Theorem ([Haiden--Katzarkov--Kontsevich][9], 
+[Lekili--Polishchuk][10], [Opper--Plamondon--Schroll][11]):
 
-TODO: the big one -- mirror symmetry
+There is a bijection of sets[^2]
 
-TODO: emphasize you're **not** an expert in fukaya categories
+$$
+\left \{
+    \begin{array}{c}
+        \text{Surfaces with boundary with} \\
+        \text{marked intervals and a line field} \\
+        \text{up to homeomorphism of marked surfaces}
+    \end{array}
+\right \}
+\longleftrightarrow
+\left \{
+    \begin{array}{c}
+        \text{Gentle algebras up to derived} \\
+        \text{morita equivalence}
+    \end{array}
+\right \}
+$$
+
+sending a marked surface $S$ to its (partially wrapped) 
+fukaya category $\mathcal{F}(S)$ and sending a gentle 
+algebra $A$ to its bounded derived category $D^b(A)$.
+
+</div>
+
+This theorem is fantastic since gentle algebras are *highly* studied 
+objects, and almost any question you have about them has been answered 
+in a nice combinatorial way. In this post I want to explain how to 
+compute a description of the gentle algebra from the surface you're 
+interested in -- this lets you do computations *inside* a particular fukaya 
+category. For instance, it tells you what the indecomopsable objects are, 
+what the homsets are between two indecomposables[^4],
+how to compute cones (and thus (co)limits[^3]), and much more.
+
+After this, I'll say some words about how to compute *with* multiple 
+fukaya categories. For example, you can compute the fukaya category of 
+a complicated surface as the global sections of a "cosheaf" of 
+smaller fukaya categories[^1]. 
+
+Let's get to it!
 
 ---
 
-This is great and all, but how do you *compute* with these?
-
-Fukaya categories in general are complicated, since their 
-definition relies on detailed analytic data 
-
-TODO: say more about what that data is.
-
-Because of this, there's many variants of the fukaya category that 
-put restrictions on what kinds of lagrangians one considers. Most 
-importantly for us will be the <span class=defn>(Partially) Wrapped</span>
-Fukaya Category. 
+Fukaya categories of general symplectic manifolds are complicated, 
+and even stating the definition relies on detailed analytic data 
+(such as compactifications of moduli spaces of pseudoholomorphic disks)
+as well as detailed algebraic data (such as the "higher $A_\infty$ operations").
+Because of this, there's many variations of the fukaya category in the 
+literature which either augment lagrangians with ~bonus data~ or restrict 
+attention to particularly nice lagrangians (or both) in order to make 
+the fukaya category easier to compute.
+We're going to be interested in the <span class=defn>(Partially) Wrapped</span>
+Fukaya Category of a *surface*. This is probably the easiest variant, and 
+is certainly the most combinatorially concrete.
 
 Here *wrapped* means that whenever we have a boundary component, our 
-lagrangians are required to "wrap around it", as shown in the following 
-picture:
+noncompact lagrangians are required to approach infinity in the 
+simplest possible way -- the boundary looks like a cylinder 
+$S^1 \times \mathbb{R}$, and our lagrangian must eventually look like $
+\{\text{pt}\} \times \mathbb{R}$.
 
-TODO: a lagrangian wrapping around the puncture in a punctured torus
+<div class=boxed markdown=1>
+TODO: a lagrangian moving straight towards the puncture of a punctured torus
+</div>
 
-TODO: say that wrapping makes things easier... for some reason
+This is called the *wrapped* fukaya category because we compute the 
+homspace between two such lagrangians by *wrapping* one around the 
+cylinder and then counting intersections:
+
+<div class=boxed markdown=1>
+TODO: a picture of this
+</div>
 
 We can also put <span class=defn>Stops</span> in our boundary, which 
 prevent our lagrangians from wrapping. This makes the behavior *even simpler*.
 
-TODO: picture of stops
+<div class=boxed markdown=1>
+TODO: a picture of a punctured torus with two stops
+</div>
 
-In this case of surfaces, we can turn this into pure combinatorics! We can 
-describe our surface in terms of a [ribbon graph][5], and work entirely 
-in terms of the data available there. 
+In this case of surfaces, we can turn this into pure combinatorics! 
+If you're interested in this stuff,
+do yourself a favor and watch the excellent lectures 
+[_A geometric model for the bounded derived category of a gentle algebra_][6] 
+by Sibylle Schroll and 
+[_Fukaya categories associated with graded surfaces and gentle algebras_][7] 
+by Claire Amiot. These were extremely important for my understanding of the 
+subject, and their influence will be obvious in the way I talk about it.
 
-This is going to be heavily based on the excellent lectures 
-[TODO: lecture title][6] by Sybille Schroll (TODO: spelling) and 
-[TODO: another leccture title][7] by Claire Amiot, which are what made 
-a lot of this stuff start to make sense for me.
-
-
-TODO: rewatch those lectures and explain what's happening
 
 ---
+
+So, how do we combinatorialize the situation?
+
+We draw our surface and mark some intervals on the boundary. 
+These marked points will be the *allowable endpoints* for curves. 
+For example, here are some of the doodles you might draw to 
+actually compute with, and the surfaces they represent:
+
+<div class=boxed markdown=1>
+TODO: a disk with 3 punctures
+</div>
+
+<div class=boxed markdown=1>
+An annulus with two and one marked points
+</div>
+
+<div class=boxed markdown=1>
+TODO: an annulus with one and zero marked points
+</div>
+
+<div class=boxed markdown=1>
+TODO: a punctured torus with three marked points
+</div>
+
+<div class=boxed markdown=1>
+TODO: a twice punctured torus with no marked points
+</div>
+
+Now, in each situation we proceed by 
+TODO: figure out what's going on with the foliations...
+
 
 Now that we've seen this, let's do some example computations in 
 some actual fukaya categories!
@@ -101,7 +184,7 @@ using morse theory.
 
 There's another kind of computation you might want to do, though: 
 Rather than computing *inside* a fukaya category, we might want to 
-compute relationships *between* fukaya categories[^1]
+compute relationships *between* fukaya categories.
 
 TODO: functors between fukaya categories
 
@@ -120,10 +203,74 @@ TODO: epilogue
 [5]: ribbon graph
 [6]: Sybille's lectures
 [7]: Claire's lectures
+[8]: sister post on my thesis
+[9]: HKK
+[10]: LP "derived equivalences of gentle algebras"
+[11]: OPS "geometric model"
 
 
 [^1]:
-    For a long time I've been considering writing a blog post on these 
-    different "levels" at which you can do computations. 
-    TODO: say more about this
+    For a long time I've planning to write a blog post explaining the
+    different "levels" at which you can do computations. In increasing order 
+    of abstraction, or "category level":
 
+    There's computations of the form "given an $A$-module $M$, compute the 
+    element $a \cdot m$" (etc.). At this level you have questions about 
+    relationships between elements in the module.
+
+    There's computations of the form "given two $A$-modules $M$ and $N$, 
+    compute their tensor product" (etc.). At this level you have questions 
+    about relationships between objects in the category of modules.
+
+    There's computations of the form "given two algebras $A$ and $B$, 
+    compute all functors $A$-mod to $B$-mod". At this level we have 
+    questions about relationships between module categories (living in 
+    some 2-category).
+
+    Of course, this doesn't stop here, but the point is that at each of 
+    these levels you have interesting computations to be done, but it's 
+    important to know which tools are good for computations at which level. 
+    Knowing an explicit presentation of a quantum group might not help you 
+    compute a tensor product of its modules for the same reason that knowing 
+    every module in a functor category admits a projective resolution by 
+    representable functors won't help you compute a PBW-basis for your quantum 
+    group! 
+
+    Ideally you should be fluent with computations at multiple levels. 
+    Even though they're differen't kinds of computation, they still 
+    *interact*, and sometimes lower abstraction computations will help you
+    guess the right higher abstraction computation to try, or higher 
+    abstraction computations will "compile down" in a way that lets you 
+    avoid a lower level computation that might be too gritty to do by hand.
+
+[^2]:
+    If you're anything like me, you're curious whether this bijection 
+    can be upgraded to an equivalence of groupoids.
+    For instance, this would tell us that the marked mapping class group of 
+    $S$ acts on $D^b(A)$... This is probably true, but I can't actually find it 
+    written down anywhere, and I haven't had time to read some of these papers
+    carefully enough to see for myself whether this is a consequence of the 
+    existing proofs.
+
+    An equivalence of categories would be even nicer, but something is 
+    scratching at my brain that not every map of marked surfaces induces a 
+    map of fukaya categories... I think the definition in HKK isn't closed 
+    under composition, for instance. 
+
+    These are both things I want to think more about at some point, since 
+    there's definitely something more to say here. But it'll have to wait 
+    until after this post goes up.
+
+[^3]:
+    Recall that finite (co)limits can be computed from (co)products and 
+    (co)equalizers, but the (co)product of two objects is just their direct sum 
+    (which we understand) and the equalizer of two arrows $f,g : A \to B$ is 
+    (up to shift) the cone of $f-g$. Of course, the magic of 
+    stable $\infty$-cateogires is that the coproduct of two objects is _also_
+    just their direct sum, and the coequalizer of two arrows $f,g : A \to B$ is 
+    _also_ (up to shift) the cone of $f-g$!
+
+[^4]:
+    And thus between *any* two objects, since we write both as a direct 
+    sum of indecomposables, then write a map between them as a matrix 
+    of maps between the indecomposables. 
