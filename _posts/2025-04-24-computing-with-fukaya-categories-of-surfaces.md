@@ -136,7 +136,7 @@ For example, here are some of the doodles you might draw to
 actually compute with, and the surfaces they represent:
 
 <div class=boxed markdown=1>
-TODO: a disk with 3 punctures
+TODO: a disk with 3 punctures 
 </div>
 
 <div class=boxed markdown=1>
@@ -155,12 +155,42 @@ TODO: a punctured torus with three marked points
 TODO: a twice punctured torus with no marked points
 </div>
 
-Now, in each situation we proceed by 
-TODO: figure out what's going on with the foliations...
+Officially we should put a line field on each of these too, which lets us 
+lift the $\mathbb{Z}/2$-graded fukaya category 
+(where shift corresponds to reversing the orientation of the curve)
+to a $\mathbb{Z}$-graded fukaya category (where shift corresponds to 
+a change of grading). I haven't drawn them because I think it would clutter 
+the pictures, but once we start doing computations we'll see how the choice 
+of line field impacts the objects in the category.
+
+The key tool we'll need to understand these fukaya categories is an
+<span class=defn>Arc System</span>, especially 
+<span class=defn>Full Arc Systems</span> and 
+<span class=defn>Dissections</span>.
+
+An *arc system* is exactly what it sounds like -- a collection of (graded) arcs 
+in your surface, which are pairwise non-isotopic and non-intersecting. An 
+arc system is *full* if it cuts your surface into disks and contains 
+all the boundary arcs. An arc system is a *dissection* if it cuts 
+$S$ into disks each of which contains exactly one boundary arc.
+
+Here the *boundary arcs* are just the non marked intervals on the boundary 
+-- this will become clearer with examples.
+
+<br>
+
+Let's start with a disk with marked intervals.
+
+<div class=boxed markdown=1>
+TODO: disk with 4 punctures
+</div>
 
 
-Now that we've seen this, let's do some example computations in 
-some actual fukaya categories!
+
+---
+
+
+
 
 TODO: disk with n+1 marked points
             D^b(A_n)
