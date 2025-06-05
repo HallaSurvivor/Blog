@@ -5,7 +5,7 @@ tags:
   - topos-theory
 ---
 
-Earlier today I saw a [cute question][1] on mse asking about a particularly 
+A few days ago I saw a [cute question][1] on mse asking about a particularly 
 non-intuitive failing of the axiom of choice. I remember when I was an 
 undergrad talking to a friend of mine about various statements equivalent 
 to choice, and being particularly hung up on the same statement that OP 
@@ -14,7 +14,7 @@ there were models where the axiom of choice fails, and so in those models
 we must have some family of nonempty sets whose product is, somehow, empty!
 Now that I'm older and I've spent *much* more time thinking about these things, 
 this is less surprising to me, but reading that question reminded me how badly
-I wanted a concrete example, and so I'll share one here!
+I once wanted a concrete example, and so I'll share one here!
 
 This should be a pretty quick post, since I'll basically just be fleshing 
 out my answer to that mse question. But I think it'll also be nice to have 
@@ -34,7 +34,7 @@ The basic idea of $G\text{-}\mathsf{Set}$ as a topos is that any set theoretic
 construction we do to some $G$-sets again gives us $G$-sets! For instance, 
 any (co)limits of $G$-sets will have a natural $G$-action. If $X$ is a $G$-set
 then its powerset $\mathcal{P}(X)$ has a $G$-action where if 
-$A \in \mathcal{P}(X)$ we define $g \cdot A = \{g \cdot a \mid a \in A \}$,
+$A \in \mathcal{P}(X)$ we define $$g \cdot A = \{g \cdot a \mid a \in A \}$$,
 which is another element of $\mathcal{P}(X)$. If $X$ and $Y$ are $G$-sets 
 then the set of functions $X \to Y$ is again a $G$-set where we say 
 $(g \cdot_{X \to Y} f)(x) = g \cdot_Y f(g^{-1} \cdot_X x)$.
@@ -49,7 +49,7 @@ $G$-equivariant functions.
 
 But $G\text{-}\mathsf{Set}$ has a [coreflective subcategory][4] given by those
 $G$-sets all of whose orbits are finite. The coreflector takes a $G$-set 
-and just deletes all the infinite orbits! So we have an adjunction
+and just deletes all the infinite orbits, so we have an adjunction
 
 $$
 (\iota : G\text{-}\mathsf{Set}_\text{finite orbits} \to G\text{-}\mathsf{Set})
@@ -57,7 +57,7 @@ $$
 (R : G\text{-}\mathsf{Set} \to G\text{-}\mathsf{Set}_\text{finite orbits})
 $$
 
-which gives us a comonad $\iota R$ on $G\text{-}\mathsf{Set}$. Indeed this 
+which gives us a comonad $\iota R$ on $G\text{-}\mathsf{Set}$. This 
 comonad is idempotent, and its category of coalgebras is equivalent to 
 $$G\text{-}\mathsf{Set}_\text{finite orbits}$$. Then since $\iota$ is left 
 exact (and so is $R$, since it's a right adjoint), we see that 
@@ -74,35 +74,43 @@ $\iota$ preserves these. Arbitrary limits and exponentials $Y^X$ come from
 coreflecting -- that is $Y^X$ as computed in 
 $$G\text{-}\mathsf{Set}_\text{finite orbits}$$ is just what we get by 
 removing the infinite orbits from $Y^X$ as computed in $G\text{-}\mathsf{Set}$,
-and similarly for limits. The subobject classifier 
+and similarly for limits. The subobject classifier is just the usual set 
+of truth values $$\{ \top, \bot \}$$ with the trivial $G$-action[^1]. 
+In particular this topos is boolean, so set theory inside it is *particularly*
+close to the usual ZF set theory.
 
-In fact, there's something really cute going on here which also lets you do 
-these computations efficiently: It's "well known" that for any group $G$ 
-the category of finite sets with a $G$ action is equivalent to the category of
-finite discrete sets with a *continuous* $\widehat{G}$ action, where 
-$\widehat{G}$ is the [profinite completion][5] of $G$ -- this is a central fact 
-in [Grothendieck's Galois Theory][6]. I think there's nothing special about 
-finite sets, though. What really matters is *finite orbits*. Indeed, it 
-seems to me like 
+Now with this in mind, we can prove the main claim of this post:
 
 <div class=boxed markdown=1>
-$$
-G\text{-}\mathsf{Set}_\text{finite orbits} 
-\simeq
-\widehat{G}\text{-}\mathsf{Sets}
-$$
+In $\mathbb{Z}\text{-}\mathsf{Set}_\text{finite orbits}$, let $C_n$ be $\mathbb{Z}/n$ 
+with its obvious $\mathbb{Z}$-action. Then each $C_n$ is inhabited[^3] in 
+the sense that $\exists x . x \in C_n$, and yet $$\prod_n C_n = \emptyset$$!
+
+So this topos shows explicitly how, in the absence of choice, you can have 
+a family of nonempty sets[^2] whose product is somehow empty!
 </div>
 
-Recall $\widehat{G} = \varprojlim_{N \text{ finite index}} G \big / N$ is the 
-limit (in the category of *topological* groups) of all the finite index quotients 
-of $G$ (with the discrete topology). Then since $G$ (with the discrete topology)
-has canonical maps to all the $G/N$, by the universal property we have a map 
-from $G \to \widehat{G}$ (which is an injection exactly when $G$ is 
-[residually finite][7]).
+The computation is actually quite friendly! To compute $\prod_n C_n$ in 
+this topos, we first compute the product in the category of *all* 
+$\mathbb{Z}$-sets, then throw away any infinite orbits.
 
-Now, say $X$ is a $G$-set with finite orbits. Then $X$ 
+But it's easy to see that *every* orbit is infinite! Any element of the 
+product will contain an element from every $C_n$, so that in any finite 
+number of steps some large entry in this tuple won't be back where it started.
 
+---
 
+Ok, this one was *actually* quite quick, which I'm happy about! 
+My parents are visiting soon, and I'm excited to take a few days 
+to see them ^_^. I have another shorter post planned which another 
+grad student asked me to write, and I've finally *actually* 
+started the process of turning my [posts on the topological topos][9]
+into a paper. I'm starting to understand [TQFTs][10] better, and it's 
+been exciting to learn a bit more physics. Hopefully I'll find time 
+to talk about all that soon too, once I take some time to really organize 
+my thoughts about it.
+
+Thanks for hanging out, all! Stay safe, and we'll talk soon.
 
 
 
@@ -115,3 +123,38 @@ Now, say $X$ is a $G$-set with finite orbits. Then $X$
 [5]: https://ncatlab.org/nlab/show/profinite+completion+of+a+group
 [6]: https://ncatlab.org/nlab/show/Grothendieck%27s+Galois+theory
 [7]: https://en.wikipedia.org/wiki/Residually_finite_group
+[8]: https://ncatlab.org/nlab/show/bracket+type
+[9]: /2024/07/03/life-in-johnstones-topological-topos
+[10]: https://en.wikipedia.org/wiki/Topological_quantum_field_theory
+
+[^1]:
+    In case $G = \mathbb{Z}$ then it's a kind of cute fact that this topos 
+    is equivalent to the 
+    topos of *continuous* (discrete) $\widehat{\mathbb{Z}}$-sets, where 
+    $\widehat{\mathbb{Z}}$ is the [profinite completion][5] of $\mathbb{Z}$.
+    See, for instance, Example A2.1.7 on page 72 of the elephant. This gives 
+    another computationally effective way to work with this topos!
+
+    I'm pretty sure I convinced myself that more generally the category 
+    of $G$-sets all of whose orbits are finite should be equivalent to 
+    the category of continuous discrete $\widehat{G}$-sets, but I haven't 
+    thought hard enough about it to say for sure in a blog post.
+
+[^2]:
+    Since this topos is boolean, nonempty and inhabited are actually 
+    synonyms here. Moreover, this "nonempty" is closer to how a lot of 
+    working mathematicians speak, so it felt right to use this wording here.
+
+[^3]:
+    Of course, there's no global points for $n \neq 1$, since maps 
+    $1 \to C_n$ correspond to fixed points. But existential quantification 
+    is *local*, so that the topos models $\exists x . x \in C_n$ if there's 
+    some surjection $V \twoheadrightarrow 1$ and a map $V \to C_n$. We 
+    can take $V = \mathbb{Z}$ with its left multiplication action on itself, 
+    and there *is* a map from $\mathbb{Z} \to C_n$.
+
+    If you're more used to type theory, we don't have $\Sigma_{x : C_n} \top$,
+    since that would imply a global element. But despite this, we *do* 
+    have the [propositional truncation][8] 
+    $\lVert \sigma_{x : C_n} \top \rVert$, so that an element of $C_n$ 
+    *merely* exists. 
