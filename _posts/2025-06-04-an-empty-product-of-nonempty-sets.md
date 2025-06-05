@@ -149,9 +149,15 @@ Thanks for hanging out, all! Stay safe, and we'll talk soon.
     Of course, there's no global points for $n \neq 1$, since maps 
     $1 \to C_n$ correspond to fixed points. But existential quantification 
     is *local*, so that the topos models $\exists x \in C_n . \top$ if there's 
-    some surjection $V \twoheadrightarrow 1$ and a map $V \to C_n$. We 
+    some surjection $V \twoheadrightarrow 1$ and a map $V \to C_n$. ~~We 
     can take $V = \mathbb{Z}$ with its left multiplication action on itself, 
-    and there *is* a map from $\mathbb{Z} \to C_n$.
+    and there *is* a map from $\mathbb{Z} \to C_n$.~~ **Edit, June 5**: 
+    Thanks to Kevin Carlson for pointing out that $\mathbb{Z}$ with its 
+    left multiplication action isn't in this topos, since its orbit is infinite! 
+    We instead need, for each $n$, to look at the surjection from 
+    $C_n \twoheadrightarrow 1$ and then you can use the identity map from 
+    $C_n \to C_n$ to witness inhabited-ness.
+    
 
     If you're more used to type theory, we don't have $\Sigma_{x : C_n} \top$,
     since that would imply a global element. But despite this, we *do* 
