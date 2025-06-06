@@ -24,9 +24,14 @@ B.S. in Discrete Math and Logic (May 2019)
 - Life in Johnstone's Topological Topos (in preparation)
 - A Descent Theorem for Right Angled Artin Groups (Accepted to AGT. [preprint](https://arxiv.org/abs/2309.06614))
 - Extensions of Abelian Automata Groups ([preprint](https://arxiv.org/abs/1903.06997))
+- Modal Logic, A Rigorous and Practical Introduction 
+    (lecture notes from Adam Bjorndahl's class which were 
+    going to become a book until the project ran out of steam. 
+    Available [here][modal logic book])
 
 
 ## Talks Outside Of Department
+- Explicitly Computing with Fukaya Categories of Surfaces (AWM WiSCons, 2025)
 - Life in Johnstone's Topological Topos (CT Octoberfest, 2024)
 - Gluing is Hard: Skeins and Hall Algebras (Centre for Quantum Mathematics at Syddansk, 2024)
 - What is Factorization Homology? (AMS Special Session, 2024)
@@ -37,6 +42,8 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Seminar Talks In Department
 
+- Counting is Hard, Complex Analysis is Easy (UCR, 2025)
+- How to Compute *with* and *in* Fukaya Categories of Surfaces (UCR, 2025)
 - Categories and Harmonic Analysis: Tannaka and 
     Pontryagin Dualities (UCR, 2024)
 - Introduction to Quantum Groups (UCR, 2024)
@@ -63,7 +70,19 @@ B.S. in Discrete Math and Logic (May 2019)
 </details>
 
 
-## Outreach
+## Outreach and Service
+
+ - [Vernon A Kramer Memorial Service Award][8] Recipient (2025)
+     - Christina Grossack stands out for helping shape the culture of the 
+        department through her: mentorship; advocacy; and vibrant, welcoming 
+        personality. She is appreciated both within and outside the department 
+        for her mentoring in the Building Bridges to the Professoriate 
+        program, her advocacy as a founding member of UCR’s chapter of Spectra, 
+        her advice as a panelist on the Choosing a PhD Advisor Panel, her 
+        volunteering at Preview Day, and for sharing her passion for 
+        mathematics through discussions with peers and via her blog.
+
+ - DOI and Metadata Maintainer at [Theory and Applications of Categories][10] (2024--ongoing)
 
  - [BB2P Mentor][7] (2024)
 
@@ -76,11 +95,11 @@ B.S. in Discrete Math and Logic (May 2019)
      Humanities Center, Center for Ideas and Society, and the Gluck Fellows 
      Program of the Arts at UCR
 
- - President of UCR [AMS Chapter][6] (2024)
+ - President of UCR [AMS Chapter][6] (2024--ongoing)
 
- - Category Theory Zulip Moderator (2024)
+ - Category Theory Zulip Moderator (2024--ongoing)
 
- - Founding member of UCR [Spectra][5] Chapter (2023)
+ - Founding member and organizer of UCR [Spectra][5] Chapter (2023--ongoing)
 
  - Vice President of UCR [AMS Chapter][6] (2023)
 
@@ -218,6 +237,10 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Conferences Attended
 
+- [Queer and Trans Mathematicians in Algebra and Representation Theory](https://math-events.uni-bonn.de/event/104/) (Summer 2025)
+- [CT2025](conference.math.muni.cz/ct2025/) (Summer 2025)
+- [SLMath Noncommutative Algebraic Geometry Summer School](https://www.slmath.org/summer-schools/1077) (Summer 2025)
+- [AWM Special Session: WiSCons][9] (Spring 2025)
 - [Symplectothon on Global Kuranishi Charts](https://kylersiegel.xyz/symplectothon2024) (Fall 2024)
 - [CT Octoberfext 2024](https://richardblute.ca/octoberfest-2024/) (Fall 2024)
 - [AMS Special Session: Category Theory and Homotopy Theory in Interaction](https://www.ams.org/meetings/sectional/2313_program_ss13.html) (Spring 2024)
@@ -240,6 +263,9 @@ B.S. in Discrete Math and Logic (May 2019)
 [5]: http://lgbtmath.org/
 [6]: http://www.ams.org/programs/studentchapters
 [7]: https://bb2p.ucr.edu/
+[8]: https://mathdept.ucr.edu/vernon-kramer-memorial-service-award
+[9]: https://awm-math.org/meetings/awm-research-symposium/search-abstracts/?_sfm_abstract_symposium_year=2025&_sfm_abstract_session=Women%20and%20Gender%20Minorities%20in%20Symplectic%20and%20Contact%20Geometry%20and%20Topology%20(WiSCons)%20in%20Madison&sort_order=_sfm_abstract_time+asc+datetime
+[10]: http://www.tac.mta.ca/tac/
 
 [matt durham website]: https://sites.google.com/view/mgdurham/
 [catherine cannizzo website]: https://sites.google.com/view/ccannizzo/about-me
@@ -248,3 +274,5 @@ B.S. in Discrete Math and Logic (May 2019)
 [peter samuelson website]: https://sites.google.com/view/petersamuelson/home
 [klaus sutner website]: https://www.cs.cmu.edu/~sutner/
 [florian frick website]: https://www.math.cmu.edu/~ffrick
+
+[modal logic book]: /assets/docs/modal-text/main.pdf
