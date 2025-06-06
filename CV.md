@@ -111,6 +111,8 @@ B.S. in Discrete Math and Logic (May 2019)
 
  - [SUBGroups][4] (Group Leader and Mentor, 2022)
 
+ - Math Graduate Student Union Representative (2021--2022)
+
  - [SciComm@UCR][2] (2021)
      - "A student organization working to communicate science in creative ways"
 
