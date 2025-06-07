@@ -212,20 +212,23 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Research/Reading Experience
 
+- DG-Category Seminar (2024)
+  - Learning seminar, organized by me
+
 - HoTT Seminar (2023)
-  - Homotopy Type Theory Learning Seminar at UCR, organized by me
+  - Homotopy Type Theory learning seminar at UCR, organized by me
 
 - Fukaya Categories and Mirror Symmetry (2023)
-  - Reading Group, co-organized by me and [Catherine Cannizzo][catherine cannizzo website]
+  - Learning seminar, co-organized by me and [Catherine Cannizzo][catherine cannizzo website]
 
 - Morse Theory (2022)
-  - Reading Course with [Brian Collier][brian collier website]
+  - Reading course with [Brian Collier][brian collier website]
 
 - Stacks and Moduli Spaces (2022)
-  - Reading Course with [Patricio Gallardo][patricio gallardo website]
+  - Reading course with [Patricio Gallardo][patricio gallardo website]
 
 - CAT(0) Cube Complexes (2021)
-  - Reading Course with [Matt Durham][matt durham website]
+  - Reading course with [Matt Durham][matt durham website]
 
 - Right Angled Artin Groups (2020)
   - Advisor: [Matt Durham][matt durham website]
