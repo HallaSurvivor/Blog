@@ -3,15 +3,16 @@ layout: post
 title: A Proof that there's No Constructive Proof of the Intermediate Value Theorem
 tags:
   - topos-theory
+  - sage
 ---
 
-The other day a first year was asking me some questions about categorical 
-logic and constructive math, and he mentioned he'd never seen a proof that 
-there's no constructive proof of the intermediate value theorem before 
-(and he wasn't sure what such a proof would even look like). I showed him 
-the usual counterexample, and since my recent [blog post][1] about choice 
-was so quick to write I decided to quickly write up a post about this too, 
-since I remember being confused by it back when I was first learning it.
+The other day my friend [Lucas Salim][15] was asking me some questions about 
+categorical logic and constructive math, and he mentioned he'd never seen a 
+proof that there's no constructive proof of the intermediate value theorem before. 
+I showed him the usual counterexample, and since my recent [blog post][1] 
+about choice was so quick to write I decided to quickly write up a post 
+about this too, since I remember being confused by it back when I was first 
+learning it.
 
 The key fact is <span class=defn>Soundness and Completeness</span> of 
 the topos semantics of constructive logic. This says that 
@@ -59,10 +60,11 @@ details to let you externalize a few statements of your own!
 
 But where were we? The usual proofs of the intermediate value theorem
 aren't constructive. See, for instance, Bauer's 
-[_Five Stages of Accepting Constructive Analysis_][14] for a discussion 
-of how one common proof fails (as well as a great list of constructively 
-provable alternatives). Since the usual proofs seem to fail, we might guess
-that IVT is not provable constructively... how could we prove this?
+[_Five Stages of Accepting Constructive Mathematics_][14] 
+or Section 1 of Taylor's [_A Lambda Calculus for Real Analysis_][16] 
+for a discussion of how some common proofs fail (as well as great lists of 
+constructively provable alternatives). Since the usual proofs seem to fail, 
+we might guess that IVT is not provable constructively... but how could we prove this?
 
 Say, towards a contradiction, that there *were* a 
 constructive proof of the intermediate value theorem. Then it would 
@@ -72,7 +74,7 @@ constructive proof, all we have to do is find a topos which doesn't
 think it's true!
 
 Following *many* who came before me[^7], we're going to use the topos of 
-sheaves on $(-1,1)$. It's been a minute since we've slowly 
+sheaves on $(-1,1)$. It's been a minute since we've 
 externalized a statement together, so let's do it now! 
 
 
@@ -141,10 +143,10 @@ for all $t \in U_\alpha$, $a(t) \lt x_\alpha(t) \lt b(t)$ and $f(t,x_\alpha(t)) 
 
 What a mouthful!
 
-Of course, to prove this fails we can choose whatever open $U$, 
-with functions $f$, $a$, and $b$ that we like! So let's make our lives 
-simple and choose $U = (-1,1)$ to be the whole set, 
-$a(t) = -2$ and $b(t) = 2$ to be constant functions, and 
+Of course, we're trying to prove this *fails*, so all we have to do is 
+find an open set $U$ and functions $f$, $a$, and $b$ satisfying the 
+assumptions so that the conclusion fails. We'll choose $U = (-1,1)$ to be the 
+whole set, $a(t) = -2$ and $b(t) = 2$ to be constant functions, and 
 $f(t,x) : (-1,1) \times \mathbb{R} \to \mathbb{R}$ to be 
 
 $$
@@ -214,8 +216,59 @@ for our $f(t,x)$ we could find an open cover on which
 the zero $x(t)$ varies continuously in $t$. But this can't possibly happen 
 in a neighborhood of $t=0$, so we learn there *is no constructive proof*!
 
-Intuitively the problem comes from the fact that $f$ "hovers" near $0$
-when $t=0$. 
+Buuuuut, all is not lost! Usually classical theorems *do* have constructive 
+analogues, either by adding new assumptions, weakening the conclusion, or by 
+finding a different statement of the theorem that's more positive. 
+Andrej Bauer's paper [_Five Stages of Accepting Constructive Mathematics_][14] 
+lists many possibilities.
+
+For instance, one way to weaken the conclusion is to prove that for 
+any $\epsilon$ you like, there's an $x$ with $|f(x)| \lt \epsilon$. 
+In our example, if we plot those $x$ so that $|f(t,x)| \lt \epsilon$ we get
+
+<div class="linked_auto">
+<script type="text/x-sage">
+x,t = var('x,t')
+
+f(t,x) = max_symbolic(min_symbolic(t+x+1, t), t+x-1)
+
+p = region_plot(abs(f(t,x)) <= 0.1, (t,-1,1), (x,-2,2))
+p.axes_labels(['$t$', '$x$'])
+p.show()
+</script>
+</div>
+
+and it's easy to fit the graph of a continuous selection function $x(t)$ 
+inside this thickened region.
+
+Another approach is to recognize that the problem comes from $f$ "hovering"
+at $0$ when $t=0$. If we forbid this hovering, for instance by assuming 
+$f$ is strictly monotone, then we _can_ constructively prove the IVT
+(See Bauer's _Five Stages_ paper again).
+
+There's yet another version, coming from [Abstract Stone Duality][17], 
+where we say that whenever $f(a) \lt 0 \lt f(b)$, the compact subspace 
+$Z_f = \{ x \in [a,b] \mid f(x) = 0 \}$ is *occupied* (Cor 13.11 in 
+_A Lambda Calculus for Real Analysis_). This is a condition 
+that's weaker than *inhabited* but stronger than *nonempty*,
+which you can read about in Section 8 of the same paper. 
+I don't understand this condition very well, because I haven't spent as
+much time thinking about ASD as I would like. Hopefully sometime soon
+I'll find some time to work through some examples! 
+
+---
+
+Ok, thanks for reading, all! It's nice to get a few quick posts up while I'm 
+working on some longer stuff. I'm still thinking a lot about a cool circle 
+of ideas involving Fukaya Categories, Skein Theory and T(Q)FTs, and 
+Hall Algebras, and I'm slowly making progress on writing posts about all these 
+fun things.
+
+Now, though, I have to go run a review session for a calculus class, haha.
+I'll try to resist telling them about the fascinating subtleties that show 
+up when you try to do everything constructively.
+
+Stay safe, and we'll talk soon 💖
 
 ---
 
@@ -233,6 +286,10 @@ when $t=0$.
 [12]: https://ncatlab.org/nlab/show/effective+topos
 [13]: http://arxiv.org/abs/2204.00948
 [14]: https://www.ams.org/journals/bull/2017-54-03/S0273-0979-2016-01556-4/S0273-0979-2016-01556-4.pdf
+[15]: https://sites.google.com/ucr.edu/lucas-salim
+[16]: https://www.paultaylor.eu/ASD/lamcra/lamcra.pdf
+[17]: https://ncatlab.org/nlab/show/abstract+Stone+duality
+[18]: https://ncatlab.org/nlab/show/overt+space
 
 [^1]:
     Usually on this blog when I talk about topoi I mean [grothendieck topoi][4],
@@ -279,7 +336,7 @@ when $t=0$.
     $|f(x) - f(y)| \lt \epsilon$. This is because, constructively, every 
     continuous function on a compact sublocale of $\mathbb{R}$ is uniformly 
     continuous. Note that here we crucially need to be working with locales!
-    (see, eg, Thm 10.7 in Taylor's _A Lambda Calculus for Real Analysis_)
+    (see, eg, Thm 10.7 in Taylor's [_A Lambda Calculus for Real Analysis_][16])
 
     Lastly, we fix $M$ an upper bound for $\lvert f \rvert$. This is possible since 
     $[0,1]$ is compact, overt, and inhabited
