@@ -34,7 +34,7 @@ middle, anything we prove will be true *when interpreted in any topos we like*!
 Then there's a mechanical procedure that lets us convert this interpretation 
 into a corresponding statement in the "real world[^2]", and this gives us 
 lots of "theorems for free" for each individual constructive theorem! 
-A nice case study is given by the [Wierstrass Approximation Theorem][9],
+A nice case study is given by the [Weierstrass Approximation Theorem][9],
 which I [gave a talk on][10] years ago[^3]. Since this theorem is 
 constructively provable[^4]...
 
