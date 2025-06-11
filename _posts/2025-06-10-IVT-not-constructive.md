@@ -248,7 +248,7 @@ $f$ is strictly monotone, then we _can_ constructively prove the IVT
 
 There's yet another version, coming from [Abstract Stone Duality][17], 
 where we say that whenever $f(a) \lt 0 \lt f(b)$, the compact subspace 
-$Z_f = \{ x \in [a,b] \mid f(x) = 0 \}$ is *occupied* (Cor 13.11 in 
+$$Z_f = \{ x \in [a,b] \mid f(x) = 0 \}$$ is *occupied* (Cor 13.11 in 
 _A Lambda Calculus for Real Analysis_). This is a condition 
 that's weaker than *inhabited* but stronger than *nonempty*,
 which you can read about in Section 8 of the same paper. 
