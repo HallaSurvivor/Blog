@@ -1,6 +1,6 @@
 ---
 layout: post
-title: An Explicit Computation in Derived Algebraic Geoemtry
+title: An Explicit Computation in Derived Algebraic Geometry
 tags:
   - 
 ---
