@@ -78,7 +78,7 @@ sheaves on $(-1,1)$. It's been a minute since we've
 externalized a statement together, so let's do it now! 
 
 
-In full symbolic glory, the IVT says 
+In full symbolic glory[^8], the IVT says 
 
 $$ 
 \forall f : \mathbb{R} \to \mathbb{R} . 
@@ -258,6 +258,14 @@ I'll find some time to work through some examples!
 
 ---
 
+**Edit (July 1, 2025):**
+
+TODO: mention that IVT --> (analytic) LLPO, cite the github thread.
+also maybe mention that IVT does NOT imply analytic WLPO, if you can 
+prove that!
+
+---
+
 Ok, thanks for reading, all! It's nice to get a few quick posts up while I'm 
 working on some longer stuff. I'm still thinking a lot about a cool circle 
 of ideas involving Fukaya Categories, Skein Theory and T(Q)FTs, and 
@@ -290,6 +298,8 @@ Stay safe, and we'll talk soon 💖
 [16]: https://www.paultaylor.eu/ASD/lamcra/lamcra.pdf
 [17]: https://ncatlab.org/nlab/show/abstract+Stone+duality
 [18]: https://ncatlab.org/nlab/show/overt+space
+[19]: https://webusers.imj-prg.fr/~antoine.chambert-loir/index.xhtml
+[20]: https://mathstodon.xyz/@antoinechambertloir/114764893867719265
 
 [^1]:
     Usually on this blog when I talk about topoi I mean [grothendieck topoi][4],
@@ -449,3 +459,13 @@ Stay safe, and we'll talk soon 💖
     back in 1976. I think basically every other paper I've cited in this 
     post gives some version of this example too, so it's very well 
     trodden ground!
+
+[^8]:
+    Well, not FULL glory I guess. Over on [mastodon][20], 
+    [Antoine Chambert-Loir][19] pointed out that I (rather embarrassingly)
+    forgot to mention the assumption that $f : \mathbb{R} \to \mathbb{R}$ is 
+    continuous!
+
+    Thankfully in my externalization I mention that we want 
+    $f : U \times \mathbb{R} \to \mathbb{R}$ to be continuous, which is 
+    what that *would* have externalized to, if I'd remembered to mention it!
