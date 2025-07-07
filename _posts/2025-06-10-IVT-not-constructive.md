@@ -258,11 +258,54 @@ I'll find some time to work through some examples!
 
 ---
 
-**Edit (July 1, 2025):**
+**Edit (July 7, 2025):**
 
-TODO: mention that IVT --> (analytic) LLPO, cite the github thread.
-also maybe mention that IVT does NOT imply analytic WLPO, if you can 
-prove that!
+[Jim Kingdon][21] recently started a [thread][22] in the metamath github
+talking about this, and told me about it over mastodon. In this thread, 
+[Mario Carneiro][23] gave a slick proof that the IVT implies (analytic) LLPO,
+which should feel familiar. Recall that [Analytic LLPO][24] is the statement that 
+$\forall t \in \mathbb{R} . t \geq 0 \lor t \leq 0$.
+
+$\ulcorner$
+Fix $t \in \mathbb{R}$, and again consider the function
+$f_t(x) : \mathbb{R} \to \mathbb{R}$ by 
+
+$$f_t(x) = \max(\min(t+x+t,t), t+x-1)$$
+
+Then by the IVT, $f_t(x)$ has a zero $f_t(z) = 0$, and constructively 
+we know that $z \lt \frac{1}{2} \lor z \gt \frac{-1}{2}$. But now if 
+$z \lt \frac{1}{2}$ then $t \leq 0$ and if $z \gt \frac{-1}{2}$ then $t \geq 0$,
+giving the claim.
+<span style="float:right">$\lrcorner$</span>
+
+Mario also mentions that LLPO and Countable Choice is enough to prove IVT,
+so that in any settings where CC holds LLPO and IVT are equivalent[^9].
+Indeed
+
+$\ulcorner$
+Say $f(a) \lt 0$ and $f(b) \gt 0$. 
+
+For every $r \in \mathbb{Q}$, 
+decide if $f(a + r(b-a))$ is $\geq 0$ or $\leq 0$. For each $r$ this is 
+an application of LLPO, but there might be two options (if $f$ outputs
+a value that is both $\geq 0$ and $\leq 0$),
+so we have to to *choose* one of these for each of our *countably many* 
+$r \in \mathbb{Q}$. So we've used both LLPO and CC to do this.
+
+Now we can do binary search in $[a,b]$ to find a zero. The midpoints $m$
+we check will always be of the form $a + r(b-a)$ for some $r \in \mathbb{Q}$,
+so to split our interval in half we can use our pre-made choices --
+recurring into the upper half of the interval if $f(m) \leq 0$ or the 
+lower half if $f(m) \geq 0$.
+
+Then the sequence of midpoints for our intervals is a cauchy sequence 
+whose modulus of convergence we can compute, since after the first $n$ 
+bisections all the future midpoints lie in an interval of width $2^{-n}(b-a)$.
+Since the dedekind reals are complete for these kinds of explicit cauchy 
+sequences (see [here][25], for instance), these converge to a real number $z$.
+As usual, continuity of $f$ implies that $f(z) = 0$.
+<span style="float:right">$\lrcorner$</span>
+
 
 ---
 
@@ -300,6 +343,11 @@ Stay safe, and we'll talk soon 💖
 [18]: https://ncatlab.org/nlab/show/overt+space
 [19]: https://webusers.imj-prg.fr/~antoine.chambert-loir/index.xhtml
 [20]: https://mathstodon.xyz/@antoinechambertloir/114764893867719265
+[21]: https://sfba.social/@soaproot
+[22]: https://github.com/metamath/set.mm/issues/4918#issuecomment-3022009758
+[23]: https://digama0.github.io/
+[24]: https://ncatlab.org/nlab/show/analytic+LLPO
+[25]: https://planetmath.org/1122dedekindrealsarecauchycomplete
 
 [^1]:
     Usually on this blog when I talk about topoi I mean [grothendieck topoi][4],
@@ -469,3 +517,7 @@ Stay safe, and we'll talk soon 💖
     Thankfully in my externalization I mention that we want 
     $f : U \times \mathbb{R} \to \mathbb{R}$ to be continuous, which is 
     what that *would* have externalized to, if I'd remembered to mention it!
+
+[^9]:
+    Recall that in the presence of countable choice, the dedekind and 
+    cauchy reals agree so that LLPO and analytic LLPO agree.
