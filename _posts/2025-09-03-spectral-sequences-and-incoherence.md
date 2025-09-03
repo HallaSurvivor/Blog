@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Incoherence in Groups -- An Example with Spectral Sequences
+title: $F_2 \times F_2$ is Incoherent -- A Polite Spectral Sequence Computation
 tags:
   - 
 ---
