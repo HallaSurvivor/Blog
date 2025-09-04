@@ -20,6 +20,7 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Papers and Preprints
 
+- Explicitly Computing with Fukaya Categories of Surfaces with Boundary (in preparation)
 - Descent for 2-Rigs, With Application to the Recognition of Linear Theories (in preparation)
 - Life in Johnstone's Topological Topos (in preparation)
 - A Descent Theorem for Right Angled Artin Groups (Accepted to AGT. [preprint](https://arxiv.org/abs/2309.06614))
@@ -31,6 +32,8 @@ B.S. in Discrete Math and Logic (May 2019)
 
 
 ## Talks Outside Of Department
+- How to Compute with Derived Categories by Doodling (Seminar Talk at MSU, 2025)
+- How to Compute with Derived Categories by Doodling (QTMART at Bonn, 2025)
 - Explicitly Computing with Fukaya Categories of Surfaces (AWM WiSCons, 2025)
 - Life in Johnstone's Topological Topos (CT Octoberfest, 2024)
 - Gluing is Hard: Skeins and Hall Algebras (Centre for Quantum Mathematics at Syddansk, 2024)
@@ -242,6 +245,7 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Conferences Attended
 
+- [Fall School on Quantizations and Lagrangians](https://sites.google.com/view/frg-fall2025/home) (Summer 2025)
 - [Queer and Trans Mathematicians in Algebra and Representation Theory](https://math-events.uni-bonn.de/event/104/) (Summer 2025)
 - [CT2025](conference.math.muni.cz/ct2025/) (Summer 2025)
 - [SLMath Noncommutative Algebraic Geometry Summer School](https://www.slmath.org/summer-schools/1077) (Summer 2025)
