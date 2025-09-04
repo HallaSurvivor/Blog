@@ -274,7 +274,7 @@ we see that every differential is $0$. In fact it's easy to see that all futher
 differentials vanish so that this is actually the $E^\infty$ page of our 
 spectral sequence! General theory tells us that 
 $H_n(G) = \bigoplus_{p+q = n} E^\infty_{pq}$, so we can compute
-$H_n(F_2 \times F_2)$ by summing over the $n$th diagonal in the above table.
+$H_n(F_2 \times F_2)$ by summing over the $n$th diagonal in the above table[^8].
 
 Of course, $H_n(F_2 \times F_2)$ is easy enough to compute by hand using 
 the [Künneth formula][11] and the fact that $K(F_2, 1) = S^1 \vee S^1$ is 
@@ -431,3 +431,10 @@ Take care all, and stay safe. We'll talk soon 💖
 [^7]:
     Though I gave up almost immediately, since I want this post finished so 
     I can go back to writing more important things
+
+[^8]:
+    This is one place where working over a field *really* simplifies things! 
+    In general we would only know that $H_n(G)$ is some iterated extension
+    with the groups showing up along the diagonals as subquotients. Thankfully 
+    over a field the only extensions are direct sums, so we learn that
+    $H_n(G)$ must be the direct sum along the diagonal!
