@@ -245,6 +245,7 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Conferences Attended
 
+- [JMM](https://jointmathematicsmeetings.org/jmm) (Winter 2026)
 - [Fall School on Quantizations and Lagrangians](https://sites.google.com/view/frg-fall2025/home) (Summer 2025)
 - [Queer and Trans Mathematicians in Algebra and Representation Theory](https://math-events.uni-bonn.de/event/104/) (Summer 2025)
 - [CT2025](conference.math.muni.cz/ct2025/) (Summer 2025)
