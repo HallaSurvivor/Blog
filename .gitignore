@@ -6,3 +6,8 @@ _site/*
 
 # Local Netlify folder
 .netlify
+
+# Add the pdfs in assets,
+# despite the global gitignore
+# on pdfs
+!assets/**
