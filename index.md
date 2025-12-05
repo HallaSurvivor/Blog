@@ -5,7 +5,7 @@ title: Home
 
 # Welcome!
 
-I'm Chris Grossack, a queer mathematician and musician. My research interests 
+I'm Christina Grossack, a queer mathematician and musician. My research interests 
 lie in the intersection of algebra, geometry, and logic -- an intersection 
 often made clearer with the language of category theory.
 
@@ -19,7 +19,7 @@ mathematics, and have mentored several undergraduates and early graduate
 students.
 
 You might be interested in [my CV](/cv) or [my blog](/blog). You can read 
-more about me [here](/about).
+more about me [here](/about), or send me an email at cgros007 AT ucr DOT edu.
 
 <p style="text-align:center;">
 <img src="/assets/images/new-headshot.jpg" width="50%">
