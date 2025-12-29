@@ -147,79 +147,61 @@ learn that $\mathcal{E}$ models
 $\exists x \in A . \ulcorner \text{$x$ uppper bounds $A_0$} \urcorner$.
 Using the semantics for logic in a sheaf topos[^6], we have a covering 
 $\{U_\alpha\} \twoheadrightarrow 1$ and an element $x_\alpha \in A(U_\alpha)$
+upper bounding $A_0(U_\alpha)$. Moreover, because our topos is localic, we 
+can take all of the $U_\alpha$ to be [subterminal][10] (read: to be 
+opens of our space).
 
+The next step is to show that 
+$x_\alpha \in A_0(U_\alpha)$ so that it's more than just an upper bound --
+it's a maximum. By Yoneda, having $x_\alpha \in A(U_\alpha)$ is the same 
+thing as having a map $U_\alpha \to A$, and to show $x_\alpha \in A_0$ 
+is to show this map $U_\alpha \to A$ factors through the subobject 
+$A_0 \rightarrowtail A$.
 
+Since $U_\alpha$ is subterminal we see that $x_\alpha$ is monic[^7] 
+so we can internally consider the union $A_0 \cup U_\alpha$ 
+(as a subset of $A$). Next, since $U_\alpha$ is subterminal, it has 
+at most one element so that $$U_\alpha = \{x_\alpha\}$$ in the internal 
+logic[^8]. But now it's easy to internally prove $$A_0 \cup \{x_\alpha\}$$ 
+is a chain! Even constructively we're allowed to case on which part of the 
+union we're in[^9] so that the proof of 
+"$$\forall p,q \in A_0 \cup \{ x_\alpha \} . p \leq q \lor q \leq p$$" becomes 
+"If $p,q$ are both in $A_0$ then we're done since $A_0$ is a chain. If $p,q$ 
+are both in $$\{x_\alpha\}$$, then $p=q$ and we're done. If $p \in A_0$ and 
+$$q \in \{x_\alpha\}$$ then $q \geq p$ since $x_\alpha$ is an 
+upper bound for $A_0$, so we're done."
 
-
-
-
-
-
-
-But enough of that! The point is that internal truth of the statement 
-"$\exists x : A . \ulcorner \text{$x$ upper bounds $A_0$} \urcorner$" 
-furnishes us with a $B \twoheadrightarrow 1$ and a map $a' : 1_B \to B^* A$ 
-so that $\mathsf{Sh}(X) \big / B$ models 
-"$a'$ is an upper bound for $B^* A_0$". The next step is to show that this 
-$a'$ is not just an upper bound -- it's actually _in_ $B^* A_0$.
-
-But remember that, morally, $B = \coprod U_\alpha$ comes from an open cover! 
-So it suffices to check this property on open sets $U$ 
-(that is, on "subterminals". Remember that subobjects of $1$ in 
-$\mathsf{Sh}(X)$ correspond to the opens of $X$!)
-
-So now for some particular open $U$ in $B$, we want to show that 
-$a' \in A_0$ when restricted to $U$. That exactly means that for every 
-$f : U \to B$ with $U$ "subterminal" we want to have $f^* a'$ factor through 
-the subobject $f^* B^* A_0 = U^* A_0$. Thankfully we can do this! 
-We know $f^* a' : 1_U \to U^* A$ is an element of $A \upharpoonright_U$. 
-By Yoneda you would expect this to be given by a map $U \to A$, and this is 
-exactly the "transpose" that Johnstone is referring to. 
-(He calls it a "transpose" because there's an adjunction 
-$\Sigma_U \dashv U^*$ connecting the topoi $\mathsf{Sh}(X) \big / U$ and 
-$\mathsf{Sh}(X)$, and if you take the transpose of $f^* a' : 1_U \to U^* A$ 
-along this adjunction you exactly get a map $U \to A$ in $\mathsf{Sh}(X)$. 
-Depending on your background you might recognize this as the 
-[dependent sum](https://ncatlab.org/nlab/show/dependent+sum) from type theory).
-
-So we have a map $U \to A$ and combining this with the map $A_0 \to A$ we get a 
-map from $A_0 + U \to A$, and the image of this is the subobject 
-$A_1 = A_0 \cup U$ of $A$. Apparently this is "easily" seen to be a chain 
-(this might actually be easy, I just haven't thought at all about it... 
-But I think that this "easily" is the main place where we're using the 
-fact that $\mathcal{E}$ is localic, since that lets us assume $U$ is 
-subterminal... I might think more about this tomorrow if I have time), 
-so that as elements of our external poset $C$ we must have $A_0 = A_1$! 
-This means that internally we must have $A_0 \cong A_1 = A_0 \cup U$, 
-so that the image of our map $U \to A$ landed inside $A_0$ (if you like, 
-you can get this by internalizing the usual proof for lattices that 
-$A_0 = A_0 \cup U$ if and only if $U \leq A_0$). Transposing this back to 
-the slice topos, we learn that $f^* a' : 1_U \to U^* A$ factors through 
-the subobject $U^* A_0$, so that $a'$ is not just an upper bound -- 
-it's a *maximal element* of $A_0$. 
+Now that we know the subobject $$A_0 \cup \{x_\alpha\}$$ is a chain, 
+we move back outside the topos to our poset $C$ in $\mathsf{Set}$ of chains 
+in $A$. By construction $A_0$ is a maximal element of this poset, so that 
+$$A_0 \cup \{x_\alpha\}$$, which contains it, must equal it! Internally 
+again this means $x_\alpha \in A_0$, so that actually $x_\alpha$ is a 
+maximum for $A_0$!
 
 This is great because one can prove maximal elements are *unique*! 
 Indeed the usual proof that if $a,b$ are two maximal elements of a chain then 
 $a = b$ goes through internally. This lets us use another useful fact about 
-topos logic -- *unique existence is global existence*! Sometimes this is 
-called "unique choice". Remember that when we have 
-$\exists x \in X . \varphi(x)$ internally, it corresponds to 
-"existence on an open cover" where there's no reason for the $x_\alpha$ on 
-$U_\alpha$ to have anything to do with each other! Buuuuut, if there exists a 
-*unique* $x$ satisfying $\varphi$, then two $x_\alpha$ and $x_\beta$ must 
-all agree on overlaps $U_\alpha \cap U_\beta$, since there's a unique 
-$x_{\alpha \beta}$ to restrict to! Thus the sheaf property kicks in and our 
-$x_\alpha$s glue to a global section $x$!!
+topos logic -- *unique existence is global existence*! This is often
+called "[unique choice][11]", and it's an extremely useful fact about 
+topoi[^10]!
 
-So what have we done? We showed that $a' : 1_B \to B^* A$ is a maximal 
-element of $A_0$, and thus exists uniquely. (Remember also that here we should 
-think of $B = \coprod U_\alpha$). Thus unique existence kicks in and we learn 
-that actually $a'$ comes from pulling back (read: restricting) a *global* 
-element $a \in A$ to this open cover! Moreover, by construction we know that 
-this $a : 1 \to A$ is a maximal element of $A_0$. All that's left is to show 
-that it's actually a maximal element of $A$. This is believable since $A_0$ 
-was a maximal chain in $A$ and $a$ is a maximal element of $A_0$... 
-But officially we have to check!
+So what have we done? Inductivity of $A$ gave us mere existence of an 
+$x$ upper bounding $A_0$. Then we showed that $x \in A_0$ so that $x$ is 
+a maximum element of a chain, so is unique. Then unique choice kicks in so 
+that mere existence of $x$ becomes *global* existence of $x$ (that is, an 
+inhabitant of a $\Sigma$-type). All that's left is to show that this $x$ 
+is actually a maximal element of $A$. This is believable since $A_0$
+was a maximal chain in $A$ and $x$ is a maximum of $A_0$... But officially 
+we have to check!
+
+<br><br><br>
+
+TODO: Finish this proof and clean up what came before... You can probably 
+do MUCH more of the reasoning internally, which should make things less 
+confusing
+
+<br><br><br>
+
 
 So we want to prove, internally, that $\forall b \in A . b \geq a \to b = a$. 
 Using the same internal/external yoga as before, proving this is the same is 
@@ -235,9 +217,12 @@ chains are unique).
 
 ---
 
+TODO: break up all the text above with a few pictures
+
+TODO: mention the utility of "subterminal" and thus "localic" in this proof.
+
 TODO: explain that you usually use zorn alongside LEM by showing that if the 
 maximal element weren't what you wanted you could contradict maximality...
-
 Say something about the Leinster ncat cafe post Matteo sent you?
 
 ---
@@ -251,6 +236,8 @@ Say something about the Leinster ncat cafe post Matteo sent you?
 [7]: https://proofassistants.stackexchange.com/questions/942/what-is-realignment-and-is-it-useful-in-non-univalent-theories
 [8]: https://grossack.site/2022/02/16/talk-practical-topos-theory
 [9]: https://grossack.site/2022/12/13/internal-logic-examples
+[10]: https://ncatlab.org/nlab/show/subterminal+object
+[11]: https://ncatlab.org/nlab/show/principle+of+unique+choice
 
 [^1]:
     Here, of course, a subset of $A$ is a point in the powerset 
@@ -293,3 +280,43 @@ Say something about the Leinster ncat cafe post Matteo sent you?
     See Chapter VI.7 of Mac Lane and Moerdijk, or some old blog posts 
     [here][8] and [here][9] for more about externalizing statements in a 
     sheaf topos.
+
+[^7]:
+    Indeed *every* map from a subterminal object is monic!
+
+    Being subterminal means being a subobject of $1$. But then 
+    (using the internal logic) if $u_1, u_2 \in U \subseteq 1$ we must 
+    have $u_1=u_2$ since there's only one element of the terminal object $1$. 
+    So if $f : U \to X$ is any map, then it's true for silly reasons 
+    that $fu_1 = fu_2 \to u_1 = u_2$, so that $f$ is internally injective 
+    (thus externally monic).
+
+    If you prefer to reason externally, take any two maps
+    $u_1,u_2 : Z \rightrightarrows U$. Then composing with 
+    $!_{U} : U \rightarrowtail 1$ gives 
+    $!_{U} u_1 = !_{U} u_2$ since both are equal to 
+    $!_Z$. But then since $!_{U}$ is monic we learn that $u_1 = u_2$,
+    so that again if $f : U \to X$ is any map and $fu_1 = fu_2$ we must 
+    have $u_1 = u_2$ for silly reasons, and $f$ is monic.
+
+    For those newer to topos theory, do you see how these were really the same 
+    argument?
+
+[^8]:
+    This is really shorthand for $$\{x \in A \mid x = x_\alpha\}$$.
+
+[^9]:
+    Type theorists would probably say that the image is the propositional 
+    truncation of $A_0 + U_\alpha$. Since we're trying to prove a 
+    proposition we can eliminate out of the disjunction, which allows casework.
+
+[^10]:
+    Remember that when we have 
+    $\exists x \in X . \varphi(x)$ internally, it corresponds to 
+    "existence on an open cover" where there's no reason for the $x_\alpha$ on 
+    $U_\alpha$ to have anything to do with each other! Buuuuut, if there exists a 
+    *unique* $x$ satisfying $\varphi$, then two $x_\alpha$ and $x_\beta$ must 
+    all agree on overlaps $U_\alpha \cap U_\beta$, since there's a unique 
+    $x_{\alpha \beta}$ to restrict to! Thus the sheaf property kicks in and our 
+    $x_\alpha$s glue to a global section $x$!!
+
