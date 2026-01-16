@@ -29,6 +29,8 @@ Let's get started!
 
 TODO: rewrite the introduction
 
+TODO: we're repeating ourselves a lot. Let's pare this down when I'm 
+more awake.
 
 ---
 
