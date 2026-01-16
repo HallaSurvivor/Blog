@@ -445,7 +445,7 @@ Wish me luck on the postdoc search, and we'll talk soon 💖
     $\mathcal{P}(A) \cong \Omega^A$.
 
 [^2]:
-    A "localic $\mathsf{Set}$-topos" just means that there's some local $X$ 
+    A "localic $\mathsf{Set}$-topos" just means that there's some locale $X$ 
     so that $\mathcal{E} \simeq \mathsf{Sh}(X)$.
 
 [^3]:
