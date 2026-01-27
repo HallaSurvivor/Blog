@@ -5,21 +5,23 @@ tags:
   - topos-theory
 ---
 
-I've been burnt out on applying to postdocs lately, which means I'm back on 
-my bullshit answering questions on math.stackexchange. There was a really 
-[great question][1] a few days ago which had a wild premise: OP wanted to 
-understand a proof in the Elephant (D4.5.14) that Zorn's Lemma is true in 
-localic topoi! The proof has a nice balance between reasoning internally 
-and externally, and it felt really good to write coherently about something 
-that I would have found *extremely* intimidating at the start of grad school.
+I started writing this post back in mid-December when I was particularly 
+burnt out on applying to postdocs. So when I saw a really [great question][1]
+on math.stackexchange asking how Johnstone proves Zorn's Lemma holds inside 
+localic topoi (D4.5.14), I had to take the time to answer it, and then to 
+write a ~~quick~~ blog post about it. (Reader: There ended up being nothing 
+quick about this, haha). The proof has a nice balance between reasoning 
+internally and externally, and it felt really good to write coherently about 
+something that I would have found *extremely* intimidating at the start of 
+grad school!
 
-In this post, I want to expand a bit on that answer, and say some words about 
-how you can have a "nonconstructive" principle like Zorn's lemma inside a 
-"constructive" world like $\mathsf{Sh}(\mathbb{R})$. I haven't blogged in 
+I haven't blogged in 
 a while (because of the postdoc applications) but I'm back in NY with some 
 loved ones, and at this point it's starting to feel like tradition to write 
-something from their couch! Here's the obligatory picture of my beloved 
-Nugget:
+something from their couch! (or, at least I was back in NY when I started this,
+haha. Now I've been back in Riverside for a few weeks).
+
+Here's the obligatory wintertime picture of my beloved Nugget:
 
 <p style="text-align:center;">
 <img src="/assets/images/zorns-lemma-in-sheaves/nugget.jpg" width="50%">
@@ -27,14 +29,9 @@ Nugget:
 
 Let's get started!
 
-TODO: rewrite the introduction
-
-TODO: we're repeating ourselves a lot. Let's pare this down when I'm 
-more awake.
-
 ---
 
-I'm feeling [type-theoretic][16] today, so let's work with the internal logic 
+I'm feeling [type theoretic][16] today, so let's work with the internal logic 
 of a topos type theoretically, rather than set theoretically. I'm actually 
 not sure if I've spent much time working type theoretically on this blog, 
 and so I might also use this as an excuse to talk about the difference in 
@@ -42,50 +39,71 @@ semantics between the (local) set theoretic logic and the (global) type
 theoretic logic. For a more detailed reference, I first learned a lot of this
 from Steve Awodey, and the lecture notes from his class are 
 [available online][19] (though I'm not sure exactly what's changed between
-the 2019 version and the current one).
+the 2019 version and the current one). In a (futile) effort to keep this 
+post short, I'm going to be pretty terse with my descriptions here. Hopefully
+it's still helpful to newcomers who know some type theory but not much 
+topos theory!
 
-In the set theoretic approach to the internal logic, we consider the 
-lattice of subobjects of a sheaf $A$. That is, we consider *monomorphisms* 
-$A_0 \rightarrowtail A$ with codomain $A$.
-We think of a subobject as being a 
-"proposition" $\varphi$ on $A$ (as usual, we're identifying a proposition 
-$\varphi(a)$ with the subobject $$\{ a \mid \varphi(a) = \top \}$$), 
-and the intersection/union of subobjects gets identified with logical 
-and/or. Next, given a map $f : A \to B$ we have a base change 
-functor that sends a proposition $\varphi(b)$ on $B$ to the proposition
-$\varphi(f(a))$ on $A$, which we usually write as $f^* \varphi$. Base change 
-admits two adjoints, which we suggestively call 
-$\exists_f \dashv f^* \dashv \forall_f$, and indeed this is where quantifiers
-come from! 
+To interpret type theory in a (1-)topos $\mathcal{E}$, we interpret a type 
+$A$ in context $\Gamma$ as a sheaf $A$ in the slice topos 
+$\mathcal{E} \big / \Gamma$. That is, as a map $\pi : A \to \Gamma$ in 
+$\mathcal{E}$. We think of this as a *family* of types $A_\gamma$ parameterized
+by elements $\gamma$ of $\Gamma$ by identifying $A_\gamma$ with the fibre of 
+$\pi$ over $\gamma$. Then given a context extension $f : \Delta \to \Gamma$, we 
+can treat $A$ as being in context $\Delta$ by pulling it back to 
+$f^* \pi : f^* A \to \Delta$, which corresponds to "weakening" the definition 
+of $A$ to rely on ~bonus assumptions~ in $\Delta$ and not in $\Gamma$[^18]. 
+This has two adjoints, called $\Sigma_f \dashv f^* \dashv \Pi_f$, which we 
+recognize as the dependent sum and product (respectively). We also have a 
+(univalent!) [universe][5] $\mathcal{U}$ (thought of as 
+the "space of types") so that a bundle $A \to \Gamma$ is 
+the same thing as a map $\Gamma \to \mathcal{U}$. This universe has internal 
+operations $\Pi$ and $\Sigma$ that correspond to $\Pi$ and $\Sigma$ externally.
+The type theory is *global* in the sense that inhabiting a $\Sigma$-type (say)
+means witnessing a global section of the corresponding bundle!
 
-In the type theoretic appraoch, we consider *all* maps $P \to A$ with 
-codomain $A$! 
-We think of a map $\pi : P \to A$ as being a *family* of objects parameterized 
-by points of $A$, given by the fibres $P_a = \pi^* (a)$. We might think of 
-$P$ as a souped-up proposition on $A$, and the various elements of $P_a$ are 
-the "proofs" that $P$ is true at $a$. Then a proof that "$P$ and $Q$" holds at 
-$a$ is a pair of proofs in $P_a$ and $Q_a$, so this should be represented 
-by the fibre product. A proof that "$P$ or $Q$" holds at $a$ is either a proof
-in $P_a$ or a proof in $Q_a$, so this should be represented by the fibre 
-coproduct. Again, given a map $f : A \to B$ and a family $P \to B$, we have the 
-pullback $f^* P$ over $A$, with adjoints that are now called 
-$\Sigma_f \dashv f^* \dashv \Pi_f$.
+Let's contrast this with the usual Mac Lane and Moerdijk style set 
+theoretic semantics in a (1-)topos. Here instead of working with *all* 
+maps $A \to \Gamma$, we only work with *subobjects* 
+$\Gamma_0 \rightarrowtail \Gamma$! In the family picture, we're only looking 
+at bundles where each fibre has at most one element[^12]. Again, a subobject 
+of $\Gamma$ pulls back along a map $f : \Delta \to \Gamma$ to give a subobject 
+of $\Delta$, and again we have adjoints $\exists_f \dashv f^* \dashv \forall_f$,
+which really do correspond to quantifiers in our logic! We have a 
+[subobject classifier][18] $\Omega$ (thought of as the "space of propositions") 
+so that a subobject $\Gamma_0 \rightarrowtail \Gamma$ is the same thing as 
+a map $\Gamma \to \Omega$. This subobject classifier has internal operations 
+$\land$ and $\lor$ which externally correspond to the intersection and union 
+of subobjects. The set theory is *local* in the sense that truth of an 
+$\exists$ claim (say) means witnessing enough *local* sections of the 
+corresponding bundle, whether or not they cohere into a global section!
 
 Note that the set theoretic framework is "just" the type theoretic framework
-restricted to the monomorphisms! So if we work type theoretically we can 
-recover the set theoretic perspective by taking a map $\pi : P \to A$ and 
-replacing it by its image[^16] $\text{im}(\pi)$, which is a subobject of $A$. 
+restricted to the monomorphisms! So we can recover the set theoretic 
+framework as a special case of type theory by replacing every map 
+$\pi : A \to \Gamma$ by its image[^16] $\text{im}(\pi)$, which is a subobject 
+of $\Gamma$.
 This maneuver is called [propositional truncation][12], and we usually write 
-$\lVert P \rVert$ for $\text{im}(\pi)$. We think of a subobject $\varphi(a)$ 
+$\lVert A \rVert$ for $\text{im}(\pi)$. We think of a subobject 
 as being *merely a proposition* in the sense that it is nothing but a truth 
-value saying whether $\varphi(a)$ is true or not[^17]. Contrast this with a 
-bundle $P \to A$, where the fibre $P_a$ might have lots of elements and 
-internal structure. When we pass to the image $\lVert P \rVert$ all of this 
-extra structure is forgotten.
+value. Contrast this with a bundle $A \to \Gamma$, where the fibre 
+$A_\gamma$ might have lots of elements and 
+internal structure. When we pass to the image $\lVert A \rVert$ all of this 
+extra structure is forgotten. 
 
-One special case of this which can be 
-confusing to newcomers is the propositional truncation of the unique map 
-$A \to 1$. Recall that in a topos there are lots of [subterminal][10] 
+Indeed, if $A$ is any type (semantically: any object of our topos) and 
+$\varphi : A \to \Omega$ is an $A$-indexed family of propositions, 
+then we can define $\forall a : A . \varphi(a)$ to be the dependent product
+$\prod_{a:A} \varphi(a)$ and we define $\exists a : A . \varphi(a)$ to be 
+the *truncation* $\left \lVert \sum_{a:A} \varphi(a) \right \rVert$. 
+Similarly, given propositions $\varphi, \psi : A \to \Omega$ we recover
+$\varphi \land \psi$ as a fibre product $\varphi \times \psi$ and 
+$\varphi \lor \psi$ as the *truncation* of the fibre coproduct 
+$\lVert \varphi + \psi \rVert$.
+
+
+One special case of propositional truncation comes from the image of the 
+unique map $A \to 1$. Recall that in a topos there are lots of [subterminal][10] 
 objects, which correspond to the truth values of our topos (or, geometrically,
 to the open sets of our space).
 We can think of $\lVert A \rVert$ as the *support* of $A$, since in a sheaf 
@@ -96,14 +114,17 @@ exists.
 <img src="/assets/images/zorns-lemma-in-sheaves/partial-support.png" width="50%">
 </p>
 
+This is a useful mental model since all images are a 
+"relative version of this".
 Recall that we should think of the terminal object $1$ of the topos 
-$\mathcal{E}$ as being "the space itself". For example, in this 
-picture where $\mathcal{E}$ looks like $\mathsf{Sh}(\mathbb{R})$ 
-we should think of the terminal object as being the real line.
+$\mathcal{E}$ as being "the space itself", while other objects 
+of the topos are like "covering spaces[^19]" of $\mathcal{E}$. 
+Then we can think of more general images as looking like open subsets[^20] of 
+covering spaces of $\mathcal{E}$.
 
 Note also that $A$ doesn't have any sections defined on the entirety 
 of its support, but this lack of "global" sections isn't visible when we 
-pass to the truncation (read: the open set $(0,3) \subseteq \mathbb{R}$). 
+pass to the truncation/image (read: the open set $(0,3) \subseteq \mathbb{R}$). 
 Indeed, one way of defining the support is as the type defined by 
 declaring all the sections equal (in a canonical way, for the HoTT crowd).
 
@@ -112,63 +133,57 @@ For those interested in learning topos theory, it might make a good (fun?)
 exercise to try and write down this sheaf $A$ over $\mathbb{R}$ precisely, 
 and compute that the image of the unique map $A \to 1$ really is the image 
 of the open set $(0,3) \subseteq \mathbb{R}$ under the Yoneda embedding.
-</div>
 
-These objects are called <span class=defn>Subterminal</span> because they're
-subobjects of the terminal object. The subterminal objects have a lattice 
-structure (since they're the powerset of $1$) and this is exactly the 
-lattice of "truth values" for the internal logic of the topos.
-In a [localic topos][17], these are just the open sets of the locale we 
-started with, and we think of the truth value $U$ as saying that the 
-proposition is true at $U$, but possibly false elsewhere in the space. 
-Even in general topoi, though, thinking of the subterminals as "open sets" 
-is a useful heuristic. The subterminals (and their relative versions) 
-assemble into a sheaf $\Omega$, the [subobject classifier][18] of our topos,
-which we think of as being the type of *mere propositions*.
-
-To work with more general bundles, we'll assume our type theory comes with a 
-univalent [universe][5] $\mathcal{U}$. We'll be 
-using stack semantics for this, in the style of Coquand, Mannaa, and Ruch's
-[_Stack Semantics of Type Theory_][13]... I guess I haven't actually checked 
-that the semantics in that paper actually restrict to the usual 
-type theoretic semantics for the non-stacky objects, but like... 
-why wouldn't it, lol[^13].
-
-All you need to know for this is that we have a universe $\mathcal{U}$ 
-so that terms $A : \mathcal{U}$ denote (small) objects of our sheaf topos.
-Then just like a map $A \to \Omega$ classifies a subobject 
-$A_0 \rightarrowtail A$, a map $A \to \mathcal{U}$ classifies an arbitrary 
-bundle $P \to A$! Semantically, over an open set $V$ in a sheaf topos 
-$\mathcal{E} = \mathsf{Sh}(X)$ we interpret $\mathcal{U}(V)$ as the 
-groupoid of sheaves on $V$ with sheaf isomorphisms (you might prefer to 
-write this as the groupoid core of $\mathcal{E} \big / V$).
-
-Where the type theoretic
-perspective on topoi works with arbitrary objects, the set theoretic logic 
-is the restriction of the type theory to mere propositions. So to recover 
-the set theoretic perspective we can use type theory and truncate down 
-anytime we get something more interesting than a mere proposition!
-Indeed, if $A$ is any type (semantically: any object of the topos) and 
-$\varphi : A \to \Omega$ is an $A$-indexed family of propositions[^12] 
-(semantically: an arrow from $A \to \Omega$) then we can define
-$\forall x : A . \varphi(x)$ to be the dependent product 
-$\prod_{x : A} \varphi(x)$, 
-and we define $\exists x : A . \varphi(x)$ to be the *truncation* 
-$\left \lVert \sum_{x:A} \varphi(x) \right \rVert$. Similarly, given 
-propositions $\varphi$ and $\psi$ we define $\varphi \land \psi$ to be 
-$\varphi \times \psi$ and $\varphi \lor \psi$ to be 
-$\lVert \varphi + \psi \rVert$.
-
-<div class=boxed markdown=1>
-It's a *very* good exercise for a budding topos theorist to check that 
-this really does allow us to phrase our usual Mac Lane and Moerdjik style 
-set theoretic internal logic in terms of type theory. 
+It's also a fantastic (fun?) exercise to compare the 
+syntactic description of the propositional truncation (in terms of "glue"
+setting all terms equal) to the semantic description (in terms of the "image" 
+of a map in a topos).
 
 In particular, can you show that a section of $\lVert A \rVert$ over $U$
 is the same thing as a family of sections of $A$ on an open cover 
 $$\{U_\alpha\}$$ of $U$, which need not be compatible? This is one of the 
 important steps for showing that the forcing language works as expected.
 </div>
+
+I'm sweeping a bit of this story under the rug, since the existence of
+univalent universes requires some effort.
+Naively, one would like to say that $\mathcal{U}$ is a sheaf which sends an 
+open set $V$ to the set of all (small) sheaves on $V$... Unfortunately this
+can't work! A sheaf on $V$ can have interesting automorphisms, so the 
+collection of sheaves on $V$ is naturally a *groupoid* rather than a set,
+and this will cause our naive $\mathcal{U}$ to not be a sheaf!
+
+The problem will be familiar to algebraic geometers, since it's everpresent 
+in moduli space theory (indeed, we can phrase this problem as trying to build 
+a moduli space $\mathcal{U}$ of small sheaves). The standard way to solve it 
+is by passing to [stacks][21], which are just "sheaves of groupoids" 
+rather than "sheaves of sets". See, for instance,
+Coquand, Manaa, and Ruch's [_Stack Semantics of Type Theory_][13].
+It's important to know that every sheaf $\mathcal{F}$ is also a stack, just 
+by treating every set $\mathcal{F}(V)$ as a trivial/discrete groupoid whose 
+only isomorphisms are identity arrows.
+
+In the stack semantics
+a type $A$ in context $\Gamma$ gets interpreted as a fibration[^21] of 
+groupoids $A \to \Gamma$. We can interpret $\Sigma$, $\Pi$, and identity types 
+in a way that will be familiar to anyone who has thought about the semantics of 
+HoTT, and in the special case that every groupoid is discrete we recover 
+the usual MLTT semantics for sheaves[^22]! So if we want the usual 
+semantics plus a univalent universe we just need to consider the stack 
+$\mathcal{U}$ which sends an open set $V$ to the *groupoid* of sheaves on 
+$V$ (with sheaf isomorphisms)[^23]. You might prefer to say that $\mathcal{U}(V)$
+is "just" the groupoid core of the slice topos $\mathcal{E} \big / V$.
+
+In case you find stacks intimidating, all you need to know for this is that 
+we have a universe $\mathcal{U}$ 
+so that terms $A : \mathcal{U}$ denote (small) objects of our sheaf topos.
+Then just like a map $\Gamma \to \Omega$ classifies a subobject 
+$\Gamma_0 \rightarrowtail \Gamma$, a map $\Gamma \to \mathcal{U}$ classifies an 
+arbitrary bundle $A \to \Gamma$! Moreover, this universe is [univalent][23] 
+in the sense that the identity type $A=B$ for $A,B : \mathcal{U}$ is 
+exactly the sheaf of isomorphisms between $A$ and $B$.
+
+Anyways, that's probably enough details about stacks and semantics, haha.
 
 <p style="text-align:center;">
 <img src="/assets/images/zorns-lemma-in-sheaves/jump-right-in.gif" width="50%">
@@ -258,7 +273,9 @@ the proposition $\mathsf{ZL}$ is equal to $\top$ in the lattice of truth
 values of $\mathcal{E}$ -- and in fact this will be true! 
 But this is actually stronger in some ways, and weaker 
 in others, than Johnstone's metatheorem. I think the differences are 
-enlightening, so let's go over them quickly!
+enlightening, so let's go over them quickly:
+
+<br>
 
 Modeling $\mathsf{ZL}$ is *stronger* because of the quantification 
 over the universe. Remember that a $\forall A : \mathcal{U}$ claim has 
@@ -271,6 +288,8 @@ inductive posets, which are much harder to come by[^14].
 Thankfully, since slices of a localic topos are localic, we can apply 
 Johnstone's theorem slice-by-slice (and use the fact that propositions 
 automatically glue) in order to get the internal unbounded quantifier we want!
+
+<br>
 
 Modeling $\mathsf{ZL}$ is *weaker* because of the *mere existence* of a 
 maximal element for $A$. 
@@ -285,7 +304,9 @@ property.
 Thankfully, since we're using type theory, we can write 
 $\sum_{m:A} \mathtt{isMaximal}(m)$ to talk about the global existence of $m$!
 
-There's just one problem... we can't do both of these at once!
+<br>
+
+Unfortunately, I'm pretty sure we can't do both of these at once! 
 
 In order to glue the existence of maximal elements we got slice-by-slice, 
 we needed this existence to be a mere proposition... As soon as we replace 
@@ -294,17 +315,21 @@ we have the *data* of (external) maps $m_V$ which eats an $A \in \mathcal{U}(V)$
 (with a choice of inductive poset structure)
 and returns a choice of promised maximal element $m_V(A) \in A(V)$. Since 
 we aren't truncating, these choices aren't unique, and we need to manually 
-check that they cohere. Indeed, there are families of posets in sheaf topoi 
-where this isn't possible[^15].
+check that they cohere (read: that these choices can be made "naturally"). 
 
-TODO: add a picture to footnote 15, and maybe explain it more?
+Unfortunately, I've spent the last month trying to find an explicit 
+counterexample and I can't manage to make it happen! I would be very 
+interested if someone else is able to build one, since I need to stop 
+thinking about this and start writing my thesis. I've left some thoughts 
+in a footnote, though, in case anyone wants to try[^26]!
 
-TODO: picture?
+<br>
 
 Ok, we've been distracted for long enough! Let's get to the proof of the 
 metatheorem, which is based on my answer [here][1], which is itself 
 based on the proof Johnstone gives in D4.5.14. This is kind of hardcore,
-but the fluid movement between internal and external reasoning is instructive!
+but the fluid movement between internal and external reasoning is 
+instructive[^24]!
 
 $\ulcorner$
 Let $(A,\leq)$ be a poset in a localic topos $\mathcal{E}$ which is 
@@ -326,8 +351,9 @@ can take all of the $U_\alpha$ to be [subterminal][10] (read: to be
 opens of our space).
 
 The next step is to show that 
-$x_\alpha \in A_0(U_\alpha)$ so that it's more than just an upper bound --
-it's a maximum. By Yoneda, having $x_\alpha \in A(U_\alpha)$ is the same 
+$x_\alpha$ is more than just an upper bound for $A_0(U_\alpha)$ -- it's actually 
+a *maximum* in the sense that $x_\alpha \in A_0(U_\alpha)$.
+By Yoneda, having $x_\alpha \in A(U_\alpha)$ is the same 
 thing as having a map $U_\alpha \to A$, and to show $x_\alpha \in A_0$ 
 is to show this map $U_\alpha \to A$ factors through the subobject 
 $A_0 \rightarrowtail A$.
@@ -376,22 +402,35 @@ $A_0 \cup \{a\} = A_0$ and so by (internal) maximality of $x$ in $A_0$
 we have $x \geq a$. Thus $x \geq a$ and $a \geq x$ so that $x=a$, as desired.
 <span style="float:right">$\lrcorner$</span>
 
-
-TODO: flesh this out... We should be happy because we know this is true, 
-but...
-
-However, a type theorist would be very *dissatisfied* since we aren't actually 
-able to exhibit a term inhabiting this type! We would have to postulate it 
-in a proof assistant, since we show it's true by soem combination of 
-internal and external reasoning, rather than by working internally the whole
-time. This interplay between internal and external is *very* interesting, 
-though, and very powerful, so every good topos theorist should try to get 
-comfortable with these ideas.
-
 ---
 
-This is weird, since we typically think of Zorn's Lemma as being a 
-nonconstructive principle. The point is that to make any *use* of the 
+Whew! What a proof, haha. Honestly, what a post! This has taken me *forever*
+to write, since at first I wanted it to be quick, but then I wanted to 
+say something about stack semantics... So then I had to finally sit down 
+and figure out what's going on with stack semantics (which was *extremely* 
+instructive, it was a great use of time!). But then I had so much fun 
+figuring out how stack semantics work that I wanted to make the post about 
+that instead, since I think it's really not *so* scary and should be more 
+widely understood! (Especially by people who mainly think about 1-topoi, 
+like myself. I'm sure this is childsplay for the people thinking 
+about $\infty$-topoi and HoTT semantics day in and day out). That made me 
+want to spend some time talking about the "classical" semantics of MLTT 
+in a topos, as a stepping stone to the stack semantics, especially since I've 
+been meaning to write a post explaining how the type theoretic semantics 
+subsume the set theoretic ones for like.... a while now, haha. So I started 
+writing all that, and I realized it would just take too long to do properly.
+I would love to exposit all this some day, but it's hard to justify right 
+now when I need to focus on writing my thesis. 
+
+Soooooo, this blog post ended up being a bit more hodge-podged than my 
+usual ones. It was still fun for me to write and to get a lot of ideas 
+straight in my head, and hopefully people still find it helpful, or at least
+interesting.
+
+If nothing else, it serves to explain this weird fact that Zorn's Lemma can 
+be true in a constructive context! We typically think of Zorn's Lemma as 
+being a nonconstructive principle, and I think the way to square this circle 
+is to realize that to make any *use* of the 
 maximal element we get, we need to use excluded middle. Indeed, how do
 we typically use $\mathsf{ZL}$ to build something we want? We build a poset 
 of "approximations" to the good thing we want, and use $\mathsf{ZL}$ to get a 
@@ -441,6 +480,11 @@ Wish me luck on the postdoc search, and we'll talk soon 💖
 [17]: https://ncatlab.org/nlab/show/localic+topos
 [18]: https://ncatlab.org/nlab/show/subobject+classifier
 [19]: https://awodey.github.io/catlog/notes/catlogdraft.pdf
+[20]: https://grossack.site/2024/08/19/finiteness-in-sheaf-topoi
+[21]: https://en.wikipedia.org/wiki/Stack_(mathematics)
+[22]: http://www.tac.mta.ca/tac/reprints/articles/7/tr7.pdf
+[23]: https://ncatlab.org/nlab/show/univalence+axiom
+[24]: https://www.danielgratzer.com/papers/type-theory-book.pdf
 
 [^1]:
     Here, of course, a subset of $A$ is a point in the powerset 
@@ -496,9 +540,9 @@ Wish me luck on the postdoc search, and we'll talk soon 💖
 
     If you prefer to reason externally, take any two maps
     $u_1,u_2 : Z \rightrightarrows U$. Then composing with 
-    $!_{U} : U \rightarrowtail 1$ gives 
-    $!_{U} u_1 = !_{U} u_2$ since both are equal to 
-    $!_Z$. But then since $!_{U}$ is monic we learn that $u_1 = u_2$,
+    $$!_{U} : U \rightarrowtail 1$$ gives 
+    $$!_{U} u_1 = !_{U} u_2$$ since both are equal to 
+    $$!_Z$$. But then since $$!_{U}$$ is monic we learn that $u_1 = u_2$,
     so that again if $f : U \to X$ is any map and $fu_1 = fu_2$ we must 
     have $u_1 = u_2$ for silly reasons, and $f$ is monic.
 
@@ -530,8 +574,7 @@ Wish me luck on the postdoc search, and we'll talk soon 💖
 
 [^12]:
     You know you're lost in the sauce when "proposition bundle" starts looking
-    like an appealing name for something like this... Well, it's an appealing 
-    name for the classified subobject $\sum_{a:A} P(a)$ at least!
+    like an appealing name for something like this... 
     
 [^13]:
     The paper gives semantics of MLTT with a univalent universe and 
@@ -591,9 +634,9 @@ Wish me luck on the postdoc search, and we'll talk soon 💖
     chains.
 
 [^16]:
-    The image of $\pi : P \to A$ turns out to be the same thing as 
-    $\exists_\pi P$, where $P$ is the top element of the lattice of 
-    subobjects of $P$. It might make a fun exercise to see that this 
+    The image of $\pi : A \to \Gamma$ turns out to be the same thing as 
+    $\exists_\pi A$, where $A$ is the top element of the lattice of 
+    subobjects of $A$. It might make a fun exercise to see that this 
     really does fit into an epi-mono factorization system that makes it 
     deserve the name "image".
 
@@ -602,3 +645,131 @@ Wish me luck on the postdoc search, and we'll talk soon 💖
     values besides just true and false... So it's better to say that 
     $\varphi(a)$ has no information besides "how true" it is, which lives 
     somewhere between true and false inclusive.
+
+[^18]:
+    Think of $\Gamma = P_1 \times P_2$ as a context with two assumptions, 
+    and $\Delta = P_1 \times P_2 \times P_3$ as a context with three 
+    assumptions. Then our map $f : \Delta \to \Gamma$ is the projection 
+    map that forgets $P_3$, and if $A$ is definable using assumptions $P_1$
+    and $P_2$, then $f^* A$ is just the definition using $P_1$, $P_2$, 
+    and $P_3$ that just.... ignores $P_3$!
+
+[^19]:
+    It's better to say "etale spaces over $\mathcal{E}$". In particular, 
+    these are the spaces that you get by gluing open subsets of $\mathcal{E}$
+    together along open intersections. There's no reason for them to cover 
+    the whole of $\mathcal{E}$, and there's no reason for them to be 
+    "Hausdorff". See, for instance, my old blog post [here][20].
+
+[^20]:
+    Strictly speaking, this is only true for [localic topoi][17], where the 
+    subterminal objects are the open sets of the locale we started with.
+    We think of the truth value $U$ as saying that the 
+    proposition is true at $U$, but possibly false elsewhere in the space. 
+
+    Even in general topoi, though, thinking of the subterminals as "open sets" 
+    is a useful heuristic. The subterminals (and their relative versions) 
+    assemble into the sheaf $\Omega$, the [subobject classifier][18] of 
+    $\mathcal{E}$, which we think of as being the type of *mere propositions*. 
+    This is also the space of "open subsets" of its localic reflection 
+    (the best localic topos approximating $\mathcal{E}$).
+
+[^21]:
+    I really want to link somewhere for this, but I can't (quickly) find a 
+    good source for fibrations of groupoids that makes them look as simple 
+    and combinatorial as they are... The point is that you have a map of 
+    groupoids $A \to \Gamma$ so that for every path 
+    $\gamma_0 \cong \gamma_1$ in $\Gamma$ and every point $a_0$ in the fibre 
+    over $\gamma_0$, there's a lift of this path to a path $a_0 \cong a_1$ 
+    in $A$. I think I learned a lot of this stuff from Higgins's book 
+    [_Categories and Groupoids_][22], see especially Chapter 13 on 
+    covering maps. You might also like the discussion in the 
+    Coquand, Manaa, Ruch paper, but I suspect I would have found the highly 
+    syntactic type theoretic presentation a bit daunting if I didn't already 
+    have some familiarity with stacks.
+
+[^22]:
+    I guess I haven't checked this SUPER closely? But like... why wouldn't 
+    it be true, lol.
+
+[^23]:
+    You might wonder what happens with these stack semantics when we start 
+    including other, more exotic stacks, rather than just the sheaves and this 
+    one special stack $\mathcal{U}$. After all, it seems like we're leaving 
+    a lot of expressivity on the table!
+
+    I'm fairly sure that what we get is a special case of HoTT, where 
+    we look only at the $1$-truncated types (semantically: the sheaves of 
+    1-groupoids). From this perspective, the type theory we're describing 
+    is a further special case of HoTT where we look only at the $0$-truncated 
+    types and a single, special $1$-truncated type called $\mathcal{U}$ --
+    the $1$-type of $0$-types in the usual HoTT universe...
+
+    This is definitely morally right, but I haven't thought hard enough about 
+    the details of the usual semantics, the stack semantics, or the HoTT 
+    semantics to confidently say this is correct without caveats.
+
+[^24]:
+    This method of moving between internal and external arguments is very 
+    powerful, and every good topos theorist should be familiar with it! 
+    Note, though, that this might be dissatisfying for certain type 
+    theorists. Indeed, since we've mixed internal and external reasoning 
+    (and used something like Zorn's Lemma in the metatheory) it's not obvious
+    how one would go about getting their hands on a term witnessing this 
+    theorem! Indeed, such a term almost certainly doesn't exist (since it 
+    should be possible to find non-localic models which don't satisfy 
+    $\mathsf{ZL}$) so the best we can do is postulate this in a proof 
+    assistant.
+
+    I have some pipe dreams of studying a modal type theory for localic 
+    topoi over a base topos
+    where one might try to formalize this entire argument internally... 
+    But that's definitely a project for another day, haha. I still have to 
+    write my thesis, which is about entirely different ideas in a fun 
+    intersection of representation theory and sympelctic topology!
+
+[^25]:
+    Indeed, if it were it would have 
+    a global section by Johnstone's theorem, but it might be fun to see more 
+    directly why it isn't! As a hint, consider the (global!) subobject $C$ with 
+    support away from a point and only one element 
+    (choose one of the two fibres this can be done consistently since 
+    we removed a point).
+
+    Can you show this is a chain? Can you show $\mathsf{Sh}(S^1)$ doesn't 
+    model $\exists a : A . \mathtt{isUpperBound}(a,C)$? As a hint, what 
+    happens in a neighborhood of the point we removed? (Why do we still 
+    have to consider a neighborhood of that point?)
+    
+[^26]:
+    I'm pretty sure the example can't be based on a locally euclidean space...
+    Indeed if you had two distinct maxima $a$ and $b$ for $A$ on a small open 
+    ball $U \cong \mathbb{R}^n$ then you could look at the subobject
+    $$\{a \mid x_1 \gt 0\} \cup \{b \mid x_1 \lt 0 \}$$ (using local 
+    coordinates $(x_1, \ldots, x_n)$ on $U$). This is a chain since any 
+    (generalized) element is contained in precisely one of the two opens 
+    $$\{x_1 \gt 0\}$ and $$\{x_1 \lt 0\}$$, but on either open there's only 
+    one element. Of course, this chain does not admit a local upper bound 
+    in the neighborhood of $x_1 = 0$... So the poset we started with, which 
+    had two distinct maxima, cannot have been inductive!
+
+    Indeed, maxima seem to "persist" from small opens to larger opens. 
+    If $U \subseteq V$ and we have a maximum $m$ in $A(U)$, then we can 
+    consider the subobject (at stage $V$!) $\{m \mid U \}$, which is a chain,
+    so has an upper bound. So there must be a section $m' \in A(V)$ which 
+    restricts to $m$ on $U$ (since $m' \geq m$ on $U$, so $m' = m$ by 
+    maximality).
+
+    Another issue is that inductiveness is local, since it's phrased entirely 
+    using set theoretic quantifiers. So in a general topological space 
+    if we try to find opens $U$ and $V$ so that maxima on $A(U)$ and $A(V)$ 
+    restrict to distinct maxima on $A(U \cap V)$ (which would show that no 
+    choice of maximum can be consistently made for $A(U \cap V)$) then 
+    actually $A$ must be inductive on the whole of $U \cup V$ so that 
+    Johnstone's metatheorem kicks in on this slice and we get a global section 
+    over $U \cup V$. In particular, there must be *some* way to consistently 
+    make the choice of maximum for any particular configuration...
+
+    This made me wonder if maybe 
+    $\prod_{A : \mathtt{inductivePoset}} \sum_{m : A} \mathtt{isMax}(m)$
+    *is* provable... but then I haven't been able to convince myself about it!
