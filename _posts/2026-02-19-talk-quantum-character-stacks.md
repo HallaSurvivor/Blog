@@ -291,7 +291,7 @@ Stay safe, and we'll chat soon ^_^.
     their implementations are different!
 
     Since a lot of my readers are familiar with topos theory, I'll say here 
-    that the category $G$\text{-}\mathsf{Set}$ is a topos, and we often 
+    that the category $G\text{-}\mathsf{Set}$ is a topos, and we often 
     denote it by $\mathsf{B}G$ for this same reason. Indeed, the topos
     $\mathsf{B}G$ thinks its category of vector spaces is $\text{Rep}(G)$
     so this is secretly the algebro-geometric example again.
