@@ -187,11 +187,11 @@ $$
 
 Where the action (on objects) of 
 $\left ( \bigoplus_\mathbb{Z} \mathsf{Vect} \right )^\text{op} 
-\otimes \left ( \bigoplus_\mathbb{Z} \mathsf{Vect} \right )$
+\boxtimes \left ( \bigoplus_\mathbb{Z} \mathsf{Vect} \right )$
 on 
 $\left ( \bigoplus_\mathbb{Z} \mathsf{Vect} \right )$ is by 
 
-$$(V_n \otimes V_m) \cdot V_i \simeq V_n \otimes V_i \otimes V_m$$
+$$(V_n \boxtimes V_m) \cdot V_i \simeq V_n \otimes V_i \otimes V_m$$
 
 just like the bimodule action for the ordinary Hochschild homology! So,
 using the presentation for the relative tensor product of categories, 
@@ -213,13 +213,15 @@ of our category is
 
 $$V_i \boxtimes V_0$$
 
-Of course, we have *more isomorphisms*! Indeed when $n = -m$, we get an 
-isomorphism 
+We can do this by choosing $n = -(m+j)$, which uses up one of our two 
+degrees of freedom. Of course, we can still freely choose $m$, which gives us
+*more isomorphisms*! When $j=0$ for simplicity (or, given the above discussion,
+without loss of generality), we get isomorphisms
 
 $$
 (V_n \otimes V_i \otimes V_{-n}) \boxtimes V_0 
 \cong 
-V_i \boxtimes V_{-n} \otimes V_n
+V_i \boxtimes (V_{-n} \otimes V_0 \otimes V_n)
 \cong
 V_i \boxtimes V_0
 $$
