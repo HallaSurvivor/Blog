@@ -5,7 +5,7 @@ tags:
   - 
 ---
 
-In the [main post][1] I go over a talk I gave today explaining how 
+In the [main post][1] I go over a talk I gave ~~today~~ yesterday explaining how 
 factorization homology relates to (quantum) character stacks. In this 
 post I want to do a sample computation which gives some justification that 
 the main theorem from that talk (which is *not* mine) actually does work!
@@ -320,6 +320,10 @@ $G \big \backslash (G \times G^\text{op} ) \big / G$ is equivalent to
 $G \big / G$, the quotient of $G$ by the conjugation action! But this is 
 exactly what we expect $\underline{\text{Ch}}(\text{Annulus}, G)$ to be!
 
+This is encouraging since this calculation looked superficially like the 
+kind of thing we were doing by hand back in the objectwise calculation 
+in the last section!
+
 ---
 
 Ok, thanks for reading all! This was a very quick-and-dirty post, and 
@@ -327,12 +331,12 @@ I'm not sure I got the details right with the objectwise argument in the
 first half, or with the "op"s in the second half. I would normally spend 
 a few days (or weeks) reading up on stacks, properties of $\text{QCoh}$, 
 this Fourier/Cartier/Pontryagin/Whatever duality that I was using, and 
-check that everything really does work the way I think it does. But I 
+check that everything really does work the way I think it does... But I 
 want to get this out at the same time as the main post. Plus
 I've already had to put two posts on the backburner which 
 are probably mostly right but need some details checked (one is about the 
 stack semantics for the internal logic of (1-)topoi, and one is an explicit 
-computation of the goldman bracket for character varieties), and I really don't 
+computation of the Goldman bracket for character varieties), and I really don't 
 want a third post in that limbo space. This could easily become one of many 
 technical computations stuck in my drafts, but maybe it's nice to share some 
 quick-and-dirty computations too, since I do a lot of those in the privacy 

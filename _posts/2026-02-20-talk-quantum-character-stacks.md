@@ -5,7 +5,7 @@ tags:
   - my-talks
 ---
 
-Today in the Representation Theory Seminar at UCR I gave a talk about 
+~~Today~~ Yesterday in the Representation Theory Seminar at UCR I gave a talk about 
 Factorization Homology and how it lets us compute a "Quantum Character Stack".
 This is all based on a great paper,
 [_Integrating Quantum Groups Over Surfaces_][1] by Ben-Zvi, Brochier, and 
@@ -28,7 +28,9 @@ very graciously said that I did a good job telling a story and showing that
 some could, in the abstract, compute things like this... but I didn't actually
 show the audience how *they* can compute with it. I think that's a fair 
 review, and is pretty consistent with my experience writing and giving the 
-talk.
+talk. Every professor that I talked to said that it was really good, though, 
+which made me happy. Thankfully that's also pretty consistent with my experience
+giving the talk, haha.
 
 I've given other *really* dense talks before, and I remember coming off a 
 bit... energetic, lol. I was pleased that I think I managed to fit a lot of 
@@ -55,12 +57,16 @@ removing the reliance of $\pi_1 \Sigma$ on a choice of base point, since
 a change of base point leads to a conjugate representation. 
 
 There are a few things you could mean by the quotient 
-$\text{Hom}(\pi_1 \Sigma, G) \big / G$, both based on the observation that 
+$\text{Hom}(\pi_1 \Sigma, G) \big / G$. The first and most naive is to 
+literally take the space and quotient out by the orbit equivalence relation.
+This gives a space that isn't even Hausdorff (and it makes a nice exercise to 
+see why!) so this isn't great. The more subtle approaches are 
+both based on the observation that 
 a function on $X \big / G$ should be the same thing as a $G$-equivariant 
 function on $X$. If you haven't seen this before it's worth taking a second 
 to think about why this should be true!
 
-Then if you're a 20th century algebraic geometer you would define the 
+If you're a 20th century algebraic geometer you would define the 
 <span class=defn>Character Variety</span> $\text{Ch}(\Sigma,G)$ as 
 $$\text{Spec} \big (\mathcal{O}(\text{Hom}(\pi_1 \Sigma, G))^G \big )$$.
 This literally means "the space whose ring of functions is $G$-equivariant 
@@ -68,11 +74,11 @@ functions on $\text{Hom}(\pi_1 \Sigma,G)$".
 
 If you're a 21st century geometer, you're likely to de-emphasize 
 $\mathbb{C}$-valued functions on $X$ (like $\mathcal{O}(X)$) for 
-$\mathsf{Vect}_\mathbb{C}$-valued functions. These assign a vector space 
+$\mathsf{Vect}\_\mathbb{C}$-valued functions. These assign a vector space 
 to every point in a way that "varies smoothly", and the way to make this 
 precise is via sheaves! So you find yourself interested in something like 
 $\text{QCoh}(X)$. In this case, you might want to define the 
-<span clas=defn>Character Stack</span> $\underline{\text{Ch}}(\Sigma,G)$ 
+<span class=defn>Character Stack</span> $\underline{\text{Ch}}(\Sigma,G)$ 
 to be "the space whose category of quasicoherent sheaves is $G$-equivariant 
 sheaves on $\text{Hom}(\pi_1 \Sigma, G)$".
 
