@@ -247,12 +247,101 @@ $\text{QCoh}(\underline{\text{Ch}}(\Sigma,\mathbb{C}^\times))$!
 ---
 
 Lastly, let's say what the "correct" way to do this is. [Tom Gannon][2]
-showed me how to do this when I talked to him about this yesterday.
+showed me how to do this when I talked to him about this yesterday. Obviously,
+any mistakes come from my incorrectly remembering some details, or incorrectly
+filling in others.
 
-We compute
+We compute the factorization homology side again... But this 
+computation will work for any group $G$, and we'll write it in 
+that level of generality.
 
-TODO: put Tom's proof here
+As before, we define $\underline{\text{Ch}}(\text{Annulus}, G)$ to be 
+$\text{Hom}(\mathbb{Z}, G) \big / G$, which is $G \big / G$ -- the quotient of 
+$G$ by the conjugation action on itself. We want to compare the category of 
+quasicoherent sheaves on this stack to the factorization homology 
+$\int_{\text{Annulus}} \text{Rep}(G)$.
 
 
-[1]: /2026/02/19/talk-quantum-character-stacks.html
+As before, excision tells us that we can compute 
+$\int_{\text{Annulus}} \text{Rep}(G)$ by the relative tensor product
+
+$$
+\text{Rep}(G)^\text{op} 
+\boxtimes_{\text{Rep}(G)^\text{op} \boxtimes \text{Rep}(G)}
+\text{Rep}(G) 
+$$
+
+but recall that $\text{Rep}(G) \simeq \text{QCoh}(\mathsf{B}G)$, so we can 
+rewrite this as 
+
+$$
+\begin{aligned}
+\text{QCoh}(\mathsf{B}G) 
+\boxtimes_{
+\text{QCoh}(\mathsf{B}G) \boxtimes \text{QCoh}(\mathsf{B}G)^\text{op}}
+\text{QCoh}(\mathsf{B}G)^\text{op}
+&\overset{(1)}{\simeq}
+\text{QCoh}(\mathsf{B}G \times_{\mathsf{B}G \times \mathsf{B}G^\text{op}} \mathsf{B}G^\text{op}) \\
+&\overset{(2)}{\simeq}
+\text{QCoh}(G \big \backslash (G \times G^\text{op}) \big / G) \\
+&\overset{(3)}{\simeq}
+\text{QCoh}(G \big / G)
+\end{aligned}
+$$
+
+In step $1$ we use the fact that the (relative) tensor product of sheaves 
+corresponds to sheaves on the pullback. In step $2$ we compute the pullback
+of classifying spaces. Indeed, if we wanted the (homotopy) pullback 
+$\star \times_{\mathsf{B}(G \times G^\text{op})} \star$ (remember that $\mathsf{B}$ 
+preserves products) this would just be the loopspace of $\mathsf{B}(G \times G^\text{op})$,
+which is $G \times G^\text{op}$. But we don't have $\star$, we actually have 
+$\mathsf{B}G = \star \big / G$. So we have one left $G$ action 
+(from the $\mathsf{B}G$) and one right $G$ action 
+(from the $\mathsf{B}G^\text{op}$) and we end up with the double quotient space
+$G \big \backslash (G \times G^\text{op}) \big / G$... Apparently if you work
+through the details both of these $G$ actions are diagonal, by left/right 
+multiplication respectively, but I haven't tried to understand why that is.
+I also don't entirely know that I'm keeping track of the "op"s correctly, 
+and while we're at it I'm fuzzy on the details of this "act like we're 
+pulling back to a pair of points and then quotient by the $G$ actions after"
+stuff too... I'm sure it's formal, and I just haven't gotten familiar with 
+the rules for symbol pushing yet, so let't not worry about it. 
+
+Regardless, we find ourselves with 
+$G \big \backslash (G \times G^\text{op}) \big / G$ where the action is by 
+$h \cdot (g_1, g_2) \cdot k = (h g_1 k, k g_2 h)$. Then we can use 
+one degree of symmetry by taking $k = h^{-1} g_2^{-1}$. This tells us that 
+in the quotient we should identify $(g_1,g_2)$ with $(h g_1 g_2^{-1} h^{-1}, e)$.
+Note that the multiplication order is kind of funny because of all the "op"s 
+floating around. Of course we have another degree of freedom to use by 
+choosing $h$, and as before this gives us an action of $G$ on itself by 
+conjugation! So altogether we see that 
+$G \big \backslash (G \times G^\text{op} ) \big / G$ is equivalent to 
+$G \big / G$, the quotient of $G$ by the conjugation action! But this is 
+exactly what we expect $\underline{\text{Ch}}(\text{Annulus}, G)$ to be!
+
+---
+
+Ok, thanks for reading all! This was a very quick-and-dirty post, and 
+I'm not sure I got the details right with the objectwise argument in the 
+first half, or with the "op"s in the second half. I would normally spend 
+a few days (or weeks) reading up on stacks, properties of $\text{QCoh}$, 
+this Fourier/Cartier/Pontryagin/Whatever duality that I was using, and 
+check that everything really does work the way I think it does. But I 
+want to get this out at the same time as the main post. Plus
+I've already had to put two posts on the backburner which 
+are probably mostly right but need some details checked (one is about the 
+stack semantics for the internal logic of (1-)topoi, and one is an explicit 
+computation of the goldman bracket for character varieties), and I really don't 
+want a third post in that limbo space. This could easily become one of many 
+technical computations stuck in my drafts, but maybe it's nice to share some 
+quick-and-dirty computations too, since I do a lot of those in the privacy 
+of my own home, haha. A lot of math looks polished once it gets presented, but 
+at least for me the early days of learning a subject often look like this.
+
+Stay safe everyone, and stay warm! 
+
+
+[1]: /2026/02/20/talk-quantum-character-stacks.html
 [2]: https://sites.google.com/view/tomgannon
+

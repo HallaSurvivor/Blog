@@ -271,7 +271,7 @@ Stay safe, and we'll chat soon ^_^.
 
 [1]: https://www.doi.org/10.1112/topo.12072
 [2]: /2024/03/27/ams-sectional-talk-fh
-[3]: /2026/02/19/computing-quantum-character-stacks
+[3]: /2026/02/20/computing-quantum-character-stacks
 [4]: https://www.youtube.com/watch?v=yeTngpqaAmk
 [5]: https://ncatlab.org/nlab/show/braided+monoidal+category
 [6]: https://sites.google.com/view/shane-rankin
