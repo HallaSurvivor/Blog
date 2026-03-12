@@ -42,13 +42,35 @@ functions on $S^2$ according to the $SO(3)$-symmetry, which recovers the
 [spherical harmonics][1]. 
 
 
-TODO: can we plot the spherical harmonics above the sphere with sage?
-That means to each point $p$ on the sphere we'll want to plot 
-$f_{n,k}(p)$ radially away from that point $p$... So I guess we want 
-to plot $p$ and $(1 + f_{n,k}(p))p$ for every $p$ in the sphere... 
-and this second point should be transparent.
+TODO: can we make this plot in color to indicate the phase in addition to the 
+height indicating the magnitude?
 
 
+<div class="linked_auto">
+<script type="text/x-sage">
+z, theta= var('z,θ')
+
+f(z,theta) = 1
+
+def drawFunction(f):
+    x(z,theta) = sqrt(1-z^2) * cos(theta)
+    y(z,theta) = sqrt(1-z^2) * sin(theta)
+
+    # The sphere on which f is a function
+    S = parametric_plot3d((x,y,z), (z,-1,1), (theta,0,2*pi))
+    
+    f_shift(z,theta) = 1 + f(z,theta)
+    F = parametric_plot3d( (f_shift*x, f_shift*y, f_shift*z), (z,-1,1), (theta,0,2*pi), color='orange', opacity=0.4)
+    
+    return (S+F).show()
+
+def sphericalHarmonic(p,k):
+    f(z,theta) = abs(z^p * sqrt(1-z^2)^abs(k) * exp(I * k * theta))
+    return f
+
+drawFunction(sphericalHarmonic(1,-6))
+</script>
+</div>
 
 
 ---
