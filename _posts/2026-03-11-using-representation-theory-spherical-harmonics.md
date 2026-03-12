@@ -42,33 +42,41 @@ functions on $S^2$ according to the $SO(3)$-symmetry, which recovers the
 [spherical harmonics][1]. 
 
 
-TODO: can we make this plot in color to indicate the phase in addition to the 
-height indicating the magnitude?
-
-
 <div class="linked_auto">
 <script type="text/x-sage">
+from sage.plot.colors import mod_one
 z, theta= var('z,θ')
 
-f(z,theta) = 1
+@interact
+def _(p=slider([1..10], default=1), k=slider([-20..20], default=3), opacity=(0.6,(0.1,1))):
 
-def drawFunction(f):
+    # the spherical harmonic to draw
+    f(z,theta) = z^p * sqrt(1-z^2)^abs(k) * exp(I * k * theta)
+    
+
     x(z,theta) = sqrt(1-z^2) * cos(theta)
     y(z,theta) = sqrt(1-z^2) * sin(theta)
 
     # The sphere on which f is a function
-    S = parametric_plot3d((x,y,z), (z,-1,1), (theta,0,2*pi))
+    S = parametric_plot3d((x,y,z), (z,-1,1), (theta,0,2*pi), color='white')
     
-    f_shift(z,theta) = 1 + f(z,theta)
-    F = parametric_plot3d( (f_shift*x, f_shift*y, f_shift*z), (z,-1,1), (theta,0,2*pi), color='orange', opacity=0.4)
+    f_mag(z,theta) = abs(f(z,theta))
     
-    return (S+F).show()
+    # the colormap expects a python function rather than a symbolic one
+    def f_phase(z,theta): 
+        # the colormap expects values between 0 and 1
+        val = arg(f(z,theta)) / (2*pi)
+        return mod_one(val.n())
 
-def sphericalHarmonic(p,k):
-    f(z,theta) = abs(z^p * sqrt(1-z^2)^abs(k) * exp(I * k * theta))
-    return f
+    # shift the value up by 1 so that it appears above the surface of the sphere of radius 1
+    f_shift(z,theta) = 1 + f_mag(z,theta)
 
-drawFunction(sphericalHarmonic(1,-6))
+    # plot the magnitude of the function and use the phase to determine the color
+    cm = colormaps.hsv
+    F = parametric_plot3d( (f_shift*x, f_shift*y, f_shift*z), (z,-1,1), (theta,0,2*pi), color=(f_phase, cm), opacity=opacity)
+
+    (S+F).show()
+
 </script>
 </div>
 
