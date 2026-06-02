@@ -20,7 +20,7 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Papers and Preprints
 
-- Explicitly Computing with Fukaya Categories of Surfaces with Boundary (in preparation)
+- Explicitly Computing with Fukaya Categories of Surfaces with Boundary [preprint](https://arxiv.org/abs/2510.10867)
 - Life in Johnstone's Topological Topos (in preparation)
 - Descent for 2-Rigs, With Application to the Recognition of Linear Theories (in preparation)
 - A Descent Theorem for Right Angled Artin Groups (Accepted to AGT. [preprint](https://arxiv.org/abs/2309.06614))
@@ -32,6 +32,8 @@ B.S. in Discrete Math and Logic (May 2019)
 
 
 ## Talks Outside Of Department
+- Introduction to Character Varieties and the Riemann-Hilbert Correspondence (Geometric Correspondences in the Desert, 2026)
+- Skein Relations in the Hall Algebra of the Fukaya Category of a Surface (JMM WisCons, 2026)
 - How to Compute with Derived Categories by Doodling (Seminar Talk at MSU, 2025)
 - How to Compute with Derived Categories by Doodling (QTMART at Bonn, 2025)
 - Explicitly Computing with Fukaya Categories of Surfaces (AWM WiSCons, 2025)
@@ -45,6 +47,7 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Seminar Talks In Department
 
+- Overview of Canonical Bases for Hall Algebras (UCR, 2026)
 - Counting is Hard, Complex Analysis is Easy (UCR, 2025)
 - How to Compute *with* and *in* Fukaya Categories of Surfaces (UCR, 2025)
 - Categories and Harmonic Analysis: Tannaka and 
@@ -74,6 +77,10 @@ B.S. in Discrete Math and Logic (May 2019)
 
 
 ## Outreach and Service
+
+- Co-Organizer for [Geometric Correspondences in the Desert](https://sites.google.com/view/gcd2026/home)
+    with Shane Rankin (2026)
+    - A conference by-and-for PhD students interested in learning Nonabelian Hodge Theory
 
  - [Vernon A Kramer Memorial Service Award][8] Recipient (2025)
      - Christina Grossack stands out for helping shape the culture of the 
@@ -215,6 +222,9 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Research/Reading Experience
 
+- Perverse Sheaves and Canonical Bases Seminar (2026)
+    - Learning seminar, organized by me
+
 - DG-Category Seminar (2024)
   - Learning seminar, organized by me
 
@@ -245,6 +255,10 @@ B.S. in Discrete Math and Logic (May 2019)
 
 ## Conferences Attended
 
+- [String Math 2026](https://www.claymath.org/events/string-math-2026/) (Summer 2026)
+- [WiSCon Collaboration Workshop 2026](https://www.ipam.ucla.edu/programs/special-events-and-conferences/research-collaboration-workshop-in-contact-and-symplectic-geometry-topology/) (Summer 2026)
+- [Geometric Correspondences in the Desert](https://sites.google.com/view/gcd2026/home) (Spring 2026)
+- [Moab Topology Conference](https://artsci.usu.edu/math-stats/moab-topology-conference/) (Spring 2026)
 - [JMM](https://jointmathematicsmeetings.org/jmm) (Winter 2026)
 - [Fall School on Quantizations and Lagrangians](https://sites.google.com/view/frg-fall2025/home) (Summer 2025)
 - [Queer and Trans Mathematicians in Algebra and Representation Theory](https://math-events.uni-bonn.de/event/104/) (Summer 2025)
