@@ -19,7 +19,7 @@ mathematics, and have mentored several undergraduates and early graduate
 students.
 
 You might be interested in [my CV](/cv) or [my blog](/blog). You can read 
-more about me [here](/about), or send me an email at cgros007 AT ucr DOT edu.
+more about me [here](/about), or send me an email at chris.grossack@montana.edu
 
 <p style="text-align:center;">
 <img src="/assets/images/new-headshot.jpg" width="50%">
