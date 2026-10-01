@@ -12,8 +12,7 @@ also studied music and computer science.
 My mathematical interests lie in the intersection of algebra, geometry,
 and logic -- an intersection which is often made clearer with the language
 of category theory.
-Following in the great mathematical tradition, I'll
-write my email as: cgros007 AT ucr DOT edu.
+You can email me at chris.grossack@montana.edu
 
 Besides math, my first love is the flute, which I've been 
 playing for over 20 years now -- though recently I've been spending a lot

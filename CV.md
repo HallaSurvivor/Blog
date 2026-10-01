@@ -6,11 +6,24 @@ title: CV
 
 ---
 
-## Education
+## Education and Employment
+
+### IPAM at UCLA
+
+Researcher at the semester program on 
+["Quantum Topology, Cluster Varieties, and Low Dimensional Geometry"][11]
+(Fall 2026)
+
+### Montana State University
+
+Postdoctoral Researcher (2026--present) with 
+[David Ayala][david ayala website],
+[Ryan Grady][ryan grady website], and
+[Sam Gunningham][sam gunningham website]
 
 ### UC Riverside
 
-Mathematics PhD Student (Ongoing) with [Peter Samuelson][peter samuelson website]
+Mathematics PhD Student (2020-2026) with [Peter Samuelson][peter samuelson website]
 
 ### Carnegie Mellon University
 
@@ -29,51 +42,6 @@ B.S. in Discrete Math and Logic (May 2019)
     (lecture notes from Adam Bjorndahl's class which were 
     going to become a book until the project ran out of steam. 
     Available [here][modal logic book])
-
-
-## Talks Outside Of Department
-- Introduction to Character Varieties and the Riemann-Hilbert Correspondence (Geometric Correspondences in the Desert, 2026)
-- Skein Relations in the Hall Algebra of the Fukaya Category of a Surface (JMM WisCons, 2026)
-- How to Compute with Derived Categories by Doodling (Seminar Talk at MSU, 2025)
-- How to Compute with Derived Categories by Doodling (QTMART at Bonn, 2025)
-- Explicitly Computing with Fukaya Categories of Surfaces (AWM WiSCons, 2025)
-- Life in Johnstone's Topological Topos (CT Octoberfest, 2024)
-- Gluing is Hard: Skeins and Hall Algebras (Centre for Quantum Mathematics at Syddansk, 2024)
-- What is Factorization Homology? (AMS Special Session, 2024)
-- 2-Categorical Descent and (Essentially) Algebraic Theories (CT Octoberfest, 2023)
-- The Univalence Axiom (University of Florida, 2021)
-- Categories, Modalities, and Type Theories: Oh My! (HoTT Workshop, 2021)
-- Syntax and Semantics (Trans Math Day, 2020)
-
-## Seminar Talks In Department
-
-- Overview of Canonical Bases for Hall Algebras (UCR, 2026)
-- Counting is Hard, Complex Analysis is Easy (UCR, 2025)
-- How to Compute *with* and *in* Fukaya Categories of Surfaces (UCR, 2025)
-- Categories and Harmonic Analysis: Tannaka and 
-    Pontryagin Dualities (UCR, 2024)
-- Introduction to Quantum Groups (UCR, 2024)
-- Introduction to Symplectic Geometry (UCR, 2023)
-- Introduction to $A_\infty$ Categories and the Fukaya Category (UCR, 2023)
-- Introduction to $A_\infty$ Algebras (UCR, 2023)
-- Let's Solve A Simple Analysis Problem Together (applications of topos theory) (UCR, 2022)
-- The Weil Conjectures (UCR, 2021)
-
-<details markdown=1>
-<summary>See more (reverse chronological order)</summary>
-
-- Bring Out the Crayons: A Survey of Descriptive Combinatorics (UCR, 2021)
-- Top 5 Undecidable Problems: Number 4 will Shock You! (UCR, 2021)
-- Problem Solving Without Ansibles: An Introduction to Communication Complexity (UCR, 2021)
-- Why Think? Letting Computers do Math for Us (UCR, 2021)
-- Programming for Category Theorists (UCR, 2020)
-- Model Theory and You (UCR, 2020)
-- Synthetic Differential Geometry: A How-To Guide (CMU, 2019)
-- Logical Compactness: Infinite Proofs for Free! (CMU, 2019)
-- Category Theory for Programmers (CMU, 2018)
-- Algebraic Datatypes and Their Derivatives (CMU, 2017)
-
-</details>
 
 
 ## Outreach and Service
@@ -105,11 +73,11 @@ B.S. in Discrete Math and Logic (May 2019)
      Humanities Center, Center for Ideas and Society, and the Gluck Fellows 
      Program of the Arts at UCR
 
- - President of UCR [AMS Chapter][6] (2024--ongoing)
+ - President of UCR [AMS Chapter][6] (2024--2026)
 
  - Category Theory Zulip Moderator (2024--ongoing)
 
- - Founding member and organizer of UCR [Spectra][5] Chapter (2023--ongoing)
+ - Founding member and organizer of UCR [Spectra][5] Chapter (2023--2026)
 
  - Vice President of UCR [AMS Chapter][6] (2023)
 
@@ -134,6 +102,69 @@ B.S. in Discrete Math and Logic (May 2019)
  - Academic Review Board and University Disciplinary Committee (Board Member, 2017-2019)
 
  - Frequently in the top 0.1% of users on [math.stackexchange][3]
+
+
+
+## Seminars Organized
+- IPAM Junior Seminar (2026)
+
+- Bott Periodicity Seminar (2026, MSU)
+
+- Perverse Sheaves and Canonical Bases Seminar (2026, UCR)
+
+- DG-Category Seminar (2024, UCR)
+
+- Graduate Student Seminar (2024--2026, UCR)
+
+- HoTT Seminar (2023, UCR)
+
+- Fukaya Categories and Mirror Symmetry (2023, UCR)
+  - co-organized by me and [Catherine Cannizzo][catherine cannizzo website]
+
+
+
+## Talks Given
+- Introduction to Character Varieties and the Riemann-Hilbert Correspondence (Geometric Correspondences in the Desert, 2026)
+- Skein Relations in the Hall Algebra of the Fukaya Category of a Surface (JMM WisCons, 2026)
+- How to Compute with Derived Categories by Doodling (Seminar Talk at MSU, 2025)
+- How to Compute with Derived Categories by Doodling (QTMART at Bonn, 2025)
+- Explicitly Computing with Fukaya Categories of Surfaces (AWM WiSCons, 2025)
+- Life in Johnstone's Topological Topos (CT Octoberfest, 2024)
+- Gluing is Hard: Skeins and Hall Algebras (Centre for Quantum Mathematics at Syddansk, 2024)
+- What is Factorization Homology? (AMS Special Session, 2024)
+- 2-Categorical Descent and (Essentially) Algebraic Theories (CT Octoberfest, 2023)
+- The Univalence Axiom (University of Florida, 2021)
+- Categories, Modalities, and Type Theories: Oh My! (HoTT Workshop, 2021)
+- Syntax and Semantics (Trans Math Day, 2020)
+
+<details markdown=1>
+<summary>In-Department Talks</summary>
+
+- Overview of Canonical Bases for Hall Algebras (UCR, 2026)
+- Counting is Hard, Complex Analysis is Easy (UCR, 2025)
+- How to Compute *with* and *in* Fukaya Categories of Surfaces (UCR, 2025)
+- Categories and Harmonic Analysis: Tannaka and 
+    Pontryagin Dualities (UCR, 2024)
+- Introduction to Quantum Groups (UCR, 2024)
+- Introduction to Symplectic Geometry (UCR, 2023)
+- Introduction to $A_\infty$ Categories and the Fukaya Category (UCR, 2023)
+- Introduction to $A_\infty$ Algebras (UCR, 2023)
+- Let's Solve A Simple Analysis Problem Together (applications of topos theory) (UCR, 2022)
+- The Weil Conjectures (UCR, 2021)
+- Bring Out the Crayons: A Survey of Descriptive Combinatorics (UCR, 2021)
+- Top 5 Undecidable Problems: Number 4 will Shock You! (UCR, 2021)
+- Problem Solving Without Ansibles: An Introduction to Communication Complexity (UCR, 2021)
+- Why Think? Letting Computers do Math for Us (UCR, 2021)
+- Programming for Category Theorists (UCR, 2020)
+- Model Theory and You (UCR, 2020)
+- Synthetic Differential Geometry: A How-To Guide (CMU, 2019)
+- Logical Compactness: Infinite Proofs for Free! (CMU, 2019)
+- Category Theory for Programmers (CMU, 2018)
+- Algebraic Datatypes and Their Derivatives (CMU, 2017)
+
+</details>
+
+
 
 ## Teaching Experience
 
@@ -178,7 +209,30 @@ B.S. in Discrete Math and Logic (May 2019)
 </details>
 
 
-## Coursework
+## Research/Reading/Coursework
+
+<details markdown=1>
+<summary>Research and Reading</summary>
+- Morse Theory (2022)
+  - Reading course with [Brian Collier][brian collier website]
+
+- Stacks and Moduli Spaces (2022)
+  - Reading course with [Patricio Gallardo][patricio gallardo website]
+
+- CAT(0) Cube Complexes (2021)
+  - Reading course with [Matt Durham][matt durham website]
+
+- Right Angled Artin Groups (2020)
+  - Advisor: [Matt Durham][matt durham website]
+
+- Topological Combinatorics and Zero-Sum Ramsey Theory (2018-2019)
+  - Advisor: [Florian Frick][florian frick website]
+
+- Automata Groups (2018-2020)
+  - Advisor: [Klaus Sutner][klaus sutner website]
+
+
+</details>
 
 <details markdown=1>
 <summary>Graduate Coursework</summary>
@@ -220,42 +274,9 @@ B.S. in Discrete Math and Logic (May 2019)
 </details>
 
 
-## Research/Reading Experience
-
-- Perverse Sheaves and Canonical Bases Seminar (2026)
-    - Learning seminar, organized by me
-
-- DG-Category Seminar (2024)
-  - Learning seminar, organized by me
-
-- HoTT Seminar (2023)
-  - Homotopy Type Theory learning seminar at UCR, organized by me
-
-- Fukaya Categories and Mirror Symmetry (2023)
-  - Learning seminar, co-organized by me and [Catherine Cannizzo][catherine cannizzo website]
-
-- Morse Theory (2022)
-  - Reading course with [Brian Collier][brian collier website]
-
-- Stacks and Moduli Spaces (2022)
-  - Reading course with [Patricio Gallardo][patricio gallardo website]
-
-- CAT(0) Cube Complexes (2021)
-  - Reading course with [Matt Durham][matt durham website]
-
-- Right Angled Artin Groups (2020)
-  - Advisor: [Matt Durham][matt durham website]
-
-- Topological Combinatorics and Zero-Sum Ramsey Theory (2018-2019)
-  - Advisor: [Florian Frick][florian frick website]
-
-- Automata Groups (2018-2020)
-  - Advisor: [Klaus Sutner][klaus sutner website]
-
-
 ## Conferences Attended
 
-- [String Math 2026](https://www.claymath.org/events/string-math-2026/) (Summer 2026)
+- [IPAM Session on Quantum Topology, Character Varieties, and Low Dimensional Geometry][11]
 - [WiSCon Collaboration Workshop 2026](https://www.ipam.ucla.edu/programs/special-events-and-conferences/research-collaboration-workshop-in-contact-and-symplectic-geometry-topology/) (Summer 2026)
 - [Geometric Correspondences in the Desert](https://sites.google.com/view/gcd2026/home) (Spring 2026)
 - [Moab Topology Conference](https://artsci.usu.edu/math-stats/moab-topology-conference/) (Spring 2026)
@@ -290,6 +311,7 @@ B.S. in Discrete Math and Logic (May 2019)
 [8]: https://mathdept.ucr.edu/vernon-kramer-memorial-service-award
 [9]: https://awm-math.org/meetings/awm-research-symposium/search-abstracts/?_sfm_abstract_symposium_year=2025&_sfm_abstract_session=Women%20and%20Gender%20Minorities%20in%20Symplectic%20and%20Contact%20Geometry%20and%20Topology%20(WiSCons)%20in%20Madison&sort_order=_sfm_abstract_time+asc+datetime
 [10]: http://www.tac.mta.ca/tac/
+[11]: https://www.ipam.ucla.edu/programs/long-programs/quantum-topology-character-varieties-and-low-dimensional-geometry/?tab=overview
 
 [matt durham website]: https://sites.google.com/view/mgdurham/
 [catherine cannizzo website]: https://sites.google.com/view/ccannizzo/about-me
@@ -298,5 +320,8 @@ B.S. in Discrete Math and Logic (May 2019)
 [peter samuelson website]: https://sites.google.com/view/petersamuelson/home
 [klaus sutner website]: https://www.cs.cmu.edu/~sutner/
 [florian frick website]: https://www.math.cmu.edu/~ffrick
+[sam gunningham website]: https://sites.google.com/view/samgunningham/
+[david ayala website]: https://math.montana.edu/dayala/
+[ryan grady website]: https://www.math.montana.edu/rgrady/index.html
 
 [modal logic book]: /assets/docs/modal-text/main.pdf
