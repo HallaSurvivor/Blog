@@ -1,12 +1,12 @@
 ---
 
 ---
-@import "reset";
-@import "variables";
-@import "base";
-@import "nav";
-@import "landing";
-@import "post";
-@import "about";
-@import "comments";
-@import "footer";
+@use "reset" as *;
+@use "variables" as *;
+@use "base" as *;
+@use "nav" as *;
+@use "landing" as *;
+@use "post" as *;
+@use "about" as *;
+@use "comments" as *;
+@use "footer" as *;
